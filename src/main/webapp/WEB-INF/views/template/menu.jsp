@@ -106,10 +106,10 @@ display: none;}
 			<div class="col-4">
 				<div class="loginDiv" >
 					<span data-bs-toggle="modal" data-bs-target="#loginModal">Login</span>
-					<a href="/sample/sample">Join</a>
+					<a href="/member/insertJoinMember">Join</a>
 				
 					<div class="mypageDiv">
-						<a href="/sample/sample"><img alt="" width="35px" src="resources/images/menu/center.png"></a>
+						<a href="/customer/goCustomer"><img alt="" width="35px" src="resources/images/menu/center.png"></a>
 						<a href="/sample/sample"> <img alt="" width="32px" src="resources/images/menu/fastTicket.png"></a>
 						<a href="/sample/sample"><img alt="" width="32px" src="resources/images/menu/myPage.png"></a>
 					</div>
