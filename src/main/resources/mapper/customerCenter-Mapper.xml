@@ -4,16 +4,37 @@
 <mapper namespace="customerCenterMapper">
 	
 	<!-- 고객센터 게시글 -->
-	<resultMap type="com.kh.project.customerCenter.vo.CustomerCenterVO" id="board">
-		
+	<resultMap type="com.kh.project.customerCenter.vo.CustomerCenterVO" id="customer">
+		<id column="CUSTOMER_CODE"			property="customerCode"/>
+		<result column="CREATE_DATE"		property="createDate"/>
+		<result column="WRITER"				property="writer"/>
+		<result column="TITLE"				property="title"/>
+		<result column="CONTENT"			property="content"/>
+		<result column="IS_READ"			property="isRead"/>
+		<result column="SECRET_NUMBER"		property="secretNumber"/>
 	</resultMap>
 	
 	<!-- 고객센터 댓글 -->
-	<resultMap type="com.kh.project.customerCenter.vo.CustomerCenterReplyVO" id="reply">
-		
+	<resultMap type="com.kh.project.customerCenter.vo.CustomerCenterReplyVO" id="CustomerReply">
+		<id column="CUSTOMER_REPLY_CODE"		property="customerReplyCode"/>
+		<result column="CREATE_DATE"			property="createDate"/>
+		<result column="WRITER"					property="writer"/>
+		<result column="CONTENT"				property="content"/>
+		<result column="IS_CUSTOMER_CODEREAD"	property="customerCode"/>
 	</resultMap>
 	
-	
+	<!-- 고객센터 게시판 조회 -->
+	<select id="selectCustomerBoard" resultMap="customer">
+		SELECT CUSTOMER_CODE
+		    , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
+		    , WRITER 
+		    , TITLE 
+		    , CONTENT 
+		    , IS_READ 
+		    , SECRET_NUMBER 
+		    , IS_NOTICE 
+		FROM OISONE_CUSTOMER
+	</select>
 	
 </mapper>
 
