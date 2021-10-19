@@ -3,6 +3,7 @@ package com.kh.project.movie.controller;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,9 +17,20 @@ public class MovieController {
 	@Resource(name = "movieService")
 	private MovieService movieService;
 	
+	//메인 페이지로 이동
 	@GetMapping("/mainPage")
-	public String mainPage() {
+	public String mainPage(Model model) {
+		model.addAttribute("movieList", movieService.selectMovieList());
+		
 		return "movie/main_page";
+	}
+	
+	//상단 영화 메뉴 클릭 시 이동
+	@GetMapping("/movieList")
+	public String movieList(Model model) {
+		model.addAttribute("movieList", movieService.selectMovieList());
+		
+		return "movie/movie_list";
 	}
 	
 }
