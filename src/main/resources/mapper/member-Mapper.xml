@@ -5,10 +5,53 @@
 	
 	<!-- 회원 -->
 	<resultMap type="com.kh.project.member.vo.MemberVO" id="member">
-		
+		<id column="ID" 					property="id"/>
+		<result column="PW" 				property="pw"/>
+		<result column="NAME" 				property="name"/>
+		<result column="NICKNAME" 			property="nickname"/>
+		<result column="BIRTHDAY" 			property="birthday"/>
+		<result column="GENDER" 			property="gender"/>
+		<result column="TELL" 				property="tell"/>
+		<result column="EMAIL" 				property="email"/>
+		<result column="POINT" 				property="point"/>
+		<result column="SAVED_MONEY" 		property="savedMoney"/>
+		<result column="MARKETING_AGREE" 	property="marketingAgree"/>
+		<result column="IS_ADMIN" 			property="isAdmin"/>
+		<result column="JOIN_DATE" 			property="joinDate"/>
+		<result column="NONPEOPLE_TICKET" 	property="nonpeopleTicket"/>
+		<result column="MY_CINEMA" 			property="myCinema"/>
 	</resultMap>
 	
-	
+	<insert id="insertJoinMember">
+		INSERT INTO OISONE_MEMBER(
+		    ID
+		    , PW
+		    , NAME
+		    , NICKNAME
+		    , BIRTHDAY
+		    , GENDER
+		    , TELL
+		    , EMAIL
+		    , MARKETING_AGREE
+		    , NONPEOPLE_TICKET
+		    , MY_CINEMA
+
+		)VALUES(
+		    #{id}
+		    , #{pw}
+		    , #{name}
+		    , #{nickname}
+		    , #{birthday}
+		    , #{gender}
+		    , #{tell}
+		    , #{email}
+		    , #{marketingAgree}
+		    , #{nonpeopleTicket}
+		    , #{myCinema}
+
+		)
+
+	</insert>
 	
 </mapper>
 
