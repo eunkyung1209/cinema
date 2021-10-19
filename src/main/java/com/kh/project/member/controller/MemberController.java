@@ -3,6 +3,7 @@ package com.kh.project.member.controller;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.project.member.service.MemberService;
@@ -14,5 +15,13 @@ public class MemberController {
 	
 	@Resource(name = "memberService")
 	private MemberService memberService;
+	
+	
+	@GetMapping("/insertJoinMember")
+	public String insertJoinMember() {
+		return "member/join_page";
+	}
+
+	
 	
 }
