@@ -19,7 +19,7 @@ body{
 }
 .oneTd{
 	height: 55px;
-	width: 280px;
+	width: 400px;
 }
 .twoTd{
 	width: 500px;
@@ -28,7 +28,7 @@ body{
 	
 }
 .allTable{
-	width: 650px;
+	width: 800px;
 	margin: 0 auto;
 	border: 1px solid black;
 }
@@ -61,31 +61,39 @@ body{
 </head>
 <body>
 
+<form action="/member/insertJoinMember" method="post" id="joinForm">
+
 <div class="all">
 
 <div class="body">
 <!-- 회원가입 -->
-<table class="allTable">
+<table class="allTable" >
 	<tr>
 		<td colspan="2" class="head2_Td">회원정보를 입력해주세요.</td>
 	</tr>
 	<tr>
+		<td class="oneTd">이름</td>
+		<td class="twoTd">
+			<input type="text" name="name" class="joinInput1" id="floatingInput" placeholder="이름을 입력하세요." required name="id">
+		</td>
+	</tr>
+	<tr>
 		<td class="oneTd">생년월일</td>
 		<td class="twoTd">
-			<input type="date" class="joinInput3">
+			<input type="date" name="birthday" class="joinInput3">
 			&nbsp;&nbsp;&nbsp;&nbsp;/
 			&nbsp;&nbsp;성별&nbsp;&nbsp;
-			<input type="radio" checked>남자
+			<input type="radio" name="gender" checked>남자
 			&nbsp;
-			<input type="radio">여자
+			<input type="radio" name="gender">여자
 		</td>
 	</tr>
 	<tr>
 		<td class="oneTd">휴대폰 번호</td>
 		<td class="twoTd">
-			<input type="text" class="joinInput2">&nbsp;&nbsp;-&nbsp;&nbsp;
-			<input type="text" class="joinInput2">&nbsp;&nbsp;-&nbsp;&nbsp;
-			<input type="text" class="joinInput2">
+			<input type="text" name="tells" class="joinInput2">&nbsp;&nbsp;-&nbsp;&nbsp;
+			<input type="text" name="tells" class="joinInput2">&nbsp;&nbsp;-&nbsp;&nbsp;
+			<input type="text" name="tells" class="joinInput2">
 		</td>
 	</tr>
 	<tr>
@@ -108,12 +116,12 @@ body{
 			<input type="text" name="pw" class="joinInput1" id="floatingPassword" placeholder="영문,숫자,특수기호 중 2가지 이상 조합" required name="pw">
 		</td>
 	</tr>
-	<tr>
+	<!-- <tr>
 		<td class="oneTd">비밀번호 확인</td>
 		<td class="twoTd">
 			<input type="text" name="id" class="joinInput1"  id="floatingPassword" placeholder="영문,숫자,특수기호 중 2가지 이상 조합" required name="pw">
 		</td>
-	</tr>
+	</tr> -->
 	<tr>
 		<td class="oneTd">이메일 주소</td>
 		<td class="twoTd">
@@ -123,20 +131,18 @@ body{
 	<tr>
 		<td class="oneTd">무인발권기<br>기능 설정</td>
 		<td class="twoTd">
-			<input type="radio" checked>사용
+			<input type="radio" name="nonpeopleTicket" checked>사용
 			&nbsp;
-			<input type="radio">사용안함
+			<input type="radio" name="nonpeopleTicket">사용안함
 			&nbsp;&nbsp;*'생년월일+휴대폰번호로'티켓출력
 		</td>
 	</tr>
 	<tr>
 		<td class="oneTd">나만의 영화관</td>
 		<td class="twoTd">
-			자주 방문하는 영화관을 등록해주세요!
-		</td>
-		<td class="twoTd">
-			<input type="text" name="myCinema">
-			<button type="button" class="btn btn-primary" id="btn2" onclick="checkId();">설정</button>
+			자주 방문하는 영화관을 등록해주세요!<br>
+			<input type="text"  name="myCinema" class="joinInput1" >
+			<button type="button" class="btn btn-primary" id="btn2">설정</button>
 		</td>
 	</tr>
 </table>
@@ -181,13 +187,21 @@ body{
 	<tr>
 		<td colspan="3">회원 탈퇴 시 혹은 이용 목적 달성 시까지</td>
 	</tr>
+	<tr>
+		<td colspan="3">
+		<input type="radio" name="marketingAgree" checked>동의
+		&nbsp;
+		<input type="radio" name="marketingAgree" >동의안함</td>
+	</tr>
 
 	
 </table>
 
 </div>
-
+<input type="submit" value="회원가입">
 </div>
+
+</form>
 
 </body>
 </html>

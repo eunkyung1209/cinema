@@ -23,7 +23,7 @@
 	</resultMap>
 	
 	<insert id="insertJoinMember">
-		INSERT INTO BOOK_MEMBER(
+		INSERT INTO OISONE_MEMBER(
 		    ID
 		    , PW
 		    , NAME
