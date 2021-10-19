@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 모든 SQL문을 mapper태그 안에 작성 -->
+<mapper namespace="communityMapper">
+	
+	<!-- 커뮤니티 게시글 -->
+	<resultMap type="com.kh.project.community.vo.CommunityVO" id="board">
+		
+	</resultMap>
+	
+	<!-- 커뮤니티 댓글 -->
+	<resultMap type="com.kh.project.community.vo.CommunityReplyVO" id="reply">
+		
+	</resultMap>
+	
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
