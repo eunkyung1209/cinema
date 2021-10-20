@@ -16,6 +16,6 @@ public interface CommunityService {
 	// 게시글 삭제
 	void deleteBoard(String commuCode);
 	
-
+	// 게시글 수정
 
 }

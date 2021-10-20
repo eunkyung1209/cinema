@@ -50,19 +50,7 @@ tr:hover {
 </style>
 </head>
 <body>
-<div class="total">
-	총 ${list.size() }건
-	<form action="boardList.bo" method="post">
-		<span style="float: right;">
-			<select name="searchKeyword">
-				<option value="TITLE">제목</option>
-				<option value="WRITER">작성자</option>
-			</select>
-			<input type="text" name="searchValue">
-			<input type="submit" value="검색">
-		</span>
-	</form>
-</div>
+
 <table>
 	<colgroup>
 		<col width="10%">
@@ -119,8 +107,10 @@ tr:hover {
 <div class="btnDiv">
 	<c:if test="${not empty sessionScope.loginInfo }">
 		<div class="btn" onclick="location.href='/board/insertBoardGo';">작성</div>
+		
 	</c:if>
-	<div class="btn" onclick="location.href='/board/boardWiterForm';">작성</div>
+	<div class="btn" onclick="location.href='/board/boardWriterForm';">작성</div>
+	<div class="btn" onclick="location.href='/board/insertBoardGo';">삭제</div>
 </div>
 </body>
 </html>

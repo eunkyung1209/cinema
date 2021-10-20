@@ -30,9 +30,9 @@ public class CommunityController {
 	}
 	//게시글 ㄱㄱ
 	// 로그인시 작성 버튼!눌렀을때, 게시판 글 작성할수있는 페이지로 이동
-	@GetMapping("/boardWiterForm")
+	@GetMapping("/boardWriterForm")
 	public String insertBoardGo() {
-		return "community/community_witerForm";
+		return "community/community_writerForm";
 	}
 	
 	//게시글 작성화면
@@ -52,5 +52,6 @@ public class CommunityController {
 	}
 	// 게시글 수정
 	
+
 	
 }
