@@ -5,16 +5,66 @@
 	
 	<!-- 커뮤니티 게시글 -->
 	<resultMap type="com.kh.project.community.vo.CommunityVO" id="board">
+		<id column=" COMMU_CODE"         property="commuCode"/>
+		<result column="WRITER"         property="writer"/>
+		<result column="CREATE_DATE"    property="createDate"/>
+		<result column="READ_CNT"       property="readCnt"/>
+		<result column="TITLE"          property="title"/>
+		<result column="CONTENT"        property="content"/>
+		<result column="SECRET"         property="secret"/>
+		<result column="IS_SECRET"      property="isSecret"/>
 		
 	</resultMap>
 	
 	<!-- 커뮤니티 댓글 -->
 	<resultMap type="com.kh.project.community.vo.CommunityReplyVO" id="reply">
+		<id column="COMMU_REPLY_CODE"   property="commiReplyCode"/>
+		<result column="CREATE_DATE"    property="createDate"/>
+		<result column="WRITER"         property="writer"/>
+		<result column="CONTENT"        property="content"/>
 		
 	</resultMap>
 	
-	
-	
+<!--커뮤니티 게시글 조회  -->
+<select id="selectBoardList" resultMap="board">
+SELECT COMMU_CODE
+	(SELECT ,'CB_'||(TO_CHAR(SYSDATE, 'YYMMDD_')||'-'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(COMMU_CODE,6,3))),0)+1,3,'0')
+    ,WRITER
+    ,READ_CNT
+    ,TITLE
+    ,CONTENT
+   FROM OISONE_COMMUNITY
+
+</select>
+
+<!--커뮤니티 게시글 등록  -->
+<insert id="insertBoard">
+INSERT INTO OISONE_COMMUNITY(
+    COMMU_CODE
+    ,WRITER
+    ,CREATE_DATE
+    ,READ_CNT
+    ,TITLE
+    ,CONTENT
+    )VALUES(
+       (SELECT ,'CB_'||(TO_CHAR(SYSDATE, 'YYMMDD_')||'-'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(COMMU_CODE,6,3))),0)+1,3,'0')
+      , #{commuCode}
+      , #{writer}
+      , #{createDate}
+      , #{readCnt}
+      , #{title}
+      , #{content}
+
+</insert>
+
+<!--커뮤니티 게시글 삭제  -->
+<delete id="deleteBoard">
+DELETE OISONE_COMMUNITY
+WHERE COMMU_CODE =#{commuCode}
+
+</delete>
+
+
 </mapper>
 
 
