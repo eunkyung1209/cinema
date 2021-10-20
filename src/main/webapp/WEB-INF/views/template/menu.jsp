@@ -19,11 +19,11 @@ a{
 	color: white;
 }
 
-.menuBodyDiv{
+/* .menuBodyDiv{
 	height: 100px;
 	padding-left: 8%;
 	padding-right: 8%;
-}
+} */
 .lineMenuDiv{
 	padding-top: 20px;
 }
@@ -49,6 +49,10 @@ a{
 
 .menu_menu {
 	font-weight: bold;
+}
+
+.menu_menu > ul{
+	padding: 0;
 }
 
 .menu_menu li{
@@ -169,11 +173,11 @@ a{
 				     	</li>
 				          
 				        <li class="nav-item dropdown">
-				           	<a class="nav-link dropdown-toggle" href="/community/boardList" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				           	<a class="nav-link dropdown-toggle" href="/board/boardList" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 				              	COMMUNITY
 				            </a>
 				            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-				              	<li><a class="dropdown-item" href="/community/boardList">커뮤니티 게시판</a></li>
+				              	<li><a class="dropdown-item" href="/board/boardList">커뮤니티 게시판</a></li>
 				              	<li><a class="dropdown-item" href="#">Another action</a></li>
 				              	<li>
 				                	<hr class="dropdown-divider">

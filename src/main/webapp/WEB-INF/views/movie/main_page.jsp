@@ -44,6 +44,11 @@ p > img{
 .card{
 	background-color: black;
 }
+.menuBodyDiv{
+	height: 100px;
+	padding-left: 8%;
+	padding-right: 8%;
+}
 </style>
 </head>
 <body>

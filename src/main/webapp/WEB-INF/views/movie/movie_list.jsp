@@ -7,10 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-body{
-	background-color: black;
-	color: white;
-}
 .subjectDiv{
 	border-bottom: 2px solid #dddddd;
 }
@@ -23,10 +19,10 @@ body{
 			<h5>전체 영화</h5>
 		</div>
 	</div>
-	<c:forEach items="${movieList }" var="movieInfo">
+	<%-- <c:forEach items="${movieList }" var="movieInfo"> --%>
 		<div class="col-2">
 			<div class="card" style="width: 9rem;">
-				<img src="..." class="card-img-top">
+				<img src="/resources/images/main/메인서브-01.png" class="card-img-top">
 				<div class="card-body">
 					<h5 class="card-title">영화제목</h5>
 					<p class="card-text">개봉일</p>
@@ -34,7 +30,7 @@ body{
 				</div>
 			</div>
 		</div>
-	</c:forEach>
+	<%-- </c:forEach> --%>
 </div>
 </body>
 </html>
