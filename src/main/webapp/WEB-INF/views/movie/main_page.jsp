@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,6 +68,21 @@ p > img{
 		</div>
 	</div>
 	<div class="row">
+		<c:forEach items="${movieList }" var="movieInfo">
+			<div class="col-2">
+				<div class="card mb-3">
+					<a href="#"><img src="/resources/images/movie/${movieInfo.posterImg[0].attachedImgName }" class="card-img-top"></a>
+					<div class="card-body">
+						<h5 class="card-title">${movieInfo.title }</h5>
+						<p class="card-text">
+							${movieInfo.genre } 
+							&nbsp;|&nbsp; 
+							<img src="/resources/images/main/메인서브-별점.PNG">${movieInfo.grade }
+						</p>
+					</div>
+				</div>
+			</div>
+		</c:forEach>
 		<div class="col-2">
 			<div class="card mb-3">
 				<a href="#"><img src="/resources/images/main/메인서브-01.png" class="card-img-top" alt="..."></a>
