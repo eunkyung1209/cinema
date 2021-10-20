@@ -23,6 +23,7 @@ public class MovieController {
 		model.addAttribute("movieList", movieService.selectMovieList());
 		
 		return "movie/main_page";
+		//return "template/main_bin";
 	}
 	
 	//상단 영화 메뉴 클릭 시 이동
