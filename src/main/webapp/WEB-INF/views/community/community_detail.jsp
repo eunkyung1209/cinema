@@ -44,7 +44,7 @@ font-weight: bold;
 	</table>
 <div class="btnDiv">
 
-	<c:if test="${sessionScope.loginInfo.memberId eq 'admin' or sessionscope.loginInfo.memberId eq communityVO.writer}">
+	<c:if test="${sessionScope.loginInfo.Id eq 'admin' or sessionscope.loginInfo.Id eq communityVO.writer}">
 		<input type="button" class ="btn" value="삭제" onclick="deletBoard(${board.commuCode});"> 
 		<input type="button" class ="btn" value="수정" onclick="location.href='updateForm.bo?commuCode=${communityVO.commuCode}';">
 	</c:if>

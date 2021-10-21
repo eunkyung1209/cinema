@@ -40,9 +40,9 @@ public class CommunityController {
 	@PostMapping("/insertBoard")
 	public String insertBoard(CommunityVO communityVO) {
 		boardService.insertBoard(communityVO);
-
+			System.out.println(communityVO.getTitle());
 		
-		return "redirect:/community/community_board_list";
+		return "redirect:/board/boardList";
 	}
 	// 게시글 삭제
 	@PostMapping("/deleteBoard")

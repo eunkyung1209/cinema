@@ -105,11 +105,11 @@ tr:hover {
 </table>
 <div class="btnDiv">
 	<c:if test="${not empty sessionScope.loginInfo }">
-		<div class="btn" onclick="location.href='/board/insertBoardGo';">작성</div>
-		
+		<div class="btn" onclick="location.href='/board/boardWriterForm';">작성</div>
+		<div class="btn" onclick="location.href='/board/insertBoardGo';">X</div>
 	</c:if>
-	<div class="btn" onclick="location.href='/board/boardWriterForm';">작성</div>
-	<div class="btn" onclick="location.href='/board/insertBoardGo';">삭제</div>
+	
+	
 </div>
 </body>
 </html>

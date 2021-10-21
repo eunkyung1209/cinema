@@ -22,7 +22,7 @@ public class CommunityServiceImpl implements CommunityService {
 
 	@Override
 	public void insertBoard(CommunityVO communityVO) {
-		sqlSession.insert("communityMapper.insertBoard");
+		sqlSession.insert("communityMapper.insertBoard",communityVO);
 	}
 
 	@Override

@@ -9,6 +9,7 @@
 <body>
 커뮤니티 게시글 작성하는곳
 
+
 	 <form action="/board/insertBoard" method="post">
 	<table>
 		<tr>
@@ -17,7 +18,7 @@
 		</tr>
 		<tr>
 			<td>작성자</td>
-			<td><input type="text" name="writer" value=" ${sessionScope.loginInfo.memberId }" readonly></td>
+			<td><input type="text" name="writer" value="${sessionScope.loginInfo.nickName }" readonly></td>
 		</tr>
 		<tr>
 			<td>작성일</td>
