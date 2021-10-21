@@ -37,6 +37,8 @@ body{
 							<option selected>전체</option>
 							<option value="ID" <c:if test="${memberVO.searchKeyword eq 'ID' }">selected</c:if>>아이디</option>
 							<option value="NAME" <c:if test="${memberVO.searchKeyword eq 'NAME' }">selected</c:if>>이름</option>
+							<option value="NICKNAME" <c:if test="${memberVO.searchKeyword eq 'NICKNAME' }">selected</c:if>>닉네임</option>
+							<option value="TELL" <c:if test="${memberVO.searchKeyword eq 'TELL' }">selected</c:if>>번호</option>
 						</select>
 					</div>
 					<div class="col-1"></div>

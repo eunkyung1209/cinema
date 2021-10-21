@@ -1,6 +1,6 @@
 package com.kh.project.common.vo;
 
-public class PageVO  {
+public class PageVO extends BaseSearchVO{
 	private int nowPage;		//현재 선택된 페이지 번호   -> 1 '2' 3 4 5 next -> 2번
 	private int totalCnt;		//전체 데이터 수   -> 게시글 수
 	private int beginPage;		//화면에 보이는 첫 페이지   -> '1' 2 3 4 5 next / '6' 7 8 9 10 next ...
