@@ -7,11 +7,14 @@ import com.kh.project.movie.vo.MovieVO;
 
 public interface MovieService {
 	
-	//영화 목록 조회
-	List<MovieVO> selectSimpleMovieList();
+	//영화 목록 조회 - 메인화면, 영화목록
+	List<MovieVO> selectMovieList();
 	
 	//영화 상세 조회
 	MovieVO selectDetailMovie(String mvCode);
+	
+	//영화 목록 조회 - 관리자
+	List<MovieVO> selectAdminMovieList();
 	
 	//영화 삭제
 	void deleteMovie(String mvCode);

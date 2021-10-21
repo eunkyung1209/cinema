@@ -42,6 +42,7 @@ body{
 							<col width="15%">
 							<col width="15%">
 							<col width="10%">
+							<col width="10%">
 						</colgroup>
 						<thead>
 							<tr>
@@ -49,6 +50,7 @@ body{
 								<th scope="col">Title</th>
 								<th scope="col">Genre</th>
 								<th scope="col">Open Date</th>
+								<th scope="col">Update</th>
 								<th scope="col">Delete</th>
 							</tr>
 						</thead>
@@ -59,6 +61,9 @@ body{
 									<td class="align-middle">${movieInfo.title }</td>
 									<td class="align-middle">${movieInfo.genre }</td>
 									<td class="align-middle">${movieInfo.openDate }</td>
+									<td class="align-middle">
+										<input type="button" class="btn btn-dark btn-sm" value="수 정" onclick="/admin/updateMovie?mvCode=${movieInfo.mvCode }">
+									</td>
 									<td class="align-middle">
 										<input type="button" class="btn btn-dark btn-sm" value="삭 제" onclick="deleteConfirm('${movieInfo.mvCode }');">
 									</td>

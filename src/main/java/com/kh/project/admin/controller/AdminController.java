@@ -37,7 +37,7 @@ public class AdminController {
 	//영화 관리 페이지로 이동
 	@GetMapping("/movieManage")
 	public String movieManage(Model model) {
-		model.addAttribute("movieList", movieService.selectSimpleMovieList());
+		model.addAttribute("movieList", movieService.selectAdminMovieList());
 		
 		return "admin/movie_manage";
 	}
@@ -69,7 +69,8 @@ public class AdminController {
 		//영화 포스터 이미지 객체 생성
 		MovieImgVO movieImgVO = new MovieImgVO();
 		//첨부될 폴더
-		String uploadPath = "D:\\workspaceSTS\\Cinema\\src\\main\\webapp\\resources\\images\\movie\\";
+		//String uploadPath = "D:\\workspaceSTS\\Cinema\\src\\main\\webapp\\resources\\images\\movie\\";	//은경 - 학원 컴퓨터 경로
+		String uploadPath = "C:\\Users\\Administrator\\git\\cinema\\src\\main\\webapp\\resources\\images\\movie\\";	//은경 - 노트북 경로
 		//input 태그에 접근해서 파일을 가져옴
 		file = multi.getFile("imageFile");	//파일첨부 input 태그 name 속성 값 = imageFile
 		//변환한 파일명 (영화제목을 파일명으로 쓰고, 그걸 그대로 저장)
