@@ -102,7 +102,7 @@ a{
 				<div class="loginDiv" >
 					<c:choose>
 						<c:when test="${not empty sessionScope.loginInfo }">
-							${sessionScope.loginInfo.name }님 반갑습니다.
+							${sessionScope.loginInfo.nickName }님 반갑습니다.<br>
 							<a href="/member/logout">Logout</a>
 						</c:when>
 						<c:otherwise>
@@ -124,6 +124,8 @@ a{
 			<div class="col-12">
 				<div class="col-12 menu_menu text-center">
 					<ul>
+					<c:choose>
+						<c:when test="${empty sessionScope.loginInfo or sessionScope.loginInfo.isAdmin eq 'N' }">
 				   		<!-- <li ><a href="#" > <label class="menuMovie" for="menuMovie">MOVIE</label> </a> 
 				   			<input id="menuMovie" type="checkbox">
 				   			<nav id="menuNav">
@@ -194,7 +196,8 @@ a{
 				              	<li><a class="dropdown-item" href="#">Something else here</a></li>
 				            </ul>
 				      	</li>
-				          
+				        </c:when>
+						<c:otherwise>
 				          <!-- !!!!!!!!!!! 관리자 페이지!!!!!!!!!!!!! -->
 				        <li class="nav-item dropdown">
 				            <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -210,7 +213,10 @@ a{
 				              	<li><a class="dropdown-item" href="#">기타</a></li>
 				            </ul>
 				       	</li>
+				 		</c:otherwise>
+				 	</c:choose>
 				 	</ul>
+				 	
 				</div>
 			</div>
 		</div>

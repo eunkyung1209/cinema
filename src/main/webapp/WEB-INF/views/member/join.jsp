@@ -94,9 +94,9 @@ body{
 			<input type="date" name="birthday" class="joinInput3" required>
 			&nbsp;&nbsp;&nbsp;&nbsp;/
 			&nbsp;&nbsp;성별&nbsp;&nbsp;
-			<input type="radio" name="gender" value="남자" checked>남자
+			<input type="radio" name="gender" value="남" checked>남자
 			&nbsp;
-			<input type="radio" name="gender" value="여자">여자
+			<input type="radio" name="gender" value="여">여자
 		</td>
 	</tr>
 	<tr>
@@ -106,7 +106,6 @@ body{
 		      	<option value="010" selected>010</option>
 		      	<option value="011">011</option>
 		    </select> &nbsp;&nbsp;-&nbsp;&nbsp;
-			<input type="text" name="tells" class="joinInput2 ">&nbsp;&nbsp;-&nbsp;&nbsp;
 			<input type="text" name="tells" class="joinInput2" required>&nbsp;&nbsp;-&nbsp;&nbsp;
 			<input type="text" name="tells" class="joinInput2" required>
 		</td>
