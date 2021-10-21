@@ -17,9 +17,6 @@ font-weight: bold;
 .replyDate{
 	color:#bbbbbb;
 }
-
-
-
 </style>
 
    

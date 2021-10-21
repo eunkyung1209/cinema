@@ -9,7 +9,7 @@ public interface CommunityService {
 	
 	// 게시글 조회
 	List<CommunityVO>selectBoardList();
-	
+
 	// 게시글 등록
 	void insertBoard(CommunityVO communityVO);
 	

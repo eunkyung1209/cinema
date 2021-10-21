@@ -40,6 +40,7 @@ public class CommunityController {
 	@PostMapping("/insertBoard")
 	public String insertBoard(CommunityVO communityVO) {
 		boardService.insertBoard(communityVO);
+
 		
 		return "redirect:/community/community_board_list";
 	}

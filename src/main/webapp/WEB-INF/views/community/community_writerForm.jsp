@@ -8,6 +8,7 @@
 </head>
 <body>
 커뮤니티 게시글 작성하는곳
+
 	 <form action="/board/insertBoard" method="post">
 	<table>
 		<tr>
@@ -16,7 +17,7 @@
 		</tr>
 		<tr>
 			<td>작성자</td>
-			<td><input type="text" name="writer" value="${sessionScope.loginInfo.memberId }" readonly></td>
+			<td><input type="text" name="writer" value=" ${sessionScope.loginInfo.memberId }" readonly></td>
 		</tr>
 		<tr>
 			<td>작성일</td>
@@ -27,16 +28,12 @@
 			<td><textarea cols="60" rows="5" name="content"></textarea></td>
 		</tr>
 		<tr>
-			<td>첨부</td>
-			<td><input type="file" name="fileName"></td>
-		</tr>
-		<tr>
 			<td>비밀번호</td>
 			<td><input type="password" name="boardPw"></td>
 		</tr>
 	</table>
 	<div class="btnDiv">
-		<input type="submit" class="btn" value="글등록" oncliclick="" >
+		<input type="submit" class="btn" value="글등록"  >
 	</div>
 </form>
 </body>

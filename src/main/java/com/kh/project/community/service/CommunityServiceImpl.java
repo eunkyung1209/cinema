@@ -17,7 +17,6 @@ public class CommunityServiceImpl implements CommunityService {
 
 	@Override
 	public List<CommunityVO> selectBoardList() {
-		
 		return sqlSession.selectList("communityMapper.selectBoardList");
 	}
 

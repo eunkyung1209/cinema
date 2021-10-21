@@ -36,21 +36,20 @@ SELECT COMMU_CODE
 
 </select>
 
+
 <!--커뮤니티 게시글 등록  -->
 <insert id="insertBoard">
 INSERT INTO OISONE_COMMUNITY(
     COMMU_CODE
-    ,WRITER
-    ,CREATE_DATE
-    ,TITLE
-    ,CONTENT
+    , WRITER
+    , TITLE
+    , CONTENT
     )VALUES(
-       (SELECT ,'CB_'||(TO_CHAR(SYSDATE, 'YYMMDD_')||'-'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(COMMU_CODE,6,3))),0)+1,3,'0')
+      (SELECT 'CB_'||TO_CHAR((SYSDATE), 'YYYYMMDD')||'_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(COMMU_CODE, 6, 3))), 0)+1, 3, '0') AS COMMU_CODE  FROM OISONE_COMMUNITY)
       , #{writer}
-      , SYSDATE
       , #{title}
       , #{content}
-
+)
 </insert>
 
 <!--커뮤니티 게시글 삭제  -->

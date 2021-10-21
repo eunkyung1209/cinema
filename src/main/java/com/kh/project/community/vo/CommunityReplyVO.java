@@ -7,6 +7,7 @@ public class CommunityReplyVO {
 	private String writer;
 	private String content;
 	private String commuCode;
+	
 	public String getCommuReplyCode() {
 		return commuReplyCode;
 	}

@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티 게시판</title>
-
 <style type="text/css">
 
 table{
