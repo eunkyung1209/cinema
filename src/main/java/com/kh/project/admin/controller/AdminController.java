@@ -100,4 +100,10 @@ public class AdminController {
 		return "redirect:/admin/movieManage";
 	}
 	
+	//회원 목록 조회
+	@GetMapping("/goInsertMovie")
+	public String goInsertMovie() {
+		return "admin/admin_member_list";
+	}
+	
 }
