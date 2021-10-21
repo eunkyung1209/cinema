@@ -9,10 +9,10 @@ public interface MemberService {
 	//1.회원가입하기
 	void join(MemberVO memberVO);
 	
-	//1) 아이디 체크
+	//1-1) 아이디 체크
 	boolean overlapId(String id);
 	
-	//2) 닉네임 체크
+	//1-2) 닉네임 체크
 	boolean overlapNick(String nickName);
 	
 	//2. 로그인
@@ -20,6 +20,10 @@ public interface MemberService {
 	
 	//3. (admin)회원목록조회
 	List<MemberVO> selectMemberList(MemberVO memberVO);
+	
+	//3-1) 회원목록 전체 데이터 개수 조회
+	int selectMemberCnt(MemberVO memberVO);
+	
 	
 	//4. (admin)회원상세조회
 	MemberVO selectMemberDetail(MemberVO memberVO);

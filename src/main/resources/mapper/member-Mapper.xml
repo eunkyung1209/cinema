@@ -86,9 +86,42 @@
 			, NAME
 			, NICKNAME
 			, TELL
-		FROM OISONE_MEMBER
-		ORDER BY JOIN_DATE
+			, ROW_NUM
+		FROM
+		(
+			SELECT ID
+				, NAME
+				, NICKNAME
+				, TELL
+				, ROWNUM AS ROW_NUM
+			FROM
+			(
+				SELECT ID
+				, NAME
+				, NICKNAME
+				, TELL
+				, ROWNUM AS ROW_NUM
+			FROM OISONE_MEMBER
+			<if test="searchValue != null and !searchValue.equals('')">
+				WHERE ${searchKeyword} LIKE '%'||#{searchValue}||'%'
+			</if>
+			ORDER BY JOIN_DATE
+		)
+	)
+	WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 	</select>
+	
+	<!-- 게시글 전체 데이터 개수 조회 -->
+	<select id="selectMemberCnt" resultType="int">
+		SELECT COUNT(ID)
+		FROM OISONE_MEMBER
+		<if test="searchValue != null and !searchValue.equals('')">
+		WHERE ${searchKeyword} LIKE '%'||#{searchValue}||'%'
+		</if>
+	</select>
+	
+	
+	
 	
 	<!--3. (admin)멤버 상세 조회 -->
 	<select id="selectMemberDetail" resultMap="member">
@@ -96,7 +129,7 @@
 			, PW
 			, NAME
 			, NICKNAME
-			, BIRTHDAY
+			, TO_CHAR(BIRTHDAY, 'YYYY-MM-DD') AS BIRTHDAY
 			, GENDER
 			, TELL
 			, EMAIL
@@ -106,48 +139,8 @@
 			, JOIN_DATE
 			, NONPEOPLE_TICKET
 			, MY_CINEMA
-			, ROW_NUM
-		FROM
-		(
-			SELECT ID
-				, PW
-				, NAME
-				, NICKNAME
-				, BIRTHDAY
-				, GENDER
-				, TELL
-				, EMAIL
-				, POINT
-				, SAVED_MONEY
-				, MARKETING_AGREE
-				, JOIN_DATE
-				, NONPEOPLE_TICKET
-				, MY_CINEMA
-				, ROWNUM AS ROW_NUM
-			FROM
-			(
-				SELECT ID
-					, PW
-					, NAME
-					, NICKNAME
-					, TO_CHAR(BIRTHDAY, 'YYYY-MM-DD') AS BIRTHDAY
-					, GENDER
-					, TELL
-					, EMAIL
-					, POINT
-					, SAVED_MONEY
-					, MARKETING_AGREE
-					, JOIN_DATE
-					, NONPEOPLE_TICKET
-					, MY_CINEMA
-				FROM OISONE_MEMBER
-				<if test="searchValue != null and !searchValue.equals('')">
-				WHERE ${searchKeyword} LIKE '%'||#{searchValue}||'%'
-				</if>
-				ORDER BY JOIN_DATE DESC
-			)
-		)
-		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
+		FROM OISONE_MEMBER
+		WHERE ID = #{id}
 	</select>
 	
 </mapper>

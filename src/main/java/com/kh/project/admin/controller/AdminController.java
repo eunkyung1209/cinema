@@ -105,9 +105,12 @@ public class AdminController {
 		return "redirect:/admin/movieManage";
 	}
 	
-	//회원 목록 조회
-	@GetMapping("/adminMemberList")
+	//1.회원 목록 조회
+	@RequestMapping("/adminMemberList")
 	public String adminMemberList(Model model, MemberVO memberVO) {
+		//페이징 처리
+		memberVO.setTotalCnt(memberService.selectMemberCnt(memberVO));
+		memberVO.setPageInfo();
 		
 		//카테고리 목록 조회 후 jsp로 전달
 		model.addAttribute("memberList", memberService.selectMemberList(memberVO));
@@ -115,7 +118,7 @@ public class AdminController {
 		return "admin/admin_member_list";
 	}
 	
-	//회원 상세 조회
+	//2.회원 상세 조회
 	@GetMapping("/adminMemberDetail")
 	public String adminMemberDetail(Model model, MemberVO memberVO) {
 		
