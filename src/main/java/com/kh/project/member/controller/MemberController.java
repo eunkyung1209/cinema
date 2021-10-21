@@ -78,7 +78,14 @@ public class MemberController {
 		
 		return "redirect:/movie/mainPage";
 	}
+	
+	//3. 마이페이지
+	@GetMapping("/myPage")
+	public String myPage() {
 
+		
+		return "member/myPage";
+	}
 	
 	
 }
