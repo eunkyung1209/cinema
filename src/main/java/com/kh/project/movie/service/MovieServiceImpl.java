@@ -15,16 +15,16 @@ public class MovieServiceImpl implements MovieService {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	//영화 목록 조회(심플)
+	//영화 목록 조회
 	@Override
 	public List<MovieVO> selectSimpleMovieList() {
 		return sqlSession.selectList("movieMapper.selectSimpleMovieList");
 	}
 	
-	//영화 목록 조회(상세)
+	//영화 상세 조회
 	@Override
-	public List<MovieVO> selectDetailMovieList() {
-		return sqlSession.selectList("movieMapper.selectDetailMovieList");
+	public MovieVO selectDetailMovie(String mvCode) {
+		return sqlSession.selectOne("movieMapper.selectDetailMovie", mvCode);
 	}
 	
 	//영화 삭제
