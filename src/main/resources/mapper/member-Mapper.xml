@@ -8,7 +8,7 @@
 		<id column="ID" 					property="id"/>
 		<result column="PW" 				property="pw"/>
 		<result column="NAME" 				property="name"/>
-		<result column="NICKNAME" 			property="nickname"/>
+		<result column="NICKNAME" 			property="nickName"/>
 		<result column="BIRTHDAY" 			property="birthday"/>
 		<result column="GENDER" 			property="gender"/>
 		<result column="TELL" 				property="tell"/>
@@ -22,7 +22,8 @@
 		<result column="MY_CINEMA" 			property="myCinema"/>
 	</resultMap>
 	
-	<insert id="insertJoinMember">
+	<!-- 1. 회원가입하기 -->
+	<insert id="join">
 		INSERT INTO OISONE_MEMBER(
 		    ID
 		    , PW
@@ -40,7 +41,7 @@
 		    #{id}
 		    , #{pw}
 		    , #{name}
-		    , #{nickname}
+		    , #{nickName}
 		    , #{birthday}
 		    , #{gender}
 		    , #{tell}
@@ -52,6 +53,31 @@
 		)
 
 	</insert>
+	
+	<!-- ID, NickName 중복확인하기 -->
+	<select id="overlapId" resultType="String">
+		SELECT ID
+		FROM OISONE_MEMBER
+		WHERE ID = #{id}
+	</select>
+
+	
+	<select id="overlapNick" resultType="String">
+		SELECT NICKNAME
+		FROM OISONE_MEMBER
+		WHERE NICKNAME = #{nickName}
+	</select>
+
+	<!-- 2. 로그인 -->
+	<select id="login" resultMap="member">
+		SELECT ID
+			, IS_ADMIN
+			, NAME
+			, NICKNAME
+		FROM OISONE_MEMBER
+		WHERE ID = #{id}
+		AND PW = #{pw}
+	</select>
 	
 </mapper>
 

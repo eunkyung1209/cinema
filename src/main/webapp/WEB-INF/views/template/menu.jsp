@@ -100,8 +100,17 @@ a{
 			</div>
 			<div class="col-4">
 				<div class="loginDiv" >
-					<span data-bs-toggle="modal" data-bs-target="#loginModal">Login</span>
-					<a href="/member/insertJoinMember">Join</a>
+					<c:choose>
+						<c:when test="${not empty sessionScope.loginInfo }">
+							${sessionScope.loginInfo.name }님 반갑습니다.
+							<a href="/member/logout">Logout</a>
+						</c:when>
+						<c:otherwise>
+							<span data-bs-toggle="modal" data-bs-target="#loginModal">Login</span>
+							<a href="/member/join">Join</a>
+						</c:otherwise>
+					</c:choose>
+				
 					<div class="mypageDiv">
 						<a href="/customer/goCustomer"><img alt="" width="35px" src="resources/images/menu/center.png"></a>
 						<a href="/sample/sample"> <img alt="" width="32px" src="resources/images/menu/fastTicket.png"></a>
@@ -215,17 +224,17 @@ a{
 	               		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	            	</div>
 		            <div class="modal-body"><!-- 팝업창 중간의 내용 -->
-			            <form action="#" method="post">
+			            <form action="/member/login" method="post">
 			               	<div class="form-floating mb-3">
-			                  	<input type="text" class="form-control" id="floatingInput" placeholder="id" required name="id">
+			                  	<input type="text" name="id" class="form-control" id="inputId" placeholder="id" required>
 			                  	<label for="floatingInput" style="color: #a4b0be">아이디</label>
 			               	</div>
 			               	<div class="form-floating">
-			                  	<input type="password" class="form-control" id="floatingPassword" placeholder="Password" required name="pw">
+			                  	<input type="password" name="pw" class="form-control" id="inputPw" placeholder="Password" required>
 			                  	<label for="floatingPassword" style="color: #a4b0be">비밀번호</label>
 			               	</div>
 			               	<div class="col-12 d-grid mt-4">
-			                  	<input type="submit" class="btn" value="로그인" onclick="login();">
+			                  	<input type="submit" class="btn" value="로그인">
 			               	</div>
 			            </form>
 		            </div>

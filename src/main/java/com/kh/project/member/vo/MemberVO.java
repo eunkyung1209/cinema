@@ -4,7 +4,7 @@ public class MemberVO {
 	private String id;
 	private String pw;
 	private String name;
-	private String nickname;
+	private String nickName;
 	private String birthday;
 	private String gender;
 	private String tell;
@@ -18,9 +18,23 @@ public class MemberVO {
 	private String myCinema;
 	
 	private String[] tells;		//전화번호 010, 1111, 2222
+	private String[] addr;
 	/*
 	 * private String[] emails; //이메일 qwer, naver.com
 	 */	
+	
+	
+	
+	public String[] getAddr() {
+		return addr;
+	}
+	public void setAddr(String[] addr) {
+		
+		String myCinema = addr[0] + addr[1]  + addr[2];
+		setMyCinema(myCinema);
+	}
+	
+	
 	public String[] getTells() {
 		return tells;
 	}
@@ -51,11 +65,12 @@ public class MemberVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getNickname() {
-		return nickname;
+
+	public String getNickName() {
+		return nickName;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 	public String getBirthday() {
 		return birthday;
