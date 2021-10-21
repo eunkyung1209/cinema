@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.project.movie.vo.MovieImgVO;
 import com.kh.project.movie.vo.MovieVO;
 
 @Service("movieService")
@@ -26,6 +27,12 @@ public class MovieServiceImpl implements MovieService {
 		return sqlSession.selectList("movieMapper.selectDetailMovieList");
 	}
 	
+	//영화 삭제
+	@Override
+	public void deleteMovie(String mvCode) {
+		sqlSession.delete("movieMapper.deleteMovie", mvCode);
+	}
+	
 	//다음 MV_CODE를 조회
 	@Override
 	public String selectNextMovieCode() {
@@ -36,6 +43,18 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public void insertMovie(MovieVO movieVO) {
 		sqlSession.insert("movieMapper.insertMovie", movieVO);
+	}
+	
+	//다음 MOVIE_IMG_CODE를 조회
+	@Override
+	public String selectNextImgCode() {
+		return sqlSession.selectOne("movieMapper.selectNextImgCode");
+	}
+	
+	//영화 포스터 이미지 등록
+	@Override
+	public void insertImage(MovieImgVO movieImgVO) {
+		sqlSession.insert("movieMapper.insertImage", movieImgVO);
 	}
 	
 }

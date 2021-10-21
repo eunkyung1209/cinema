@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="/resources/admin/js/movie_manage.js?ver=2"></script>
 <style type="text/css">
 body{
 	margin: 0 auto;
@@ -59,10 +60,7 @@ body{
 									<td class="align-middle">${movieInfo.genre }</td>
 									<td class="align-middle">${movieInfo.openDate }</td>
 									<td class="align-middle">
-										<form action="/admin/deleteMovie" method="post">
-											<input type="hidden" name="mvCode" value="${movieInfo.mvCode }">
-											<input type="submit" class="btn btn-dark btn-sm" value="삭 제">
-										</form>
+										<input type="button" class="btn btn-dark btn-sm" value="삭 제" onclick="deleteConfirm('${movieInfo.mvCode }');">
 									</td>
 								</tr>
 							</c:forEach>

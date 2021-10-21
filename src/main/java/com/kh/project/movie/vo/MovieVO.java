@@ -1,7 +1,5 @@
 package com.kh.project.movie.vo;
 
-import java.util.List;
-
 //영화
 public class MovieVO {
 	private String mvCode;
@@ -17,13 +15,13 @@ public class MovieVO {
 	private String mvState;
 	private int grade;
 	
-	private List<MovieImgVO> posterList;	//영화 포스터 이미지 리스트
+	private String attachedImgName;
 	
-	public List<MovieImgVO> getPosterList() {
-		return posterList;
+	public void setAttachedImgName(String attachedImgName) {
+		this.attachedImgName = attachedImgName;
 	}
-	public void setPosterList(List<MovieImgVO> posterList) {
-		this.posterList = posterList;
+	public String getAttachedImgName() {
+		return attachedImgName;
 	}
 	
 	public String getMvCode() {

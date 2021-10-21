@@ -16,6 +16,7 @@
 		<result column="CONTENT"			property="content"/>
 		<result column="MV_STATE"			property="mvState"/>
 		<result column="GRADE"				property="grade"/>
+		<result column="ATTACHED_IMG_NAME"	property="attachedImgName"/>
 	</resultMap>
 	
 	<!-- 댓글 -->
@@ -44,7 +45,7 @@
 			, TITLE
 			, GENRE
 			, AGE
-			, OPEN_DATE
+			, TO_CHAR(OPEN_DATE, 'YYYY.MM.DD') AS OPEN_DATE
 			, MV_STATE
 			, ATTACHED_IMG_NAME
 		FROM OISONE_MOVIE M, OISONE_MOVIE_IMG I
@@ -61,7 +62,7 @@
 			, AGE
 			, RUNNING_TIME
 			, NATION
-			, OPEN_DATE
+			, TO_CHAR(OPEN_DATE, 'YYYY.MM.DD') AS OPEN_DATE
 			, CONTENT
 			, GRADE
 			, ATTACHED_IMG_NAME
@@ -71,10 +72,18 @@
 	
 	
 	
+	<!-- 영화 삭제 -->
+	<delete id="deleteMovie">
+		DELETE OISONE_MOVIE
+		WHERE MV_CODE = #{mvCode}
+	</delete>
+	
+	
+	
 	<!-- 다음 MV_CODE를 조회 -->
 	<select id="selectNextMovieCode" resultType="String">
 		SELECT 'MV_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MV_CODE, 4, 4))), 0) + 1, 4, '0')
-		FROM BOOK_ITEM
+		FROM OISONE_MOVIE
 	</select>
 	
 	<!-- 영화 등록 -->
@@ -106,20 +115,20 @@
 	
 	
 	
-	<!-- 다음에 들어갈 이미지 코드를 조회 -->
-	<select id="selectNextImgCode" resultType="int">
-		SELECT 'MVI_'||NVL(MAX(TO_NUMBER(SUBSTR(MVI_CODE, 5, 3))) + 1, 1)
-		FROM BOOK_IMG
+	<!-- 다음에 들어갈 MOVIE_IMG_CODE를 조회 -->
+	<select id="selectNextImgCode" resultType="String">
+		SELECT 'MVI_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MOVIE_IMG_CODE, 5, 3))), 0) + 1, 3, '0')
+		FROM OISONE_MOVIE_IMG
 	</select>
 	
 	<!-- 영화 포스터 이미지 등록 -->
-	<insert id="insertImg">
-		INSERT INTO BOOK_IMG (
+	<insert id="insertImage">
+		INSERT INTO OISONE_MOVIE_IMG (
 			MOVIE_IMG_CODE
 			, ORIGIN_IMG_NAME
 			, ATTACHED_IMG_NAME
 			, MV_CODE
-		) VALUSE (
+		) VALUES (
 			#{movieImgCode}
 			, #{originImgName}
 			, #{attachedImgName}

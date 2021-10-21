@@ -71,7 +71,7 @@ p > img{
 		<c:forEach items="${movieList }" var="movieInfo">
 			<div class="col-2">
 				<div class="card mb-3">
-					<a href="#"><img src="/resources/images/movie/${movieInfo.posterImg[0].attachedImgName }" class="card-img-top"></a>
+					<a href="#"><img src="/resources/images/movie/${movieInfo.attachedImgName }" class="card-img-top"></a>
 					<div class="card-body">
 						<h5 class="card-title">${movieInfo.title }</h5>
 						<p class="card-text">
