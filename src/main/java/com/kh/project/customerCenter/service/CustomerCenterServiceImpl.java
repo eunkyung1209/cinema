@@ -19,6 +19,18 @@ public class CustomerCenterServiceImpl implements CustomerCenterService {
 	public List<CustomerCenterVO> selectCustomerBoard() {
 		return sqlSession.selectList("customerCenterMapper.selectCustomerBoard");
 	}
+
+	//고객센터 문의글  등록
+	@Override
+	public void insertCustomerBoard(CustomerCenterVO customerCenterVO) {
+		sqlSession.insert("customerCenterMapper.insertCustomerBoard", customerCenterVO);
+	}
+
+	//고객센터 글 상세보기
+	@Override
+	public CustomerCenterVO selectCustomerBoardDetail(CustomerCenterVO customerCenterVO) {
+		return sqlSession.selectOne("customerCenterMapper.selectCustomerBoardDetail", customerCenterVO);
+	}
 	
 	
 	

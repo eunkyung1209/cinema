@@ -10,6 +10,8 @@
 <style type="text/css">
 .customerBodyDiv{
 	margin-top: 100px;
+	background-color: black;
+	color: white;
 }
 .customerBox{
 	margin: 0 auto;
@@ -18,7 +20,7 @@
 	text-align: center;
 }
 
-.customerBoardList{
+.customerNoticeList{
 	margin: 0 auto;
 	width: 100%;
 	text-align: center;
@@ -33,7 +35,7 @@ border: 1px solid white;
 }
 
  
-.customerBoardList > thead{
+.customerNoticeList > thead{
 border-bottom: 1px solid white;
 border-top: 1px solid white;
 
@@ -44,11 +46,6 @@ height: 50px;
 
 }
 
-.searchBox{
-margin-left: 190px;
-
-
-}
 
 </style>
 
@@ -70,16 +67,16 @@ margin-left: 190px;
 					</colgroup>
 					<tr >
 						<td style="border: 1px solid white" class="align-middle">
-							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goCustomer';">전체문의</button> 
+							<button onclick="location.href='/customer/goCustomer';">전체문의</button> 
 						</td>
 						<td style="border: 1px solid white" class="align-middle">
-							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goNotice';">공지사항</button> 
+							<button onclick="location.href='/customer/goNotice';">공지사항</button> 
 						</td>
 						<td style="border: 1px solid white" class="align-middle">
-							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goMyCustomer';">내 상담내역</button>
+							<button onclick="location.href='/customer/goMyCustomer';">내 상담내역</button>
 						</td>
 						<td style="border: 1px solid white" class="align-middle">
-							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goLost';">분실물</button>
+							<button onclick="location.href='/customer/goLost';">분실물</button>
 						</td>
 					</tr>
 				</table>
@@ -88,39 +85,10 @@ margin-left: 190px;
 		
 		<div style="height: 80px;"></div>
 		
-		<div class="row " >
-			<form action="/customer/goCustomer" method="post">
-				<div class="col-10 " >
-					<div class="row justify-content-center searchBox " >
-							<div class="col-2" >
-								<select class="form-select " aria-label="Default select example" name="searchKeyword">
-									 <option>전체</option>
-									  <option  value="TITLE" selected>제목</option>
-									  <option value="WRITER" >작성자</option>
-								</select>
-							</div>
-							
-									<div class="col-4" >
-										<div class="input-group mb-3">
-										  <input value="" name="searchValue" type="text" class="form-control" placeholder="input content" aria-label="Recipient's username" aria-describedby="button-addon2">
-										</div>
-									</div>
-									
-									<div class="col-2">
-										<input class="btn btn-outline-secondary" type="submit" id="button-addon2" value="검색">
-									</div>
-									
-									<div class="col-2" style="text-align: right; padding-left: 240px; ">
-										<input class="btn btn-outline-secondary" type="button" onclick="location.href='/customer/goWriteCustomer';" id="button-addon2" value="글쓰기">
-									</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		
-		<div class="row justify-content-center" >
+		<div class="row justify-content-center">
 			<div class="col-8 " >
-				<table class="customerBoardList" >
+				<div></div>
+				<table class="customerNoticeList" >
 					<colgroup>
 						<col width="10%">
 						<col width="20%">
@@ -136,11 +104,11 @@ margin-left: 190px;
 					    </tr>
 					  </thead>
 					  
-					  <c:forEach items="${customerBoardList}" var="customerBoard" varStatus="status">
+					  <c:forEach items="${customerBoardList}" var="customerBoard">
 					  <tbody>
 						<tr>
-					      <th scope="row" class="align-middle">${status.count }</th>
-					      <td class="align-middle"><a href="/customer/selectCustomerBoardDetail?customerCode=${customerBoard.customerCode }">${customerBoard.title }</a> </td>
+					      <th scope="row" class="align-middle">1</th>
+					      <td class="align-middle">${customerBoard.title }</td>
 					      <td class="align-middle">${customerBoard.writer }</td>
 					      <td class="align-middle">${customerBoard.createDate }</td>
 					    </tr>
@@ -157,8 +125,6 @@ margin-left: 190px;
 					
 			</div>
 		</div>
-	
-		
 	
 	</div>
 </div>

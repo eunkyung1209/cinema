@@ -10,9 +10,18 @@ public class CustomerCenterVO {
     private String content;
     private String isRead;
     private String secretNumber;
+    private String isNotice;
     
     
     
+    
+    
+	public String getIsNotice() {
+		return isNotice;
+	}
+	public void setIsNotice(String isNotice) {
+		this.isNotice = isNotice;
+	}
 	public String getCustomerCode() {
 		return customerCode;
 	}
