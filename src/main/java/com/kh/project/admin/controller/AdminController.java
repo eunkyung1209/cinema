@@ -101,8 +101,8 @@ public class AdminController {
 	}
 	
 	//회원 목록 조회
-	@GetMapping("/goI")
-	public String goInsertMovie() {
+	@GetMapping("/adminMemberList")
+	public String adminMemberList() {
 		return "admin/admin_member_list";
 	}
 	
