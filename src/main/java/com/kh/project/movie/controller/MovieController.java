@@ -20,7 +20,7 @@ public class MovieController {
 	//메인 페이지로 이동
 	@GetMapping("/mainPage")
 	public String mainPage(Model model) {
-		model.addAttribute("movieList", movieService.selectMovieList());
+		model.addAttribute("movieList", movieService.selectSimpleMovieList());
 		
 		return "movie/main_page";
 		//return "template/main_bin";
@@ -29,7 +29,7 @@ public class MovieController {
 	//상단 영화 메뉴 클릭 시 이동
 	@GetMapping("/movieList")
 	public String movieList(Model model) {
-		model.addAttribute("movieList", movieService.selectMovieList());
+		model.addAttribute("movieList", movieService.selectDetailMovieList());
 		
 		return "movie/movie_list";
 	}

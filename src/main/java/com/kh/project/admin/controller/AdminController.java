@@ -1,13 +1,22 @@
 package com.kh.project.admin.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.kh.project.community.service.CommunityService;
 import com.kh.project.movie.service.MovieService;
+import com.kh.project.movie.vo.MovieImgVO;
+import com.kh.project.movie.vo.MovieVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -22,8 +31,73 @@ public class AdminController {
 	
 	//영화 관리 페이지로 이동
 	@GetMapping("/movieManage")
-	public String movieManage() {
+	public String movieManage(Model model) {
+		model.addAttribute("movieList", movieService.selectSimpleMovieList());
+		
 		return "admin/movie_manage";
+	}
+	
+	//영화 삭제
+	@GetMapping("/deleteMovie")
+	public String deleteMovie(String mvCode) {
+		movieService.deleteMovie(mvCode);
+		
+		return "redirect:/admin/movieManage";
+	}
+	
+	//영화 등록 페이지로 이동
+	@GetMapping("/goInsertMovie")
+	public String goInsertMovie(Model model) {
+		return "admin/insert_movie";
+	}
+	
+	//영화 등록
+	@PostMapping("/insertMovie")
+	public String insertMovie(Model model, MultipartHttpServletRequest multi, MultipartFile file, MovieVO movieVO) {
+		//----------코드 생성----------
+		//영화 코드
+		String mvCode = movieService.selectNextMovieCode();
+		//영화 포스터 이미지 코드
+		String movieImgCode = movieService.selectNextImgCode();
+		
+		//----------이미지 파일 단일 첨부----------
+		//영화 포스터 이미지 객체 생성
+		MovieImgVO movieImgVO = new MovieImgVO();
+		//첨부될 폴더
+		String uploadPath = "D:\\workspaceSTS\\Cinema\\src\\main\\webapp\\resources\\images\\movie\\";
+		//input 태그에 접근해서 파일을 가져옴
+		file = multi.getFile("imageFile");	//파일첨부 input 태그 name 속성 값 = imageFile
+		//변환한 파일명 (영화제목을 파일명으로 쓰고, 그걸 그대로 저장)
+		String attachedFileName = file.getOriginalFilename();
+		//파일 저장한 경로 + 변환한 파일명
+		String uploadFile = uploadPath + attachedFileName;
+		//파일 첨부
+		try {
+			//transfer : 이동, 이전, 옮김
+			file.transferTo(new File(uploadFile));
+			
+			//영화 포스터 이미지 정보 설정
+			movieImgVO.setMovieImgCode(movieImgCode);
+			movieImgVO.setOriginImgName(file.getOriginalFilename());
+			movieImgVO.setAttachedImgName(attachedFileName);
+			movieImgVO.setMvCode(mvCode);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		//----------상품&이미지 정보 등록----------
+		//MV_CODE 설정
+		movieVO.setMvCode(mvCode);
+		//MOVIE_IMG_CODE 설정
+		movieImgVO.setMovieImgCode(movieImgCode);
+		//영화 정보 등록
+		movieService.insertMovie(movieVO);
+		//영화 포스터 이미지 등록
+		movieService.insertImage(movieImgVO);
+		
+		return "redirect:/admin/movieManage";
 	}
 	
 }

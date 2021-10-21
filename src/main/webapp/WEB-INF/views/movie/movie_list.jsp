@@ -14,23 +14,33 @@
 </head>
 <body>
 <div class="row justify-content-center">
-	<div class="row mb-3">
-		<div class="col-5 subjectDiv">
-			<h5>전체 영화</h5>
-		</div>
+	<div class="col">
+		<!-- 왼쪽 여백 -->
 	</div>
-	<%-- <c:forEach items="${movieList }" var="movieInfo"> --%>
-		<div class="col-2">
-			<div class="card" style="width: 9rem;">
-				<img src="/resources/images/main/메인서브-01.png" class="card-img-top">
-				<div class="card-body">
-					<h5 class="card-title">영화제목</h5>
-					<p class="card-text">개봉일</p>
-					<a href="#" class="btn btn-warning">예매</a>
-				</div>
+	<div class="col-8">
+		<div class="row mb-5">
+			<div class="col-3 subjectDiv">
+				<h5>전체 영화</h5>
 			</div>
 		</div>
-	<%-- </c:forEach> --%>
+		<div class="row">
+			<%-- <c:forEach items="${movieList }" var="movieInfo"> --%>
+				<div class="col-2">
+					<div class="card" style="width: 9rem;">
+						<img src="/resources/images/main/메인서브-01.png" class="card-img-top">
+						<div class="card-body">
+							<h5 class="card-title">영화제목</h5>
+							<p class="card-text">개봉일</p>
+							<a href="#" class="btn btn-warning">예매</a>
+						</div>
+					</div>
+				</div>
+			<%-- </c:forEach> --%>
+		</div>
+	</div>
+	<div class="col">
+		<!-- 오른쪽 여백 -->
+	</div>
 </div>
 </body>
 </html>

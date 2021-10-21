@@ -15,6 +15,15 @@ public class MovieVO {
 	private String mvState;
 	private int grade;
 	
+	private String attachedImgName;
+	
+	public void setAttachedImgName(String attachedImgName) {
+		this.attachedImgName = attachedImgName;
+	}
+	public String getAttachedImgName() {
+		return attachedImgName;
+	}
+	
 	public String getMvCode() {
 		return mvCode;
 	}

@@ -140,7 +140,7 @@ a{
 				                	<hr class="dropdown-divider">
 				              	</li>
 				              	<!-- 관리자 기능!! - 영화 관리 -->
-				              	<li><a class="dropdown-item" href="/admin/movieManage">영화 관리</a></li>
+				              	<li><a class="dropdown-item" href="">Something else here</a></li>
 				            </ul>
 				      	</li>
 				          
@@ -192,9 +192,9 @@ a{
 				              	ADMIN
 				            </a>
 				            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-				              	<li><a class="dropdown-item" href="#">회원관리</a></li>
-				              	<li><a class="dropdown-item" href="#">상영관리</a></li>
-				              	<li><a class="dropdown-item" href="#">홈페이지관리</a></li>
+				              	<li><a class="dropdown-item" href="#">회원 관리</a></li>
+				              	<li><a class="dropdown-item" href="/admin/movieManage">영화 관리</a></li>
+				              	<li><a class="dropdown-item" href="#">홈페이지 관리</a></li>
 				              	<li>
 				                	<hr style="color: black;" class="dropdown-divider">
 				              	</li>
