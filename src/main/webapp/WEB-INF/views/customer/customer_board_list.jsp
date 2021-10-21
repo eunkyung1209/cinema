@@ -94,20 +94,20 @@ margin-left: 190px;
 		<div style="height: 80px;"></div>
 		
 		<div class="row " >
-			<form action="/customer/goCustomer" method="post">
+			<form action="/customer/goCustomer" method="get">
 				<div class="col-10 " >
 					<div class="row justify-content-center searchBox " >
 							<div class="col-2" >
 								<select class="form-select " aria-label="Default select example" name="searchKeyword">
-									 <option>전체</option>
-									  <option  value="TITLE" selected>제목</option>
+									 <option selected>전체</option>
+									  <option value="TITLE" >제목</option>
 									  <option value="WRITER" >작성자</option>
 								</select>
 							</div>
 							
 									<div class="col-4" >
 										<div class="input-group mb-3">
-										  <input value="" name="searchValue" type="text" class="form-control" placeholder="input content" aria-label="Recipient's username" aria-describedby="button-addon2">
+										  <input value="${customerCenterVO.searchValue}" name="searchValue" type="text" class="form-control" placeholder="input content" aria-label="Recipient's username" aria-describedby="button-addon2">
 										</div>
 									</div>
 									

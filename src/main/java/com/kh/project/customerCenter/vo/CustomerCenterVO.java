@@ -1,7 +1,9 @@
 package com.kh.project.customerCenter.vo;
 
+import com.kh.project.common.vo.BaseSearchVO;
+
 //고객센터 게시판
-public class CustomerCenterVO {
+public class CustomerCenterVO extends BaseSearchVO{
 	
 	private String customerCode; 
     private String createDate;
@@ -11,8 +13,6 @@ public class CustomerCenterVO {
     private String isRead;
     private String secretNumber;
     private String isNotice;
-    
-    
     
     
     

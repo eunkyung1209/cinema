@@ -20,11 +20,11 @@ public class CustomerCenterController {
 	private CustomerCenterService customerCenterService;
 	
 	//고객센터 페이지로 이동
-	@GetMapping("/goCustomer")
-	private String goCustomer(Model model) {
+	@RequestMapping("/goCustomer")
+	private String goCustomer(Model model, CustomerCenterVO customerCenterVO) {
 		
 		//고객센터 게시글 목록 보내기
-		model.addAttribute("customerBoardList", customerCenterService.selectCustomerBoard());
+		model.addAttribute("customerBoardList", customerCenterService.selectCustomerBoard(customerCenterVO));
 		
 		return "customer/customer_board_list";
 	}
@@ -51,18 +51,19 @@ public class CustomerCenterController {
 	
 	//고객센터 글 상세보기
 		@GetMapping("/selectCustomerBoardDetail")
-		private String selectCustomerBoardDetail() {
+		private String selectCustomerBoardDetail(Model model, String customerCode) {
 			
+			model.addAttribute("customerBoard", customerCenterService.selectCustomerBoardDetail(customerCode));
 			return "customer/customer_board_detail";
 		}
 	
 	
 	//공지사항 페이지로 이동
 	@GetMapping("/goNotice")
-	private String goNotice(Model model) {
+	private String goNotice(Model model, CustomerCenterVO customerCenterVO) {
 		
 		//고객센터 게시글 목록 보내기
-		model.addAttribute("customerBoardList", customerCenterService.selectCustomerBoard());
+		model.addAttribute("customerBoardList", customerCenterService.selectCustomerBoard(customerCenterVO));
 		
 		return "customer/cusomer_notice_list";
 	}

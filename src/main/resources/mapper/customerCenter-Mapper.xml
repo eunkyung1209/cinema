@@ -37,6 +37,10 @@
 		FROM OISONE_CUSTOMER
 		WHERE 1 = 1
 		AND IS_NOTICE = 'N'
+		 <if test="searchValue != null and !searchValue.equals('')">
+		AND ${searchKeyword} LIKE '%'||#{searchValue} ||'%'
+		</if>
+      
 	</select>
 	
 	<!-- 고객센터 게시판 글 등록 -->
@@ -62,10 +66,12 @@
 	<!-- 고객센터 글 상세보기 -->
 	<select id="selectCustomerBoardDetail" resultMap="customer">
 		SELECT CUSTOMER_CODE 
-		    , WRITER 
-		    , TITLE 
-		    , CONTENT  
-		    , SECRET_NUMBER
+	    , WRITER 
+	    , TITLE 
+	    , CONTENT  
+	    , SECRET_NUMBER
+	    , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
+	    , IS_READ
 		FROM OISONE_CUSTOMER
 		WHERE CUSTOMER_CODE = #{customerCode}
 	</select>

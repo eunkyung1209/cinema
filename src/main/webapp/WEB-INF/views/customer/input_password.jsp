@@ -17,7 +17,7 @@ text-align: center;
 
 </style>
 
-<script type="text/javascript" src="/resources/customer/js/input_password.js?ver=5"></script>
+<script type="text/javascript" src="/resources/customer/js/input_password.js?ver=6"></script>
 </head>
 <body>
 <div class="row bodyDiv">

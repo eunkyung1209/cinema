@@ -24,7 +24,7 @@ $(document).ready(function(){
 		}
 		
 		else{
-			location.href = '/customer/selectCustomerBoardDetail?customerCode' + customerCode;
+			location.href = '/customer/selectCustomerBoardDetail?customerCode=' + customerCode;
 		}
 		
 	};     

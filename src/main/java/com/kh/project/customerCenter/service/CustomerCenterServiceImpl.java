@@ -16,8 +16,8 @@ public class CustomerCenterServiceImpl implements CustomerCenterService {
 
 	//고객센터 전체 문의글 조회
 	@Override
-	public List<CustomerCenterVO> selectCustomerBoard() {
-		return sqlSession.selectList("customerCenterMapper.selectCustomerBoard");
+	public List<CustomerCenterVO> selectCustomerBoard(CustomerCenterVO customerCenterVO) {
+		return sqlSession.selectList("customerCenterMapper.selectCustomerBoard", customerCenterVO );
 	}
 
 	//고객센터 문의글  등록
@@ -28,8 +28,8 @@ public class CustomerCenterServiceImpl implements CustomerCenterService {
 
 	//고객센터 글 상세보기
 	@Override
-	public CustomerCenterVO selectCustomerBoardDetail(CustomerCenterVO customerCenterVO) {
-		return sqlSession.selectOne("customerCenterMapper.selectCustomerBoardDetail", customerCenterVO);
+	public CustomerCenterVO selectCustomerBoardDetail(String customerCode) {
+		return sqlSession.selectOne("customerCenterMapper.selectCustomerBoardDetail", customerCode);
 	}
 	
 	
