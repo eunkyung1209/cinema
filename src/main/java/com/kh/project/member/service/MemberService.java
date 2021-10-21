@@ -1,5 +1,7 @@
 package com.kh.project.member.service;
 
+import java.util.List;
+
 import com.kh.project.member.vo.MemberVO;
 
 public interface MemberService {
@@ -16,4 +18,10 @@ public interface MemberService {
 	//2. 로그인
 	MemberVO login(MemberVO memberVO);
 	
+	//3. (admin)회원목록조회
+	List<MemberVO> selectMemberList(MemberVO memberVO);
+	
+	//4. (admin)회원상세조회
+	MemberVO selectMemberDetail(MemberVO memberVO);
+ 	
 }

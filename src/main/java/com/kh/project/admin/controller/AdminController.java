@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.kh.project.community.service.CommunityService;
+import com.kh.project.member.service.MemberService;
+import com.kh.project.member.vo.MemberVO;
 import com.kh.project.movie.service.MovieService;
 import com.kh.project.movie.vo.MovieImgVO;
 import com.kh.project.movie.vo.MovieVO;
@@ -28,6 +30,9 @@ public class AdminController {
 	
 	@Resource(name = "movieService")
 	private MovieService movieService;
+	
+	@Resource(name = "memberService")
+	private MemberService memberService;
 	
 	//영화 관리 페이지로 이동
 	@GetMapping("/movieManage")
@@ -102,8 +107,25 @@ public class AdminController {
 	
 	//회원 목록 조회
 	@GetMapping("/adminMemberList")
-	public String adminMemberList() {
+	public String adminMemberList(Model model, MemberVO memberVO) {
+		
+		//카테고리 목록 조회 후 jsp로 전달
+		model.addAttribute("memberList", memberService.selectMemberList(memberVO));
+		
 		return "admin/admin_member_list";
 	}
+	
+	//회원 상세 조회
+	@GetMapping("/adminMemberDetail")
+	public String adminMemberDetail(Model model, MemberVO memberVO) {
+		
+		//카테고리 목록 조회 후 jsp로 전달
+		model.addAttribute("memberDetail", memberService.selectMemberDetail(memberVO));
+		
+
+		return "admin/admin_member_detail";
+	}
+	
+
 	
 }

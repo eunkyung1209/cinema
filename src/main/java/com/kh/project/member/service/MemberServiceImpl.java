@@ -1,5 +1,7 @@
 package com.kh.project.member.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,10 +38,22 @@ public class MemberServiceImpl implements MemberService {
 		return result == null ? false : true;
 	}
 	
-	//로그인
+	//3. 로그인
 	@Override
 	public MemberVO login(MemberVO memberVO) {
 		return sqlSession.selectOne("memberMapper.login", memberVO);
+	}
+	
+	//4. (admin)회원 목록 조회
+	@Override
+	public List<MemberVO> selectMemberList(MemberVO memberVO) {
+		return sqlSession.selectList("memberMapper.selectMemberList", memberVO);
+	}
+	
+	//4. (admin)회원 상세 조회
+	@Override
+	public MemberVO selectMemberDetail(MemberVO memberVO) {
+		return sqlSession.selectOne("memberMapper.selectMemberDetail", memberVO);
 	}
 
 	
