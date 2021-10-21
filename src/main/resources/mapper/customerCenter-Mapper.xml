@@ -48,7 +48,7 @@
 		    , CONTENT  
 		    , SECRET_NUMBER)
 		VALUES (
-		     (SELECT 'CSB_'||TO_CHAR((SYSDATE), 'YYYYMMDD')||'_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(CUSTOMER_CODE,14,3))), 0)+1 , 3, 0) 
+		     (SELECT 'CSB_'||TO_CHAR((SYSDATE), 'YYMMDD')||'_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(CUSTOMER_CODE,14,3))), 0)+1 , 3, 0) 
 		        FROM OISONE_CUSTOMER)
 		     , #{writer}
 		     , #{title}
@@ -68,7 +68,6 @@
 		    , SECRET_NUMBER
 		FROM OISONE_CUSTOMER
 		WHERE CUSTOMER_CODE = #{customerCode}
-		AND SECRET_NUMBER = #{secretNumber}
 	</select>
 		
 </mapper>

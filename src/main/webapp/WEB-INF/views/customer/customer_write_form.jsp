@@ -18,7 +18,6 @@
 margin: 0 auto;
 width: 100%;
 border-bottom: solid 1px white;
-border-top: solid 1px white;
 height: 500px;
 vertical-align: middle;
 
@@ -93,7 +92,7 @@ input[type="password"] {
 									</tr>
 									<tr>
 										<td class="align-middle">작성자 <span class="redStar">*</span></td>
-										<td class="align-middle"> <input type="text" style="color: black;" name="writer" required value="${sessionScope.loginInfo.nickName }"></td>
+										<td class="align-middle"> <input type="text" style="color: black;" name="writer" readonly required value="${sessionScope.loginInfo.nickName }"></td>
 									</tr>
 									<tr>
 										<td class="align-middle">내용 <span class="redStar">*</span></td>

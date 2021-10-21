@@ -43,11 +43,18 @@ public class CustomerCenterController {
 		return "redirect:/customer/goCustomer";
 	}
 	
-	//고객센터 글 상세보기
-	@GetMapping("/selectCustomerBoardDetail")
-	private String selectCustomerBoardDetail() {
+	//고객센터 글 비번 입력
+	@GetMapping("/selectCustomerBoardPw")
+	private String selectCustomerBoardPw(CustomerCenterVO customerCenterVO) {
 		return "customer/input_password";
 	}
+	
+	//고객센터 글 상세보기
+		@GetMapping("/selectCustomerBoardDetail")
+		private String selectCustomerBoardDetail() {
+			
+			return "customer/customer_board_detail";
+		}
 	
 	
 	//공지사항 페이지로 이동

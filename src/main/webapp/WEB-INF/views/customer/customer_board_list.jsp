@@ -50,6 +50,11 @@ margin-left: 190px;
 
 }
 
+.loginP{
+	text-align: right;
+	font-size: 13px;
+}
+
 </style>
 
 </head>
@@ -111,12 +116,22 @@ margin-left: 190px;
 									</div>
 									
 									<div class="col-2" style="text-align: right; padding-left: 240px; ">
-										<input class="btn btn-outline-secondary" type="button" onclick="location.href='/customer/goWriteCustomer';" id="button-addon2" value="글쓰기">
+										<input class="btn btn-outline-secondary" type="button" onclick="location.href='/customer/goWriteCustomer';" id="button-addon2"  <c:if test="${empty sessionScope.loginInfo }">disabled</c:if> value="글쓰기">
 									</div>
 						</div>
+						<div class="row justify-content-center">
+							<div class="col-12 loginP">
+								<c:if test="${empty sessionScope.loginInfo }">
+									* 글쓰기는 로그인 후 이용가능합니다.
+								</c:if>
+							</div>
+						</div>
+						
 					</div>
 				</form>
 			</div>
+		
+		<div style="height: 20PX;"></div>
 		
 		<div class="row justify-content-center" >
 			<div class="col-8 " >
@@ -140,9 +155,9 @@ margin-left: 190px;
 					  <tbody>
 						<tr>
 					      <th scope="row" class="align-middle">${status.count }</th>
-					      <td class="align-middle"><a href="/customer/selectCustomerBoardDetail?customerCode=${customerBoard.customerCode }">${customerBoard.title }</a> </td>
+					      <td class="align-middle"><a href="/customer/selectCustomerBoardPw?customerCode=${customerBoard.customerCode }&secretNumber=${customerBoard.secretNumber }">${customerBoard.title }</a> </td>
 					      <td class="align-middle">${customerBoard.writer }</td>
-					      <td class="align-middle">${customerBoard.createDate }</td>
+					      <td class="align-middle">${customerBoard.createDate } </td>
 					    </tr>
 					   </tbody>
 					</c:forEach>
