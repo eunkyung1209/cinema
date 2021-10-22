@@ -1,5 +1,7 @@
 package com.kh.project.customerCenter.vo;
 
+import java.util.List;
+
 import com.kh.project.common.vo.BaseSearchVO;
 
 //고객센터 게시판
@@ -13,9 +15,14 @@ public class CustomerCenterVO extends BaseSearchVO{
     private String isRead;
     private String secretNumber;
     private String isNotice;
+    private List<CustomerCenterImgVO> imgList;
     
-    
-    
+	public List<CustomerCenterImgVO> getImgList() {
+		return imgList;
+	}
+	public void setImgList(List<CustomerCenterImgVO> imgList) {
+		this.imgList = imgList;
+	}
 	public String getIsNotice() {
 		return isNotice;
 	}

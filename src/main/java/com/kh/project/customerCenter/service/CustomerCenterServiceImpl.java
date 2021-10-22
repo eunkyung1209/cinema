@@ -31,6 +31,26 @@ public class CustomerCenterServiceImpl implements CustomerCenterService {
 	public CustomerCenterVO selectCustomerBoardDetail(String customerCode) {
 		return sqlSession.selectOne("customerCenterMapper.selectCustomerBoardDetail", customerCode);
 	}
+
+	//다음 customerCode 조회
+	@Override
+	public String selectNextCustomerCode() {
+		return sqlSession.selectOne("customerCenterMapper.selectNextCustomerCode");
+	}
+
+	//다음 customerImgCode 조회
+	@Override
+	public int selectNextCustomerImgCode() {
+		return sqlSession.selectOne("customerCenterMapper.selectNextCustomerImgCode");
+	}
+
+	//이미지 삽입
+	@Override
+	public void insertCustomerImg(CustomerCenterVO customerCenterVO) {
+		sqlSession.insert("customerCenterMapper.insertCustomerImg", customerCenterVO);
+	}
+	
+	
 	
 	
 	

@@ -94,14 +94,14 @@ margin-left: 190px;
 		<div style="height: 80px;"></div>
 		
 		<div class="row " >
-			<form action="/customer/goCustomer" method="get">
+			<form action="/customer/goCustomer" method="post">
 				<div class="col-10 " >
 					<div class="row justify-content-center searchBox " >
 							<div class="col-2" >
 								<select class="form-select " aria-label="Default select example" name="searchKeyword">
-									 <option selected>전체</option>
-									  <option value="TITLE" >제목</option>
-									  <option value="WRITER" >작성자</option>
+									 <option selected>선택</option>
+									  <option value="TITLE" <c:if test="${customerCenterVO.searchKeyword eq 'TITLE'}">selected</c:if>>제목</option>
+									  <option value="WRITER" <c:if test="${customerCenterVO.searchKeyword eq 'WRITER'}">selected</c:if>>작성자</option>
 								</select>
 							</div>
 							

@@ -15,4 +15,13 @@ public interface CustomerCenterService {
 	//고객센터 글 상세보기
 	CustomerCenterVO selectCustomerBoardDetail(String customerCode);
 	
+	//다음 customerCode 조회
+	String selectNextCustomerCode();
+	
+	//다음 customerImgCode 조회
+	int selectNextCustomerImgCode();
+	
+	//이미지 삽입하기
+	void insertCustomerImg(CustomerCenterVO customerCenterVO);
+	
 }

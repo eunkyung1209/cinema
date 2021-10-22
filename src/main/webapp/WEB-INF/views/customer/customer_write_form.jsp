@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +69,7 @@ input[type="password"] {
 					<div> - 접수 후 48시간 안에 답변 드리겠습니다.</div> 
 				</div>
 				
-				<div style="height: 80px;"></div>
+				<div style="height: 80px;"> </div>
 				
 				<div class="row justify-content-center" >
 					<div class="col-8" >
@@ -86,6 +87,8 @@ input[type="password"] {
 											<span class="needInput" style=""><span class="redStar">*</span>필수입력</span>
 										</td>
 									</tr>
+									
+																		
 									<tr>
 										<td class="align-middle">제목 <span class="redStar">*</span></td>
 										<td class="align-middle"><input style="width: 100%;" type="text" name="title" required> </td>
@@ -100,7 +103,7 @@ input[type="password"] {
 									</tr>
 									<tr>
 										<td class="align-middle">파일첨부</td>
-	                   					<td class="align-middle"><input name="file" class="" type="file"  multiple></td>
+	                   					<td class="align-middle"><input name="file2" id="formFileMultiple" type="file"  multiple></td>
 									</tr>
 									<tr>
 										<td class="align-middle">비밀번호 <span class="redStar">*</span></td>
@@ -116,7 +119,7 @@ input[type="password"] {
 				
 				<div class="row justify-content-center">
 					<div class="col-8" style="text-align: center;">
-						<input class="btn btn-outline-secondary" type="button" value="취소">
+						<input class="btn btn-outline-secondary" type="button" value="취소" onclick="location.href='/customer/goCustomer';">
 						<input class="btn btn-secondary" type="submit" value="확인">
 					</div>
 				</div>
