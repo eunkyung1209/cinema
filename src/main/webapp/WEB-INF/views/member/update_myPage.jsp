@@ -20,8 +20,6 @@
 
 body{
 	margin: 0 auto;
-	background-color: white;
-	color: black;
 }
 .all{
 	padding-top: 70px;
@@ -74,7 +72,9 @@ body{
 </head>
 <body>
 
-<form class="row g-3" action="/member/updateMyPage" method="post" id="joinForm">
+<form action="/member/updateMyPage" method="post" ><!-- id="joinForm" -->
+
+<input type="hidden" name="id" value="${sessionScope.loginInfo.id }">
 
 <div class="all">
 
@@ -82,18 +82,18 @@ body{
 <!-- 회원가입 -->
 <table class="allTable" >
 	<tr>
-		<td colspan="2" class="head2_Td">회원정보를 입력해주세요.</td>
+		<td colspan="2" class="head2_Td">${sessionScope.loginInfo.name }님의 정보수정란입니다.</td>
 	</tr>
 	<tr>
 		<td class="oneTd">이름</td>
 		<td class="twoTd">
-			<input type="text" name="name" class="joinInput1" value="${sessionScope.loginInfo.name }" placeholder="${sessionScope.loginInfo.name }">
+			<input type="text" name="name" class="joinInput1" value="${sessionScope.loginInfo.name }" >
 		</td>
 	</tr>
 	<tr>
 		<td class="oneTd">생년월일</td>
 		<td class="twoTd">
-			<input type="date" name="birthday" class="joinInput3" value="${sessionScope.loginInfo.birthday }" required>
+			<input type="date" name="birthday" class="joinInput3" value="${sessionScope.loginInfo.birthday }" >
 			&nbsp;&nbsp;&nbsp;&nbsp;/
 			
 			&nbsp;&nbsp;성별&nbsp;&nbsp;
@@ -115,48 +115,27 @@ body{
 	<tr>
 		<td class="oneTd">휴대폰 번호</td>
 		<td class="twoTd">
-			<select id="tell1" class="joinInput2" name="tells">
+			<select class="joinInput2" name="tells">
 		      	<option value="010" selected>010</option>
 		      	<option value="011">011</option>
 		    </select> &nbsp;&nbsp;-&nbsp;&nbsp;
-			<input type="text" name="tells" class="joinInput2" required>&nbsp;&nbsp;-&nbsp;&nbsp;
-			<input type="text" name="tells" class="joinInput2" required>
-		</td>
-	</tr>
-	<tr>
-		<td class="oneTd">아이디</td>
-		<td class="twoTd">
-		<div  id="checkIdDiv">
-			<input type="text" id="id" name="id" class="joinInput1" value="${sessionScope.loginInfo.id }"  placeholder="${sessionScope.loginInfo.id }" required>
-			<button type="button" class="btn btn-primary" id="btn2" onclick="checkId();">중복확인</button>
-		</div>
+			<input type="text" value=""  name="tells" class="joinInput2" >&nbsp;&nbsp;-&nbsp;&nbsp;
+			<input type="text" value=""  name="tells" class="joinInput2" >
 		</td>
 	</tr>
 	<tr>
 		<td class="oneTd">닉네임</td>
 		<td class="twoTd">
 		<div  id="checkNickDiv">
-			<input type="text" id="nickName" name="nickName" class="joinInput1" id="floatingInput" value="${sessionScope.loginInfo.nickName }" placeholder="${sessionScope.loginInfo.nickName }" required>
+			<input type="text" id="nickName" name="nickName" class="joinInput1" id="floatingInput" value="${sessionScope.loginInfo.nickName }" >
 			<button type="button" class="btn btn-primary" id="btn2" onclick="checkNick();">중복확인</button>
 		</div>
 		</td>
 	</tr>
 	<tr>
-		<td class="oneTd">비밀번호</td>
-		<td class="twoTd">
-			<input type="password" id="pw" name="pw" class="joinInput1"  value="${sessionScope.loginInfo.pw }"  placeholder="${sessionScope.loginInfo.pw }" required>
-		</td>
-	</tr>
-	<tr>
-		<td class="oneTd">비밀번호 확인</td>
-		<td class="twoTd">
-			<input type="password" id="c_pw" class="joinInput1" placeholder="비밀번호를 입력해주세요" required>
-		</td>
-	</tr>
-	<tr>
 		<td class="oneTd">이메일 주소</td>
 		<td class="twoTd">
-			<input type="text" name="email" class="joinInput1"  id="floatingEmail" value="${sessionScope.loginInfo.email }" placeholder="${sessionScope.loginInfo.email }" required>
+			<input type="text" name="email" class="joinInput1"  id="floatingEmail" value="${sessionScope.loginInfo.email }" >
 		</td>
 	</tr>
 	<tr>
@@ -260,10 +239,10 @@ body{
 	
 </table>
 
-	<div class="col-12 d-grid">
-		<input type="submit" id="joinBtn" class="btn btn-primary disabled" value="수정" ><!-- onclick="goJoin();" -->
+	<div>
+		<input type="submit">수정저장
 	</div>
-
+	
 </div>
 </div>
 </form>

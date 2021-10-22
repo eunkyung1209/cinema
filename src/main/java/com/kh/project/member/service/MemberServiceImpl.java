@@ -69,6 +69,15 @@ public class MemberServiceImpl implements MemberService {
 		return sqlSession.update("memberMapper.updateMyPage", memberVO);
 	}
 
+	
+	//6. (로그인후) 마이페이지 회원탈퇴하기
+	@Override
+	public void deleteMember(String id) {
+		sqlSession.delete("memberMapper.deleteMember", id);
+		
+	}
+	
+
 
 	
 }

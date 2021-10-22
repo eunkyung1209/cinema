@@ -98,8 +98,15 @@ body{
 						</tbody>
 					</table>
 					<br>
-					<input type="button" class="btn" value="뒤로가기" onclick="location.href='/movie/mainPage';">
-					<input type="button" class="btn" value="나의정보수정" onclick="location.href='updateMyPage?id=${memberInfo.id }';">
+					<input type="button" class="" value="뒤로가기" onclick="location.href='/movie/mainPage';">
+					
+					<input type="button" class="" value="나의정보수정" onclick="location.href='updateMyPage?id=${memberInfo.id }';">
+					
+					<%-- <input type="button" class="" value="회원탈퇴1" onclick="location.href='deleteMember?id=${memberInfo.id }';"> --%>
+					
+					<input type="button" value="삭제" onclick="deleteMember('${memberInfo.id }');">
+					
+					
 				</div>
 			</div>
 		</div>

@@ -79,7 +79,7 @@ public class MemberController {
 		return "redirect:/movie/mainPage";
 	}
 	
-	//3. 마이페이지
+	//3. 마이페이지 *로그인후만 접근 가능*
 	@GetMapping("/myPage")
 	public String myPage() {
 		return "member/myPage";
@@ -96,9 +96,16 @@ public class MemberController {
 	public String updateMyPage(MemberVO memberVO) {
 		memberService.updateMyPage(memberVO);
 		
-		return "redirect:/member/updateMyPage";
+		return "redirect:/movie/mainPage";
 	}
 	
+	//3-3. 마이페이지에서 회원 탈퇴하기
+	@GetMapping("/deleteMember")
+	public String deleteMember(String id) {
+		memberService.deleteMember(id);
+		
+		return "redirect:/movie/mainPage";
+	}
 	
 	
 }
