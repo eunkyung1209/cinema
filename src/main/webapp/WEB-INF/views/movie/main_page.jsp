@@ -64,7 +64,7 @@ p > img{
 		<div class="col">
 			<!-- 시간 바뀌게.. -->
 			<img src="/resources/images/main/메인서브-시계.png">
-			10.19 17:01 기준
+			${nowDateAndTime } | 10.19 17:01 기준
 		</div>
 	</div>
 	<div class="row">
