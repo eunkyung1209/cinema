@@ -3,9 +3,10 @@ package com.kh.project.customerCenter.vo;
 import java.util.List;
 
 import com.kh.project.common.vo.BaseSearchVO;
+import com.kh.project.common.vo.PageVO;
 
 //고객센터 게시판
-public class CustomerCenterVO extends BaseSearchVO{
+public class CustomerCenterVO extends PageVO{
 	
 	private String customerCode; 
     private String createDate;

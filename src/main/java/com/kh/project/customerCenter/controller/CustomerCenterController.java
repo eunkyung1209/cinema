@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -32,6 +33,14 @@ public class CustomerCenterController {
 	// 고객센터 페이지로 이동
 	@RequestMapping("/goCustomer")
 	private String goCustomer(Model model, CustomerCenterVO customerCenterVO) {
+		
+		//-----페이징 처리------//
+		//전체 데이터 수
+		int dataCnt = customerCenterService.selectCustomerCnt(customerCenterVO);
+		customerCenterVO.setTotalCnt(dataCnt);
+		//페이징처리
+		customerCenterVO.setPageInfo();
+		
 		
 		// 고객센터 게시글 목록 보내기
 		model.addAttribute("customerBoardList", customerCenterService.selectCustomerBoard(customerCenterVO));
@@ -86,6 +95,7 @@ public class CustomerCenterController {
 //					  img.setOriginImgName(file.getOriginalFilename());
 //					  img.setAttachedImgName(attachedFileName); img.setCustomerCode(customerCode);
 //					  img.setCustomerCode(customerCode);
+//		isNotice도 추가해주기
 //					  
 //					  imgList.add(img); 
 //				  
@@ -146,9 +156,18 @@ public class CustomerCenterController {
 	private String goNotice(Model model, CustomerCenterVO customerCenterVO) {
 
 		// 고객센터 게시글 목록 보내기
-		model.addAttribute("customerBoardList", customerCenterService.selectCustomerBoard(customerCenterVO));
+		model.addAttribute("customerBoardList", customerCenterService.selectNoticeBoard(customerCenterVO));
 
 		return "customer/cusomer_notice_list";
+	}
+	
+	//내 상담내역 페이지로 이동
+	@GetMapping("/goMyCustomer")
+	private String goMyCustomer(Model model, CustomerCenterVO customerCenterVO) {
+		
+		
+		model.addAttribute("customerBoardList", customerCenterService.selectMyCustomer(customerCenterVO));
+		return "customer/my_customer_list";
 	}
 
 }

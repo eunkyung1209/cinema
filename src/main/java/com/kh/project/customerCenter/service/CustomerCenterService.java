@@ -24,4 +24,14 @@ public interface CustomerCenterService {
 	//이미지 삽입하기
 	void insertCustomerImg(CustomerCenterVO customerCenterVO);
 	
+	//공지사항 목록 조회
+	List<CustomerCenterVO> selectNoticeBoard(CustomerCenterVO customerCenterVO);
+	
+	//나의 문의내역 조회
+	List<CustomerCenterVO> selectMyCustomer(CustomerCenterVO customerCenterVO);
+	
+	//페이징 처리
+	int selectCustomerCnt(CustomerCenterVO customerCenterVO);
+	
+	
 }

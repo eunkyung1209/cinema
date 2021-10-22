@@ -81,7 +81,7 @@ margin-left: 190px;
 							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goNotice';">공지사항</button> 
 						</td>
 						<td style="border: 1px solid white" class="align-middle">
-							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goMyCustomer';">내 상담내역</button>
+							<button class="btn btn-outline-secondary" <c:if test="${empty sessionScope.loginInfo }">disabled</c:if> onclick="location.href='/customer/?writer=${sessionScope.loginInfo.nickName }';">내 상담내역</button>
 						</td>
 						<td style="border: 1px solid white" class="align-middle">
 							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goLost';">분실물</button>
@@ -151,7 +151,7 @@ margin-left: 190px;
 					  <tbody>
 						<tr>
 					      <th scope="row" class="align-middle">${status.count }</th>
-					      <td class="align-middle"><a href="/customer/selectCustomerBoardPw?customerCode=${customerBoard.customerCode }&secretNumber=${customerBoard.secretNumber }">${customerBoard.title }</a> </td>
+					      <td class="align-middle"><a href="/customer/selectCustomerBoardDetail?customerCode=${customerBoard.customerCode }">${customerBoard.title }</a> </td>
 					      <td class="align-middle">${customerBoard.writer }</td>
 					      <td class="align-middle">${customerBoard.createDate } </td>
 					    </tr>
