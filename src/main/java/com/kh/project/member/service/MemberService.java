@@ -24,8 +24,10 @@ public interface MemberService {
 	//3-1) 회원목록 전체 데이터 개수 조회
 	int selectMemberCnt(MemberVO memberVO);
 	
-	
 	//4. (admin)회원상세조회
 	MemberVO selectMemberDetail(MemberVO memberVO);
  	
+	//5. (로그인후) 마이페이지 나의 정보 수정하기
+	int updateMyPage(MemberVO memberVO);
+	
 }

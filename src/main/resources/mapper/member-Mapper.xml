@@ -74,6 +74,16 @@
 			, IS_ADMIN
 			, NAME
 			, NICKNAME
+			, TO_CHAR(JOIN_DATE, 'YYYY-MM-DD') AS JOIN_DATE
+			, NONPEOPLE_TICKET
+			, MY_CINEMA
+			, TO_CHAR(BIRTHDAY, 'YYYY-MM-DD') AS BIRTHDAY
+			, GENDER
+			, TELL
+			, EMAIL
+			, POINT
+			, SAVED_MONEY
+			, MARKETING_AGREE
 		FROM OISONE_MEMBER
 		WHERE ID = #{id}
 		AND PW = #{pw}
@@ -121,8 +131,6 @@
 	</select>
 	
 	
-	
-	
 	<!--3. (admin)멤버 상세 조회 -->
 	<select id="selectMemberDetail" resultMap="member">
 		SELECT ID
@@ -143,6 +151,24 @@
 		WHERE ID = #{id}
 	</select>
 	
+	<update id="updateMyPage">
+		UPDATE OISONE_MEMBER
+		SET
+		  ID = #{id}
+		   , PW = #{pw}
+		   , NAME = #{name}
+		   , NICKNAME = #{nickName}
+		   , BIRTHDAY = #{birthday}
+		   , GENDER = #{gender}
+		   , TELL = #{tell}
+		   , EMAIL = #{email}
+		   , MARKETING_AGREE = #{marketingAgree}
+		   , NONPEOPLE_TICKET = #{nonpeopleTicket}
+		   , MY_CINEMA = #{myCinema}
+		   WHERE ID = #{id}
+	</update>
+
+
 </mapper>
 
 
