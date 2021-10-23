@@ -1,7 +1,12 @@
 package com.kh.project.customerCenter.vo;
 
+import java.util.List;
+
+import com.kh.project.common.vo.BaseSearchVO;
+import com.kh.project.common.vo.PageVO;
+
 //고객센터 게시판
-public class CustomerCenterVO {
+public class CustomerCenterVO extends PageVO{
 	
 	private String customerCode; 
     private String createDate;
@@ -10,9 +15,21 @@ public class CustomerCenterVO {
     private String content;
     private String isRead;
     private String secretNumber;
+    private String isNotice;
+    private List<CustomerCenterImgVO> imgList;
     
-    
-    
+	public List<CustomerCenterImgVO> getImgList() {
+		return imgList;
+	}
+	public void setImgList(List<CustomerCenterImgVO> imgList) {
+		this.imgList = imgList;
+	}
+	public String getIsNotice() {
+		return isNotice;
+	}
+	public void setIsNotice(String isNotice) {
+		this.isNotice = isNotice;
+	}
 	public String getCustomerCode() {
 		return customerCode;
 	}

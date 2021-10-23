@@ -64,14 +64,14 @@ p > img{
 		<div class="col">
 			<!-- 시간 바뀌게.. -->
 			<img src="/resources/images/main/메인서브-시계.png">
-			10.19 17:01 기준
+			${nowDateAndTime } | 10.19 17:01 기준
 		</div>
 	</div>
 	<div class="row">
 		<c:forEach items="${movieList }" var="movieInfo">
 			<div class="col-2">
 				<div class="card mb-3">
-					<a href="#"><img src="/resources/images/movie/${movieInfo.attachedImgName }" class="card-img-top"></a>
+					<a href="/movie/movieDetail?mvCode=${movieInfo.mvCode }"><img src="/resources/images/movie/${movieInfo.attachedImgName }" class="card-img-top"></a>
 					<div class="card-body">
 						<h5 class="card-title">${movieInfo.title }</h5>
 						<p class="card-text">

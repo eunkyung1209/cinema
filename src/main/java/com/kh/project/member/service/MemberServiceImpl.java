@@ -1,5 +1,7 @@
 package com.kh.project.member.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +20,7 @@ public class MemberServiceImpl implements MemberService {
 		sqlSession.insert("memberMapper.join", memberVO);
 	}
 	
-	//1) 아이디 체크
+	//1-1) 아이디 체크
 	@Override
 	public boolean overlapId(String id) {
 		String result = sqlSession.selectOne("memberMapper.overlapId", id);
@@ -27,7 +29,7 @@ public class MemberServiceImpl implements MemberService {
 		return result == null ? false : true;
 	}
 	
-	//2) 닉네임 체크
+	//1-2) 닉네임 체크
 	@Override
 	public boolean overlapNick(String nickName) {
 		String result = sqlSession.selectOne("memberMapper.overlapNick", nickName);
@@ -36,11 +38,46 @@ public class MemberServiceImpl implements MemberService {
 		return result == null ? false : true;
 	}
 	
-	//로그인
+	//2. 로그인
 	@Override
 	public MemberVO login(MemberVO memberVO) {
 		return sqlSession.selectOne("memberMapper.login", memberVO);
 	}
+	
+	//3. (admin)회원 목록 조회
+	@Override
+	public List<MemberVO> selectMemberList(MemberVO memberVO) {
+		return sqlSession.selectList("memberMapper.selectMemberList", memberVO);
+	}
+	
+	//3-1) 회원목록 전체 데이터 개수 조회
+	@Override
+	public int selectMemberCnt(MemberVO memberVO) {
+		return sqlSession.selectOne("memberMapper.selectMemberCnt", memberVO);
+	}	
+	
+	
+	//4. (admin)회원 상세 조회
+	@Override
+	public MemberVO selectMemberDetail(MemberVO memberVO) {
+		return sqlSession.selectOne("memberMapper.selectMemberDetail", memberVO);
+	}
+	
+	//5. (로그인후) 마이페이지 나의 정보 수정하기
+	@Override
+	public int updateMyPage(MemberVO memberVO) {
+		return sqlSession.update("memberMapper.updateMyPage", memberVO);
+	}
+
+	
+	//6. (로그인후) 마이페이지 회원탈퇴하기
+	@Override
+	public void deleteMember(String id) {
+		sqlSession.delete("memberMapper.deleteMember", id);
+		
+	}
+	
+
 
 	
 }

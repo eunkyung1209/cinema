@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.kh.project.community.service.CommunityService;
+import com.kh.project.member.service.MemberService;
+import com.kh.project.member.vo.MemberVO;
 import com.kh.project.movie.service.MovieService;
 import com.kh.project.movie.vo.MovieImgVO;
 import com.kh.project.movie.vo.MovieVO;
@@ -29,10 +31,13 @@ public class AdminController {
 	@Resource(name = "movieService")
 	private MovieService movieService;
 	
+	@Resource(name = "memberService")
+	private MemberService memberService;
+	
 	//영화 관리 페이지로 이동
 	@GetMapping("/movieManage")
 	public String movieManage(Model model) {
-		model.addAttribute("movieList", movieService.selectSimpleMovieList());
+		model.addAttribute("movieList", movieService.selectAdminMovieList());
 		
 		return "admin/movie_manage";
 	}
@@ -64,7 +69,8 @@ public class AdminController {
 		//영화 포스터 이미지 객체 생성
 		MovieImgVO movieImgVO = new MovieImgVO();
 		//첨부될 폴더
-		String uploadPath = "D:\\workspaceSTS\\Cinema\\src\\main\\webapp\\resources\\images\\movie\\";
+		//String uploadPath = "D:\\workspaceSTS\\Cinema\\src\\main\\webapp\\resources\\images\\movie\\";	//은경 - 학원 컴퓨터 경로
+		String uploadPath = "C:\\Users\\Administrator\\git\\cinema\\src\\main\\webapp\\resources\\images\\movie\\";	//은경 - 노트북 경로
 		//input 태그에 접근해서 파일을 가져옴
 		file = multi.getFile("imageFile");	//파일첨부 input 태그 name 속성 값 = imageFile
 		//변환한 파일명 (영화제목을 파일명으로 쓰고, 그걸 그대로 저장)
@@ -100,10 +106,30 @@ public class AdminController {
 		return "redirect:/admin/movieManage";
 	}
 	
-	//회원 목록 조회
-	@GetMapping("/adminMemberList")
-	public String adminMemberList() {
+	//1.회원 목록 조회
+	@RequestMapping("/adminMemberList")
+	public String adminMemberList(Model model, MemberVO memberVO) {
+		//페이징 처리
+		memberVO.setTotalCnt(memberService.selectMemberCnt(memberVO));
+		memberVO.setPageInfo();
+		
+		//카테고리 목록 조회 후 jsp로 전달
+		model.addAttribute("memberList", memberService.selectMemberList(memberVO));
+		
 		return "admin/admin_member_list";
 	}
+	
+	//2.회원 상세 조회
+	@GetMapping("/adminMemberDetail")
+	public String adminMemberDetail(Model model, MemberVO memberVO) {
+		
+		//카테고리 목록 조회 후 jsp로 전달
+		model.addAttribute("memberDetail", memberService.selectMemberDetail(memberVO));
+		
+
+		return "admin/admin_member_detail";
+	}
+	
+
 	
 }

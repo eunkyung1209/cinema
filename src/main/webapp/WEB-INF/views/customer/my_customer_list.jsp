@@ -81,7 +81,7 @@ margin-left: 190px;
 							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goNotice';">공지사항</button> 
 						</td>
 						<td style="border: 1px solid white" class="align-middle">
-							<button class="btn btn-outline-secondary" <c:if test="${empty sessionScope.loginInfo }">disabled</c:if>  onclick="location.href='/customer/goMyCustomer?writer=${sessionScope.loginInfo.nickName }';">내 상담내역</button>
+							<button class="btn btn-outline-secondary" <c:if test="${empty sessionScope.loginInfo }">disabled</c:if> onclick="location.href='/customer/goMyCustomer?writer=${sessionScope.loginInfo.nickName }';">내 상담내역</button>
 						</td>
 						<td style="border: 1px solid white" class="align-middle">
 							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goLost';">분실물</button>
@@ -93,8 +93,9 @@ margin-left: 190px;
 		
 		<div style="height: 80px;"></div>
 		
+		
 		<div class="row " >
-			<form action="/customer/goCustomer" method="post">
+			<form action="/customer/goNotice" method="post">
 				<div class="col-10 " >
 					<div class="row justify-content-center searchBox " >
 							<div class="col-2" >
@@ -116,16 +117,12 @@ margin-left: 190px;
 									</div>
 									
 									<div class="col-2" style="text-align: right; padding-left: 240px; ">
-										<input class="btn btn-outline-secondary" type="button" onclick="location.href='/customer/goWriteCustomer';" id="button-addon2"  <c:if test="${empty sessionScope.loginInfo }">disabled</c:if> value="글쓰기">
+										<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' }">
+											<input class="btn btn-outline-secondary" type="button" onclick="location.href='/customer/goWriteCustomer';" id="button-addon2" value="글쓰기">
+										</c:if>
 									</div>
 						</div>
-						<div class="row justify-content-center">
-							<div class="col-12 loginP">
-								<c:if test="${empty sessionScope.loginInfo }">
-									* 글쓰기는 로그인 후 이용가능합니다.
-								</c:if>
-							</div>
-						</div>
+						
 						
 					</div>
 				</form>
@@ -161,34 +158,15 @@ margin-left: 190px;
 					    </tr>
 					   </tbody>
 					</c:forEach>
+					    
+					
 					</table>
-			</div>
-		</div>
+					
+					
 		
-		<div style="height: 30px;"></div>
-		
-		<div class="row justify-content-center">
-			<div class="col-8" >
-				
-				<nav aria-label="...">
-			  <ul class="pagination  justify-content-center">
-			    <li class="page-item <c:if test="${!customerCenterVO.prev }">disabled</c:if>">
-			    		<a class="page-link" href="/customer/goCustomer?nowPage=${customerCenterVO.beginPage - 1 }">Prev</a>
-			    </li>
-			    
-			    <c:forEach begin="${customerCenterVO.beginPage }" end="${customerCenterVO.endPage }" var="pageNumber">
-					<li class="page-item <c:if test="${customerCenterVO.nowPage eq pageNumber }"> active</c:if>" aria-current="page">
-			     		 <a class="page-link " href="/customer/goCustomer?nowPage=${pageNumber }&searchKeyword=${customerCenterVO.searchKeyword}&searchValue=${customerCenterVO.searchValue}" >${pageNumber }</a>
-			    	</li>
-			    	
-				</c:forEach>
-			    
-			    <li class="page-item <c:if test="${!customerCenterVO.next }"> disabled</c:if>">
-			     		<a class="page-link" href="/customer/goCustomer?nowPage=${customerCenterVO.endPage + 1 }">Next</a>
-			    </li>
-			  </ul>
-		</nav>
-				
+					
+					
+					
 			</div>
 		</div>
 	
@@ -197,4 +175,3 @@ margin-left: 190px;
 	</div>
 </div>
 </body>
-</html>

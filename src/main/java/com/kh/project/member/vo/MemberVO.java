@@ -1,6 +1,8 @@
 package com.kh.project.member.vo;
 
-public class MemberVO {
+import com.kh.project.common.vo.PageVO;
+
+public class MemberVO extends PageVO{
 	private String id;
 	private String pw;
 	private String name;
