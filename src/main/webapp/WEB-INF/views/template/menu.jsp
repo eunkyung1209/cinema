@@ -7,14 +7,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-body{
+
+.menuBodyDiv{
+	color: gray;
 }
 a{
 	text-decoration: none;
-	color: white;
 }
 .nav-link{
-	color: white;
+	color: gray;
 }
 
 /* .menuBodyDiv{
@@ -60,6 +61,10 @@ a{
 	margin-right: 20px;
 }
 
+.loginDiv:hover{
+
+}
+
 /* .modal{
 	color: black;
 } */
@@ -71,9 +76,6 @@ a{
 }
 
 .lineMenuBody{
-	background-color: black;
-	color: white;
-
 }
 
 /* #menuNav{
@@ -105,7 +107,7 @@ a{
 							<a href="/member/logout">Logout</a>
 						</c:when>
 						<c:otherwise>
-							<span data-bs-toggle="modal" data-bs-target="#loginModal">Login</span>
+							<span data-bs-toggle="modal" data-bs-target="#loginModal" class="loginDiv">Login</span>
 							<a href="/member/join">Join</a>
 						</c:otherwise>
 					</c:choose>
@@ -225,7 +227,7 @@ a{
 	      	<div class="modal-dialog">
 	         	<div class="modal-content">
 	            	<div class="modal-header"><!-- 팝업창 위쪽의 제목과 X 버튼 -->
-	               		<h5 class="modal-title" id="exampleModalLabel" >로그인</h5>
+	               		<h5 class="modal-title" id="exampleModalLabel" style="color: black;">로그인</h5>
 	               		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	            	</div>
 		            <div class="modal-body"><!-- 팝업창 중간의 내용 -->

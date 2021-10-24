@@ -22,20 +22,20 @@
 	margin: 0 auto;
 	width: 100%;
 	text-align: center;
-	border-bottom: 1px solid white;
-	border-top: 1px solid white;
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
 	vertical-align: middle;
 }
 
 .customerBox{
 text-align: center;
-border: 1px solid white;
+border: 1px solid black;
 }
 
  
 .customerBoardList > thead{
-border-bottom: 1px solid white;
-border-top: 1px solid white;
+border-bottom: 1px solid black;
+border-top: 1px solid black;
 
 }
 
@@ -74,16 +74,16 @@ margin-left: 190px;
 						<col width="25%">
 					</colgroup>
 					<tr >
-						<td style="border: 1px solid white" class="align-middle">
+						<td style="border: 1px solid black;" class="align-middle">
 							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goCustomer';">전체문의</button> 
 						</td>
-						<td style="border: 1px solid white" class="align-middle">
+						<td style="border: 1px solid black" class="align-middle">
 							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goNotice';">공지사항</button> 
 						</td>
-						<td style="border: 1px solid white" class="align-middle">
+						<td style="border: 1px solid black" class="align-middle">
 							<button class="btn btn-outline-secondary" <c:if test="${empty sessionScope.loginInfo }">disabled</c:if>  onclick="location.href='/customer/goMyCustomer?writer=${sessionScope.loginInfo.nickName }';">내 상담내역</button>
 						</td>
-						<td style="border: 1px solid white" class="align-middle">
+						<td style="border: 1px solid black" class="align-middle">
 							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goLost';">분실물</button>
 						</td>
 					</tr>
