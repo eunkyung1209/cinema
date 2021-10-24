@@ -49,7 +49,7 @@ public class MovieController {
 		//영화 상세 정보
 		model.addAttribute("movieInfo", movieService.selectDetailMovie(mvCode));
 		
-		return "movie/movie_datail";
+		return "movie/movie_detail";
 	}
 	
 	//오늘의 일시
