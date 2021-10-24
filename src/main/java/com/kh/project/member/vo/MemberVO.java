@@ -20,21 +20,19 @@ public class MemberVO extends PageVO{
 	private String myCinema;
 	
 	private String[] tells;		//전화번호 010, 1111, 2222
-	private String[] addr;
+	/* private String[] addr; */
 	/*
 	 * private String[] emails; //이메일 qwer, naver.com
 	 */	
 	
 	
 	
-	public String[] getAddr() {
-		return addr;
-	}
-	public void setAddr(String[] addr) {
-		
-		String myCinema = addr[0] + addr[1]  + addr[2];
-		setMyCinema(myCinema);
-	}
+	/*
+	 * public String[] getAddr() { return addr; } public void setAddr(String[] addr)
+	 * {
+	 * 
+	 * String myCinema = addr[0] + addr[1] + addr[2]; setMyCinema(myCinema); }
+	 */
 	
 	
 	public String[] getTells() {

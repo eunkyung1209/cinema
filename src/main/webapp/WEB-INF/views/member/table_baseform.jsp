@@ -54,7 +54,6 @@
 	background-color: #e0e0e0;
 	text-align:center;
 }
-
 /* 테이블 폼 */
 tr{
 	border-bottom: 1px solid #e0e0e0;

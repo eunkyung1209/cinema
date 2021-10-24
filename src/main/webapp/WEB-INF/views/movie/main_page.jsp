@@ -38,7 +38,7 @@ body{
 	width: 25px;
 	height: 25px;
 }
-p > img{
+.star{
 	width: 17px;
 	height: 17px;
 }
@@ -68,6 +68,7 @@ p > img{
 		</div>
 	</div>
 	<div class="row">
+		<!-- 영화 목록 조회 -->
 		<c:forEach items="${movieList }" var="movieInfo">
 			<div class="col-2">
 				<div class="card mb-3">
@@ -77,7 +78,7 @@ p > img{
 						<p class="card-text">
 							${movieInfo.genre } 
 							&nbsp;|&nbsp; 
-							<img src="/resources/images/main/메인서브-별점.PNG">${movieInfo.grade }
+							<img src="/resources/images/main/메인서브-별점.PNG" class="star">${movieInfo.grade }
 						</p>
 					</div>
 				</div>
