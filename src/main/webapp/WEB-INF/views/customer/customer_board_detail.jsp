@@ -39,6 +39,44 @@ background-color: #f2f2f2
 	text-align: right;
 }
 
+.replyTable{
+	width: 97%;
+	text-align: left;
+	padding: 10px;
+}
+
+.replyTable tr{
+	border-top: 1px solid #c9c9c8;
+	border-bottom: 1px solid #c9c9c8;
+
+}
+
+
+input{
+	height: 50px;
+}
+
+.replyWriter{
+	font-size: 12px;
+	height: 30%;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.createDate{
+	font-size: 10px;
+	height: 20%;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	
+}
+
+.replyContent{
+	font-size: 14px;
+	margin: 5px;
+}
 
 </style>
 
@@ -60,21 +98,21 @@ background-color: #f2f2f2
 				
 					<tr class="titleTr">
 						<td colspan="2" >
-						 ${customerBoard.title} 제목입니다.
+						 ${customerBoard.title} 
 						</td>	
 						
 						 <!-- 본인 또는 관리자에게만 보이는 버튼 -->
 						<td class="correct" >
-						<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y'}">
-							<li class="nav-item dropdown">
-					           	<span class="nav-link dropdown-toggle" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									
-					            </span>
-					            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-					              	<li><a class="dropdown-item" href="/customer/updateCustomer?customerCode=${customerBoard.customerCode}">글 수정</a></li>
-					              	<li><a class="dropdown-item" href="#">글 삭제</a></li>
-					            </ul>
-					     	</li>
+							<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y'}">
+								<li class="nav-item dropdown">
+						           	<span class="nav-link dropdown-toggle" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										
+						            </span>
+						            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+						              	<li><a class="dropdown-item" href="/customer/goUpdateCustomer?customerCode=${customerBoard.customerCode}">글 수정</a></li>
+						              	<li><a class="dropdown-item" href="#">글 삭제</a></li>
+						            </ul>
+						     	</li>
 							</c:if>
 						</td>
 						 
@@ -88,6 +126,73 @@ background-color: #f2f2f2
 						<td colspan="3">${customerBoard.content}</td>
 					</tr>
 				</table>
+			</div>
+		</div>
+		
+		<div style="height: 80px;"></div>
+		
+		<!-- 댓글목록 -->
+		<div class="row justify-content-center">
+			<div class="col-8 text-center" >
+				<div >
+					<form action="/customer/insertCustomerReply" method="post">
+						<input type="hidden" name="writer" value="${sessionScope.loginInfo.nickName }">
+						<input type="hidden" name="customerCode" value="${customerBoard.customerCode}">
+						
+						<input type="text" name="content" <c:if test="${empty sessionScope.loginInfo }">readonly value="로그인 후 댓글 작성이 가능합니다" </c:if> style="width: 92%;">
+						<input type="submit" value="등록">
+					</form>
+				</div>
+				
+				<div style="height: 30px;"></div>
+			
+				<table class="replyTable" >
+					<colgroup>
+						<col width="98%"><col>
+						<col width="2%"><col>
+					</colgroup>
+					
+					<c:choose>
+						<c:when test="${empty customerReplyList }">
+							<tr>
+								<td colspan="2">
+									등록된 댓글이 없습니다.
+								</td>
+							</tr>
+						</c:when>
+						
+						<c:otherwise>
+							<c:forEach items="${customerReplyList}" var="customerReply">
+								<tr>
+									<td>
+										<div class="replyWriter">
+											${customerReply.writer }
+										</div>
+										<div class="createDate">${customerReply.createDate }</div>
+										<div class="replyContent">${customerReply.content }</div>
+									</td>
+									
+									<td class="correct" >
+										<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y'}">
+											<li class="nav-item dropdown">
+									           	<span class="nav-link dropdown-toggle" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									            </span>
+									            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+									              	<li><a class="dropdown-item" href="*?customerCode=${customerBoard.customerCode}">댓글 수정</a></li>
+									              	<li><a class="dropdown-item" href="#">댓글 삭제</a></li>
+									            </ul>
+									     	</li>
+										</c:if>
+									</td>
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					
+					</c:choose>
+					
+					
+				</table>
+				
 			</div>
 		</div>
 		

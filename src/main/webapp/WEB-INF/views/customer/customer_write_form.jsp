@@ -94,7 +94,9 @@ select {
 										<td colspan="2" style="background-color: white; padding-bottom: 5px;" >
 											<span style="font-size: 20px;">문의내용</span> 
 											<span class="needInput" style=""><span class="redStar">*</span>필수입력</span>
-											<input type="hidden" name="isNotice" value="N">
+											<c:if test="${sessionScope.loginInfo.isAdmin eq 'N' }">
+												<input type="hidden" name="isNotice" value="N">
+											</c:if>
 										</td>
 									</tr>
 								</thead>	

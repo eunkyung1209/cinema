@@ -79,7 +79,7 @@ select {
 	
 	<div style="height: 80px;"></div>
 	
-	<form action="/customer/insertCustomerBoard" method="post">
+	<form action="/customer/updateCustomer" method="post">
 			<div class="row justify-content-center align-middle">
 			
 				<div class="row justify-content-center" >
@@ -95,7 +95,11 @@ select {
 										<td colspan="2" style="background-color: white; padding-bottom: 5px;" >
 											<span style="font-size: 20px;">문의내용</span> 
 											<span class="needInput" style=""><span class="redStar">*</span>필수입력</span>
-											<input type="hidden" name="isNotice" value="N">
+											<input type="hidden" name="customerCode" value="${customerBoard.customerCode}">
+											<c:if test="${sessionScope.loginInfo.isAdmin eq 'N' }">
+												<input type="hidden" name="isNotice" value="N">
+											</c:if>
+											
 										</td>
 									</tr>
 								</thead>	
@@ -112,7 +116,7 @@ select {
 									</c:if>
 									<tr>
 										<td >제목 <span class="redStar">*</span></td>
-										<td ><input style="width: 100%;" type="text" name="title" required> </td>
+										<td ><input style="width: 100%;" type="text" name="title" value="${customerBoard.title}" required> </td>
 									</tr>
 									<tr>
 										<td >작성자 <span class="redStar">*</span></td>
@@ -120,7 +124,7 @@ select {
 									</tr>
 									<tr>
 										<td>내용 <span class="redStar">*</span></td>
-										<td><textarea style="width: 100%; height:300px;  padding-top: 5px; "  name="content" required></textarea> </td>
+										<td><textarea style="width: 100%; height:300px;  padding-top: 5px; "  name="content" required>${customerBoard.content}</textarea> </td>
 									</tr>
 									<tr>
 										<td>파일첨부</td>
@@ -153,4 +157,4 @@ select {
 	</div>
 </div>
 </body>
-</html>l>
+</html>
