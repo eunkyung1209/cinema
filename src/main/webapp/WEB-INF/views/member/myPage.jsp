@@ -33,6 +33,8 @@ body{
 			<div class="row mb-5">
 				<div class="col-3 subjectDiv">
 					<h5>마이페이지</h5>
+					<input type="button" class="" value="샘플테이블-은빈" onclick="location.href='/member/table_baseform';">
+					<input type="button" class="" value="샘플글쓰기-정훈" onclick="location.href='/member/write_baseform';">
 				</div>
 			</div>
 			

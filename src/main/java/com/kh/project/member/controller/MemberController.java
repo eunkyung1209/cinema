@@ -107,5 +107,19 @@ public class MemberController {
 		return "redirect:/movie/mainPage";
 	}
 	
+	//테이블 폼 작업중  은빈
+		@GetMapping("/table_baseform")
+		public String table_baseform() {
+			
+			return "member/table_baseform";
+		}
+		
+	//글쓰기 폼 작업중 정훈
+		@GetMapping("/write_baseform")
+		public String write_baseform() {
+			
+			return "member/write_baseform";
+		}
+	
 	
 }
