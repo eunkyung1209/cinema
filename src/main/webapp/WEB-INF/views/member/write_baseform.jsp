@@ -7,46 +7,41 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.cusBox{
-	height: 100px;
-	border: 1px solid white;
-	padding-top: 10px;
-	text-align: center;
-}
 
 
-.customerWrite{
+
+.writeTable{
 margin: 0 auto;
 width: 100%;
-border-bottom: solid 1px white;
+border-bottom: solid 1px #c9c9c8;
 height: 500px;
-
-
 }
+
 td:first-child{
 	text-align: center;
+	background-color: #f2f2f2;
 }
 
 tr{
-border-bottom: 1px solid white;
+border-bottom: 1px solid #c9c9c8;
 }
 
 td{
 vertical-align: middle;
-}
-
-
-input[type="text"] {
-	width: 100%;
-	height: 50%;
+padding-left: 10px;
 
 }
 
+
+
+
+
+
+input[type="text"], 
 input[type="password"] {
 	width: 100%;
-	height: 50%;
-
 }
+
 
 .redStar{
 	color: red;
@@ -57,6 +52,7 @@ input[type="password"] {
 	margin-left: 70%;
 }
  
+ 
 </style>
 
 
@@ -66,12 +62,6 @@ input[type="password"] {
 	<div class="col-12">
 	<form action="/customer/insertCustomerBoard" method="post">
 			<div class="row justify-content-center align-middle">
-				<div class="col-8  cusBox " >
-				
-					<div>FAQ를 이용하시면 궁금증을 더 빠르게 해결하실 수 있습니다.</div> <br>
-					<div> - 1:1 문의글 답변 운영시간 10:00 ~ 19:00</div> 
-					<div> - 접수 후 48시간 안에 답변 드리겠습니다.</div> 
-				</div>
 				
 				<div style="height: 80px;"> </div>
 				
@@ -79,30 +69,32 @@ input[type="password"] {
 					<div class="col-8" >
 						
 							
-							<table class="customerWrite">
+							<table class="writeTable">
 								<colgroup>
 									<col width="20%">
 									<col width="*">
 								</colgroup>
 								<tbody>
 									<tr>
-										<td colspan="2" class="align-middle">
+										<td colspan="2" style="background-color: white;">
 											<span style="font-size: 25px;">문의내용</span> 
 											<span class="needInput" style=""><span class="redStar">*</span>필수입력</span>
 											<input type="hidden" name="isNotice" value="N">
 										</td>
 									</tr>
 									
-									<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' }">
-										<tr>
-											<td>공지글 여부</td>
-											<td>
-												
-												<input type="radio" name="isNotice" value="N" checked> N
-												<input type="radio" name="isNotice" value="Y"> Y
-											</td>
-										</tr>
-									</c:if>
+									<tr>
+										<td >분류 <span class="redStar">*</span></td>
+										<td >
+											<select>
+												<option>12</option>
+												<option>13</option>
+												<option>13</option>
+												<option>13</option>
+												<option>13</option>
+											</select>
+										</td>
+									</tr>
 									<tr>
 										<td >제목 <span class="redStar">*</span></td>
 										<td ><input style="width: 100%;" type="text" name="title" required> </td>
@@ -117,11 +109,25 @@ input[type="password"] {
 									</tr>
 									<tr>
 										<td>파일첨부</td>
-	                   					<td><input name="file2" id="formFileMultiple" type="file"  multiple></td>
+	                   					<td><input name="file2" id="formFileMultiple" type="file"  multiple ></td>
 									</tr>
 									<tr>
 										<td>비밀번호 <span class="redStar">*</span></td>
 	                   					<td><input type="password" name="secretNumber" required> </td>
+									</tr>
+									<tr>
+										<td>라디오버튼</td>
+										<td>
+											<input type="radio" name="isNotice" value="N" checked> 라디오
+											<input type="radio" name="isNotice" value="Y"> 버튼
+										</td>
+									</tr>
+									<tr>
+										<td>체크박스</td>
+										<td>
+											<input type="checkbox" name="isNotice" value="N" checked> 체크
+											<input type="checkbox" name="isNotice" value="Y"> 박스
+										</td>
 									</tr>
 									
 									
