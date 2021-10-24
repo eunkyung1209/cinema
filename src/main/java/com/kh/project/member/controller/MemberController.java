@@ -113,6 +113,12 @@ public class MemberController {
 			
 			return "member/table_baseform";
 		}
+		// 디테일 가기
+		@GetMapping("/board_detail_form")
+		public String board_detail_form() {
+			
+			return "member/board_detail_form";
+		}
 		
 	//글쓰기 폼 작업중 정훈
 		@GetMapping("/write_baseform")
