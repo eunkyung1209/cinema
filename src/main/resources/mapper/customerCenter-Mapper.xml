@@ -120,6 +120,7 @@
 		<if test="searchValue != null and !searchValue.equals('')">
 		AND ${searchKeyword} LIKE '%'||#{searchValue} ||'%'
 		</if>
+		AND IS_NOTICE = 'N'
 		ORDER BY CUSTOMER_CODE DESC
 	</select>
 	

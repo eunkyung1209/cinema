@@ -8,8 +8,6 @@
 <title>Insert title here</title>
 <style type="text/css">
 body{
-	background-color: black;
-	color: white;
 }
 a{
 	text-decoration: none;
