@@ -99,7 +99,25 @@ input[type="file"]{
 	margin-bottom: 5px;
 }
 
+li{
+	
+	list-style: none;
+}
 
+
+/*검색 버튼 기본폼 */
+.common_btn{
+	font-size: 14px;
+	background-color: #4c4747;
+	color: white;
+	width: 80px;
+}
+.common_btn:hover{
+	font-size: 14px;
+	background-color: #5d5959;
+	color: white;
+	width: 80px;
+}
 
 
 
