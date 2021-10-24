@@ -169,5 +169,13 @@ public class CustomerCenterController {
 		model.addAttribute("customerBoardList", customerCenterService.selectMyCustomer(customerCenterVO));
 		return "customer/my_customer_list";
 	}
+	
+	//고객센터 글 수정
+	@GetMapping("/updateCustomer")
+	private String updateCustomer(Model model, CustomerCenterVO customerCenterVO) {
+		
+		//return "customer/update_customer";
+		return "";
+	}
 
 }

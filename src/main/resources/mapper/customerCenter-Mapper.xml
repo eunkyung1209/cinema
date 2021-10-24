@@ -167,7 +167,7 @@
 		    , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
 		    , IS_READ
 		FROM OISONE_CUSTOMER
-		WHERE CUSTOMER_CODE = #{customerCode}
+		WHERE CUSTOMER_CODE = 
 	</select>
 	
 	<!-- 이미지 삽입 -->
@@ -187,6 +187,15 @@
 		</foreach>
 	</insert>
 	
+	<!-- 고객센터 글 수정 -->
+	<update id="updateCustomer">
+		UPDATE OISONE_CUSTOMER
+		SET TITLE = #{title}
+		    , CONTENT  = #{content}
+		    , SECRET_NUMBER = #{secretNumber}
+		    , IS_NOTICE = #{isNotice}
+		WHERE CUSTOMER_CODE = #{customerCode}
+	</update>
 		
 </mapper>
 

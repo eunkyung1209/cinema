@@ -92,12 +92,11 @@ a{
 		<div class="row">
 			<div class="col-1 lineMenuDiv" >
 				<button  value="-" class="navbar-toggler btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-					<img alt="" height="30px;" src="resources/images/menu/lineMenu.png">
-					-
+					<img alt="" height="30px;" src="/resources/images/menu/lineMenu.png">
 			    </button>
 			</div>
 			<div class="col-7 logoDiv" >
-				<img alt="" height="70px" src="resources/images/menu/logo.png">
+				<img alt="" height="70px" src="/resources/images/menu/logo.png">
 			</div>
 			<div class="col-4">
 				<div class="loginDiv" >
@@ -113,9 +112,9 @@ a{
 					</c:choose>
 				
 					<div class="mypageDiv">
-						<a href="/customer/goCustomer?isNotice=N"><img alt="" width="35px" src="resources/images/menu/center.png">고객센터</a>
-						<a href="/sample/sample"> <img alt="" width="32px" src="resources/images/menu/fastTicket.png"> 빠른예매</a>
-						<a href="/member/myPage"><img alt="" width="32px" src="resources/images/menu/myPage.png">마이페이지</a>
+						<a href="/customer/goCustomer?isNotice=N"><img alt="" width="35px" src="/resources/images/menu/center.png">고객센터</a>
+						<a href="/sample/sample"> <img alt="" width="32px" src="/resources/images/menu/fastTicket.png"> 빠른예매</a>
+						<a href="/member/myPage"><img alt="" width="32px" src="/resources/images/menu/myPage.png">마이페이지</a>
 					</div>
 				</div>
 			</div>
