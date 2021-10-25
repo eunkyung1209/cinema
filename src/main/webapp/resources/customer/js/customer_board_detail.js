@@ -24,7 +24,7 @@ $(document).ready(function(){
 	//댓글 수정
 	updateCustomerReply = function() {
 		var customeReplyCode = $('.customeReplyCode').val();
-		alert('코드' + customeReplyCode);
+		
 		
 		$('.replyContent').empty();
 		$('.upReply').html('<input type="text" name="content" id="replyContentUp" style="width: 92%"> <input type="submit" id="updateBtn" value="수정" >');
