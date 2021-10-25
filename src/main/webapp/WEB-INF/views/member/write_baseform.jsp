@@ -57,6 +57,17 @@ select {
 <div class="row bodyDiv" >
 	<div class="col-12">
 	
+	<!-- 페이지 머릿말 -->
+		<div class="row justify-content-center">
+			<div class="col-8">
+				<div class="col-3 subjectDiv">
+					<h5>페이지명</h5>
+				</div>
+			</div>
+		</div>
+		
+		<div style="height: 50px;"></div>
+	
 	<!-- 글 작성 테이블 입니다. 테이블 클래스명 : writeTable 수정 후 사용바랍니다.-->
 	<form action="/customer/insertCustomerBoard" method="post">
 			<div class="row justify-content-center align-middle">

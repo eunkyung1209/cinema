@@ -112,6 +112,19 @@ select {
 											</td>
 										</tr>
 									</c:if>
+									
+									<tr>
+										
+										<td>글 분류</td>
+										<td>
+											<select name="groupCode" required>
+												<option value="GROUP_001">기타</option>
+												<option value="GROUP_002">시설 문의</option>
+												<option value="GROUP_003">영화 문의</option>
+												<option value="GROUP_004">결제 문의</option>
+											</select>
+										</td>
+									</tr>
 									<tr>
 										<td >제목 <span class="redStar">*</span></td>
 										<td ><input style="width: 100%;" type="text" name="title" required> </td>

@@ -47,6 +47,17 @@ background-color: #f2f2f2
 <body>
 <div class="row bodyDiv">
 	<div class="col-12">
+	
+	<!-- 페이지 머릿말 -->
+		<div class="row justify-content-center">
+			<div class="col-8">
+				<div class="col-3 subjectDiv">
+					<h5>페이지명</h5>
+				</div>
+			</div>
+		</div>
+		
+		<div style="height: 50px;"></div>
 
 		<!-- 상세보기 정보를 불러오는 테이블 입니다. 테이블명 : boardDetail -->
 		<div class="row justify-content-center" >

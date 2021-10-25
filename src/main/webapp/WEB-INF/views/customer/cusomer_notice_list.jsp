@@ -92,20 +92,36 @@ a:hover{
 			<div class="col-8 customerBox" >
 				<div class="row justify-content-center" >
 					<div class="col-3 customerBox_s" >
-						<img alt="" width="130px;" height="100px;" src="/resources/images/customer/전체문의.png">
-						<button class="btn btn-outline-secondary" onclick="location.href='/customer/goCustomer';">전체문의</button> 
+						<div>
+							<img alt="" width="130px;" height="100px;" src="/resources/images/customer/전체문의.png">
+						</div>
+						<div>
+							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goCustomer';">전체문의</button> 
+						</div>
 					</div>
-					<div class="col-3 customerBox_s"  >
-						<img alt="" width="130px;" height="100px;" src="/resources/images/customer/공지사항.png">
-						<button class="btn btn-outline-secondary" onclick="location.href='/customer/goNotice';">공지사항</button> 
+					<div class="col-3 customerBox_s">
+						<div>
+							<img alt="" width="130px;" height="100px;" src="/resources/images/customer/공지사항.png">
+						</div>
+						<div>
+							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goNotice';">공지사항</button> 
+						</div>
 					</div>
-					<div class="col-3 customerBox_s"   >
-						<img alt="" width="130px;" height="100px;" src="/resources/images/customer/나의문의.png">
-						<button class="btn btn-outline-secondary" <c:if test="${empty sessionScope.loginInfo }">disabled</c:if>  onclick="location.href='/customer/goMyCustomer?writer=${sessionScope.loginInfo.nickName }';">내 상담내역</button>
+					<div class="col-3 customerBox_s">
+						<div>
+							<img alt="" width="130px;" height="100px;" src="/resources/images/customer/나의문의.png">
+						</div>
+						<div>
+							<button class="btn btn-outline-secondary" <c:if test="${empty sessionScope.loginInfo }">disabled</c:if>  onclick="location.href='/customer/goMyCustomer?writer=${sessionScope.loginInfo.nickName }';">내 상담내역</button>
+						</div>
 					</div>
 					<div class="col-3 customerBox_s" >
-						<img alt="" width="130px;" height="100px;" src="/resources/images/customer/분실물.png">
-						<button class="btn btn-outline-secondary" onclick="location.href='/customer/goLost';">분실물</button>
+						<div>
+							<img alt="" width="130px;" height="100px;" src="/resources/images/customer/분실물.png">
+						</div>
+						<div>
+							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goLost';">분실물</button>
+						</div>
 					</div>
 				 </div> 
 			</div>
