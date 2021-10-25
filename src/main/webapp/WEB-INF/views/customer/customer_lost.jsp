@@ -237,6 +237,9 @@ a:hover{
 										<c:if test="${customerBoard.groupCode eq 'GROUP_004'}">
 											결제 문의
 										</c:if>
+										<c:if test="${customerBoard.groupCode eq 'GROUP_005'}">
+											분실물
+										</c:if>
 									  </td>   
 								      <td class="align-middle"><a href="/customer/selectCustomerBoardPw?customerCode=${customerBoard.customerCode }&secretNumber=${customerBoard.secretNumber }">${customerBoard.title }</a> </td>
 								      <td class="align-middle">${customerBoard.writer }</td>

@@ -229,7 +229,7 @@ input{
 		<!-- 기본 버튼 클래스명: common_btn -->
 		<div class="row justify-content-center">
 			<div class="col-8 text-center"  >
-				 <input class="common_btn" type="button" value="목록으로"  onclick="location.href=/customer/goCustomer;">
+				 <input class="common_btn" type="button" value="고객센터로"  onclick="location.href='/customer/goCustomer';'">
 			</div>
 		</div>
 	
