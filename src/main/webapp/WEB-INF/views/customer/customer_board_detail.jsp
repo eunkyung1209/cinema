@@ -131,7 +131,7 @@ input{
 						
 						 <!-- 본인 또는 관리자에게만 보이는 버튼 -->
 						<td class="correct" >
-							<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y'}">
+							<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' or sessionScope.loginInfo.nickName eq customerBoard.writer}">
 								<li class="nav-item dropdown">
 						           	<span class="nav-link dropdown-toggle" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 										
@@ -200,8 +200,9 @@ input{
 										<div class="replyContent">${customerReply.content }</div>
 									</td>
 									
+									<!-- 본인 또는 관리자 -->
 									<td class="correct" >
-										<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y'}">
+										<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' or sessionScope.loginInfo.nickName eq customerBoard.writer}">
 											<li class="nav-item dropdown">
 									           	<span class="nav-link dropdown-toggle" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									            </span>
