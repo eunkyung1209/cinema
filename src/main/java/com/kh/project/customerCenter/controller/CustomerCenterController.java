@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.kh.project.common.util.FileUploadUtil;
 import com.kh.project.customerCenter.service.CustomerCenterService;
 import com.kh.project.customerCenter.vo.CustomerCenterImgVO;
+import com.kh.project.customerCenter.vo.CustomerCenterReplyVO;
 import com.kh.project.customerCenter.vo.CustomerCenterVO;
 
 @Controller
@@ -146,8 +147,14 @@ public class CustomerCenterController {
 	// 고객센터 글 상세보기
 	@GetMapping("/selectCustomerBoardDetail")
 	private String selectCustomerBoardDetail(Model model, String customerCode) {
-
+		
+		//상세보기 정보
 		model.addAttribute("customerBoard", customerCenterService.selectCustomerBoardDetail(customerCode));
+		//댓글 목록 불러오기
+		model.addAttribute("customerReplyList", customerCenterService.selectCustomerReply(customerCode));
+		
+		model.addAttribute("hello", "안녕안녕");
+		
 		return "customer/customer_board_detail";
 	}
 
@@ -165,9 +172,37 @@ public class CustomerCenterController {
 	@GetMapping("/goMyCustomer")
 	private String goMyCustomer(Model model, CustomerCenterVO customerCenterVO) {
 		
-		
 		model.addAttribute("customerBoardList", customerCenterService.selectMyCustomer(customerCenterVO));
 		return "customer/my_customer_list";
 	}
+	
+	//고객센터 글 수정
+	@GetMapping("/goUpdateCustomer")
+	private String goUpdateCustomer(Model model, CustomerCenterVO customerCenterVO, String customerCode) {
+		
+		//원래 작성했던 내용 
+		model.addAttribute("customerBoard", customerCenterService.selectCustomerBoardDetail(customerCode));
+		return "customer/update_customer";
+	}
+	
+	//글 수정해주기
+	@PostMapping("/updateCustomer")
+	private String updateCustomer(Model model, CustomerCenterVO customerCenterVO) {
+		
+		customerCenterService.updateCustomer(customerCenterVO);
+		return "redirect:/customer/goCustomer";
+	}
+	
+	//댓글 등록
+	@PostMapping("/insertCustomerReply")
+	private String insertCustomerReply(Model model, CustomerCenterReplyVO customerCenterReplyVO) {
+		
+		customerCenterService.insertCustomerReply(customerCenterReplyVO);
+		//등록 후 다시 페이지로 돌아가기
+		model.addAttribute("customerCode", customerCenterReplyVO.getCustomerCode());
+		
+		return "redirect:/customer/selectCustomerBoardDetail";
+	}
+	
 
 }

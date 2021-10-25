@@ -2,6 +2,7 @@ package com.kh.project.customerCenter.service;
 
 import java.util.List;
 
+import com.kh.project.customerCenter.vo.CustomerCenterReplyVO;
 import com.kh.project.customerCenter.vo.CustomerCenterVO;
 
 public interface CustomerCenterService {
@@ -33,5 +34,12 @@ public interface CustomerCenterService {
 	//페이징 처리
 	int selectCustomerCnt(CustomerCenterVO customerCenterVO);
 	
+	//게시글 수정	
+	void updateCustomer(CustomerCenterVO customerCenterVO);
 	
+	//댓글 목록 조회
+	List<CustomerCenterReplyVO> selectCustomerReply(String customerCode);
+	
+	//댓글 등록해주기
+	void insertCustomerReply(CustomerCenterReplyVO customerCenterReplyVO);
 }

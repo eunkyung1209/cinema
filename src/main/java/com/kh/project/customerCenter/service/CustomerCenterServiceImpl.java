@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.project.customerCenter.vo.CustomerCenterReplyVO;
 import com.kh.project.customerCenter.vo.CustomerCenterVO;
 
 @Service("customerCenterService")
@@ -66,6 +67,24 @@ public class CustomerCenterServiceImpl implements CustomerCenterService {
 	@Override
 	public int selectCustomerCnt(CustomerCenterVO customerCenterVO) {
 		return sqlSession.selectOne("customerCenterMapper.selectCustomerCnt", customerCenterVO);
+	}
+
+	//게시글 수정
+	@Override
+	public void updateCustomer(CustomerCenterVO customerCenterVO) {
+		sqlSession.update("customerCenterMapper.updateCustomer", customerCenterVO);
+	}
+
+	//댓글 목록 조회
+	@Override
+	public List<CustomerCenterReplyVO> selectCustomerReply(String customerCode) {
+		return sqlSession.selectList("customerCenterMapper.selectCustomerReply", customerCode);
+	}
+
+	//댓글 등록
+	@Override
+	public void insertCustomerReply(CustomerCenterReplyVO customerCenterReplyVO) {
+		sqlSession.insert("customerCenterMapper.insertCustomerReply", customerCenterReplyVO);
 	}
 	
 	

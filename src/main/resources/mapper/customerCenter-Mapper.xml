@@ -22,7 +22,7 @@
 		<result column="CREATE_DATE"			property="createDate"/>
 		<result column="WRITER"					property="writer"/>
 		<result column="CONTENT"				property="content"/>
-		<result column="IS_CUSTOMER_CODEREAD"	property="customerCode"/>
+		<result column="CUSTOMER_CODE"			property="customerCode"/>
 	</resultMap>
 	
 	<!-- 고객센터 첨부파일 -->
@@ -120,6 +120,7 @@
 		<if test="searchValue != null and !searchValue.equals('')">
 		AND ${searchKeyword} LIKE '%'||#{searchValue} ||'%'
 		</if>
+		AND IS_NOTICE = 'N'
 		ORDER BY CUSTOMER_CODE DESC
 	</select>
 	
@@ -186,7 +187,44 @@
 		</foreach>
 	</insert>
 	
-		
+	<!-- 고객센터 글 수정 -->
+	<update id="updateCustomer">
+		UPDATE OISONE_CUSTOMER
+		SET TITLE = #{title}
+		    , CONTENT  = #{content}
+		    , SECRET_NUMBER = #{secretNumber}
+		    , IS_NOTICE = #{isNotice}
+		WHERE CUSTOMER_CODE = #{customerCode}
+	</update>
+	
+	<!-- 댓글 목록 불러오기 -->
+	<select id="selectCustomerReply" resultMap="customerReply">
+		SELECT  CUSTOMER_REPLY_CODE 
+		    , WRITER 
+		    , CONTENT
+		    , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD HH:MM') AS CREATE_DATE
+		    , CUSTOMER_CODE
+		FROM OISONE_CUSTOMER_REPLY
+		WHERE CUSTOMER_CODE = #{customerCode}
+		ORDER BY CUSTOMER_REPLY_CODE DESC
+	</select>
+	
+	<!-- 댓글 등록해주기 -->
+	<insert id="insertCustomerReply">
+		INSERT INTO OISONE_CUSTOMER_REPLY (
+		    CUSTOMER_REPLY_CODE 
+		    , WRITER 
+		    , CONTENT
+		    , CUSTOMER_CODE 
+		)VALUES(
+		    (SELECT 'CSR_'||TO_CHAR((SYSDATE), 'YYMMDD')||'_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(CUSTOMER_REPLY_CODE,12,3))), 0)+1 , 3, 0) 
+    		FROM OISONE_CUSTOMER_REPLY)
+		    ,  #{writer}
+		    , #{content}
+		    , #{customerCode}
+		)
+	</insert>
+	
 </mapper>
 
 

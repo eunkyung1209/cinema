@@ -7,16 +7,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-body{
-	background-color: black;
-	color: white;
+
+.menuBodyDiv{
+	color: gray;
 }
 a{
 	text-decoration: none;
-	color: white;
 }
 .nav-link{
-	color: white;
+	color: gray;
 }
 
 /* .menuBodyDiv{
@@ -62,6 +61,10 @@ a{
 	margin-right: 20px;
 }
 
+.loginDiv:hover{
+
+}
+
 /* .modal{
 	color: black;
 } */
@@ -73,9 +76,6 @@ a{
 }
 
 .lineMenuBody{
-	background-color: black;
-	color: white;
-
 }
 
 /* #menuNav{
@@ -92,12 +92,11 @@ a{
 		<div class="row">
 			<div class="col-1 lineMenuDiv" >
 				<button  value="-" class="navbar-toggler btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-					<img alt="" height="30px;" src="resources/images/menu/lineMenu.png">
-					-
+					<img alt="" height="30px;" src="/resources/images/menu/lineMenu.png">
 			    </button>
 			</div>
 			<div class="col-7 logoDiv" >
-				<img alt="" height="70px" src="resources/images/menu/logo.png">
+				<img alt="" height="70px" src="/resources/images/menu/logo.png">
 			</div>
 			<div class="col-4">
 				<div class="loginDiv" >
@@ -107,15 +106,15 @@ a{
 							<a href="/member/logout">Logout</a>
 						</c:when>
 						<c:otherwise>
-							<span data-bs-toggle="modal" data-bs-target="#loginModal">Login</span>
+							<span data-bs-toggle="modal" data-bs-target="#loginModal" class="loginDiv">Login</span>
 							<a href="/member/join">Join</a>
 						</c:otherwise>
 					</c:choose>
 				
 					<div class="mypageDiv">
-						<a href="/customer/goCustomer?isNotice=N"><img alt="" width="35px" src="resources/images/menu/center.png">고객센터</a>
-						<a href="/sample/sample"> <img alt="" width="32px" src="resources/images/menu/fastTicket.png"> 빠른예매</a>
-						<a href="/member/myPage"><img alt="" width="32px" src="resources/images/menu/myPage.png">마이페이지</a>
+						<a href="/customer/goCustomer?isNotice=N"><img alt="" width="35px" src="/resources/images/menu/center.png">고객센터</a>
+						<a href="/sample/sample"> <img alt="" width="32px" src="/resources/images/menu/fastTicket.png"> 빠른예매</a>
+						<a href="/member/myPage"><img alt="" width="32px" src="/resources/images/menu/myPage.png">마이페이지</a>
 					</div>
 				</div>
 			</div>
@@ -227,7 +226,7 @@ a{
 	      	<div class="modal-dialog">
 	         	<div class="modal-content">
 	            	<div class="modal-header"><!-- 팝업창 위쪽의 제목과 X 버튼 -->
-	               		<h5 class="modal-title" id="exampleModalLabel" >로그인</h5>
+	               		<h5 class="modal-title" id="exampleModalLabel" style="color: black;">로그인</h5>
 	               		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	            	</div>
 		            <div class="modal-body"><!-- 팝업창 중간의 내용 -->
