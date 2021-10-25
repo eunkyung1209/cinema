@@ -93,41 +93,92 @@
 	<!-- 공지사항 목록 조회 -->
 	<select id="selectNoticeBoard" resultMap="customer">
 		SELECT CUSTOMER_CODE
-		    , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
+		    , CREATE_DATE
 		    , WRITER 
 		    , TITLE 
 		    , CONTENT 
 		    , IS_READ 
 		    , SECRET_NUMBER 
 		    , IS_NOTICE 
-		FROM OISONE_CUSTOMER
-		WHERE 1 = 1
-		AND IS_NOTICE = 'Y'
-		<if test="searchValue != null and !searchValue.equals('')">
-		AND ${searchKeyword} LIKE '%'||#{searchValue} ||'%'
-		</if>
-		ORDER BY CUSTOMER_CODE DESC
+		    , GROUP_CODE
+		    , ROW_NUM
+		FROM(
+		        SELECT CUSTOMER_CODE
+		        , CREATE_DATE
+		        , WRITER 
+		        , TITLE 
+		        , CONTENT 
+		        , IS_READ 
+		        , SECRET_NUMBER 
+		        , IS_NOTICE 
+		        , GROUP_CODE
+		        , ROWNUM AS ROW_NUM
+		    FROM(
+		            SELECT CUSTOMER_CODE
+		                , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
+		                , WRITER 
+		                , TITLE 
+		                , CONTENT 
+		                , IS_READ 
+		                , SECRET_NUMBER 
+		                , IS_NOTICE 
+		                , GROUP_CODE
+		            FROM OISONE_CUSTOMER
+		            WHERE 1 = 1
+		            AND IS_NOTICE = 'Y'
+		            <if test="searchValue != null and !searchValue.equals('')">
+			     	 AND ${searchKeyword} LIKE '%'||#{searchValue} ||'%'
+			      </if>
+		            ORDER BY CUSTOMER_CODE DESC
+		        )  
+		    )
+		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 	</select>
 	
 	<!-- 나의 문의내역 리스트 조회 -->
 	<select id="selectMyCustomer" resultMap="customer">
 		SELECT CUSTOMER_CODE
-		    , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
+		    , CREATE_DATE
 		    , WRITER 
 		    , TITLE 
 		    , CONTENT 
 		    , IS_READ 
 		    , SECRET_NUMBER 
-		    , IS_NOTICE
+		    , IS_NOTICE 
 		    , GROUP_CODE
-		FROM OISONE_CUSTOMER
-		WHERE 1 = 1
-		AND WRITER = #{writer}
-		<if test="searchValue != null and !searchValue.equals('')">
-		AND ${searchKeyword} LIKE '%'||#{searchValue} ||'%'
-		</if>
-		AND IS_NOTICE = 'N'
-		ORDER BY CUSTOMER_CODE DESC
+		    , ROW_NUM
+		FROM(
+		        SELECT CUSTOMER_CODE
+		        , CREATE_DATE
+		        , WRITER 
+		        , TITLE 
+		        , CONTENT 
+		        , IS_READ 
+		        , SECRET_NUMBER 
+		        , IS_NOTICE 
+		        , GROUP_CODE
+		        , ROWNUM AS ROW_NUM
+		    FROM(
+		            SELECT CUSTOMER_CODE
+		                , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
+		                , WRITER 
+		                , TITLE 
+		                , CONTENT 
+		                , IS_READ 
+		                , SECRET_NUMBER 
+		                , IS_NOTICE 
+		                , GROUP_CODE
+		            FROM OISONE_CUSTOMER
+		            WHERE 1 = 1
+		            AND IS_NOTICE = 'N'
+		            AND WRITER = #{writer}
+		            <if test="searchValue != null and !searchValue.equals('')">
+			     	 AND ${searchKeyword} LIKE '%'||#{searchValue} ||'%'
+			      </if>
+		            ORDER BY CUSTOMER_CODE DESC
+		        )  
+		    )
+		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 	</select>
 	
 	

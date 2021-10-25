@@ -162,6 +162,13 @@ public class CustomerCenterController {
 	@GetMapping("/goNotice")
 	private String goNotice(Model model, CustomerCenterVO customerCenterVO) {
 
+		//-----페이징 처리------//
+		//전체 데이터 수
+		int dataCnt = customerCenterService.selectCustomerCnt(customerCenterVO);
+		customerCenterVO.setTotalCnt(dataCnt);
+		//페이징처리
+		customerCenterVO.setPageInfo();
+		
 		// 고객센터 게시글 목록 보내기
 		model.addAttribute("customerBoardList", customerCenterService.selectNoticeBoard(customerCenterVO));
 
@@ -172,6 +179,14 @@ public class CustomerCenterController {
 	@GetMapping("/goMyCustomer")
 	private String goMyCustomer(Model model, CustomerCenterVO customerCenterVO) {
 		
+		//-----페이징 처리------//
+		//전체 데이터 수
+		int dataCnt = customerCenterService.selectCustomerCnt(customerCenterVO);
+		customerCenterVO.setTotalCnt(dataCnt);
+		//페이징처리
+		customerCenterVO.setPageInfo();
+		
+		//나의 상담내역 목록 보내기
 		model.addAttribute("customerBoardList", customerCenterService.selectMyCustomer(customerCenterVO));
 		return "customer/my_customer_list";
 	}
