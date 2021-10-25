@@ -9,8 +9,6 @@
 
 
 <!-- 스크립트 연결 -->
-<script type="text/javascript" src="/resources/member/js/join_form.js?ver=1"></script>
-
 <script type="text/javascript" src="/resources/member/js/join.js?ver=3"></script>
 
 <style type="text/css">
@@ -18,7 +16,7 @@
 /* 작성테이블 */
 .writeTable{
 margin: 0 auto;
-width: 100%;
+width: 90%;
 border-bottom: solid 1px #c9c9c8;
 height: 500px;
 }
@@ -53,7 +51,7 @@ select {
 /* *필수입력 문장  */
 .needInput{
 	font-size: 13px;
-	margin-left: 65%;
+	margin-left: 60%;
 }
  
  
@@ -83,6 +81,22 @@ select {
 }
 .agree{
 	background-color: white;
+	width: 90%;
+	margin: 0 auto;
+}
+
+/* 상세보기 버튼폼 */
+.common_btn2{
+	font-size: 12px;
+	background-color: #4c4747;
+	color: white;
+	width: 65px;
+}
+.common_btn2:hover{
+	font-size: 12px;
+	background-color: #5d5959;
+	color: white;
+	width: 65px;
 }
 </style>
 
@@ -151,7 +165,7 @@ select {
 										<td >
 											<div  id="checkIdDiv">
 												<input type="text" id="id" name="id" class="joinInput1"  placeholder="영문,숫자 조합(8~12자)" required>
-												<button type="button" class="common_btn" id="btn2" onclick="checkId();">중복확인</button>
+												<input type="button" class="common_btn2" id="btn2" onclick="checkId();" value="중복확인">
 											</div>
 										</td>
 									</tr>
@@ -160,7 +174,7 @@ select {
 										<td >
 											<div  id="checkNickDiv">
 												<input type="text" id="nickName" name="nickName" class="joinInput1" id="floatingInput" placeholder="자유롭게 입력해 주세요." required>
-												<button type="button" class="common_btn" id="btn2" onclick="checkNick();">중복확인</button>
+												<input type="button" class="common_btn2" id="btn2" onclick="checkNick();" value="중복확인">
 											</div>
 										</td>
 									</tr>
