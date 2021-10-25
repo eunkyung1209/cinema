@@ -8,12 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<!-- 주소 스크립트 -->
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
 <!-- 스크립트 연결 -->
-<script type="text/javascript" src="/resources/member/js/join_form.js?ver=1"></script>
-
 <script type="text/javascript" src="/resources/member/js/join.js?ver=3"></script>
 
 <style type="text/css">
