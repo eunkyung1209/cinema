@@ -9,7 +9,8 @@
 
 
 <!-- 스크립트 연결 -->
-<script type="text/javascript" src="/resources/member/js/join.js?ver=3"></script>
+
+<script type="text/javascript" src="/resources/member/js/member_delete.js?ver=21"></script>
 
 <style type="text/css">
 
@@ -179,6 +180,10 @@ select {
 					<div class="col-8" style="text-align: center;">
 						<input class="common_btn" type="button" value="뒤로가기" onclick="location.href='/movie/mainPage';">
 						<input class="common_btn" type="button" value="내정보수정" onclick="location.href='updateMyPage?id=${memberInfo.id }';">
+						
+						<input type="hidden" value="${sessionScope.loginInfo.id }" class="id"> 
+						<input class="common_btn" type="button" value="회원탈퇴" onclick="deleteMember();">
+						
 					</div>
 				</div>
 			</div>

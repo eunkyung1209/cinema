@@ -101,31 +101,12 @@ public class MemberController {
 	
 	//3-3. 마이페이지에서 회원 탈퇴하기
 	@GetMapping("/deleteMember")
-	public String deleteMember(String id) {
+	public String deleteMember(String id, HttpSession session) {
+		session.removeAttribute("loginInfo");
 		memberService.deleteMember(id);
 		
 		return "redirect:/movie/mainPage";
 	}
-	
-	//테이블 폼 작업중  은빈
-		@GetMapping("/table_baseform")
-		public String table_baseform() {
-			
-			return "member/table_baseform";
-		}
-		// 디테일 가기
-		@GetMapping("/board_detail_form")
-		public String board_detail_form() {
-			
-			return "member/board_detail_form";
-		}
-		
-	//글쓰기 폼 작업중 정훈
-		@GetMapping("/write_baseform")
-		public String write_baseform() {
-			
-			return "member/write_baseform";
-		}
 	
 	
 }
