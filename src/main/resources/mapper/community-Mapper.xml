@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 모든 SQL문을 mapper태그 안에 작성 -->
-<mapper namespace="communityMapper">
 	
+<mapper namespace="communityMapper">
+
 	<!-- 커뮤니티 게시글 -->
 	<resultMap type="com.kh.project.community.vo.CommunityVO" id="board">
-		<id column=" COMMU_CODE"         property="commuCode"/>
+		<id column="COMMU_CODE"         property="commuCode"/>
 		<result column="WRITER"         property="writer"/>
 		<result column="CREATE_DATE"    property="createDate"/>
 		<result column="READ_CNT"       property="readCnt"/>
@@ -13,7 +14,6 @@
 		<result column="CONTENT"        property="content"/>
 		<result column="SECRET"         property="secret"/>
 		<result column="IS_SECRET"      property="isSecret"/>
-		
 	</resultMap>
 	
 	<!-- 커뮤니티 댓글 -->
@@ -22,17 +22,16 @@
 		<result column="CREATE_DATE"    property="createDate"/>
 		<result column="WRITER"         property="writer"/>
 		<result column="CONTENT"        property="content"/>
-		
 	</resultMap>
 	
 <!--커뮤니티 게시글 조회  -->
 <select id="selectBoardList" resultMap="board">
 SELECT COMMU_CODE
-    ,WRITER
-    ,READ_CNT
-    ,TITLE
-    ,CONTENT
-   FROM OISONE_COMMUNITY
+    , WRITER
+    , READ_CNT
+    , TITLE
+    , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
+FROM OISONE_COMMUNITY
 
 </select>
 
@@ -44,34 +43,41 @@ INSERT INTO OISONE_COMMUNITY(
     , WRITER
     , TITLE
     , CONTENT
+    , SECRET
     )VALUES(
       (SELECT 'CB_'||TO_CHAR((SYSDATE), 'YYMMDD')||'_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(COMMU_CODE, 11, 3))), 0)+1, 3, '0') AS COMMU_CODE  FROM OISONE_COMMUNITY)
       , #{writer}
       , #{title}
       , #{content}
+      , #{secret}
 )
 </insert>
 
-<!--커뮤니티 게시글 삭제  -->
-<delete id="deleteBoard">
-DELETE 
-FROM OISONE_COMMUNITY
-WHERE COMMU_CODE =#{commuCode}
+<select id="boardDetail">
+SELECT COMMU_CODE
+    , WRITER
+    , READ_CNT
+    , TITLE
+    , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
+	, (SELECT  CUSTOMER_REPLY_CODE 
+		    , WRITER 
+		    , CONTENT
+		    , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD HH:MM') AS CREATE_DATE
+		    , CUSTOMER_CODE)
+		FROM  OISONE_CUMMUNITY,OISONE_CUMMUNITY_REPLY
+		WHERE CUSTOMER_CODE = #{customerCode}
+		ORDER BY CUSTOMER_REPLY_CODE DESC
 
-</delete>
 
-<!--커뮤니티 게시글 수정  -->
-<update id="updateBoard">
-UPDATE OISONE_COMMUNITY
-SET 
-	TITLE =#{title}
-	, CONTENT =#{content}
-	,CREATE_DATE = SYSDATE
-WHERE COMMU_CODE =#{commuCode}
-</update>
+)
+
+
+
+
+</select>
+
 
 </mapper>
-
 
 
 

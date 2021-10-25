@@ -11,6 +11,7 @@ public class CommunityVO {
 	private String secret;
 	private String is_secret;
 	
+	
 	public String getCommuCode() {
 		return commuCode;
 	}

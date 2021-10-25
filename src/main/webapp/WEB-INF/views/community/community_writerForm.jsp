@@ -11,6 +11,7 @@
 
 
 	 <form action="/board/insertBoard" method="post">
+	 
 	<table>
 		<tr>
 			<td>제목</td>
@@ -30,7 +31,7 @@
 		</tr>
 		<tr>
 			<td>비밀번호</td>
-			<td><input type="password" name="boardPw"></td>
+			<td><input type="password" name="secret"></td>
 		</tr>
 	</table>
 	<div class="btnDiv">

@@ -25,8 +25,7 @@ font-weight: bold;
 <body>
 	<table>
 		<tr>
-			<td>글번호</td>
-			<td>${communityVO.commuCode }</td>
+			
 			<td>작성자</td>
 			<td>${communityVO.writer}</td>
 			<td>작성일</td>

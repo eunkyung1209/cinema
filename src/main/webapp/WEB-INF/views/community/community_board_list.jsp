@@ -69,26 +69,25 @@ tr:hover {
 	</thead>
 	<tbody>
 		<c:choose>
-			<c:when test="${empty list }">
+			<c:when test="${empty boardList }">
 				<tr>
 					<td colspan="5">등록된 게시글이 없습니다.</td>
 				</tr>
 			</c:when>
 			<c:otherwise>
-				<c:forEach items="${list }" var="board">
+				<c:forEach items="${boardList }" var="communityVO" varStatus="status">
 					<tr>
-						<td>${communityVO.commuCode }</td>
+						<td><input hidden="${communityVO.commuCode }">${status.count } </td>
 						<td align="left">
 							<c:choose>
 								<c:when test="${not empty boardDTO.boardPw }">
-									
+									  <img alt="" src=""> <!--비밀글 여부 자물쇠 이미지 첨삭  -->
 									<a href="inputPassword.bo?memberPw=${memberVO.memberPw }&commuCode=${communityVO.commuCode }">
 										${communityVO.title }
 									</a>
 								</c:when>
 								<c:otherwise>
-									  <img alt="" src=""> <!--비밀글 여부 자물쇠 이미지 첨삭  -->
-									<a href="selectBoard.bo?commuCode=${communityVO.commuCode }">
+									<a href="/board/boardDetail?commuCode=${communityVO.commuCode }">
 										${communityVO.title }
 									</a>
 								</c:otherwise>
@@ -106,7 +105,6 @@ tr:hover {
 <div class="btnDiv">
 	<c:if test="${not empty sessionScope.loginInfo }">
 		<div class="btn" onclick="location.href='/board/boardWriterForm';">작성</div>
-		<div class="btn" onclick="location.href='/board/insertBoardGo';">X</div>
 	</c:if>
 	
 	

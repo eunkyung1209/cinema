@@ -26,10 +26,43 @@ public class CommunityServiceImpl implements CommunityService {
 	}
 
 	@Override
-	public void deleteBoard(String commuCode) {
-		sqlSession.delete("communityMapper.deleteBoard");
+	public void deleteBoard(CommunityVO communityVO) {
+		sqlSession.delete("communityMapper.deleteBoard",communityVO);
 		
 	}
+
+	@Override
+	public void updateBoard(CommunityVO communityVO) {
+		sqlSession.update("communityMapper.updateBoard",communityVO);
+		
+	}
+
+	@Override
+	public void selectboardDetail(CommunityVO communityVO) {
+		sqlSession.selectOne("communityMapper.selectboardDetail",communityVO);
+	}
+
+	@Override
+	public void updateReadcnt(CommunityVO communityVO) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<CommunityReplyVO> selectReply(CommunityReplyVO communityReplyVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int selectCommuPage(CommunityVO communityVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
+
+
 
 	
 
