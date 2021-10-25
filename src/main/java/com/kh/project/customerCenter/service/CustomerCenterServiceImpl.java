@@ -92,6 +92,13 @@ public class CustomerCenterServiceImpl implements CustomerCenterService {
 	public List<CustomerCenterVO> selectCustomerLost(CustomerCenterVO customerCenterVO) {
 		return sqlSession.selectList("customerCenterMapper.selectCustomerLost", customerCenterVO);
 	}
+
+	//게시글 삭제
+	@Override
+	public void deleteCustomer(String customerCode) {
+		sqlSession.delete("customerCenterMapper.deleteCustomer", customerCode);
+		
+	}
 	
 	
 	

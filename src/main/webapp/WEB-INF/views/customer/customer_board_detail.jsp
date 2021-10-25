@@ -7,6 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<!-- 자바스크립트 파일 -->
+<script type="text/javascript" src="/resources/customer/js/customer_board_detail.js?ver=14"></script>
+
 <style type="text/css">
 .bodyDiv{
 	margin-top: 100px;
@@ -138,7 +142,7 @@ input{
 						            </span>
 						            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
 						              	<li><a class="dropdown-item" href="/customer/goUpdateCustomer?customerCode=${customerBoard.customerCode}">글 수정</a></li>
-						              	<li><a class="dropdown-item" href="#">글 삭제</a></li>
+						              	<li><a class="dropdown-item" onclick="deleteCustomer();">글 삭제</a></li>
 						            </ul>
 						     	</li>
 							</c:if>
@@ -151,7 +155,10 @@ input{
 						<td>등록일 | ${customerBoard.createDate} </td>
 					</tr>
 					<tr>
-						<td colspan="3">${customerBoard.content}</td>
+						<td colspan="3">
+							<div><img height="500px;" src="/resources/images/customer/${customerBoard.imgList[0].attachedImgName }"></div> 
+							<div>${customerBoard.content}</div>
+						</td>
 					</tr>
 				</table>
 			</div>
@@ -165,7 +172,7 @@ input{
 				<div >
 					<form action="/customer/insertCustomerReply" method="post">
 						<input type="hidden" name="writer" value="${sessionScope.loginInfo.nickName }">
-						<input type="hidden" name="customerCode" value="${customerBoard.customerCode}">
+						<input type="hidden" name="customerCode" id="customerCode" value="${customerBoard.customerCode}">
 						
 						<input type="text" name="content" <c:if test="${empty sessionScope.loginInfo }">readonly value="로그인 후 댓글 작성이 가능합니다" </c:if> style="width: 92%;">
 						<input type="submit" value="등록">
@@ -193,11 +200,13 @@ input{
 							<c:forEach items="${customerReplyList}" var="customerReply">
 								<tr>
 									<td>
+										<input type="hidden" value="${customerReply.customerReplyCode }" class="customeReplyCode" name="customeReplyCode">
 										<div class="replyWriter">
 											${customerReply.writer }
 										</div>
 										<div class="createDate">${customerReply.createDate }</div>
-										<div class="replyContent">${customerReply.content }</div>
+										<div class="replyContent" id="replyContent"><div id="upReply" class="upReply">${customerReply.content }</div></div>
+										
 									</td>
 									
 									<!-- 본인 또는 관리자 -->
@@ -207,8 +216,8 @@ input{
 									           	<span class="nav-link dropdown-toggle" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									            </span>
 									            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-									              	<li><a class="dropdown-item" href="*?customerCode=${customerBoard.customerCode}">댓글 수정</a></li>
-									              	<li><a class="dropdown-item" href="#">댓글 삭제</a></li>
+									              	<li><a class="dropdown-item" onclick="updateCustomerReply();">댓글 수정</a></li>
+									              	<li><a class="dropdown-item" onclick="deleteCustomerReply()">댓글 삭제</a></li>
 									            </ul>
 									     	</li>
 										</c:if>

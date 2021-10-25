@@ -45,4 +45,7 @@ public interface CustomerCenterService {
 	
 	//분실물 리스트 조회
 	List<CustomerCenterVO> selectCustomerLost(CustomerCenterVO customerCenterVO);
+	
+	//게시글 삭제
+	void deleteCustomer(String customerCode);
 }

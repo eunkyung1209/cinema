@@ -78,7 +78,7 @@ select {
 	
 	<div style="height: 80px;"></div>
 	
-	<form action="/customer/insertCustomerBoard" method="post">
+	<form action="/customer/insertCustomerBoard" method="post" enctype="multipart/form-data">
 			<div class="row justify-content-center align-middle">
 			
 				<div class="row justify-content-center" >
