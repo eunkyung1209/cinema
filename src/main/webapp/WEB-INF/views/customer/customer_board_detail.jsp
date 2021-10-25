@@ -85,6 +85,7 @@ input{
 <body>
 <div class="row bodyDiv">
 	<div class="col-12">
+		
 
 		<!-- 상세보기 정보를 불러오는 테이블 입니다. 테이블명 : boardDetail -->
 		<div class="row justify-content-center" >

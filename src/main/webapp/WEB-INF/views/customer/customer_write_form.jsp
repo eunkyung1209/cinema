@@ -67,7 +67,7 @@ select {
 	<div class="col-12">
 	
 	<div class="row justify-content-center align-middle">
-		<div class="col-10 " >
+		<div class="col-10" >
 			<div class="col-9 cusBox " >
 				<div>FAQ를 이용하시면 궁금증을 더 빠르게 해결하실 수 있습니다.</div> <br>
 				<div> - 1:1 문의글 답변 운영시간 10:00 ~ 19:00</div> 

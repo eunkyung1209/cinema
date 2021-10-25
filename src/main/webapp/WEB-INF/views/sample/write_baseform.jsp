@@ -65,6 +65,8 @@ select {
 				</div>
 			</div>
 		</div>
+		
+		<div style="height: 50px;"></div>
 	
 	<!-- 글 작성 테이블 입니다. 테이블 클래스명 : writeTable 수정 후 사용바랍니다.-->
 	<form action="/customer/insertCustomerBoard" method="post">
