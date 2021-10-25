@@ -99,6 +99,17 @@ a:hover{
 
 <body>
 
+		<!-- 페이지 머릿말 -->
+		<div class="row justify-content-center">
+			<div class="col-8">
+				<div class="col-3 subjectDiv">
+					<h5>회원정보목록</h5>
+				</div>
+			</div>
+		</div>
+	
+		<!-- 공간 -->
+		<div style="height: 30px;"></div>
 
 
 <!-- 검색폼 -->

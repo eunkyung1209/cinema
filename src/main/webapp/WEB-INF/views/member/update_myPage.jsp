@@ -51,7 +51,7 @@ select {
 /* *필수입력 문장  */
 .needInput{
 	font-size: 13px;
-	margin-left: 60%;
+	margin-left: 66%;
 }
  
  
@@ -103,7 +103,21 @@ select {
 
 </head>
 <body>
-<form class="row g-3" action="/member/join" method="post" id="joinForm">
+
+	<!-- 페이지 머릿말 -->
+		<div class="row justify-content-center">
+			<div class="col-7">
+				<div class="col-3 subjectDiv">
+					<h5>나의 정보수정</h5>
+				</div>
+			</div>
+		</div>
+	
+		<!-- 공간 -->
+		<div style="height: 60px;"></div>
+
+
+<form action="/member/updateMyPage" method="post" ><!-- id="joinForm" -->
 <div class="row bodyDiv" >
 	<div class="col-12">
 	
@@ -121,7 +135,7 @@ select {
 								<thead>
 									<tr>
 										<td colspan="2" style="background-color: white; padding-bottom: 5px;" >
-											<span style="font-size: 20px;">${sessionScope.loginInfo.name }님의 정보수정란입니다.</span> 
+											<span style="font-size: 17px;"> - ${sessionScope.loginInfo.name }님의 정보수정란입니다.</span> 
 											<span class="needInput" style=""><span class="redStar">*</span>필수입력</span>
 											<input type="hidden" name="isNotice" value="N">
 										</td>
@@ -135,36 +149,39 @@ select {
 									<tr>
 										<td >이름 <span class="redStar">*</span></td>
 										<td >
-											<input type="text" name="name" class="joinInput1" id="floatingInput" placeholder="이름을 입력하세요." value="${sessionScope.loginInfo.name }"required>
+										<input type="text" name="name" class="joinInput1" id="floatingInput" placeholder=" 이름을 입력하세요." value="${sessionScope.loginInfo.name }"required>
 										</td>
 									</tr>
 									<tr>
 										<td >생년월일 <span class="redStar">*</span></td>
 										<td >
-											<input type="date" name="birthday" class="joinInput3" required>
+											<input type="date" name="birthday" class="joinInput3" value="${sessionScope.loginInfo.birthday }" required>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;성별&nbsp;:&nbsp;
-											<input type="radio" name="gender" value="남" checked>남자
-											&nbsp;
-											<input type="radio" name="gender" value="여">여자
+											<c:if test="${sessionScope.loginInfo.gender eq '남'}">
+												<input type="radio" name="gender" value="남" checked>남자
+												&nbsp;
+												<input type="radio" name="gender" value="여">여자
+											</c:if>
+											
+											<c:if test="${sessionScope.loginInfo.gender eq '여'}">
+												<input type="radio" name="gender" value="남" >남자
+												&nbsp;
+												<input type="radio" name="gender" value="여" checked>여자
+											</c:if>
 										</td>
 									</tr>
 									<tr>
 										<td >휴대폰 번호 <span class="redStar">*</span></td>
 										<td >
-											<select id="tell1" class="joinInput2" name="tells">
-										      	<option value="010" selected>010</option>
-										      	<option value="011">011</option>
-										    </select> &nbsp;&nbsp;-&nbsp;&nbsp;
-											<input type="text" name="tells" class="joinInput2" required>&nbsp;&nbsp;-&nbsp;&nbsp;
-											<input type="text" name="tells" class="joinInput2" required>
+											<input type="text" name="tell" class="joinInput1" placeholder=" 010-1111-1111 형식으로 입력하세요." value="${sessionScope.loginInfo.tell }"required>
 										</td>
 									</tr>
 									<tr>
 										<td >아이디<span class="redStar">*</span></td>
 										<td >
 											<div  id="checkIdDiv">
-												<input type="text" id="id" name="id" class="joinInput1"  placeholder="영문,숫자 조합(8~12자)" required>
+												<input type="text" id="id" name="id" class="joinInput1"  placeholder=" 영문,숫자 조합(8~12자)" required>
 												<input type="button" class="common_btn2" id="btn2" onclick="checkId();" value="중복확인">
 											</div>
 										</td>
@@ -173,35 +190,23 @@ select {
 										<td >닉네임<span class="redStar">*</span></td>
 										<td >
 											<div  id="checkNickDiv">
-												<input type="text" id="nickName" name="nickName" class="joinInput1" id="floatingInput" placeholder="자유롭게 입력해 주세요." required>
+												<input type="text" id="nickName" name="nickName" class="joinInput1" id="floatingInput" placeholder=" 자유롭게 입력해 주세요." value="${sessionScope.loginInfo.nickName }" required>
 												<input type="button" class="common_btn2" id="btn2" onclick="checkNick();" value="중복확인">
 											</div>
 										</td>
 									</tr>
 									<tr>
-										<td >비밀번호<span class="redStar">*</span></td>
-										<td >
-											<input type="password" id="pw" name="pw" class="joinInput1"  placeholder="영문,숫자,특수기호 중 2가지 이상 조합" required>
-										</td>
-									</tr>
-									<tr>
-										<td >비밀번호 확인<span class="redStar">*</span></td>
-										<td >
-											<input type="password" id="c_pw" class="joinInput1" placeholder="영문,숫자,특수기호 중 2가지 이상 조합" required>
-										</td>
-									</tr>
-									
-									<tr>
 										<td >이메일 <span class="redStar">*</span></td>
 										<td >
-											<input type="text" name="email" class="joinInput1"  id="floatingEmail" placeholder="이메일주소를 입력해 주세요." required>
+											<input type="text" name="email" class="joinInput1"  id="floatingEmail" placeholder=" aa22@aaa 형식으로 입력하세요." value="${sessionScope.loginInfo.email }" required>
 										</td>
 									</tr>
 									<tr>
 										<td >마이시네마 <span class="redStar"></span></td>
 										<td >
-											<select class="joinInput2" name="myCinema">
-										      	<option value="선택안함" selected>선택안함</option>
+											<select class="joinInput2" name="myCinema" >
+										      	<option value="value=${sessionScope.loginInfo.myCinema }" selected>선택안함</option>
+										      	<option value="선택안함">선택안함</option>
 										      	<option value="울산">울산</option>
 										      	<option value="서울" >서울</option>
 										      	<option value="부산" >부산</option>
@@ -212,10 +217,19 @@ select {
 									<tr>
 										<td>무인발권기<br>기능 설정</td>
 										<td>
-											<input type="radio" name="nonpeopleTicket" value="Y" checked>사용
-											&nbsp;
-											<input type="radio" name="nonpeopleTicket" value="N">사용안함
-											&nbsp;&nbsp;*'생년월일+휴대폰번호로'티켓출력
+											<c:if test="${sessionScope.loginInfo.nonpeopleTicket eq 'Y'}">
+												<input type="radio" name="nonpeopleTicket" value="Y" checked>사용
+												&nbsp;
+												<input type="radio" name="nonpeopleTicket" value="N">사용안함
+												&nbsp;&nbsp;*'생년월일+휴대폰번호로'티켓출력
+											</c:if>
+											
+											<c:if test="${sessionScope.loginInfo.nonpeopleTicket eq 'N'}">
+												<input type="radio" name="nonpeopleTicket" value="Y">사용
+												&nbsp;
+												<input type="radio" name="nonpeopleTicket" value="N" checked>사용안함
+												&nbsp;&nbsp;*'생년월일+휴대폰번호로'티켓출력
+											</c:if>
 										</td>
 									</tr>				
 									
@@ -225,16 +239,15 @@ select {
 					</div>
 				</div>
 				
-				<div style="height: 80px;"></div>
-
-
 
 				<div style="height: 80px;"></div>
+				
 				
 				<!-- 기본 버튼 클래스명: common_btn -->
 				<div class="row justify-content-center">
 					<div class="col-8" style="text-align: center;">
-						<input class="common_btn" type="button" value="뒤로가기" onclick="location.href='/customer/goCustomer';">
+						<input class="common_btn" type="button" value="뒤로가기" onclick="location.href='/member/myPage';">
+						<input class="common_btn" type="submit" value="수정저장">
 					</div>
 				</div>
 			</div>

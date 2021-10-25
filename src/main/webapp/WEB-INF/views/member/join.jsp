@@ -51,7 +51,7 @@ select {
 /* *필수입력 문장  */
 .needInput{
 	font-size: 13px;
-	margin-left: 60%;
+	margin-left: 64%;
 }
  
  
@@ -103,6 +103,20 @@ select {
 
 </head>
 <body>
+
+	<!-- 페이지 머릿말 -->
+		<div class="row justify-content-center">
+			<div class="col-7">
+				<div class="col-3 subjectDiv">
+					<h5>회원가입</h5>
+				</div>
+			</div>
+		</div>
+	
+		<!-- 공간 -->
+		<div style="height: 60px;"></div>
+
+
 <form class="row g-3" action="/member/join" method="post" id="joinForm">
 <div class="row bodyDiv" >
 	<div class="col-12">
@@ -121,7 +135,7 @@ select {
 								<thead>
 									<tr>
 										<td colspan="2" style="background-color: white; padding-bottom: 5px;" >
-											<span style="font-size: 20px;">회원정보를 입력해주세요.</span> 
+											<span style="font-size: 17px;"> - 회원정보를 입력해주세요.</span> 
 											<span class="needInput" style=""><span class="redStar">*</span>필수입력</span>
 											<input type="hidden" name="isNotice" value="N">
 										</td>
@@ -194,7 +208,7 @@ select {
 									<tr>
 										<td >이메일 <span class="redStar">*</span></td>
 										<td >
-											<input type="text" name="email" class="joinInput1"  id="floatingEmail" placeholder="이메일주소를 입력해 주세요." required>
+											<input type="text" name="email" class="joinInput1"  id="floatingEmail" placeholder=" aa22@aaa 형식으로 입력하세요." required>
 										</td>
 									</tr>
 									<tr>
