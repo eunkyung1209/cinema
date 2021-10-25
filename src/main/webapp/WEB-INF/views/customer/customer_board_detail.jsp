@@ -85,6 +85,17 @@ input{
 <body>
 <div class="row bodyDiv">
 	<div class="col-12">
+		<!-- 페이지 머릿말 -->
+		<div class="row justify-content-center">
+			<div class="col-8">
+				<div class="col-3 subjectDiv">
+					<h5>페이지명</h5>
+				</div>
+			</div>
+		</div>
+	
+		<!-- 공간 -->
+		<div style="height: 50px;"></div>
 
 		<!-- 상세보기 정보를 불러오는 테이블 입니다. 테이블명 : boardDetail -->
 		<div class="row justify-content-center" >
@@ -98,12 +109,29 @@ input{
 				
 					<tr class="titleTr">
 						<td colspan="2" >
-						 ${customerBoard.title} 
+								[
+							<c:if test="${customerBoard.groupCode eq 'GROUP_001'}">
+								기타
+							</c:if>
+							<c:if test="${customerBoard.groupCode eq 'GROUP_002'}">
+								시설물 문의
+							</c:if>
+							<c:if test="${customerBoard.groupCode eq 'GROUP_003'}">
+								영화 문의
+							</c:if>
+							<c:if test="${customerBoard.groupCode eq 'GROUP_004'}">
+								결제 문의
+							</c:if>
+							<c:if test="${customerBoard.groupCode eq 'GROUP_005'}">
+								분실물
+							</c:if>
+								]
+							 ${customerBoard.title} 
 						</td>	
 						
 						 <!-- 본인 또는 관리자에게만 보이는 버튼 -->
 						<td class="correct" >
-							<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y'}">
+							<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' or sessionScope.loginInfo.nickName eq customerBoard.writer}">
 								<li class="nav-item dropdown">
 						           	<span class="nav-link dropdown-toggle" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 										
@@ -172,8 +200,9 @@ input{
 										<div class="replyContent">${customerReply.content }</div>
 									</td>
 									
+									<!-- 본인 또는 관리자 -->
 									<td class="correct" >
-										<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y'}">
+										<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' or sessionScope.loginInfo.nickName eq customerBoard.writer}">
 											<li class="nav-item dropdown">
 									           	<span class="nav-link dropdown-toggle" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									            </span>
@@ -201,7 +230,7 @@ input{
 		<!-- 기본 버튼 클래스명: common_btn -->
 		<div class="row justify-content-center">
 			<div class="col-8 text-center"  >
-				 <input class="common_btn" type="button" value="목록으로"  onclick="location.href=/customer/goCustomer;">
+				 <input class="common_btn" type="button" value="고객센터로"  onclick="location.href='/customer/goCustomer';'">
 			</div>
 		</div>
 	

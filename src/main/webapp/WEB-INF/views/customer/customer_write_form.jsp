@@ -67,7 +67,7 @@ select {
 	<div class="col-12">
 	
 	<div class="row justify-content-center align-middle">
-		<div class="col-10 " >
+		<div class="col-10" >
 			<div class="col-9 cusBox " >
 				<div>FAQ를 이용하시면 궁금증을 더 빠르게 해결하실 수 있습니다.</div> <br>
 				<div> - 1:1 문의글 답변 운영시간 10:00 ~ 19:00</div> 
@@ -112,6 +112,20 @@ select {
 											</td>
 										</tr>
 									</c:if>
+									
+									<tr>
+										
+										<td>글 분류</td>
+										<td>
+											<select name="groupCode" required>
+												<option value="GROUP_001">기타</option>
+												<option value="GROUP_002">시설 문의</option>
+												<option value="GROUP_003">영화 문의</option>
+												<option value="GROUP_004">결제 문의</option>
+												<option value="GROUP_005">분실물 문의</option>
+											</select>
+										</td>
+									</tr>
 									<tr>
 										<td >제목 <span class="redStar">*</span></td>
 										<td ><input style="width: 100%;" type="text" name="title" required> </td>

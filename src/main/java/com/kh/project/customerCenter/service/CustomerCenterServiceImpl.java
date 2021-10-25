@@ -86,6 +86,12 @@ public class CustomerCenterServiceImpl implements CustomerCenterService {
 	public void insertCustomerReply(CustomerCenterReplyVO customerCenterReplyVO) {
 		sqlSession.insert("customerCenterMapper.insertCustomerReply", customerCenterReplyVO);
 	}
+
+	//분실물 리스트 조회
+	@Override
+	public List<CustomerCenterVO> selectCustomerLost(CustomerCenterVO customerCenterVO) {
+		return sqlSession.selectList("customerCenterMapper.selectCustomerLost", customerCenterVO);
+	}
 	
 	
 	

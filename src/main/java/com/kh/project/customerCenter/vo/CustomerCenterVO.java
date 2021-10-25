@@ -16,7 +16,16 @@ public class CustomerCenterVO extends PageVO{
     private String isRead;
     private String secretNumber;
     private String isNotice;
-    private List<CustomerCenterImgVO> imgList;
+    private String groupCode;
+    
+    
+    public String getGroupCode() {
+		return groupCode;
+	}
+	public void setGroupCode(String groupCode) {
+		this.groupCode = groupCode;
+	}
+	private List<CustomerCenterImgVO> imgList;
     
 	public List<CustomerCenterImgVO> getImgList() {
 		return imgList;

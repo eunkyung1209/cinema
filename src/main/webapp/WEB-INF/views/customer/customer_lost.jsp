@@ -135,16 +135,27 @@ a:hover{
 			<div class="row justify-content-center">
 				<div class="col-8 search_box text-center" >
 					<div>
+						<form action="/customer/goCustomer"  method="post">
 						<!-- 셀렉트 박스 -->
-						<select class="selectBox_from">
+						<select class="selectBox_from" name="searchKeyword">
 							<option selected>선택</option>
 							<option value="TITLE" <c:if test="${customerCenterVO.searchKeyword eq 'TITLE'}">selected</c:if>>제목</option>
 							<option value="WRITER" <c:if test="${customerCenterVO.searchKeyword eq 'WRITER'}">selected</c:if>>작성자</option>
 						</select>
+						
+						<!-- <select class="selectBox_from" name="">
+							<option>글 분류</option>
+							<option value="GROUP_001">기타</option>
+							<option value="GROUP_002">시설 문의</option>
+							<option value="GROUP_003">영화 문의</option>
+							<option value="GROUP_004">결제 문의</option>
+						</select> -->
+						
 						<!-- 인풋 -->
-						<input type="text" class="inputSearch_form" placeholder="검색어를 입력해 주세요">
+						<input type="text" class="inputSearch_form" name="searchValue" placeholder="검색어를 입력해 주세요">
 						<!-- 버튼 -->
 						<input class="common_btn" type="submit" value="검색">
+						</form>
 					</div>
 				</div>
 			</div>
@@ -191,7 +202,8 @@ a:hover{
 					</colgroup>
 					<thead>
 					    <tr >
-					      <th scope="col" class="align-middle" >no</th>
+					      <th scope="col" class="align-middle">no</th>
+					      <th scope="col" class="align-middle" >글 분류</th>
 					      <th scope="col" class="align-middle">제목</th>
 					      <th scope="col" class="align-middle">작성자</th>
 					      <th scope="col" class="align-middle">등록일</th>
@@ -202,26 +214,42 @@ a:hover{
 					  	<c:when test="${empty customerBoardList}">
 					  		<tr>
 					  			<td colspan="4">
-					  				등록된 게시물이 없습니다.
+					  				등록된 게시물이 업습니다.
 					  			</td>
 					  		</tr>
 					  	</c:when>
 					  	
 					  	<c:otherwise>
-					  		 <c:forEach items="${customerBoardList}" var="customerBoard" varStatus="status">
+					  		<c:forEach items="${customerBoardList}" var="customerBoard" varStatus="status">
 								  <tbody>
 									<tr>
 								      <th scope="row" class="align-middle">${status.count }</th>
-								      <td class="align-middle"><a href="/customer/selectCustomerBoardDetail?customerCode=${customerBoard.customerCode }">${customerBoard.title }</a> </td>
+									  <td>
+									  	<c:if test="${customerBoard.groupCode eq 'GROUP_001'}">
+											기타
+										</c:if>
+										<c:if test="${customerBoard.groupCode eq 'GROUP_002'}">
+											시설물 문의
+										</c:if>
+										<c:if test="${customerBoard.groupCode eq 'GROUP_003'}">
+											영화 문의
+										</c:if>
+										<c:if test="${customerBoard.groupCode eq 'GROUP_004'}">
+											결제 문의
+										</c:if>
+										<c:if test="${customerBoard.groupCode eq 'GROUP_005'}">
+											분실물
+										</c:if>
+									  </td>   
+								      <td class="align-middle"><a href="/customer/selectCustomerBoardPw?customerCode=${customerBoard.customerCode }&secretNumber=${customerBoard.secretNumber }">${customerBoard.title }</a> </td>
 								      <td class="align-middle">${customerBoard.writer }</td>
 								      <td class="align-middle">${customerBoard.createDate } </td>
 								    </tr>
 								   </tbody>
-							</c:forEach>
-					  	</c:otherwise>
+								</c:forEach>
 					  	
+					  	</c:otherwise>
 					  </c:choose>
-					 
 					</table>
 			</div>
 		</div>

@@ -16,7 +16,7 @@
 /* 작성테이블 */
 .writeTable{
 margin: 0 auto;
-width: 80%;
+width: 75%;
 border-bottom: solid 1px #c9c9c8;
 height: 500px;
 }
@@ -51,7 +51,7 @@ select {
 /* *필수입력 문장  */
 .needInput{
 	font-size: 13px;
-	margin-left: 76%;
+	margin-left: 90%;
 }
  
 
@@ -78,6 +78,20 @@ select {
 
 </head>
 <body>
+
+		<!-- 페이지 머릿말 -->
+		<div class="row justify-content-center">
+			<div class="col-6">
+				<div class="col-3 subjectDiv">
+					<h5>회원정보상세</h5>
+				</div>
+			</div>
+		</div>
+	
+		<!-- 공간 -->
+		<div style="height: 30px;"></div>
+
+
 <form class="row g-3" action="/member/join" method="post" id="joinForm">
 <div class="row bodyDiv" >
 	<div class="col-12">
@@ -96,7 +110,6 @@ select {
 								<thead>
 									<tr>
 										<td colspan="2" style="background-color: white; padding-bottom: 5px;" >
-											<span style="font-size: 20px;">회원정보</span> 
 											<span class="needInput" style=""><span class="redStar">*</span>필수입력</span>
 											<input type="hidden" name="isNotice" value="N">
 										</td>

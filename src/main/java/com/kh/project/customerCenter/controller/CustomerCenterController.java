@@ -162,6 +162,13 @@ public class CustomerCenterController {
 	@GetMapping("/goNotice")
 	private String goNotice(Model model, CustomerCenterVO customerCenterVO) {
 
+		//-----페이징 처리------//
+		//전체 데이터 수
+		int dataCnt = customerCenterService.selectCustomerCnt(customerCenterVO);
+		customerCenterVO.setTotalCnt(dataCnt);
+		//페이징처리
+		customerCenterVO.setPageInfo();
+		
 		// 고객센터 게시글 목록 보내기
 		model.addAttribute("customerBoardList", customerCenterService.selectNoticeBoard(customerCenterVO));
 
@@ -172,6 +179,14 @@ public class CustomerCenterController {
 	@GetMapping("/goMyCustomer")
 	private String goMyCustomer(Model model, CustomerCenterVO customerCenterVO) {
 		
+		//-----페이징 처리------//
+		//전체 데이터 수
+		int dataCnt = customerCenterService.selectCustomerCnt(customerCenterVO);
+		customerCenterVO.setTotalCnt(dataCnt);
+		//페이징처리
+		customerCenterVO.setPageInfo();
+		
+		//나의 상담내역 목록 보내기
 		model.addAttribute("customerBoardList", customerCenterService.selectMyCustomer(customerCenterVO));
 		return "customer/my_customer_list";
 	}
@@ -202,6 +217,23 @@ public class CustomerCenterController {
 		model.addAttribute("customerCode", customerCenterReplyVO.getCustomerCode());
 		
 		return "redirect:/customer/selectCustomerBoardDetail";
+	}
+	
+	//분실물 페이지 이동
+	@GetMapping("/goLost")
+	private String selectCustomerLost(Model model, CustomerCenterVO customerCenterVO) {
+		
+		//-----페이징 처리------//
+		//전체 데이터 수
+		int dataCnt = customerCenterService.selectCustomerCnt(customerCenterVO);
+		customerCenterVO.setTotalCnt(dataCnt);
+		//페이징처리
+		customerCenterVO.setPageInfo();
+		
+		
+		model.addAttribute("customerBoardList", customerCenterService.selectCustomerLost(customerCenterVO));
+		
+		return "customer/customer_lost";
 	}
 	
 

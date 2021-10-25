@@ -67,9 +67,10 @@ tr, td{
 	text-align: center;
 	border-bottom: 1px solid white;
 	border-top: 1px solid white;
+}
+.board_list th, td{
 	vertical-align: middle;
 }
-
 
 
 /* 페이징 폼 */
@@ -173,17 +174,17 @@ a:hover{
 					</colgroup>
 					<thead>
 					    <tr >
-					      <th scope="col" class="align-middle" >no</th>
-					      <th scope="col" class="align-middle">제목</th>
-					      <th scope="col" class="align-middle">작성자</th>
-					      <th scope="col" class="align-middle">등록일</th>
+					      <th scope="col">no</th>
+					      <th scope="col">제목</th>
+					      <th scope="col">작성자</th>
+					      <th scope="col">등록일</th>
 					    </tr>
 					  </thead>
 					  	<tr >
-					      <th scope="col" class="align-middle" >1</th>
-					     <th scope="col" class="align-middle"><a href="/member/board_detail_form">제1111목</a></th>
-					      <th scope="col" class="align-middle">작11111성자</th>
-					      <th scope="col" class="align-middle">등111록일</th>
+					      <th scope="row">1</th>
+					     <th><a href="/member/board_detail_form">제1111목</a></th>
+					      <th>작11111성자</th>
+					      <th>등111록일</th>
 					    </tr>
 					 
 					   </tbody>
