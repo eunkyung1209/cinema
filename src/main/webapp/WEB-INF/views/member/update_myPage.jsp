@@ -35,6 +35,9 @@ padding: 5px;
 padding-left: 10px;
 
 }
+
+
+
 input[type="password"], input[type="email"] {
 	width: 68%;
 
