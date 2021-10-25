@@ -31,7 +31,7 @@ public interface CustomerCenterService {
 	//나의 문의내역 조회
 	List<CustomerCenterVO> selectMyCustomer(CustomerCenterVO customerCenterVO);
 	
-	//페이징 처리
+	//페이징 처리(전체 데이터 수)
 	int selectCustomerCnt(CustomerCenterVO customerCenterVO);
 	
 	//게시글 수정	
@@ -42,4 +42,7 @@ public interface CustomerCenterService {
 	
 	//댓글 등록해주기
 	void insertCustomerReply(CustomerCenterReplyVO customerCenterReplyVO);
+	
+	//분실물 리스트 조회
+	List<CustomerCenterVO> selectCustomerLost(CustomerCenterVO customerCenterVO);
 }

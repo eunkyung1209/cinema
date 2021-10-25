@@ -70,6 +70,7 @@
 		            FROM OISONE_CUSTOMER
 		            WHERE 1 = 1
 		            AND IS_NOTICE = 'N'
+		            AND GROUP_CODE != 'GROUP_005'
 		            <if test="searchValue != null and !searchValue.equals('')">
 			     	 AND ${searchKeyword} LIKE '%'||#{searchValue} ||'%'
 			      </if>
@@ -83,7 +84,7 @@
 		<select id="selectCustomerCnt" resultType="int">
 			SELECT COUNT(CUSTOMER_CODE)
 			FROM OISONE_CUSTOMER
-			WHERE IS_NOTICE = 'N'
+			WHERE 1 = 1
 			<if test="searchValue != null and !searchValue.equals('')">
      	 	AND ${searchKeyword} LIKE '%'||#{searchValue} ||'%'
      		</if>
@@ -233,6 +234,53 @@
 		    , #{customerCode}
 		)
 	</insert>
+	
+	<!-- 분실물 리스트 조회 -->
+	<select id="selectCustomerLost" resultMap="customer">
+		SELECT CUSTOMER_CODE
+		    , CREATE_DATE
+		    , WRITER 
+		    , TITLE 
+		    , CONTENT 
+		    , IS_READ 
+		    , SECRET_NUMBER 
+		    , IS_NOTICE 
+		    , GROUP_CODE
+		    , ROW_NUM
+		FROM(
+		        SELECT CUSTOMER_CODE
+		        , CREATE_DATE
+		        , WRITER 
+		        , TITLE 
+		        , CONTENT 
+		        , IS_READ 
+		        , SECRET_NUMBER 
+		        , IS_NOTICE 
+		        , GROUP_CODE
+		        , ROWNUM AS ROW_NUM
+		    FROM(
+		            SELECT CUSTOMER_CODE
+		                , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
+		                , WRITER 
+		                , TITLE 
+		                , CONTENT 
+		                , IS_READ 
+		                , SECRET_NUMBER 
+		                , IS_NOTICE 
+		                , GROUP_CODE
+		            FROM OISONE_CUSTOMER
+		            WHERE 1 = 1
+		            AND IS_NOTICE = 'N'
+		            AND GROUP_CODE = 'GROUP_005'
+		            <if test="searchValue != null and !searchValue.equals('')">
+			     	 AND ${searchKeyword} LIKE '%'||#{searchValue} ||'%'
+			      </if>
+		            ORDER BY CUSTOMER_CODE DESC
+		        )  
+		    )
+		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
+		</select>
+	
 	
 </mapper>
 

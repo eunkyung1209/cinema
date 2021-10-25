@@ -122,6 +122,7 @@ select {
 												<option value="GROUP_002">시설 문의</option>
 												<option value="GROUP_003">영화 문의</option>
 												<option value="GROUP_004">결제 문의</option>
+												<option value="GROUP_005">분실물 문의</option>
 											</select>
 										</td>
 									</tr>

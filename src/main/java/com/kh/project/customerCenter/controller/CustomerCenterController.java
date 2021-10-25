@@ -204,5 +204,22 @@ public class CustomerCenterController {
 		return "redirect:/customer/selectCustomerBoardDetail";
 	}
 	
+	//분실물 페이지 이동
+	@GetMapping("/goLost")
+	private String selectCustomerLost(Model model, CustomerCenterVO customerCenterVO) {
+		
+		//-----페이징 처리------//
+		//전체 데이터 수
+		int dataCnt = customerCenterService.selectCustomerCnt(customerCenterVO);
+		customerCenterVO.setTotalCnt(dataCnt);
+		//페이징처리
+		customerCenterVO.setPageInfo();
+		
+		
+		model.addAttribute("customerBoardList", customerCenterService.selectCustomerLost(customerCenterVO));
+		
+		return "customer/customer_lost";
+	}
+	
 
 }
