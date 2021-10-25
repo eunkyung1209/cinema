@@ -85,6 +85,7 @@ input{
 <body>
 <div class="row bodyDiv">
 	<div class="col-12">
+		
 
 		<!-- 상세보기 정보를 불러오는 테이블 입니다. 테이블명 : boardDetail -->
 		<div class="row justify-content-center" >
@@ -98,7 +99,21 @@ input{
 				
 					<tr class="titleTr">
 						<td colspan="2" >
-						 ${customerBoard.title} 
+								[
+							<c:if test="${customerBoard.groupCode eq 'GROUP_001'}">
+								기타
+							</c:if>
+							<c:if test="${customerBoard.groupCode eq 'GROUP_002'}">
+								시설물 문의
+							</c:if>
+							<c:if test="${customerBoard.groupCode eq 'GROUP_003'}">
+								영화 문의
+							</c:if>
+							<c:if test="${customerBoard.groupCode eq 'GROUP_004'}">
+								결제 문의
+							</c:if>
+								]
+							 ${customerBoard.title} 
 						</td>	
 						
 						 <!-- 본인 또는 관리자에게만 보이는 버튼 -->

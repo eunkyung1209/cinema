@@ -100,7 +100,7 @@ a:hover{
 		</div>
 	
 		<!-- 공간 -->
-		<div style="height: 30px;"></div>
+		<div style="height: 50px;"></div>
 	
 	
 		<!-- 검색폼 -->

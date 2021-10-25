@@ -13,7 +13,8 @@
 		<result column="IS_READ"			property="isRead"/>
 		<result column="IS_NOTICE"			property="isNotice"/>
 		<result column="SECRET_NUMBER"		property="secretNumber"/>
-		<collection property="imgList"  resultMap="customerImg"></collection>
+		<result column="GROUP_CODE"			property="groupCode"/>
+		<collection property="imgList"  	resultMap="customerImg"></collection>
 	</resultMap>
 	
 	<!-- 고객센터 댓글 -->
@@ -43,6 +44,7 @@
 		    , IS_READ 
 		    , SECRET_NUMBER 
 		    , IS_NOTICE 
+		    , GROUP_CODE
 		    , ROW_NUM
 		FROM(
 		        SELECT CUSTOMER_CODE
@@ -53,6 +55,7 @@
 		        , IS_READ 
 		        , SECRET_NUMBER 
 		        , IS_NOTICE 
+		        , GROUP_CODE
 		        , ROWNUM AS ROW_NUM
 		    FROM(
 		            SELECT CUSTOMER_CODE
@@ -63,6 +66,7 @@
 		                , IS_READ 
 		                , SECRET_NUMBER 
 		                , IS_NOTICE 
+		                , GROUP_CODE
 		            FROM OISONE_CUSTOMER
 		            WHERE 1 = 1
 		            AND IS_NOTICE = 'N'
@@ -113,7 +117,8 @@
 		    , CONTENT 
 		    , IS_READ 
 		    , SECRET_NUMBER 
-		    , IS_NOTICE 
+		    , IS_NOTICE
+		    , GROUP_CODE
 		FROM OISONE_CUSTOMER
 		WHERE 1 = 1
 		AND WRITER = #{writer}
@@ -133,7 +138,8 @@
 		    , TITLE 
 		    , CONTENT  
 		    , SECRET_NUMBER
-		    , IS_NOTICE)
+		    , IS_NOTICE
+		    , GROUP_CODE)
 		VALUES (
 		     #{customerCode}
 		     , #{writer}
@@ -141,6 +147,7 @@
 		     , #{content}
 		     , #{secretNumber}
 		     , #{isNotice}
+		     , #{groupCode}
 		)
 		
 	</insert>
@@ -166,6 +173,7 @@
 		    , SECRET_NUMBER
 		    , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
 		    , IS_READ
+		    , GROUP_CODE
 		FROM OISONE_CUSTOMER
 		WHERE CUSTOMER_CODE = #{customerCode}
 	</select>
@@ -194,6 +202,7 @@
 		    , CONTENT  = #{content}
 		    , SECRET_NUMBER = #{secretNumber}
 		    , IS_NOTICE = #{isNotice}
+		    , GROUP_CODE = #{groupCode}
 		WHERE CUSTOMER_CODE = #{customerCode}
 	</update>
 	

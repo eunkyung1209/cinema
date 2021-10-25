@@ -92,20 +92,36 @@ a:hover{
 			<div class="col-8 customerBox" >
 				<div class="row justify-content-center" >
 					<div class="col-3 customerBox_s" >
-						<img alt="" width="130px;" height="100px;" src="/resources/images/customer/전체문의.png">
-						<button class="btn btn-outline-secondary" onclick="location.href='/customer/goCustomer';">전체문의</button> 
+						<div>
+							<img alt="" width="130px;" height="100px;" src="/resources/images/customer/전체문의.png">
+						</div>
+						<div>
+							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goCustomer';">전체문의</button> 
+						</div>
 					</div>
-					<div class="col-3 customerBox_s"  >
-						<img alt="" width="130px;" height="100px;" src="/resources/images/customer/공지사항.png">
-						<button class="btn btn-outline-secondary" onclick="location.href='/customer/goNotice';">공지사항</button> 
+					<div class="col-3 customerBox_s">
+						<div>
+							<img alt="" width="130px;" height="100px;" src="/resources/images/customer/공지사항.png">
+						</div>
+						<div>
+							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goNotice';">공지사항</button> 
+						</div>
 					</div>
-					<div class="col-3 customerBox_s"   >
-						<img alt="" width="130px;" height="100px;" src="/resources/images/customer/나의문의.png">
-						<button class="btn btn-outline-secondary" <c:if test="${empty sessionScope.loginInfo }">disabled</c:if>  onclick="location.href='/customer/goMyCustomer?writer=${sessionScope.loginInfo.nickName }';">내 상담내역</button>
+					<div class="col-3 customerBox_s">
+						<div>
+							<img alt="" width="130px;" height="100px;" src="/resources/images/customer/나의문의.png">
+						</div>
+						<div>
+							<button class="btn btn-outline-secondary" <c:if test="${empty sessionScope.loginInfo }">disabled</c:if>  onclick="location.href='/customer/goMyCustomer?writer=${sessionScope.loginInfo.nickName }';">내 상담내역</button>
+						</div>
 					</div>
 					<div class="col-3 customerBox_s" >
-						<img alt="" width="130px;" height="100px;" src="/resources/images/customer/분실물.png">
-						<button class="btn btn-outline-secondary" onclick="location.href='/customer/goLost';">분실물</button>
+						<div>
+							<img alt="" width="130px;" height="100px;" src="/resources/images/customer/분실물.png">
+						</div>
+						<div>
+							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goLost';">분실물</button>
+						</div>
 					</div>
 				 </div> 
 			</div>
@@ -119,16 +135,27 @@ a:hover{
 			<div class="row justify-content-center">
 				<div class="col-8 search_box text-center" >
 					<div>
+						<form action="/customer/goCustomer">
 						<!-- 셀렉트 박스 -->
 						<select class="selectBox_from">
 							<option selected>선택</option>
 							<option value="TITLE" <c:if test="${customerCenterVO.searchKeyword eq 'TITLE'}">selected</c:if>>제목</option>
 							<option value="WRITER" <c:if test="${customerCenterVO.searchKeyword eq 'WRITER'}">selected</c:if>>작성자</option>
 						</select>
+						
+						<select class="selectBox_from" name="">
+							<option>글 분류</option>
+							<option value="GROUP_001">기타</option>
+							<option value="GROUP_002">시설 문의</option>
+							<option value="GROUP_003">영화 문의</option>
+							<option value="GROUP_004">결제 문의</option>
+						</select>
+						
 						<!-- 인풋 -->
-						<input type="text" class="inputSearch_form" placeholder="검색어를 입력해 주세요">
+						<input type="text" class="inputSearch_form" name="searchValue" placeholder="검색어를 입력해 주세요">
 						<!-- 버튼 -->
 						<input class="common_btn" type="submit" value="검색">
+						</form>
 					</div>
 				</div>
 			</div>
@@ -175,7 +202,8 @@ a:hover{
 					</colgroup>
 					<thead>
 					    <tr >
-					      <th scope="col" class="align-middle" >no</th>
+					      <th scope="col" class="align-middle">no</th>
+					      <th scope="col" class="align-middle" >글 분류</th>
 					      <th scope="col" class="align-middle">제목</th>
 					      <th scope="col" class="align-middle">작성자</th>
 					      <th scope="col" class="align-middle">등록일</th>
@@ -186,6 +214,20 @@ a:hover{
 					  <tbody>
 						<tr>
 					      <th scope="row" class="align-middle">${status.count }</th>
+						  <td>
+						  	<c:if test="${customerBoard.groupCode eq 'GROUP_001'}">
+								기타
+							</c:if>
+							<c:if test="${customerBoard.groupCode eq 'GROUP_002'}">
+								시설물 문의
+							</c:if>
+							<c:if test="${customerBoard.groupCode eq 'GROUP_003'}">
+								영화 문의
+							</c:if>
+							<c:if test="${customerBoard.groupCode eq 'GROUP_004'}">
+								결제 문의
+							</c:if>
+						  </td>   
 					      <td class="align-middle"><a href="/customer/selectCustomerBoardPw?customerCode=${customerBoard.customerCode }&secretNumber=${customerBoard.secretNumber }">${customerBoard.title }</a> </td>
 					      <td class="align-middle">${customerBoard.writer }</td>
 					      <td class="align-middle">${customerBoard.createDate } </td>
