@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,10 +75,10 @@ select {
 		<div class="col-8">
 			<div class="row mb-5">
 				<div class="col-3 subjectDiv">
-					<h5>영화 등록</h5>
+					<h5>영화 정보 수정</h5>
 				</div>
 			</div>
-			<form action="/admin/insertMovie" method="post" enctype="multipart/form-data">
+			<form action="/admin/updateMovie" method="post">
 				<div class="row mb-3">
 					<div class="col">
 						<!-- 왼쪽 여백2 -->
@@ -95,51 +96,55 @@ select {
 								<tbody>
 									<tr>
 										<td>Title <span class="redStar">*</span></td>
-										<td><input type="text" name="title" required> </td>
+										<td><input type="text" name="title" value="${movieInfo.title }" required> </td>
 									</tr>
 									<tr>
 										<td>Director <span class="redStar">*</span></td>
-										<td><input type="text" name="director" required> </td>
+										<td><input type="text" name="director" value="${movieInfo.director }" required> </td>
 									</tr>
 									<tr>
 										<td>Actor <span class="redStar">*</span></td>
-										<td><input type="text" name="actor" required> </td>
+										<td><input type="text" name="actor" value="${movieInfo.actor }" required> </td>
 									</tr>
 									<tr>
 										<td>Genre <span class="redStar">*</span></td>
-										<td><input type="text" name="genre" required> </td>
+										<td><input type="text" name="genre" value="${movieInfo.gerne }" required> </td>
 									</tr>
 									<tr>
 										<td>Age <span class="redStar">*</span></td>
-										<td><input type="text" name="age" required> </td>
+										<td><input type="text" name="age" value="${movieInfo.age }" required> </td>
 									</tr>
 									<tr>
 										<td>Running Time <span class="redStar">*</span></td>
-										<td><input type="text" name="runningTime" required> </td>
+										<td><input type="text" name="runningTime" value="${movieInfo.runningTime }" required> </td>
 									</tr>
 									<tr>
 										<td>Nation <span class="redStar">*</span></td>
-										<td><input type="text" name="nation" required> </td>
+										<td><input type="text" name="nation" value="${movieInfo.nation }" required> </td>
 									</tr>
 									<tr>
 										<td>Open Date <span class="redStar">*</span></td>
-										<td><input type="date" name="openDate" required></td>
+										<td><input type="date" name="openDate" value="${movieInfo.openDate }" required></td>
 									</tr>
 									<tr>
 										<td>Content</td>
-										<td><textarea style="width: 100%; height:150px;  padding-top: 5px; "  name="content" required></textarea> </td>
+										<td>
+											<textarea style="width: 100%; height:150px; padding-top: 5px;" name="content" required>
+												<c:out value="${movieInfo.content }"/>
+											</textarea>
+										</td>
 									</tr>
 									<tr>
 										<td>상영 상태</td>
 										<td>
-											<input type="radio" name="mvState" value="N" checked> 상영 X 
-											<input type="radio" name="mvState" value="Y"> 상영 O
+											<input type="radio" name="mvState" value="N" <c:if test="${mvoieInfo.mvState eq 'N' }">checked</c:if>> 상영 O 
+											<input type="radio" name="mvState" value="Y" <c:if test="${mvoieInfo.mvState eq 'Y' }">checked</c:if>> 상영 X
 										</td>
 									</tr>
-									<tr>
+									<!-- <tr>
 										<td>Choose Poster Image</td>
 	                   					<td><input type="file" name="imageFile" required></td>
-									</tr>
+									</tr> -->
 								</tbody>
 							</table>
 						</div>
@@ -147,7 +152,6 @@ select {
 							<!-- 버튼 -->
 							<div class="col-8" style="text-align: center;">
 								<input class="common_btn" type="submit" value="등록하기">
-								<input class="common_btn" type="reset" value="리셋하기">
 							</div>
 						</div>
 					</div>

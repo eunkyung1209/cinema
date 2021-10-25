@@ -106,6 +106,33 @@ public class AdminController {
 		return "redirect:/admin/movieManage";
 	}
 	
+	//영화 상세보기
+	@PostMapping("/movieDetail")
+	public String movieDetail(Model model, String mvCode) {
+		//영화 상세 조회
+		model.addAttribute("movieInfo", movieService.selectDetailMovie(mvCode));
+		
+		return "admin/movie_detail";
+	}
+	
+	//영화 정보 수정 페이지로 이동
+	@GetMapping("/goUpdateMovie")
+	public String goUpdateMovie(Model model, String mvCode) {
+		//영화 상세 정보
+		model.addAttribute("movieInfo", movieService.selectDetailMovie(mvCode));
+		
+		return "admin/update_movie";
+	}
+	
+	//영화 정보 수정
+	@PostMapping("/updateMovie")
+	public String updateMovie(String mvCode) {
+		//정보 수정
+		
+		
+		return "";
+	}
+	
 	//1.회원 목록 조회
 	@RequestMapping("/adminMemberList")
 	public String adminMemberList(Model model, MemberVO memberVO) {

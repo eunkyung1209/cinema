@@ -5,13 +5,17 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kh.project.member.vo.MemberVO;
 import com.kh.project.movie.service.MovieService;
+import com.kh.project.movie.vo.MovieReplyVO;
 import com.kh.project.movie.vo.MovieVO;
 
 @Controller
@@ -49,7 +53,25 @@ public class MovieController {
 		//영화 상세 정보
 		model.addAttribute("movieInfo", movieService.selectDetailMovie(mvCode));
 		
+		//댓글 목록
+		model.addAttribute("replyList", movieService.selectReplyList(mvCode));
+		
 		return "movie/movie_detail";
+	}
+	
+	//영화 댓글 등록
+	@PostMapping("/insertReply")
+	public String insertReply(HttpSession session, MovieReplyVO movieReplyVO, Model model) {
+		//댓글 등록
+		movieService.insertReply(movieReplyVO);
+		
+		//영화 평점 수정
+		movieService.updateGrade(movieReplyVO.getMvCode());
+		
+		//영화 코드
+		model.addAttribute("mvCode", movieReplyVO.getMvCode());
+		
+		return "redirect:/movie/movieDetail";
 	}
 	
 	//오늘의 일시

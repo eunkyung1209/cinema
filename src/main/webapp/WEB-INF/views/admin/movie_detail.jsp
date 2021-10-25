@@ -1,84 +1,97 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-/* 이전에 내가 설정해둔 css */
-/* 
-body{
-	margin: 0 auto;
+/* .posterInfo{
+	width: 205px;
+    height: 305px;
 } */
-.subjectDiv{
-	border-bottom: 2px solid #dddddd;
+.star{
+	width: 17px;
+	height: 17px;
 }
-/* 
-thead > tr{
+
+.movieInfo{
+	margin: 0 12px;
+}
+.movieInfo td{
+	vertical-align: top;
+}
+.movieInfo td > div{
+	margin-bottom: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.replyDiv{
+	border: 1px solide #c9c9c8;
 	
 }
-table th, td{
-	border-top: 1px solid #ffffff;
-	border-bottom: 1px solid #ffffff;
-	border-right: 1px solid #ffffff;
-}
-tr > th, td :last-child {
-	border-right: none;
-} */
 
-/* 작성테이블 */
-.writeTable{
+/* 본인 또는 관리자에게만 보이는 수정, 삭제 버튼 */
+.correct{
+	text-align: right;
+}
+
+.replyTable{
 	margin: 0 auto;
 	width: 100%;
-	border-bottom: solid 1px #c9c9c8;
-	height: 500px;
+	text-align: left;
+	padding: 10px;
 }
-td:first-child{
-	text-align: center;
-	background-color: #f2f2f2;
-}
-tr{
+.replyTable tr{
+	border-top: 1px solid #c9c9c8;
 	border-bottom: 1px solid #c9c9c8;
 }
-td{
+tr, td{
+	height: 50px;
 	vertical-align: middle;
-	padding: 5px;
-	padding-left: 10px;
-}
-input[type="text"],input[type="password"], input[type="email"] {
-	width: 100%;
-}
-select {
-	width: 30%; 
+	padding: 10px;
 }
 
-/* 필수입력 빨간 별 */
-.redStar{
-	color: red;
-} 
+input{
+	height: 50px;
+}
+input[type="number"]{
+	height: 20px;
+}
 
-/* *필수입력 문장  */
-.needInput{
-	font-size: 13px;
-	margin-left: 70%;
+.replyWriter{
+	font-size: 12px;
+	height: 30%;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.createDate{
+	font-size: 10px;
+	height: 20%;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.replyContent{
+	font-size: 14px;
+	margin: 5px;
 }
 </style>
 </head>
 <body>
 <div class="row justify-content-center">
-	<div class="row mb-3">
-		<div class="col">
-			<!-- 왼쪽 여백 -->
-		</div>
+	<div class="row">
+		<div class="col"><!-- 왼쪽 여백 --></div>
 		<div class="col-8">
 			<div class="row mb-5">
 				<div class="col-3 subjectDiv">
-					<h5>영화 등록</h5>
+					<h5>영화 상세 정보</h5>
 				</div>
 			</div>
-			<form action="/admin/insertMovie" method="post" enctype="multipart/form-data">
-				<div class="row mb-3">
+			<div class="row mb-3">
 					<div class="col">
 						<!-- 왼쪽 여백2 -->
 					</div>
@@ -95,50 +108,50 @@ select {
 								<tbody>
 									<tr>
 										<td>Title <span class="redStar">*</span></td>
-										<td><input type="text" name="title" required> </td>
+										<td>${movieInfo.title }</td>
 									</tr>
 									<tr>
 										<td>Director <span class="redStar">*</span></td>
-										<td><input type="text" name="director" required> </td>
+										<td>${movieInfo.director }</td>
 									</tr>
 									<tr>
 										<td>Actor <span class="redStar">*</span></td>
-										<td><input type="text" name="actor" required> </td>
+										<td>${movieInfo.actor }</td>
 									</tr>
 									<tr>
 										<td>Genre <span class="redStar">*</span></td>
-										<td><input type="text" name="genre" required> </td>
+										<td>${movieInfo.genre }</td>
 									</tr>
 									<tr>
 										<td>Age <span class="redStar">*</span></td>
-										<td><input type="text" name="age" required> </td>
+										<td>${movieInfo.age }</td>
 									</tr>
 									<tr>
 										<td>Running Time <span class="redStar">*</span></td>
-										<td><input type="text" name="runningTime" required> </td>
+										<td>${movieInfo.runningTime }</td>
 									</tr>
 									<tr>
 										<td>Nation <span class="redStar">*</span></td>
-										<td><input type="text" name="nation" required> </td>
+										<td>${movieInfo.nation }</td>
 									</tr>
 									<tr>
 										<td>Open Date <span class="redStar">*</span></td>
-										<td><input type="date" name="openDate" required></td>
+										<td>${movieInfo.openDate }</td>
 									</tr>
 									<tr>
 										<td>Content</td>
-										<td><textarea style="width: 100%; height:150px;  padding-top: 5px; "  name="content" required></textarea> </td>
+										<td><pre><c:out value="${movieInfo.content }"/></pre></td>
 									</tr>
 									<tr>
 										<td>상영 상태</td>
 										<td>
-											<input type="radio" name="mvState" value="N" checked> 상영 X 
-											<input type="radio" name="mvState" value="Y"> 상영 O
+											<c:if test="${movieInfo.mvState eq 'N' }">상영 O</c:if>
+											<c:if test="${movieInfo.mvState eq 'Y' }">상영 X</c:if>
 										</td>
 									</tr>
 									<tr>
-										<td>Choose Poster Image</td>
-	                   					<td><input type="file" name="imageFile" required></td>
+										<td>포스터 이미지 파일명</td>
+	                   					<td>${movieInfo.attachedImgName }</td>
 									</tr>
 								</tbody>
 							</table>
@@ -146,8 +159,8 @@ select {
 						<div class="row justify-content-center">
 							<!-- 버튼 -->
 							<div class="col-8" style="text-align: center;">
-								<input class="common_btn" type="submit" value="등록하기">
-								<input class="common_btn" type="reset" value="리셋하기">
+								<input class="common_btn" type="button" value="수정하기" onclick="location.href='/admin/goUpdateMovie?mvCode=${movieInfo.mvCode}';">
+								<input class="common_btn" type="button" value="뒤로가기" onclick="history.back()">
 							</div>
 						</div>
 					</div>
@@ -155,11 +168,8 @@ select {
 						<!-- 오른쪽 여백2 -->
 					</div>
 				</div>
-			</form>
 		</div>
-		<div class="col">
-			<!-- 오른쪽 여백 -->
-		</div>
+		<div class="col"><!-- 오른쪽 여백 --></div>
 	</div>
 </div>
 </body>

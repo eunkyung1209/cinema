@@ -3,6 +3,7 @@ package com.kh.project.movie.service;
 import java.util.List;
 
 import com.kh.project.movie.vo.MovieImgVO;
+import com.kh.project.movie.vo.MovieReplyVO;
 import com.kh.project.movie.vo.MovieVO;
 
 public interface MovieService {
@@ -12,6 +13,9 @@ public interface MovieService {
 	
 	//영화 상세 조회
 	MovieVO selectDetailMovie(String mvCode);
+	
+	//댓글 목록 조회
+	List<MovieReplyVO> selectReplyList(String mvCode);
 	
 	//영화 목록 조회 - 관리자
 	List<MovieVO> selectAdminMovieList();
@@ -30,5 +34,11 @@ public interface MovieService {
 	
 	//영화 포스터 이미지 등록
 	void insertImage(MovieImgVO movieImgVO);
+	
+	//댓글 등록
+	void insertReply(MovieReplyVO movieReplyVO);
+	
+	//영화 평점 수정
+	void updateGrade(String mvCode);
 	
 }

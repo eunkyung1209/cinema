@@ -13,7 +13,7 @@ public class MovieVO {
 	private String openDate;
 	private String content;
 	private String mvState;
-	private int grade;
+	private double grade;
 	
 	private String attachedImgName;
 	
@@ -90,10 +90,10 @@ public class MovieVO {
 	public void setMvState(String mvState) {
 		this.mvState = mvState;
 	}
-	public int getGrade() {
+	public double getGrade() {
 		return grade;
 	}
-	public void setGrade(int grade) {
+	public void setGrade(double grade) {
 		this.grade = grade;
 	}
 	

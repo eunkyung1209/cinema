@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.project.movie.vo.MovieImgVO;
+import com.kh.project.movie.vo.MovieReplyVO;
 import com.kh.project.movie.vo.MovieVO;
 
 @Service("movieService")
@@ -25,6 +26,12 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public MovieVO selectDetailMovie(String mvCode) {
 		return sqlSession.selectOne("movieMapper.selectDetailMovie", mvCode);
+	}
+	
+	//댓글 목록 조회
+	@Override
+	public List<MovieReplyVO> selectReplyList(String mvCode) {
+		return sqlSession.selectList("movieMapper.selectReplyList", mvCode);
 	}
 	
 	//영화 목록 조회 - 관리자
@@ -61,6 +68,18 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public void insertImage(MovieImgVO movieImgVO) {
 		sqlSession.insert("movieMapper.insertImage", movieImgVO);
+	}
+	
+	//댓글 등록
+	@Override
+	public void insertReply(MovieReplyVO movieReplyVO) {
+		sqlSession.insert("movieMapper.insertReply", movieReplyVO);
+	}
+	
+	//영화 평점 수정
+	@Override
+	public void updateGrade(String mvCode) {
+		sqlSession.update("movieMapper.updateGrade", mvCode);
 	}
 	
 }
