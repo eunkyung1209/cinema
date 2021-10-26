@@ -57,15 +57,15 @@ public class CustomerCenterController {
 
 	// 고객센터 글 등록
 	@PostMapping("/insertCustomerBoard")
-	private String insertCustomerBoard(CustomerCenterVO customerCenterVO)
+	private String insertCustomerBoard(CustomerCenterVO customerCenterVO, MultipartHttpServletRequest multi)
 	{
 		// 파일이 첨부되는 input태그의 name 속성 값
-		// Iterator<String> inputNames = multi.getFileNames();
+		 Iterator<String> inputNames = multi.getFileNames();
 
 		// 첨부될 폴더
 		// 학원 -> 
-		// 집 ->
-		String uploadPath = "C:\\Users\\YJH\\git\\cinema\\src\\main\\webapp\\resources\\images\\customer\\";
+		// 집 -> C:\\Users\\YJH\\git\\cinema\\src\\main\\webapp\\resources\\images\\customer\\
+		String uploadPath = "C:\\Users\\kh202-24\\git\\cinema\\src\\main\\webapp\\resources\\images\\customer\\";
 
 		// 모든 첨부파일 정보가 들어갈 공간
 		List<CustomerCenterImgVO> imgList = new ArrayList<>();
@@ -77,63 +77,62 @@ public class CustomerCenterController {
 		// 다음에 들어갈 CUSTOMER_CODE 조회
 		String customerCode = customerCenterService.selectNextCustomerCode();
 
-//		 while (inputNames.hasNext()) { 
-//			String inputName = inputNames.next();
-//		 
-//		 //실제 첨부기능 
-//		 try { //다중첨부 
-//			 if(inputName.equals("file2")) {
-//				 
-//				List<MultipartFile> fileList = multi.getFiles(inputName);
-//		  
-//				  for(MultipartFile file : fileList) { 
-//					  String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename(); 
-//					  String uploadFile = uploadPath + attachedFileName; 
-//					  file.transferTo(new File(uploadFile)); //2021101310101425
-//				  
-//					  CustomerCenterImgVO img = new CustomerCenterImgVO();
-//					  img.setCustomerImgCode("CSI_" + String.format("%03d", nextImgCode++));
-//					  img.setOriginImgName(file.getOriginalFilename());
-//					  img.setAttachedImgName(attachedFileName); img.setCustomerCode(customerCode);
-//					  img.setCustomerCode(customerCode);
-//		isNotice도 추가해주기
-//					  
-//					  imgList.add(img); 
-//				  
-//				  } 
-//		  
-//		}
-//		  
-//			else { //단일 첨부
-//				MultipartFile file = multi.getFile(inputName);
-//				String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename();
-//				String uploadFile = uploadPath + attachedFileName;
-//				file.transferTo(new File(uploadFile)); //2021101310101425
-//				
-//				CustomerCenterImgVO img = new CustomerCenterImgVO(); 
-//				  img.setCustomerImgCode("CSI_" + String.format("%03d", nextImgCode++));
-//				  img.setOriginImgName(file.getOriginalFilename());
-//				  img.setAttachedImgName(attachedFileName); img.setCustomerCode(customerCode);
-//				  img.setCustomerCode(customerCode);
-//				
-//				 imgList.add(img);
-//				
-//			}
-//			
-//		 	} catch (IllegalStateException e) {
-//				e.printStackTrace();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
+		 while (inputNames.hasNext()) { 
+			String inputName = inputNames.next();
+		 
+		 //실제 첨부기능 
+		 try { //다중첨부 
+			 if(inputName.equals("file2")) {
+				 
+				List<MultipartFile> fileList = multi.getFiles(inputName);
+		  
+				  for(MultipartFile file : fileList) { 
+					  String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename(); 
+					  String uploadFile = uploadPath + attachedFileName; 
+					  file.transferTo(new File(uploadFile)); //2021101310101425
+				  
+					  CustomerCenterImgVO img = new CustomerCenterImgVO();
+					  img.setCustomerImgCode("CSI_" + String.format("%03d", nextImgCode++));
+					  img.setOriginImgName(file.getOriginalFilename());
+					  img.setAttachedImgName(attachedFileName); img.setCustomerCode(customerCode);
+					  img.setCustomerCode(customerCode);
+					  
+					  imgList.add(img); 
+				  
+				  } 
+		  
+		}
+		  
+			else { //단일 첨부
+				MultipartFile file = multi.getFile(inputName);
+				String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename();
+				String uploadFile = uploadPath + attachedFileName;
+				file.transferTo(new File(uploadFile)); //2021101310101425
+				
+				CustomerCenterImgVO img = new CustomerCenterImgVO(); 
+				  img.setCustomerImgCode("CSI_" + String.format("%03d", nextImgCode++));
+				  img.setOriginImgName(file.getOriginalFilename());
+				  img.setAttachedImgName(attachedFileName); img.setCustomerCode(customerCode);
+				  img.setCustomerCode(customerCode);
+				
+				 imgList.add(img);
+				
+			}
+			
+		 	} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		
 		// ------------고객센터 게시판 insert------------//
 		customerCenterVO.setCustomerCode(customerCode);
 		customerCenterService.insertCustomerBoard(customerCenterVO);
 		
 		// ------------상품 이미지 정보 insert---------//
-		//customerCenterVO.setImgList(imgList);
-		//customerCenterService.insertCustomerImg(customerCenterVO);
+		customerCenterVO.setImgList(imgList);
+		customerCenterService.insertCustomerImg(customerCenterVO);
 
 		return "redirect:/customer/goCustomer";
 	}
@@ -152,8 +151,6 @@ public class CustomerCenterController {
 		model.addAttribute("customerBoard", customerCenterService.selectCustomerBoardDetail(customerCode));
 		//댓글 목록 불러오기
 		model.addAttribute("customerReplyList", customerCenterService.selectCustomerReply(customerCode));
-		
-		model.addAttribute("hello", "안녕안녕");
 		
 		return "customer/customer_board_detail";
 	}
@@ -236,5 +233,13 @@ public class CustomerCenterController {
 		return "customer/customer_lost";
 	}
 	
+	//게시물 삭제
+	@GetMapping("/deleteCustomer")
+	private String deleteCustomer(Model model, String customerCode) {
+		
+		customerCenterService.deleteCustomer(customerCode);	
+		
+		return "redirect:/customer/goCustomer";
+	}
 
 }

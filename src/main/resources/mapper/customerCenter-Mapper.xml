@@ -201,7 +201,6 @@
 		     , #{isNotice}
 		     , #{groupCode}
 		)
-		
 	</insert>
 	
 	<!-- 다음에 들어갈 customer_code -->
@@ -218,7 +217,7 @@
 	
 	<!-- 고객센터 글 상세보기 -->
 	<select id="selectCustomerBoardDetail" resultMap="customer">
-		SELECT CUSTOMER_CODE 
+		SELECT CUS.CUSTOMER_CODE 
 		    , WRITER 
 		    , TITLE 
 		    , CONTENT  
@@ -226,8 +225,11 @@
 		    , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
 		    , IS_READ
 		    , GROUP_CODE
-		FROM OISONE_CUSTOMER
-		WHERE CUSTOMER_CODE = #{customerCode}
+            , CUSTOMER_IMG_CODE
+            , ATTACHED_IMG_NAME
+		FROM OISONE_CUSTOMER CUS, OISONE_CUSTOMER_IMG IMG
+		WHERE CUS.CUSTOMER_CODE = #{customerCode}
+        AND CUS.CUSTOMER_CODE = IMG.CUSTOMER_CODE
 	</select>
 	
 	<!-- 이미지 삽입 -->
@@ -332,6 +334,11 @@
 		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 		</select>
 	
+		<!-- 게시글 삭제 -->
+		<delete id="deleteCustomer">
+			DELETE OISONE_CUSTOMER
+			WHERE CUSTOMER_CODE = #{customerCode}
+		</delete>
 	
 </mapper>
 

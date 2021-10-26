@@ -45,11 +45,15 @@
 			, TITLE
 			, GENRE
 			, AGE
-			, TO_CHAR(OPEN_DATE, 'YYYY.MM.DD') AS OPEN_DATE
+			, TO_CHAR(OPEN_DATE, 'YYYY-MM-DD') AS OPEN_DATE
+			, GRADE
 			, MV_STATE
 			, ATTACHED_IMG_NAME
 		FROM OISONE_MOVIE M, OISONE_MOVIE_IMG I
 		WHERE M.MV_CODE = I.MV_CODE
+		<if test="searchValue != null and !searchValue.equals('')">
+		AND ${searchKeyword} LIKE '%'||#{searchValue}||'%'
+		</if>
 		ORDER BY MV_CODE
 	</select>
 	
@@ -59,16 +63,30 @@
 			, TITLE
 			, DIRECTOR
 			, ACTOR
-			, GENRE
+			, M.GENRE
 			, AGE
 			, RUNNING_TIME
 			, NATION
-			, TO_CHAR(OPEN_DATE, 'YYYY.MM.DD') AS OPEN_DATE
+			, TO_CHAR(OPEN_DATE, 'YYYY-MM-DD') AS OPEN_DATE
 			, CONTENT
 			, GRADE
+			, MV_STATE
 			, ATTACHED_IMG_NAME
 		FROM OISONE_MOVIE M, OISONE_MOVIE_IMG I
 		WHERE M.MV_CODE = I.MV_CODE
+		AND M.MV_CODE = #{mvCode}
+	</select>
+	
+	<!-- 댓글 목록 조회 -->
+	<select id="selectReplyList" resultMap="reply">
+		SELECT MV_REPLY_CODE
+			, CREATE_DATE
+			, R.GRADE
+			, WRITER
+			, MV_REPLY_CONTENT
+			, M.MV_CODE
+		FROM OISONE_MOVIE_REPLY R, OISONE_MOVIE M
+		WHERE R.MV_CODE = M.MV_CODE
 		AND M.MV_CODE = #{mvCode}
 	</select>
 	
@@ -78,11 +96,14 @@
 			, TITLE
 			, GENRE
 			, AGE
-			, TO_CHAR(OPEN_DATE, 'YYYY.MM.DD') AS OPEN_DATE
+			, TO_CHAR(OPEN_DATE, 'YYYY-MM-DD') AS OPEN_DATE
 			, MV_STATE
 			, ATTACHED_IMG_NAME
 		FROM OISONE_MOVIE M, OISONE_MOVIE_IMG I
 		WHERE M.MV_CODE = I.MV_CODE
+		<if test="searchValue != null and !searchValue.equals('')">
+		AND ${searchKeyword} LIKE '%'||#{searchValue}||'%'
+		</if>
 		ORDER BY MV_CODE DESC
 	</select>
 	
@@ -115,6 +136,7 @@
 			, NATION
 			, OPEN_DATE
 			, CONTENT
+			, MV_STATE
 		) VALUES (
 			#{mvCode}
 			, #{title}
@@ -126,10 +148,9 @@
 			, #{nation}
 			, #{openDate}
 			, #{content}
+			, #{mvState}
 		)
 	</insert>
-	
-	
 	
 	<!-- 다음에 들어갈 MOVIE_IMG_CODE를 조회 -->
 	<select id="selectNextImgCode" resultType="String">
@@ -151,6 +172,52 @@
 			, #{mvCode}
 		)
 	</insert>
+	
+	
+	
+	<!-- 댓글 등록 -->
+	<insert id="insertReply">
+		INSERT INTO OISONE_MOVIE_REPLY (
+			MV_REPLY_CODE
+			, GRADE
+			, WRITER
+			, MV_REPLY_CONTENT
+			, MV_CODE
+		) VALUES (
+			(SELECT 'MV_'||TO_CHAR((SYSDATE), 'YYMMDD')||'_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MV_REPLY_CODE, 11, 3))), 0) + 1, 3, '0') FROM OISONE_MOVIE_REPLY)
+			, #{grade}
+			, #{writer}
+			, #{mvReplyContent}
+			, #{mvCode}
+		)
+	</insert>
+	
+	<!-- 영화 평점 수정 -->
+	<update id="updateGrade">
+		UPDATE OISONE_MOVIE
+		SET
+		GRADE = (SELECT AVG(GRADE)
+				 FROM OISONE_MOVIE_REPLY)
+		WHERE MV_CODE = #{mvCode}
+	</update>
+	
+	
+	
+	<!-- 영화 정보 수정 -->
+	<update id="updateMovie">
+		UPDATE OISONE_MOVIE
+		SET
+		TITLE = #{title}
+		, DIRECTOR = #{director}
+		, ACTOR = #{actor}
+		, GENRE = #{genre}
+		, AGE = #{age}
+		, RUNNING_TIME = #{runningTime}
+		, NATION = #{nation}
+		, OPEN_DATE = #{openDate}
+		, CONTENT = #{content}
+		WHERE MV_CODE = #{mvCode}
+	</update>
 	
 </mapper>
 

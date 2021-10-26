@@ -54,7 +54,7 @@ select {
 /* *필수입력 문장  */
 .needInput{
 	font-size: 13px;
-	margin-left: 66%;
+	margin-left: 61%;
 }
  
  
@@ -149,6 +149,18 @@ select {
 								<!-- '필수입력' 복사하여 사용 ->  <span class="redStar">*</span> -->
 								<tbody>
 								
+									<tr style="height: 60px;">
+										<td >아이디<span class="redStar"> 변경불가</span></td>
+										<td >
+											${sessionScope.loginInfo.id }
+										</td>
+									</tr>
+									<tr style="height: 60px;">
+										<td >닉네임<span class="redStar"> 변경불가</span></td>
+										<td >
+											${sessionScope.loginInfo.nickName }
+										</td>
+									</tr>
 									<tr>
 										<td >이름 <span class="redStar">*</span></td>
 										<td >
@@ -178,24 +190,6 @@ select {
 										<td >휴대폰 번호 <span class="redStar">*</span></td>
 										<td >
 											<input type="text" name="tell" class="joinInput1" placeholder=" 010-1111-1111 형식으로 입력하세요." value="${sessionScope.loginInfo.tell }"required>
-										</td>
-									</tr>
-									<tr>
-										<td >아이디<span class="redStar">*</span></td>
-										<td >
-											<div  id="checkIdDiv">
-												<input type="text" id="id" name="id" class="joinInput1"  placeholder=" 영문,숫자 조합(8~12자)" required>
-												<input type="button" class="common_btn2" id="btn2" onclick="checkId();" value="중복확인">
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td >닉네임<span class="redStar">*</span></td>
-										<td >
-											<div  id="checkNickDiv">
-												<input type="text" id="nickName" name="nickName" class="joinInput1" id="floatingInput" placeholder=" 자유롭게 입력해 주세요." value="${sessionScope.loginInfo.nickName }" required>
-												<input type="button" class="common_btn2" id="btn2" onclick="checkNick();" value="중복확인">
-											</div>
 										</td>
 									</tr>
 									<tr>
