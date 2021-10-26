@@ -25,17 +25,12 @@ font-weight: bold;
 <body>
 	<table>
 		<tr>
-			
 			<td>작성자</td>
 			<td>${communityVO.writer}</td>
 			<td>작성일</td>
 			<td>${communityVO.createDate }</td>
-		</tr>
-		<tr>
 			<td>제목</td>
 			<td colspan="5">${communityVO.title }</td>
-		</tr>
-		<tr>
 			<td>내용</td>
 			<td colspan="5">${communityVO.content }</td>
 		</tr>
@@ -43,7 +38,7 @@ font-weight: bold;
 	</table>
 <div class="btnDiv">
 
-	<c:if test="${sessionScope.loginInfo.Id eq 'admin' or sessionscope.loginInfo.Id eq communityVO.writer}">
+	<c:if test="${sessionScope.loginInfo.id eq 'admin' or sessionscope.loginInfo.id eq communityVO.writer}">
 		<input type="button" class ="btn" value="삭제" onclick="deletBoard(${board.commuCode});"> 
 		<input type="button" class ="btn" value="수정" onclick="location.href='updateForm.bo?commuCode=${communityVO.commuCode}';">
 	</c:if>
@@ -58,14 +53,14 @@ font-weight: bold;
 		<form action="insertReply" method="post">
 		<input type="hidden" name="commuCode " value="${communityVO.commuCode }">
 			<textarea rows="3" cols="30" name="content"></textarea>
-			<input type="submit" value="댓글등록">
+			<input type="submit" value="댓글등록" >
 		</form> 
 	</div>
 <c:forEach items="${replyList }" var="communityReplyVO">
 	<div class="replyDiv">
 		<div class="replyWriter">${communityReplyVO .writer }</div>
 		<div class="replyDate">${communityReplyVO.createDate }</div>
-		<div>${replyDTO.content }</div>
+		<div>${communityReplyVO.content }</div>
 	<c:if test="${sessionScope.loginInfo.memberId eq 'admin'or sessionScope.loginInfo.memberId eq communityReplyVO.writer}">
 		<div><input type="button" value="삭제" onclick="location.href='deleteReply.re?replyNum=${communityReplyVO.replyNum}&boardNum=${communityVO.boardNum }';"></div>
 	

@@ -13,23 +13,28 @@ public interface CommunityService {
 	// 게시글 등록
 	void insertBoard(CommunityVO communityVO);
 	
-	// 게시글 삭제
-	void deleteBoard(CommunityVO communityVO);
-	
-	// 게시글 수정
-	void updateBoard(CommunityVO communityVO);
-	
 	//게시글 상세보기 조회
-	void selectboardDetail(CommunityVO communityVO);
-	
-	// 게시글 조회수
-	void updateReadcnt(CommunityVO communityVO);
+	CommunityVO selectBoardDetail(CommunityVO communityVO);
 	
 	//댓글 조회
 	List<CommunityReplyVO>selectReply(CommunityReplyVO communityReplyVO);
 	
+	//댓글등록
+	void insertReply(CommunityReplyVO communityReplyVO);
+	
+	// 게시글 삭제
+	void deleteBoard(CommunityVO communityVO);
+		
+	// 게시글 수정
+	void updateBoard(CommunityVO communityVO);
+		
+	// 게시글 조회수
+	void updateReadcnt(CommunityVO communityVO);
+		
+	
 	// 페이징
 	int selectCommuPage(CommunityVO communityVO);
+	
 	
 	
 	
