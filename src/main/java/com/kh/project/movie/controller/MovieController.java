@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.kh.project.member.vo.MemberVO;
 import com.kh.project.movie.service.MovieService;
 import com.kh.project.movie.vo.MovieReplyVO;
 import com.kh.project.movie.vo.MovieVO;
@@ -28,33 +27,33 @@ public class MovieController {
 	
 	//메인 페이지로 이동
 	@GetMapping("/mainPage")
-	public String mainPage(Model model, Date date) {
+	public String mainPage(Model model, MovieVO movieVO/* , Date date */) {
 //		//오늘의 일시
 //		model.addAttribute("nowDateAndTime", MovieController.getNowDateAndTime(date));
 		//영화 목록
-		model.addAttribute("movieList", movieService.selectMovieList());
+		model.addAttribute("movieList", movieService.selectMovieList(movieVO));
 		
 		return "movie/main_page";
 		//return "template/main_bin";
 	}
 	
 	//상단 영화 메뉴 클릭 시 이동
-	@GetMapping("/movieList")
-	public String movieList(Model model) {
+	@RequestMapping("/movieList")
+	public String movieList(Model model, MovieVO movieVO) {
 		//영화 목록
-		model.addAttribute("movieList", movieService.selectMovieList());
+		model.addAttribute("movieList", movieService.selectMovieList(movieVO));
 		
 		return "movie/movie_list";
 	}
 	
 	//영화 상세 페이지로 이동
 	@GetMapping("/movieDetail")
-	public String movieDetail(Model model, String mvCode) {
+	public String movieDetail(Model model, MovieVO movieVO) {
 		//영화 상세 정보
-		model.addAttribute("movieInfo", movieService.selectDetailMovie(mvCode));
+		model.addAttribute("movieInfo", movieService.selectDetailMovie(movieVO));
 		
 		//댓글 목록
-		model.addAttribute("replyList", movieService.selectReplyList(mvCode));
+		model.addAttribute("replyList", movieService.selectReplyList(movieVO));
 		
 		return "movie/movie_detail";
 	}
@@ -66,7 +65,7 @@ public class MovieController {
 		movieService.insertReply(movieReplyVO);
 		
 		//영화 평점 수정
-		movieService.updateGrade(movieReplyVO.getMvCode());
+		movieService.updateGrade(movieReplyVO);
 		
 		//영화 코드
 		model.addAttribute("mvCode", movieReplyVO.getMvCode());

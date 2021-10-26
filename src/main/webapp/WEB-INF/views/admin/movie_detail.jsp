@@ -7,77 +7,25 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-/* .posterInfo{
-	width: 205px;
-    height: 305px;
-} */
-.star{
-	width: 17px;
-	height: 17px;
-}
-
-.movieInfo{
-	margin: 0 12px;
-}
-.movieInfo td{
-	vertical-align: top;
-}
-.movieInfo td > div{
-	margin-bottom: 10px;
-	padding-left: 20px;
-	padding-right: 20px;
-}
-
-.replyDiv{
-	border: 1px solide #c9c9c8;
-	
-}
-
-/* 본인 또는 관리자에게만 보이는 수정, 삭제 버튼 */
-.correct{
-	text-align: right;
-}
-
-.replyTable{
+/* 작성테이블 */
+.writeTable{
 	margin: 0 auto;
 	width: 100%;
-	text-align: left;
-	padding: 10px;
+	border-bottom: solid 1px #c9c9c8;
+	height: 500px;
 }
-.replyTable tr{
+td:first-child{
+	text-align: center;
+	background-color: #f2f2f2;
+}
+tr{
 	border-top: 1px solid #c9c9c8;
 	border-bottom: 1px solid #c9c9c8;
 }
-tr, td{
-	height: 50px;
+td{
 	vertical-align: middle;
-	padding: 10px;
-}
-
-input{
-	height: 50px;
-}
-input[type="number"]{
-	height: 20px;
-}
-
-.replyWriter{
-	font-size: 12px;
-	height: 30%;
-	margin-top: 5px;
-	margin-left: 5px;
-	margin-right: 5px;
-}
-.createDate{
-	font-size: 10px;
-	height: 20%;
-	margin-bottom: 5px;
-	margin-left: 5px;
-	margin-right: 5px;
-}
-.replyContent{
-	font-size: 14px;
-	margin: 5px;
+	padding: 5px;
+	padding-left: 10px;
 }
 </style>
 </head>
@@ -96,7 +44,7 @@ input[type="number"]{
 						<!-- 왼쪽 여백2 -->
 					</div>
 					<div class="col-8">
-						<div class="row mb-3">
+						<div class="row mb-3 justify-content-center">
 							<!-- 영화 정보 작성 -->
 							<table class="writeTable">
 								<colgroup>
@@ -107,35 +55,35 @@ input[type="number"]{
 								<!-- '필수입력' 복사하여 사용 ->  <span class="redStar">*</span> -->
 								<tbody>
 									<tr>
-										<td>Title <span class="redStar">*</span></td>
+										<td>Title</td>
 										<td>${movieInfo.title }</td>
 									</tr>
 									<tr>
-										<td>Director <span class="redStar">*</span></td>
+										<td>Director</td>
 										<td>${movieInfo.director }</td>
 									</tr>
 									<tr>
-										<td>Actor <span class="redStar">*</span></td>
+										<td>Actor</td>
 										<td>${movieInfo.actor }</td>
 									</tr>
 									<tr>
-										<td>Genre <span class="redStar">*</span></td>
+										<td>Genre</td>
 										<td>${movieInfo.genre }</td>
 									</tr>
 									<tr>
-										<td>Age <span class="redStar">*</span></td>
+										<td>Age</td>
 										<td>${movieInfo.age }</td>
 									</tr>
 									<tr>
-										<td>Running Time <span class="redStar">*</span></td>
+										<td>Running Time</td>
 										<td>${movieInfo.runningTime }</td>
 									</tr>
 									<tr>
-										<td>Nation <span class="redStar">*</span></td>
+										<td>Nation</td>
 										<td>${movieInfo.nation }</td>
 									</tr>
 									<tr>
-										<td>Open Date <span class="redStar">*</span></td>
+										<td>Open Date</td>
 										<td>${movieInfo.openDate }</td>
 									</tr>
 									<tr>
@@ -145,8 +93,8 @@ input[type="number"]{
 									<tr>
 										<td>상영 상태</td>
 										<td>
-											<c:if test="${movieInfo.mvState eq 'N' }">상영 O</c:if>
-											<c:if test="${movieInfo.mvState eq 'Y' }">상영 X</c:if>
+											<c:if test="${movieInfo.mvState eq 'N' }">상영 X</c:if>
+											<c:if test="${movieInfo.mvState eq 'Y' }">상영 O</c:if>
 										</td>
 									</tr>
 									<tr>
@@ -158,7 +106,7 @@ input[type="number"]{
 						</div>
 						<div class="row justify-content-center">
 							<!-- 버튼 -->
-							<div class="col-8" style="text-align: center;">
+							<div class="col" style="text-align: center;">
 								<input class="common_btn" type="button" value="수정하기" onclick="location.href='/admin/goUpdateMovie?mvCode=${movieInfo.mvCode}';">
 								<input class="common_btn" type="button" value="뒤로가기" onclick="history.back()">
 							</div>

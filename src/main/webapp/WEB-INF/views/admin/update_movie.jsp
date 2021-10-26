@@ -11,11 +11,7 @@
 /* 
 body{
 	margin: 0 auto;
-} */
-.subjectDiv{
-	border-bottom: 2px solid #dddddd;
 }
-/* 
 thead > tr{
 	
 }
@@ -40,6 +36,7 @@ td:first-child{
 	background-color: #f2f2f2;
 }
 tr{
+	border-top: 1px solid #c9c9c8;
 	border-bottom: 1px solid #c9c9c8;
 }
 td{
@@ -47,10 +44,10 @@ td{
 	padding: 5px;
 	padding-left: 10px;
 }
-input[type="text"],input[type="password"], input[type="email"] {
+input[type="text"]{
 	width: 100%;
 }
-select {
+select{
 	width: 30%; 
 }
 
@@ -59,11 +56,6 @@ select {
 	color: red;
 } 
 
-/* *필수입력 문장  */
-.needInput{
-	font-size: 13px;
-	margin-left: 70%;
-}
 </style>
 </head>
 <body>
@@ -84,7 +76,7 @@ select {
 						<!-- 왼쪽 여백2 -->
 					</div>
 					<div class="col-8">
-						<div class="row mb-3">
+						<div class="row mb-3 justify-content-center">
 							<!-- 영화 정보 작성 -->
 							<table class="writeTable">
 								<colgroup>
@@ -108,7 +100,7 @@ select {
 									</tr>
 									<tr>
 										<td>Genre <span class="redStar">*</span></td>
-										<td><input type="text" name="genre" value="${movieInfo.gerne }" required> </td>
+										<td><input type="text" name="genre" value="${movieInfo.genre }" required> </td>
 									</tr>
 									<tr>
 										<td>Age <span class="redStar">*</span></td>
@@ -129,16 +121,14 @@ select {
 									<tr>
 										<td>Content</td>
 										<td>
-											<textarea style="width: 100%; height:150px; padding-top: 5px;" name="content" required>
-												<c:out value="${movieInfo.content }"/>
-											</textarea>
+											<textarea style="width: 100%; height:150px; padding-top: 5px;" name="content" required><c:out value="${movieInfo.content }"/></textarea>
 										</td>
 									</tr>
 									<tr>
 										<td>상영 상태</td>
 										<td>
-											<input type="radio" name="mvState" value="N" <c:if test="${mvoieInfo.mvState eq 'N' }">checked</c:if>> 상영 O 
-											<input type="radio" name="mvState" value="Y" <c:if test="${mvoieInfo.mvState eq 'Y' }">checked</c:if>> 상영 X
+											<input type="radio" name="mvState" value="N" <c:if test="${movieInfo.mvState eq 'N' }">checked</c:if>> 상영 X 
+											<input type="radio" name="mvState" value="Y" <c:if test="${movieInfo.mvState eq 'Y' }">checked</c:if>> 상영 O
 										</td>
 									</tr>
 									<!-- <tr>
@@ -150,8 +140,9 @@ select {
 						</div>
 						<div class="row justify-content-center">
 							<!-- 버튼 -->
-							<div class="col-8" style="text-align: center;">
-								<input class="common_btn" type="submit" value="등록하기">
+							<div class="col" style="text-align: center;">
+								<input type="hidden" name="mvCode" value="${movieInfo.mvCode }">
+								<input class="common_btn" type="submit" value="수정완료">
 							</div>
 						</div>
 					</div>
