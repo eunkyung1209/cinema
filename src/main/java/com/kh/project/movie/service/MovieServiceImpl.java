@@ -40,6 +40,12 @@ public class MovieServiceImpl implements MovieService {
 		return sqlSession.selectList("movieMapper.selectAdminMovieList", movieVO);
 	}
 	
+	//영화 데이터 개수 조회
+	@Override
+	public int selectMovieCnt(MovieVO movieVO) {
+		return sqlSession.selectOne("movieMapper.selectMovieCnt", movieVO);
+	}
+	
 	//영화 삭제
 	@Override
 	public void deleteMovie(MovieVO movieVO) {

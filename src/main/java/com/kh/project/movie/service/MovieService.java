@@ -20,6 +20,9 @@ public interface MovieService {
 	//영화 목록 조회 - 관리자
 	List<MovieVO> selectAdminMovieList(MovieVO movieVO);
 	
+	//영화 데이터 개수 조회
+	int selectMovieCnt(MovieVO movieVO);
+	
 	//영화 삭제 - String mvCode
 	void deleteMovie(MovieVO movieVO);
 	

@@ -37,7 +37,12 @@ public class AdminController {
 	//영화 관리 페이지로 이동
 	@GetMapping("/movieManage")
 	public String movieManage(Model model, MovieVO movieVO) {
+		//페이징 처리
+		movieVO.setTotalCnt(movieService.selectMovieCnt(movieVO));
+		movieVO.setPageInfo();
+		//영화 목록 조회
 		model.addAttribute("movieList", movieService.selectAdminMovieList(movieVO));
+		System.out.println(movieVO.getNowPage());
 		
 		return "admin/movie_manage";
 	}
