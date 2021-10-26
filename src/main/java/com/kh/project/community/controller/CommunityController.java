@@ -43,8 +43,7 @@ public class CommunityController {
 	@PostMapping("/insertBoard")
 	public String insertBoard(CommunityVO communityVO) {
 		boardService.insertBoard(communityVO);
-		// 비밀번호 등록
-		// 파일첨부
+		
 		return "redirect:/board/boardList";
 	}
 	//글 상세정보 ->게시글등록된걸 누르면 게시글 작성된화면 보여주기
@@ -81,9 +80,9 @@ public class CommunityController {
 	
 	// 게시글 수정 -> 작성자만 수정 버튼 보이게하고싶음
 	@GetMapping("/updateBoard")
-	public String updateBoard(CommunityVO communityVO) {
+	public String updateBoard(CommunityVO communityVO, Model model) {
 		boardService.updateBoard(communityVO);
-
+		model.addAttribute("communityVO",boardService.selectBoardDetail(communityVO));
 		return "redirect:/board/boardDetail";
 	}
 	//댓글조회
