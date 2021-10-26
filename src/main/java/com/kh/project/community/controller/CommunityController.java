@@ -58,7 +58,7 @@ public class CommunityController {
 	}
 	
 	//게시글 상세보기화면
-		// 댓글 등록
+		// 댓글 등록// 
 		@PostMapping("/insertReply")
 		public String insertReply(CommunityReplyVO communityReplyVO, Model model, CommunityVO communityVO) {
 			//댓글등록
