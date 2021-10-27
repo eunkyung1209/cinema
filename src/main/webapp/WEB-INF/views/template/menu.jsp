@@ -160,7 +160,7 @@ a{
 				              	TICKET
 				            </a>
 				            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-				            	<li><a class="dropdown-item" href="#">Action</a></li>
+				            	<li><a class="dropdown-item" href="/reservation/screeningSchedule">예매하기</a></li>
 				             	<li><a class="dropdown-item" href="#">Another action</a></li>
 				            	<li>
 				                	<hr class="dropdown-divider">
