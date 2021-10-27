@@ -48,4 +48,12 @@ public interface CustomerCenterService {
 	
 	//게시글 삭제
 	void deleteCustomer(String customerCode);
+	
+	//댓글 삭제
+	void deleteCustomerReply(String customeReplyCode);
+	
+	//댓글 수정
+	void updateCustomerReply(CustomerCenterReplyVO customerCenterReplyVO);
+	
+	
 }

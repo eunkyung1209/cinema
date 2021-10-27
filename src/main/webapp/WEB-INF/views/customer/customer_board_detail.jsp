@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 
 <!-- 자바스크립트 파일 -->
-<script type="text/javascript" src="/resources/customer/js/customer_board_detail.js?ver=14"></script>
+<script type="text/javascript" src="/resources/customer/js/customer_board_detail.js?ver=38"></script>
 
 <style type="text/css">
 .bodyDiv{
@@ -93,7 +93,7 @@ input{
 		<div class="row justify-content-center">
 			<div class="col-8">
 				<div class="col-3 subjectDiv">
-					<h5>페이지명</h5>
+					<h5>고객 센터</h5>
 				</div>
 			</div>
 		</div>
@@ -156,7 +156,8 @@ input{
 					</tr>
 					<tr>
 						<td colspan="3">
-							<div><img height="500px;" src="/resources/images/customer/${customerBoard.imgList[0].attachedImgName }"></div> 
+							
+							<div><img height="500px;" src="/resources/images/customer/${customerBoard.imgList[0].attachedImgName }"></div>
 							<div>${customerBoard.content}</div>
 						</td>
 					</tr>
@@ -165,6 +166,7 @@ input{
 		</div>
 		
 		<div style="height: 80px;"></div>
+		
 		
 		<!-- 댓글목록 -->
 		<div class="row justify-content-center">
@@ -196,17 +198,20 @@ input{
 							</tr>
 						</c:when>
 						
+						
 						<c:otherwise>
 							<c:forEach items="${customerReplyList}" var="customerReply">
 								<tr>
 									<td>
-										<input type="hidden" value="${customerReply.customerReplyCode }" class="customeReplyCode" name="customeReplyCode">
-										<div class="replyWriter">
-											${customerReply.writer }
-										</div>
-										<div class="createDate">${customerReply.createDate }</div>
-										<div class="replyContent" id="replyContent"><div id="upReply" class="upReply">${customerReply.content }</div></div>
-										
+										<form action="/customer/updateReply" method="post">
+											<input type="hidden" name="customerReplyCode" value="${customerReply.customerReplyCode }">
+											<input type="hidden" name="customerCode" value="${customerReply.customerCode }">
+											<div class="replyWriter">
+												${customerReply.writer }
+											</div>
+											<div class="createDate">${customerReply.createDate }</div>
+											<div class="replyContent" data-replyCode="${customerReply.customerReplyCode }" ><div class="upReply">${customerReply.content }</div></div>
+										</form>
 									</td>
 									
 									<!-- 본인 또는 관리자 -->
@@ -216,8 +221,8 @@ input{
 									           	<span class="nav-link dropdown-toggle" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									            </span>
 									            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-									              	<li><a class="dropdown-item" onclick="updateCustomerReply();">댓글 수정</a></li>
-									              	<li><a class="dropdown-item" onclick="deleteCustomerReply()">댓글 삭제</a></li>
+									              	<li><a class="dropdown-item" onclick="updateCustomerReply('${customerReply.customerReplyCode }');">댓글 수정</a></li>
+									              	<li><a class="dropdown-item" onclick="deleteCustomerReply('${customerReply.customerReplyCode }');">댓글 삭제</a></li>
 									            </ul>
 									     	</li>
 										</c:if>
@@ -239,7 +244,7 @@ input{
 		<!-- 기본 버튼 클래스명: common_btn -->
 		<div class="row justify-content-center">
 			<div class="col-8 text-center"  >
-				 <input class="common_btn" type="button" value="고객센터로"  onclick="location.href='/customer/goCustomer';'">
+				 <input class="common_btn" type="button" value="고객센터로"  onclick="location.href='/customer/goCustomer';">
 			</div>
 		</div>
 	

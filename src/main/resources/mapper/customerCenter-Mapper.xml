@@ -211,7 +211,7 @@
 	
 	<!-- 다음에 들어갈 이미지 코드 -->
 	<select id="selectNextCustomerImgCode" resultType="int">
-		SELECT LPAD(NVL(MAX(TO_NUMBER(SUBSTR(CUSTOMER_IMG_CODE,4,3))), 0)+1 , 3, 0) 
+		SELECT LPAD(NVL(MAX(TO_NUMBER(SUBSTR(CUSTOMER_IMG_CODE,5,3))), 0)+1 , 3, 0) 
 		FROM OISONE_CUSTOMER_IMG
 	</select>
 	
@@ -339,7 +339,25 @@
 			DELETE OISONE_CUSTOMER
 			WHERE CUSTOMER_CODE = #{customerCode}
 		</delete>
-	
+		
+		<!-- 댓글 삭제 -->
+		<delete id="deleteCustomerReply">
+			DELETE OISONE_CUSTOMER_REPLY
+			WHERE CUSTOMER_REPLY_CODE = #{customerReplyCode}
+		
+		</delete>
+		
+		<!-- 댓글 수정 -->
+		<update id="updateCustomerReply">
+			UPDATE OISONE_CUSTOMER_REPLY
+			SET CONTENT = #{content}
+			 , CREATE_DATE = SYSDATE
+			WHERE CUSTOMER_REPLY_CODE = #{customerReplyCode}
+		</update>
+		
+		<!-- 조회여부 -->
+		
+		
 </mapper>
 
 

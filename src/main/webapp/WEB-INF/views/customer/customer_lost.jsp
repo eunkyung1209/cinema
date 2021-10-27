@@ -86,6 +86,16 @@ a:hover{
 <body>
 <div class="row bodyDiv">
 	<div class="col-12">
+		<!-- 페이지 머릿말 -->
+		<div class="row justify-content-center">
+			<div class="col-8">
+				<div class="col-3 subjectDiv">
+					<h5>분실물</h5>
+				</div>
+			</div>
+		</div>
+	
+		<div style="height: 50px;"></div>
 		
 		<!-- 커스토머 박스 -->
 		<div class="row justify-content-center">
@@ -213,7 +223,7 @@ a:hover{
 					  <c:choose>
 					  	<c:when test="${empty customerBoardList}">
 					  		<tr>
-					  			<td colspan="4">
+					  			<td colspan="5">
 					  				등록된 게시물이 업습니다.
 					  			</td>
 					  		</tr>
