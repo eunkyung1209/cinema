@@ -9,7 +9,14 @@
 
 
 <!-- 스크립트 연결 -->
-<script type="text/javascript" src="/resources/member/js/join.js?ver=3"></script>
+<!-- <script type="text/javascript" src="/resources/member/js/join.js?ver=3"></script> -->
+<script src="https://code.jquery.com/jquery-latest.min.js"></script> <!-- 제이쿼리 최신버전 가져오기 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="/resources/member/js/join.js?ver=27"></script>
+
+
+
 
 <style type="text/css">
 
@@ -57,7 +64,7 @@ select {
  
  
 .joinInput2{
-	width: 20%;
+	width: 40%;
 }
 .joinInput1{
 	width: 68%;
@@ -67,13 +74,13 @@ select {
 }
 
 /*검색 버튼 기본폼 */
-.common_btn{
+button{
 	background-color: #4c4747;
 	color: white;
 	width: 80px;
 	font-size: 11px;
 }
-.common_btn:hover{
+button:hover{
 	font-size: 11px;
 	background-color: #5d5959;
 	color: white;
@@ -147,70 +154,92 @@ select {
 								<tbody>
 								
 									<tr>
-										<td >이름 <span class="redStar">*</span></td>
+										<td ><label for="name">이름</label> <span class="redStar">*</span></td>
 										<td >
-											<input type="text" name="name" class="joinInput1" id="floatingInput" placeholder="이름을 입력하세요." required>
+											<input type="text" name="name" id="name" class="joinInput1" placeholder=" name" required>
+											
+											<div class="check_font" id="name_check"></div>
 										</td>
 									</tr>
+									
 									<tr>
-										<td >생년월일 <span class="redStar">*</span></td>
+										<td ><label for="birthday">생년월일</label> <span class="redStar">*</span></td>
 										<td >
-											<input type="date" name="birthday" class="joinInput3" required>
+											<input type="text" name="birthday" id="birthday" class="joinInput2" placeholder=" ex) 19450815" required>
+
+											
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;성별&nbsp;:&nbsp;
 											<input type="radio" name="gender" value="남" checked>남자
 											&nbsp;
 											<input type="radio" name="gender" value="여">여자
-										</td>
-									</tr>
-									<tr>
-										<td >휴대폰 번호 <span class="redStar">*</span></td>
-										<td >
-											<select id="tell1" class="joinInput2" name="tells">
-										      	<option value="010" selected>010</option>
-										      	<option value="011">011</option>
-										    </select> &nbsp;&nbsp;-&nbsp;&nbsp;
-											<input type="text" name="tells" class="joinInput2" required>&nbsp;&nbsp;-&nbsp;&nbsp;
-											<input type="text" name="tells" class="joinInput2" required>
-										</td>
-									</tr>
-									<tr>
-										<td >아이디<span class="redStar">*</span></td>
-										<td >
-											<div  id="checkIdDiv">
-												<input type="text" id="id" name="id" class="joinInput1"  placeholder="영문,숫자 조합(8~12자)" required>
-												<input type="button" class="common_btn2" id="btn2" onclick="checkId();" value="중복확인">
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td >닉네임<span class="redStar">*</span></td>
-										<td >
-											<div  id="checkNickDiv">
-												<input type="text" id="nickName" name="nickName" class="joinInput1" id="floatingInput" placeholder="자유롭게 입력해 주세요." required>
-												<input type="button" class="common_btn2" id="btn2" onclick="checkNick();" value="중복확인">
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td >비밀번호<span class="redStar">*</span></td>
-										<td >
-											<input type="password" id="pw" name="pw" class="joinInput1"  placeholder="영문,숫자,특수기호 중 2가지 이상 조합" required>
-										</td>
-									</tr>
-									<tr>
-										<td >비밀번호 확인<span class="redStar">*</span></td>
-										<td >
-											<input type="password" id="c_pw" class="joinInput1" placeholder="영문,숫자,특수기호 중 2가지 이상 조합" required>
+											
+											<div class="check_font" id="birth_check"></div>
+											
 										</td>
 									</tr>
 									
 									<tr>
-										<td >이메일 <span class="redStar">*</span></td>
+										<td ><label for="tell">휴대전화</label> <span class="redStar">*</span></td>
 										<td >
-											<input type="text" name="email" class="joinInput1"  id="floatingEmail" placeholder=" aa22@aaa 형식으로 입력하세요." required>
+											<input type="text" name="tell"  id="tell" class="joinInput1" placeholder=" ex) 01011112222" required>
+											
+											<div class="check_font" id="tell_check"></div>
 										</td>
 									</tr>
+									
+									<tr>
+										<td ><label for="id">아이디</label><span class="redStar">*</span></td>
+										<td >
+											<div  id="checkIdDiv">
+												<input type="text" id="id" name="id" class="joinInput1"  placeholder=" ex) eunbin98" required>
+												<!-- <input type="button" class="common_btn2" id="btn2" onclick="checkId();" value="중복확인"> -->
+												
+												<div class="check_font" id="id_check"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td ><label for="nickName">닉네임</label><span class="redStar">*</span></td>
+										<td >
+											<div  id="checkNickNameDiv">
+												<input type="text" id="nickName" name="nickName" class="joinInput1"  placeholder=" ex) oisone짱 " required>
+												<!-- <input type="button" class="common_btn2" id="btn2" onclick="checkId();" value="중복확인"> -->
+												
+												<div class="check_font" id="nickName_check"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td ><label for="pw">비밀번호</label><span class="redStar">*</span></td>
+										<td >
+											<input type="password" id="pw" name="pw" class="joinInput1"  placeholder=" password" required>
+											
+											<div class="check_font" id="pw_check"></div>
+										</td>
+									</tr>
+									<tr>
+										<td ><label for="pw2">비밀번호 확인</label><span class="redStar">*</span></td>
+										<td >
+											<input type="password" id="pw2" name="pw2" class="joinInput1" placeholder=" confirm password" required>
+											
+											<div class="check_font" id="pw2_check"></div>
+										</td>
+									</tr>
+									<tr>
+										<td ><label for="email">이메일</label><span class="redStar">*</span></td>
+										<td >
+											<div  id="checkEmailDiv">
+												<input type="text" id="email" name="email" class="joinInput1"  placeholder=" ex) eunbin@naver.com" required>
+												<!-- <input type="button" class="common_btn2" id="btn2" onclick="checkId();" value="중복확인"> -->
+												
+												<div class="check_font" id="email_check"></div>
+
+												
+											</div>
+										</td>
+									</tr>
+
 									<tr>
 										<td >마이시네마 <span class="redStar"></span></td>
 										<td >
@@ -323,8 +352,17 @@ select {
 				<!-- 기본 버튼 클래스명: common_btn -->
 				<div class="row justify-content-center">
 					<div class="col-8" style="text-align: center;">
+						<!-- <input class="common_btn" type="button" value="뒤로가기" onclick="location.href='/customer/goCustomer';">
+						<input type="button" class="common_btn"  id="joinBtn" value="회원가입" onclick="goJoin();"> -->
+						
 						<input class="common_btn" type="button" value="뒤로가기" onclick="location.href='/customer/goCustomer';">
-						<input type="button" class="common_btn"  id="joinBtn" value="회원가입" onclick="goJoin();">
+						
+						<button id="reg_submit">
+							<i class="common_btn" aria-hidden="true"></i>회원가입
+						</button>
+
+						<!-- <input type="button" class="common_btn" aria-hidden="true" id="reg_submit" value="회원가입" > -->
+					
 					</div>
 				</div>
 			</div>

@@ -86,6 +86,17 @@ a:hover{
 <body>
 <div class="row bodyDiv">
 	<div class="col-12">
+	
+		<!-- 페이지 머릿말 -->
+		<div class="row justify-content-center">
+			<div class="col-8">
+				<div class="col-3 subjectDiv">
+					<h5>공지사항</h5>
+				</div>
+			</div>
+		</div>
+	
+		<div style="height: 50px;"></div>
 		
 		<!-- 커스토머 박스 -->
 		<div class="row justify-content-center">

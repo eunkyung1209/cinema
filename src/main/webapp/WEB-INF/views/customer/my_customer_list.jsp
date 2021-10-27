@@ -86,6 +86,17 @@ a:hover{
 <body>
 <div class="row bodyDiv">
 	<div class="col-12">
+	
+		<!-- 페이지 머릿말 -->
+		<div class="row justify-content-center">
+			<div class="col-8">
+				<div class="col-3 subjectDiv">
+					<h5>나의 상담내역</h5>
+				</div>
+			</div>
+		</div>
+		
+		<div style="height: 50px;"></div>
 		
 		<!-- 커스토머 박스 -->
 		<div class="row justify-content-center">
@@ -210,35 +221,46 @@ a:hover{
 					    </tr>
 					  </thead>
 					  
-					   <c:forEach items="${customerBoardList}" var="customerBoard" varStatus="status">
-					  <tbody>
-						<tr>
-					      <th scope="row" class="align-middle">${status.count }</th>
-						  <td>
-						  	<c:if test="${customerBoard.groupCode eq 'GROUP_001'}">
-								기타
-							</c:if>
-							<c:if test="${customerBoard.groupCode eq 'GROUP_002'}">
-								시설물 문의
-							</c:if>
-							<c:if test="${customerBoard.groupCode eq 'GROUP_003'}">
-								영화 문의
-							</c:if>
-							<c:if test="${customerBoard.groupCode eq 'GROUP_004'}">
-								결제 문의
-							</c:if>
-							<c:if test="${customerBoard.groupCode eq 'GROUP_005'}">
-								분실물
-							</c:if>
-						  </td>   
-					      <td class="align-middle"><a href="/customer/selectCustomerBoardPw?customerCode=${customerBoard.customerCode }&secretNumber=${customerBoard.secretNumber }">${customerBoard.title }</a> </td>
-					      <td class="align-middle">${customerBoard.writer }</td>
-					      <td class="align-middle">${customerBoard.createDate } </td>
-					    </tr>
-					   </tbody>
-					</c:forEach>
-					 
-					   </tbody>
+					  <c:choose>
+					  	<c:when test="${empty customerBoardList}">
+					  		<tr>
+					  			<td colspan="5">
+					  				등록된 게시물이 없습니다.
+					  			</td>
+					  		</tr>
+					  	</c:when>
+					  	
+					  	<c:otherwise>
+					  		<c:forEach items="${customerBoardList}" var="customerBoard" varStatus="status">
+							  <tbody>
+								<tr>
+							      <th scope="row" class="align-middle">${status.count }</th>
+								  <td>
+								  	<c:if test="${customerBoard.groupCode eq 'GROUP_001'}">
+										기타
+									</c:if>
+									<c:if test="${customerBoard.groupCode eq 'GROUP_002'}">
+										시설물 문의
+									</c:if>
+									<c:if test="${customerBoard.groupCode eq 'GROUP_003'}">
+										영화 문의
+									</c:if>
+									<c:if test="${customerBoard.groupCode eq 'GROUP_004'}">
+										결제 문의
+									</c:if>
+									<c:if test="${customerBoard.groupCode eq 'GROUP_005'}">
+										분실물
+									</c:if>
+								  </td>   
+							      <td class="align-middle"><a href="/customer/selectCustomerBoardPw?customerCode=${customerBoard.customerCode }&secretNumber=${customerBoard.secretNumber }">${customerBoard.title }</a> </td>
+							      <td class="align-middle">${customerBoard.writer }</td>
+							      <td class="align-middle">${customerBoard.createDate } </td>
+							    </tr>
+							   </tbody>
+							</c:forEach>
+					  	</c:otherwise>
+					  </c:choose>
+					  
 					</table>
 			</div>
 		</div>

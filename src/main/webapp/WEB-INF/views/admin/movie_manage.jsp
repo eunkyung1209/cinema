@@ -90,7 +90,7 @@ a:hover{
 					</form>
 				</div>
 			</div>
-			<div class="row justify-content-center">
+			<div class="row mb-3 justify-content-center"><!-- 영화 목록 테이블 -->
 				<div class="col">
 					<table class="board_list">
 						<colgroup>
@@ -123,6 +123,23 @@ a:hover{
 							</c:forEach>
 						</tbody>
 					</table>
+				</div>
+			</div>
+			<div class="row"><!-- 페이징 -->
+				<div class="col" >
+					<ul class="pagination justify-content-center">
+						<li class="<c:if test="${!movieInfo.prev }">disabled</c:if>">
+							<a href="/admin/movieManage?nowPage=${movieInfo.beginPage - 1 }">&nbsp;&nbsp; &lt; &nbsp;&nbsp;</a>
+						</li>
+						<c:forEach begin="${movieInfo.beginPage }" end="${movieInfo.endPage }" var="pageNumber">
+							<li class="<c:if test="${movieInfo.nowPage eq pageNumber }">active</c:if>" aria-current="page">
+					     		<a href="/admin/movieManage?nowPage=${pageNumber }&searchKeyword=${movieInfo.searchKeyword}&searchValue=${movieInfo.searchValue}" >${pageNumber }</a>
+							</li>
+						</c:forEach>
+						<li class="<c:if test="${!movieInfo.next }">disabled</c:if>">
+							<a href="/admin/movieManage?nowPage=${movieInfo.endPage + 1 }">&nbsp;&nbsp; &gt; &nbsp;&nbsp;</a>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>

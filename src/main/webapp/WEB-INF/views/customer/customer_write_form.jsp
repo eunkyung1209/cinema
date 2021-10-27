@@ -66,6 +66,15 @@ select {
 <div class="row bodyDiv" >
 	<div class="col-12">
 	
+	<!-- 페이지 머릿말 -->
+		<div class="row justify-content-center">
+			<div class="col-8">
+				<div class="col-3 subjectDiv">
+					<h5>고객 센터</h5>
+				</div>
+			</div>
+		</div>
+	
 	<div class="row justify-content-center align-middle">
 		<div class="col-10" >
 			<div class="col-9 cusBox " >
@@ -114,11 +123,10 @@ select {
 									</c:if>
 									
 									<tr>
-										
 										<td>글 분류</td>
 										<td>
 											<select name="groupCode" required>
-												<option value="GROUP_001">기타</option>
+												<option value="GROUP_001" >기타</option>
 												<option value="GROUP_002">시설 문의</option>
 												<option value="GROUP_003">영화 문의</option>
 												<option value="GROUP_004">결제 문의</option>

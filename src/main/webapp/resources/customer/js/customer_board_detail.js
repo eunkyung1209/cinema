@@ -21,23 +21,39 @@ $(document).ready(function(){
 		
 	};
 	
+		
 	//댓글 수정
-	updateCustomerReply = function() {
-		var customeReplyCode = $('.customeReplyCode').val();
+	updateCustomerReply = function(customeReplyCode) {
 		
+		//반복문
+		$('.replyContent').each(function(index, element){
+			var allReplyCode = $(element).attr('data-replyCode');
+			
+			if(customeReplyCode == allReplyCode){
+				$(this).html('<div><input type="text" name="content" style="width: 92%"> <input type="submit" value="수정" ></div>');
+				
+			}
+		});
+	};
+	
+	updateReply = function() {
+		alert('수정 완료');
+	};
+	
+	
+	
+	//댓글 삭제
+	deleteCustomerReply = function(customeReplyCode) {
 		
-		$('.replyContent').empty();
-		$('.upReply').html('<input type="text" name="content" id="replyContentUp" style="width: 92%"> <input type="submit" id="updateBtn" value="수정" >');
-		
-		
-		var customerCode = $('#customerCode').val();
+			var result = confirm('댓글을 삭제하시겠습니까?');
+			var customerCode = $('#customerCode').val();
+			
+		if(result){
+			location.href='/customer/deleteCustomerReply?customeReplyCode='+customeReplyCode +'&customerCode=' + customerCode;
+		}
 		
 	};
 	
-	//댓글 삭제
-	deleteCustomerReply = function() {
-		var customerCode = $('#customerCode').val();
-	};
 	 
 	
    

@@ -55,7 +55,7 @@
 	</insert>
 	
 	<!-- ID, NickName 중복확인하기 -->
-	<select id="overlapId" resultType="String">
+	<!-- <select id="overlapId" resultType="String">
 		SELECT ID
 		FROM OISONE_MEMBER
 		WHERE ID = #{id}
@@ -66,7 +66,51 @@
 		SELECT NICKNAME
 		FROM OISONE_MEMBER
 		WHERE NICKNAME = #{nickName}
+	</select> -->
+	
+	
+	<!-- 은빈이 유효성검사중 -->
+	
+	<!-- 1. 아이디 중복 유효성 검사 -->
+	<select id="checkOverId" resultType="int" parameterType="String">
+		SELECT COUNT(*)
+		FROM OISONE_MEMBER
+		WHERE ID = #{id}
 	</select>
+	
+	<!-- 2. 이메일 중복 유효성 검사 -->
+	<select id="checkOverEmail" resultType="int" parameterType="String">
+		SELECT COUNT(*)
+		FROM OISONE_MEMBER
+		WHERE EMAIL = #{email}
+	</select>
+	
+	<!-- 3. 닉네임 중복 유효성 검사 -->
+	<select id="checkOverNickName" resultType="int" parameterType="String">
+		SELECT COUNT(*)
+		FROM OISONE_MEMBER
+		WHERE NICKNAME = #{nickName}
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	<!-- 2. 로그인 -->
 	<select id="login" resultMap="member">
@@ -77,7 +121,7 @@
 			, TO_CHAR(JOIN_DATE, 'YYYY-MM-DD') AS JOIN_DATE
 			, NONPEOPLE_TICKET
 			, MY_CINEMA
-			, TO_CHAR(BIRTHDAY, 'YYYY-MM-DD') AS BIRTHDAY
+			, TO_CHAR(BIRTHDAY, 'YYYYMMDD') AS BIRTHDAY
 			, GENDER
 			, TELL
 			, EMAIL
@@ -137,7 +181,7 @@
 			, PW
 			, NAME
 			, NICKNAME
-			, TO_CHAR(BIRTHDAY, 'YYYY-MM-DD') AS BIRTHDAY
+			, TO_CHAR(BIRTHDAY, 'YYYYMMDD') AS BIRTHDAY
 			, GENDER
 			, TELL
 			, EMAIL
@@ -161,7 +205,6 @@
 		  , GENDER = #{gender}
 		  , TELL = #{tell}
 		  , EMAIL = #{email}
-		  , MARKETING_AGREE = #{marketingAgree}
 		  , NONPEOPLE_TICKET = #{nonpeopleTicket}
 		  , MY_CINEMA = #{myCinema}
 		 WHERE ID = #{id}

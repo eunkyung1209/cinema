@@ -20,23 +20,59 @@ public class MemberServiceImpl implements MemberService {
 		sqlSession.insert("memberMapper.join", memberVO);
 	}
 	
-	//1-1) 아이디 체크
+	/*
+	 * //1-1) 아이디 체크
+	 * 
+	 * @Override public boolean overlapId(String id) { String result =
+	 * sqlSession.selectOne("memberMapper.overlapId", id); //result != null : 가입 Y
+	 * -> return true; //result == null : 가입 N -> return false; return result ==
+	 * null ? false : true; }
+	 * 
+	 * //1-2) 닉네임 체크
+	 * 
+	 * @Override public boolean overlapNick(String nickName) { String result =
+	 * sqlSession.selectOne("memberMapper.overlapNick", nickName); //result != null
+	 * : 가입 Y -> return true; //result == null : 가입 N -> return false; return result
+	 * == null ? false : true; }
+	 */
+	
+	
+	
+	
+	
+	//은빈이 유효성 검사중
+	
+	//아이디 중복체크
 	@Override
-	public boolean overlapId(String id) {
-		String result = sqlSession.selectOne("memberMapper.overlapId", id);
-		//result != null : 가입 Y -> return true;
-		//result == null : 가입 N -> return false;
-		return result == null ? false : true;
+	public int checkOverId(String id) {
+		return sqlSession.selectOne("memberMapper.checkOverId", id);
+		
+	}
+	//아이디 중복체크
+	@Override
+	public int checkOverEmail(String email) {
+		return sqlSession.selectOne("memberMapper.checkOverEmail", email);
+	}
+	//아이디 중복체크
+	@Override
+	public int checkOverNickName(String nickName) {
+		return sqlSession.selectOne("memberMapper.checkOverNickName", nickName);
 	}
 	
-	//1-2) 닉네임 체크
-	@Override
-	public boolean overlapNick(String nickName) {
-		String result = sqlSession.selectOne("memberMapper.overlapNick", nickName);
-		//result != null : 가입 Y -> return true;
-		//result == null : 가입 N -> return false;
-		return result == null ? false : true;
-	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//2. 로그인
 	@Override
@@ -76,7 +112,11 @@ public class MemberServiceImpl implements MemberService {
 		sqlSession.delete("memberMapper.deleteMember", id);
 		
 	}
-	
+
+
+
+
+
 
 
 	

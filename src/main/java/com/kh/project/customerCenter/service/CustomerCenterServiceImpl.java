@@ -99,6 +99,18 @@ public class CustomerCenterServiceImpl implements CustomerCenterService {
 		sqlSession.delete("customerCenterMapper.deleteCustomer", customerCode);
 		
 	}
+
+	//댓글 삭제
+	@Override
+	public void deleteCustomerReply(String customeReplyCode) {
+		sqlSession.delete("customerCenterMapper.deleteCustomerReply", customeReplyCode);
+	}
+
+	//댓글 수정
+	@Override
+	public void updateCustomerReply(CustomerCenterReplyVO customerCenterReplyVO) {
+		sqlSession.update("customerCenterMapper.updateCustomerReply", customerCenterReplyVO);
+	}
 	
 	
 	

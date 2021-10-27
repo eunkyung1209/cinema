@@ -66,10 +66,21 @@ select {
 <div class="row bodyDiv" >
 	<div class="col-12">
 	
+	<!-- 페이지 머릿말 -->
+		<div class="row justify-content-center">
+			<div class="col-8">
+				<div class="col-3 subjectDiv">
+					<h5>문의글 수정하기</h5>
+				</div>
+			</div>
+		</div>
+		
+		<div style="height: 50px;"></div>
+	
+	
 	<div class="row justify-content-center align-middle">
 		<div class="col-10 " >
 			<div class="col-9 cusBox " >
-			
 				<div>FAQ를 이용하시면 궁금증을 더 빠르게 해결하실 수 있습니다.</div> <br>
 				<div> - 1:1 문의글 답변 운영시간 10:00 ~ 19:00</div> 
 				<div> - 접수 후 48시간 안에 답변 드리겠습니다.</div> 
@@ -114,6 +125,19 @@ select {
 											</td>
 										</tr>
 									</c:if>
+									
+									<tr>
+										<td>글 분류</td>
+										<td>
+											<select name="groupCode" >
+												<option value="GROUP_001" <c:if test="${customerBoard.groupCode eq 'GROUP_001'}"> selected </c:if>>기타</option>
+												<option value="GROUP_002" <c:if test="${customerBoard.groupCode eq 'GROUP_002'}"> selected </c:if>>시설 문의</option>
+												<option value="GROUP_003" <c:if test="${customerBoard.groupCode eq 'GROUP_003'}"> selected </c:if>>영화 문의</option>
+												<option value="GROUP_004" <c:if test="${customerBoard.groupCode eq 'GROUP_004'}"> selected </c:if>>결제 문의</option>
+												<option value="GROUP_005" <c:if test="${customerBoard.groupCode eq 'GROUP_005'}"> selected </c:if>>분실물 문의</option>
+											</select>
+										</td>
+									</tr>
 									<tr>
 										<td >제목 <span class="redStar">*</span></td>
 										<td ><input style="width: 100%;" type="text" name="title" value="${customerBoard.title}" required> </td>

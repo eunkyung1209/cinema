@@ -63,9 +63,9 @@ public class CustomerCenterController {
 		 Iterator<String> inputNames = multi.getFileNames();
 
 		// 첨부될 폴더
-		// 학원 -> 
-		// 집 -> C:\\Users\\YJH\\git\\cinema\\src\\main\\webapp\\resources\\images\\customer\\
-		String uploadPath = "C:\\Users\\kh202-24\\git\\cinema\\src\\main\\webapp\\resources\\images\\customer\\";
+		// 학원 -> C:\\Users\\kh202-24\\git\\cinema\\src\\main\\webapp\\resources\\images\\customer\\
+		// 집 -> 
+		String uploadPath = "C:\\Users\\YJH\\git\\cinema\\src\\main\\webapp\\resources\\images\\customer\\";
 
 		// 모든 첨부파일 정보가 들어갈 공간
 		List<CustomerCenterImgVO> imgList = new ArrayList<>();
@@ -98,7 +98,6 @@ public class CustomerCenterController {
 					  img.setCustomerCode(customerCode);
 					  
 					  imgList.add(img); 
-				  
 				  } 
 		  
 		}
@@ -116,7 +115,6 @@ public class CustomerCenterController {
 				  img.setCustomerCode(customerCode);
 				
 				 imgList.add(img);
-				
 			}
 			
 		 	} catch (IllegalStateException e) {
@@ -240,6 +238,30 @@ public class CustomerCenterController {
 		customerCenterService.deleteCustomer(customerCode);	
 		
 		return "redirect:/customer/goCustomer";
+	}
+	
+	//댓글 삭제
+	@GetMapping("/deleteCustomerReply")
+	private String deleteCustomerReply(String customeReplyCode, String customerCode, Model model) {
+		
+		customerCenterService.deleteCustomerReply(customeReplyCode);
+		
+		//상세보기 페이지 코드 넘겨주기
+		model.addAttribute("customerCode", customerCode);
+		
+		return "redirect:/customer/selectCustomerBoardDetail";
+	}
+	
+	//댓글 수정
+	@PostMapping("updateReply")
+	private String updateCustomerReply(Model model, CustomerCenterReplyVO customerCenterReplyVO) {
+		
+		customerCenterService.updateCustomerReply(customerCenterReplyVO);
+		
+		//상세보기 페이지 코드 넘겨주기
+		model.addAttribute("customerCode", customerCenterReplyVO.getCustomerCode());
+		
+		return "redirect:/customer/selectCustomerBoardDetail";
 	}
 
 }

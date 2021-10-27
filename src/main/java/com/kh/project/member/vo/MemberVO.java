@@ -19,7 +19,7 @@ public class MemberVO extends PageVO{
 	private String nonpeopleTicket;
 	private String myCinema;
 	
-	private String[] tells;		//전화번호 010, 1111, 2222
+	/* private String[] tells; */		//전화번호 010, 1111, 2222
 	/* private String[] addr; */
 	/*
 	 * private String[] emails; //이메일 qwer, naver.com
@@ -35,13 +35,11 @@ public class MemberVO extends PageVO{
 	 */
 	
 	
-	public String[] getTells() {
-		return tells;
-	}
-	public void setTells(String[] tells) {
-		String tell = tells[0] + "-" + tells[1] + "-" + tells[2];
-		setTell(tell);
-	}
+	/*
+	 * public String[] getTells() { return tells; } public void setTells(String[]
+	 * tells) { String tell = tells[0] + "-" + tells[1] + "-" + tells[2];
+	 * setTell(tell); }
+	 */
 	/*
 	 * public String[] getEmails() { return emails; } public void setEmails(String[]
 	 * emails) { String email = emails[0] + "@" + emails[1]; setEmail(email); }
