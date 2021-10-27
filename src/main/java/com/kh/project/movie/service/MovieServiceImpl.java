@@ -18,32 +18,38 @@ public class MovieServiceImpl implements MovieService {
 	
 	//영화 목록 조회 - 메인화면, 영화목록
 	@Override
-	public List<MovieVO> selectMovieList() {
-		return sqlSession.selectList("movieMapper.selectMovieList");
+	public List<MovieVO> selectMovieList(MovieVO movieVO) {
+		return sqlSession.selectList("movieMapper.selectMovieList", movieVO);
 	}
 	
 	//영화 상세 조회
 	@Override
-	public MovieVO selectDetailMovie(String mvCode) {
-		return sqlSession.selectOne("movieMapper.selectDetailMovie", mvCode);
+	public MovieVO selectDetailMovie(MovieVO movieVO) {
+		return sqlSession.selectOne("movieMapper.selectDetailMovie", movieVO);
 	}
 	
 	//댓글 목록 조회
 	@Override
-	public List<MovieReplyVO> selectReplyList(String mvCode) {
-		return sqlSession.selectList("movieMapper.selectReplyList", mvCode);
+	public List<MovieReplyVO> selectReplyList(MovieVO movieVO) {
+		return sqlSession.selectList("movieMapper.selectReplyList", movieVO);
 	}
 	
 	//영화 목록 조회 - 관리자
 	@Override
-	public List<MovieVO> selectAdminMovieList() {
-		return sqlSession.selectList("movieMapper.selectAdminMovieList");
+	public List<MovieVO> selectAdminMovieList(MovieVO movieVO) {
+		return sqlSession.selectList("movieMapper.selectAdminMovieList", movieVO);
+	}
+	
+	//영화 데이터 개수 조회
+	@Override
+	public int selectMovieCnt(MovieVO movieVO) {
+		return sqlSession.selectOne("movieMapper.selectMovieCnt", movieVO);
 	}
 	
 	//영화 삭제
 	@Override
-	public void deleteMovie(String mvCode) {
-		sqlSession.delete("movieMapper.deleteMovie", mvCode);
+	public void deleteMovie(MovieVO movieVO) {
+		sqlSession.delete("movieMapper.deleteMovie", movieVO);
 	}
 	
 	//다음 MV_CODE를 조회
@@ -78,8 +84,14 @@ public class MovieServiceImpl implements MovieService {
 	
 	//영화 평점 수정
 	@Override
-	public void updateGrade(String mvCode) {
-		sqlSession.update("movieMapper.updateGrade", mvCode);
+	public void updateGrade(MovieReplyVO movieReplyVO) {
+		sqlSession.update("movieMapper.updateGrade", movieReplyVO);
+	}
+	
+	//영화 정보 수정
+	@Override
+	public void updateMovie(MovieVO movieVO) {
+		sqlSession.update("movieMapper.updateMovie", movieVO);
 	}
 	
 }

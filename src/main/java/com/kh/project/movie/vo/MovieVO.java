@@ -1,7 +1,9 @@
 package com.kh.project.movie.vo;
 
+import com.kh.project.common.vo.PageVO;
+
 //영화
-public class MovieVO {
+public class MovieVO extends PageVO {
 	private String mvCode;
 	private String title;
 	private String director;

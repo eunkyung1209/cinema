@@ -10,12 +10,9 @@
 <style type="text/css">
 /* 목록조회 페이지 폼 */
 
-/* 검색박스 폼 */
-.search_box{
-	padding: 22px;
-	border: 1px solid #e0e0e0;
-	border-radius: 0.4em;
-	background-color:#f2f2f2;
+/* 검색 폼 */
+.searchForm{
+	text-align: right;
 }
 
 /*검색 버튼 기본폼 */
@@ -33,24 +30,8 @@
 }
 
 /* 검색창 폼 */
-.inputSearch_form{
-   font-size: 14px;
-   border-radius: 4px;
-   border: 1px solid #e0e0e0;
-   width: 600px;
-}
-.inputSearch_form:focus{
-   border: 2px solid #c9c9c8;
-}
-
-/* 셀렉트박스 폼 */
-.selectBox_from{
-	font-size: 14px;
-	width: 110px;
-}
-.search_form{
-	background-color: #e0e0e0;
-	text-align:center;
+.searchForm{
+	text-align: right;
 }
 
 /* 테이블 폼 */
@@ -93,12 +74,23 @@ a:hover{
 					<h5>영화 관리</h5>
 				</div>
 			</div>
-			<div class="row mb-3">
+			<div class="row mb-3"><!-- 등록버튼(좌) / 검색폼(우) -->
 				<div class="col">
-					<input type="button" class="btn btn-dark btn-sm" value="영화 등록" onclick="location.href='/admin/goInsertMovie';">
+					<input type="button" class="common_btn" value="영화 등록" onclick="location.href='/admin/goInsertMovie';">
+				</div>
+				<div class="col searchForm">
+					<form action="/movie/movieList" method="post">
+						<select class="selectBox_from" name="searchKeyword">
+							<option value="TITLE" <c:if test="${movieVO.searchKeyword eq 'TITLE'}">selected</c:if>>제목</option>
+							<option value="DIRECTOR" <c:if test="${movieVO.searchKeyword eq 'DIRECTOR'}">selected</c:if>>감독</option>
+							<option value="GENRE" <c:if test="${movieVO.searchKeyword eq 'GENRE'}">selected</c:if>>장르</option>
+						</select>
+						<input type="text" class="inputSearch_form" name="searchValue" <c:if test="${not empty movieVO.searchValue}">value="${movieVO.searchValue }"</c:if>>
+						<input class="common_btn" type="submit" value="검색">
+					</form>
 				</div>
 			</div>
-			<div class="row justify-content-center">
+			<div class="row mb-3 justify-content-center"><!-- 영화 목록 테이블 -->
 				<div class="col">
 					<table class="board_list">
 						<colgroup>
@@ -125,12 +117,29 @@ a:hover{
 									<td>${movieInfo.genre }</td>
 									<td>${movieInfo.openDate }</td>
 									<td>
-										<input type="button" class="btn btn-dark btn-sm" value="삭 제" onclick="deleteConfirm('${movieInfo.mvCode }');">
+										<input type="button" class="common_btn" value="삭 제" onclick="deleteConfirm('${movieInfo.mvCode }');">
 									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
+				</div>
+			</div>
+			<div class="row"><!-- 페이징 -->
+				<div class="col" >
+					<ul class="pagination justify-content-center">
+						<li class="<c:if test="${!movieInfo.prev }">disabled</c:if>">
+							<a href="/admin/movieManage?nowPage=${movieInfo.beginPage - 1 }">&nbsp;&nbsp; &lt; &nbsp;&nbsp;</a>
+						</li>
+						<c:forEach begin="${movieInfo.beginPage }" end="${movieInfo.endPage }" var="pageNumber">
+							<li class="<c:if test="${movieInfo.nowPage eq pageNumber }">active</c:if>" aria-current="page">
+					     		<a href="/admin/movieManage?nowPage=${pageNumber }&searchKeyword=${movieInfo.searchKeyword}&searchValue=${movieInfo.searchValue}" >${pageNumber }</a>
+							</li>
+						</c:forEach>
+						<li class="<c:if test="${!movieInfo.next }">disabled</c:if>">
+							<a href="/admin/movieManage?nowPage=${movieInfo.endPage + 1 }">&nbsp;&nbsp; &gt; &nbsp;&nbsp;</a>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>

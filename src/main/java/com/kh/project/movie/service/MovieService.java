@@ -9,19 +9,22 @@ import com.kh.project.movie.vo.MovieVO;
 public interface MovieService {
 	
 	//영화 목록 조회 - 메인화면, 영화목록
-	List<MovieVO> selectMovieList();
+	List<MovieVO> selectMovieList(MovieVO movieVO);
 	
-	//영화 상세 조회
-	MovieVO selectDetailMovie(String mvCode);
+	//영화 상세 조회 - String mvCode
+	MovieVO selectDetailMovie(MovieVO movieVO);
 	
-	//댓글 목록 조회
-	List<MovieReplyVO> selectReplyList(String mvCode);
+	//댓글 목록 조회 - String mvCode
+	List<MovieReplyVO> selectReplyList(MovieVO movieVO);
 	
 	//영화 목록 조회 - 관리자
-	List<MovieVO> selectAdminMovieList();
+	List<MovieVO> selectAdminMovieList(MovieVO movieVO);
 	
-	//영화 삭제
-	void deleteMovie(String mvCode);
+	//영화 데이터 개수 조회
+	int selectMovieCnt(MovieVO movieVO);
+	
+	//영화 삭제 - String mvCode
+	void deleteMovie(MovieVO movieVO);
 	
 	//다음 MV_CODE를 조회
 	String selectNextMovieCode();
@@ -38,7 +41,10 @@ public interface MovieService {
 	//댓글 등록
 	void insertReply(MovieReplyVO movieReplyVO);
 	
-	//영화 평점 수정
-	void updateGrade(String mvCode);
+	//영화 평점 수정 - String mvCode
+	void updateGrade(MovieReplyVO movieReplyVO);
+	
+	//영화 정보 수정
+	void updateMovie(MovieVO movieVO);
 	
 }

@@ -102,7 +102,7 @@ input[type="number"]{
 							<div>
 								장르 : ${movieInfo.genre }
 								&nbsp; | &nbsp;
-								댓글 평점 : <img src="/resources/images/main/메인서브-별점.PNG" class="star">${movieInfo.grade }
+								댓글 평점 : <img src="/resources/images/main/메인서브-별점.PNG" class="star"> ${movieInfo.grade }
 							</div>
 							<div><hr></div>
 							<div>감독 : ${movieInfo.director }</div>
@@ -196,7 +196,7 @@ input[type="number"]{
 												${replyInfo.writer } &nbsp;&nbsp;|&nbsp;&nbsp; 
 												평점 : <img src="/resources/images/main/메인서브-별점.PNG" class="star"> ${replyInfo.grade }
 											</div>
-											<div class="createDate">${replyInfo.createDate }</div>
+											<div class="createDate mb-1">${replyInfo.createDate }</div>
 											<div class="replyContent">${replyInfo.mvReplyContent }</div>
 										</td>
 										<!-- 본인 또는 관리자 -->
@@ -206,8 +206,8 @@ input[type="number"]{
 										           	<span class="nav-link dropdown-toggle" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 										            </span>
 										            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-										              	<li><a class="dropdown-item" href="/movie/updateReply?mvCode=${replyInfo.mvCode}">댓글 수정</a></li>
-										              	<li><a class="dropdown-item" href="/movie/deleteReply?mvCode=${replyInfo.mvCode}">댓글 삭제</a></li>
+										              	<li><a class="dropdown-item" href="/movie/updateReply?mvReplyCode=${replyInfo.mvReplyCode}">댓글 수정</a></li>
+										              	<li><a class="dropdown-item" href="/movie/deleteReply?mvReplyCode=${replyInfo.mvReplyCode}">댓글 삭제</a></li>
 										            </ul>
 										     	</li>
 											</c:if>

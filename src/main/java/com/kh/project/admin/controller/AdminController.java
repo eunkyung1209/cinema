@@ -36,16 +36,21 @@ public class AdminController {
 	
 	//영화 관리 페이지로 이동
 	@GetMapping("/movieManage")
-	public String movieManage(Model model) {
-		model.addAttribute("movieList", movieService.selectAdminMovieList());
+	public String movieManage(Model model, MovieVO movieVO) {
+		//페이징 처리
+		movieVO.setTotalCnt(movieService.selectMovieCnt(movieVO));
+		movieVO.setPageInfo();
+		//영화 목록 조회
+		model.addAttribute("movieList", movieService.selectAdminMovieList(movieVO));
+		System.out.println(movieVO.getNowPage());
 		
 		return "admin/movie_manage";
 	}
 	
 	//영화 삭제
 	@GetMapping("/deleteMovie")
-	public String deleteMovie(String mvCode) {
-		movieService.deleteMovie(mvCode);
+	public String deleteMovie(MovieVO movieVO) {
+		movieService.deleteMovie(movieVO);
 		
 		return "redirect:/admin/movieManage";
 	}
@@ -107,30 +112,33 @@ public class AdminController {
 	}
 	
 	//영화 상세보기
-	@PostMapping("/movieDetail")
-	public String movieDetail(Model model, String mvCode) {
+	@GetMapping("/movieDetail")
+	public String movieDetail(Model model, MovieVO movieVO) {
 		//영화 상세 조회
-		model.addAttribute("movieInfo", movieService.selectDetailMovie(mvCode));
+		model.addAttribute("movieInfo", movieService.selectDetailMovie(movieVO));
 		
 		return "admin/movie_detail";
 	}
 	
 	//영화 정보 수정 페이지로 이동
 	@GetMapping("/goUpdateMovie")
-	public String goUpdateMovie(Model model, String mvCode) {
+	public String goUpdateMovie(Model model, MovieVO movieVO) {
 		//영화 상세 정보
-		model.addAttribute("movieInfo", movieService.selectDetailMovie(mvCode));
+		model.addAttribute("movieInfo", movieService.selectDetailMovie(movieVO));
 		
 		return "admin/update_movie";
 	}
 	
 	//영화 정보 수정
 	@PostMapping("/updateMovie")
-	public String updateMovie(String mvCode) {
+	public String updateMovie(MovieVO movieVO, Model model) {
 		//정보 수정
+		movieService.updateMovie(movieVO);
 		
+		//영화 코드
+		model.addAttribute("mvCode", movieVO.getMvCode());
 		
-		return "";
+		return "redirect:/admin/movieDetail";
 	}
 	
 	//1.회원 목록 조회

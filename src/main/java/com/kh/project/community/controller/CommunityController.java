@@ -43,20 +43,34 @@ public class CommunityController {
 	@PostMapping("/insertBoard")
 	public String insertBoard(CommunityVO communityVO) {
 		boardService.insertBoard(communityVO);
-		// 비밀번호 등록
-		// 파일첨부
+		
 		return "redirect:/board/boardList";
 	}
 	//글 상세정보 ->게시글등록된걸 누르면 게시글 작성된화면 보여주기
 	@GetMapping("/boardDetail")
-	public String selectboardDetail(Model model,CommunityVO communityVO) {
-		model.addAttribute("boardDetail", boardService.selectboardDetail(communityVO));
-		model.addAttribute("communityReplyList", boardService.selectboardReply(communityVO));
-		
+	public String selectboardDetail(Model model,CommunityVO communityVO,CommunityReplyVO communityReplyVO) {
+		//게시글 목록조회
+		model.addAttribute("communityVO",boardService.selectBoardDetail(communityVO));
+		// 댓글 목록조회
+		model.addAttribute("communityReplyVO",boardService.selectReply(communityReplyVO));
+	
 		return "community/community_detail";
 	}
 	
-	// 게시글 삭제-> 작성자만 삭제 버튼 보이게하고싶음
+	//게시글 상세보기화면
+		// 댓글 등록// 
+		@PostMapping("/insertReply")
+		public String insertReply(CommunityReplyVO communityReplyVO, Model model, CommunityVO communityVO) {
+			//댓글등록
+			boardService.insertReply(communityReplyVO);
+			//게시글 목록조회
+			model.addAttribute("commuCode",communityReplyVO.getCommuCode());
+			// 비밀번호 등록
+			// 파일첨부
+			return "redirect:/board/boardDetail";
+		}
+	
+	// 게시글 삭제-> 작성자만 삭제 버튼 보이게하고싶
 	@GetMapping("/deleteBoard")
 	public String deleteBoard(CommunityVO communityVO ) {
 		boardService.deleteBoard(communityVO);
@@ -66,12 +80,12 @@ public class CommunityController {
 	
 	// 게시글 수정 -> 작성자만 수정 버튼 보이게하고싶음
 	@GetMapping("/updateBoard")
-	public String updateBoard(CommunityVO communityVO) {
+	public String updateBoard(CommunityVO communityVO, Model model) {
 		boardService.updateBoard(communityVO);
-
+		model.addAttribute("communityVO",boardService.selectBoardDetail(communityVO));
 		return "redirect:/board/boardDetail";
 	}
-	
+	//댓글조회
 	
 	
 

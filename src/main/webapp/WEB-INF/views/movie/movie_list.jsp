@@ -7,12 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.subjectDiv{
-	border-bottom: 2px solid #dddddd;
-}
 .star{
 	width: 17px;
 	height: 17px;
+}
+.searchForm{
+	text-align: right;
 }
 </style>
 </head>
@@ -20,15 +20,28 @@
 <div class="row justify-content-center">
 	<div class="col"><!-- 왼쪽 여백 --></div>
 	<div class="col-8">
-		<div class="row mb-5">
+		<div class="row mb-2">
 			<div class="col-3 subjectDiv">
 				<h5>전체 영화</h5>
+			</div>
+		</div>
+		<div  class="row mb-3 searchForm"><!-- 검색폼 -->
+			<div class="col">
+				<form action="/movie/movieList" method="post">
+					<select class="selectBox_from" name="searchKeyword">
+						<option value="TITLE" <c:if test="${movieVO.searchKeyword eq 'TITLE'}">selected</c:if>>제목</option>
+						<option value="DIRECTOR" <c:if test="${movieVO.searchKeyword eq 'DIRECTOR'}">selected</c:if>>감독</option>
+						<option value="GENRE" <c:if test="${movieVO.searchKeyword eq 'GENRE'}">selected</c:if>>장르</option>
+					</select>
+					<input type="text" class="inputSearch_form" name="searchValue" <c:if test="${not empty movieVO.searchValue}">value="${movieVO.searchValue }"</c:if>>
+					<input class="common_btn" type="submit" value="검색">
+				</form>
 			</div>
 		</div>
 		<div class="row">
 			<!-- 영화 목록 조회 -->
 			<c:forEach items="${movieList }" var="movieInfo">
-				<div class="col-2">
+				<div class="col-3">
 					<div class="card mb-3">
 						<a href="/movie/movieDetail?mvCode=${movieInfo.mvCode }"><img src="/resources/images/movie/${movieInfo.attachedImgName }" class="card-img-top"></a>
 						<div class="card-body">
@@ -36,7 +49,7 @@
 							<p class="card-text">
 								${movieInfo.genre } 
 								&nbsp;|&nbsp; 
-								<img src="/resources/images/main/메인서브-별점.PNG" class="star">${movieInfo.grade }
+								<img src="/resources/images/main/메인서브-별점.PNG" class="star"> ${movieInfo.grade }
 							</p>
 						</div>
 					</div>

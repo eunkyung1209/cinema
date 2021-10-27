@@ -15,50 +15,58 @@ public class CommunityServiceImpl implements CommunityService {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	@Override
+	// 게시글 목록화면
 	public List<CommunityVO> selectBoardList() {
 		return sqlSession.selectList("communityMapper.selectBoardList");
 	}
 
-	@Override
+	//게시글 등록화면
 	public void insertBoard(CommunityVO communityVO) {
 		sqlSession.insert("communityMapper.insertBoard",communityVO);
 	}
 
-	@Override
+	//게시글 삭제
 	public void deleteBoard(CommunityVO communityVO) {
 		sqlSession.delete("communityMapper.deleteBoard",communityVO);
 		
 	}
 
-	@Override
+	// 게시글 수정
 	public void updateBoard(CommunityVO communityVO) {
 		sqlSession.update("communityMapper.updateBoard",communityVO);
 		
 	}
 
-	@Override
-	public void selectboardDetail(CommunityVO communityVO) {
-		sqlSession.selectOne("communityMapper.selectboardDetail",communityVO);
+	// 게시글 상세보기
+	public CommunityVO selectBoardDetail(CommunityVO communityVO) {
+		return sqlSession.selectOne("communityMapper.selectBoardDetail",communityVO);
 	}
 
-	@Override
+	// 게시글 조회수
 	public void updateReadcnt(CommunityVO communityVO) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	// 댓글목록 조회
 	public List<CommunityReplyVO> selectReply(CommunityReplyVO communityReplyVO) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sqlSession.selectList("communityMapper.selectReply",communityReplyVO);
 	}
 
-	@Override
+	// 페이징 처리
 	public int selectCommuPage(CommunityVO communityVO) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	// 댓글등록
+	public void insertReply(CommunityReplyVO communityReplyVO) {
+		sqlSession.insert("communityMapper.insertReply",communityReplyVO);
+		
+	}
+
+
 
 	
 
