@@ -22,7 +22,7 @@
 		<result column="CREATE_DATE"    property="createDate"/>
 		<result column="WRITER"         property="writer"/>
 		<result column="CONTENT"        property="content"/>
-		
+		<result column="COMMU_CODE"     property="commuCode"/>
 		
 	</resultMap>
 	
@@ -63,9 +63,9 @@ SELECT COMMU_CODE
     , TITLE
     , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
     , CONTENT
-   FROM OISONE_COMMUNITY
-   
+   FROM OISONE_COMMUNITY   
 WHERE COMMU_CODE = #{commuCode}
+
 </select>
 
 <!--댓글 조회  -->
@@ -79,6 +79,7 @@ FROM OISONE_COMMUNITY_REPLY
 WHERE COMMU_CODE =#{commuCode}
 </select>
 
+
 <!--댓글 등록  -->
 <insert id="insertReply">
 INSERT INTO OISONE_COMMUNITY_REPLY(
@@ -87,18 +88,47 @@ INSERT INTO OISONE_COMMUNITY_REPLY(
 	, CONTENT
 	, COMMU_CODE
 )VALUES(
-	(SELECT 'CR_'||TO_CHAR((SYSDATE), 'YYMMDD')||'_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(COMMU_REPLY_CODE,11,3))), 0)+1 , 3, 0) 
-    FROM OISONE_COMMUNITY_REPLY)
+	(SELECT 'CR_'||TO_CHAR((SYSDATE), 'YYMMDD')||'_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(COMMU_REPLY_CODE,11,3))), 0)+1 , 3, 0) FROM OISONE_COMMUNITY_REPLY)
 	 , #{writer}
 	 , #{content}
 	 , #{commuCode}
- )
+)
 
 </insert>
 
-<!--댓글 삭제  -->
+<!--커뮤니티 게시글 삭제  -->
+<delete id="deleteBoard">
+DELETE 
+FROM OISONE_COMMUNITY
+WHERE COMMU_CODE =#{commuCode}
+
+</delete>
+
+<!--커뮤니티 게시글 수정  -->
+<update id="updateBoard">
+UPDATE OISONE_COMMUNITY
+	SET 
+	TITLE =#{title}
+		, CONTENT =#{content}
+		, CREATE_DATE = SYSDATE
+WHERE COMMU_CODE =#{commuCode}
+</update>
 
 <!--댓글 수정  -->
+<update id="updateReply">
+UPDATE OISONE_COMMUNITY_REPLY
+	SET
+	TITLE =#{title}
+	, CONTENT =#{content}
+WHERE COMMU_REPLY_CODE = #{commuReplyCode}
+</update>
+
+<!--댓글 삭제  -->
+<delete id="deleteReply">
+DELETE OISONE_COMMUNITY_REPLY
+WHERE  COMMU_REPLY_CODE =#{commuReplyCode}
+
+</delete>
 
 
 </mapper>

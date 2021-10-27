@@ -63,30 +63,47 @@ public class CommunityController {
 		public String insertReply(CommunityReplyVO communityReplyVO, Model model, CommunityVO communityVO) {
 			//댓글등록
 			boardService.insertReply(communityReplyVO);
-			//게시글 목록조회
-			model.addAttribute("commuCode",communityReplyVO.getCommuCode());
-			// 비밀번호 등록
-			// 파일첨부
+			model.addAttribute("communityVO",boardService.selectBoardDetail(communityVO));
+			// 댓글 목록조회
+			// 게시글등록 데이터 넘겨와야함
+			
 			return "redirect:/board/boardDetail";
 		}
 	
 	// 게시글 삭제-> 작성자만 삭제 버튼 보이게하고싶
 	@GetMapping("/deleteBoard")
 	public String deleteBoard(CommunityVO communityVO ) {
+		
 		boardService.deleteBoard(communityVO);
 		
 		return "redirect:/board/boardList";
 	}
 	
 	// 게시글 수정 -> 작성자만 수정 버튼 보이게하고싶음
+	@GetMapping("/goUpdateBoard")
+	public String goUpdateBoard(CommunityVO communityVO, Model model) {
+		
+		
+		model.addAttribute("communityVO",boardService.selectBoardDetail(communityVO));
+		
+		return "board/community_updateBoard";
+	}
+	
+	// 게시글 수정 -> 작성자만 수정 버튼 보이게하고싶음
 	@GetMapping("/updateBoard")
 	public String updateBoard(CommunityVO communityVO, Model model) {
+		
 		boardService.updateBoard(communityVO);
+		
 		model.addAttribute("communityVO",boardService.selectBoardDetail(communityVO));
-		return "redirect:/board/boardDetail";
+		
+		return "redirect:/board/boardWriterForm";
 	}
-	//댓글조회
 	
+	// 댓글 수정
+	
+	
+	//댓글 삭제
 	
 
 	

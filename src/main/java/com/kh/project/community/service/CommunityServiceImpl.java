@@ -44,7 +44,7 @@ public class CommunityServiceImpl implements CommunityService {
 
 	// 게시글 조회수
 	public void updateReadcnt(CommunityVO communityVO) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -56,7 +56,7 @@ public class CommunityServiceImpl implements CommunityService {
 
 	// 페이징 처리
 	public int selectCommuPage(CommunityVO communityVO) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
