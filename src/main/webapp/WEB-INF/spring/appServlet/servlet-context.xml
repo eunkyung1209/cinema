@@ -39,13 +39,14 @@
 	<context:component-scan base-package="com.kh.project.*.controller" />
 	
 	<beans:bean id="Interceptor" class="com.kh.project.common.util.Intercepter"></beans:bean>
-	<interceptors>
-		<interceptor>
-			<mapping path="/admin/movieManage"/>
-			<beans:ref bean="Interceptor"/>
-		</interceptor>
+   	<interceptors>
+      <interceptor>
+         <mapping path="/admin/movieManage"/>
+         <beans:ref bean="Interceptor"/>
+      </interceptor>
   </interceptors>
-	
-	<context:component-scan base-package="com.kh.project.*.controller"></context:component-scan>
-	
+   
+   <context:component-scan base-package="com.kh.project.*.controller"></context:component-scan>
+   
 </beans:beans>
+	
