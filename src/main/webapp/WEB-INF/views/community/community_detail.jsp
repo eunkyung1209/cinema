@@ -79,7 +79,7 @@ background-color: #f2f2f2
 							<li class="nav-item dropdown">
 					           	<span class="nav-link dropdown-toggle" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></span>
 					            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-					              	<li><a class="dropdown-item" href="/board/updateBoard?commuCode=${communityVO.commuCode }">글 수정</a></li>
+					              	<li><a class="dropdown-item" href="/board/goUpdateBoard?commuCode=${communityVO.commuCode }">글 수정</a></li>
 					              	<li><a class="dropdown-item" href="/board/deleteBoard?commuCode=${communityVO.commuCode }">글 삭제</a></li>
 					            </ul>
 					     	</li>
@@ -101,40 +101,31 @@ background-color: #f2f2f2
 		
 		
 		</div>
-
-		<p>
-		
 			<c:if test="${ not empty sessionScope.loginInfo}"></c:if>
 			<div>
 				<form action="/insertReply" method="post">
-				<input type="hidden" name="commuCode " value="${communityVO.commuCode }">
-				<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' or sessionScope.loginInfo.nickName eq communityVO.writer}">
-					<textarea rows="3" cols="30" name="content"></textarea>
-					<input type="submit" value="등록" >
-				</c:if>
+					<input type="hidden" name="commuCode " value="${communityVO.commuCode }">
+						<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' or sessionScope.loginInfo.nickName eq communityVO.writer}">
+							<textarea rows="3" cols="30" name="content"></textarea>
+							<input type="submit" value="등록" >
+						</c:if>
 				</form> 
 			</div>
 				<c:forEach items="${replyList }" var="communityReplyVO">
-					<div class="replyDiv">
+					<div class="replyDiv"  >
 						<div class="replyWriter">${communityReplyVO .writer }</div>
 						<div class="replyDate">${communityReplyVO.createDate }</div>
 						<div>${communityReplyVO.content }</div>
-					<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' or sessionScope.loginInfo.nickName eq communityVO.writer}">
-						<div><input type="button" value="삭제" onclick="location.href='deleteReply.re?replyNum=${communityReplyVO.replyNum}&boardNum=${communityVO.boardNum }';"></div>
-					
-					</c:if>
+							<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' or sessionScope.loginInfo.nickName eq communityVO.writer}">
+								<div>
+								<input type="button" value="삭제" onclick="location.href='deleteReply.re?replyNum=${communityReplyVO.replyNum}&boardNum=${communityVO.boardNum }';">
+								</div>
+							
+							</c:if>
 					</div>
 				</c:forEach>
 
 
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		
@@ -154,6 +145,5 @@ background-color: #f2f2f2
 		
 	
 	</div>
-</div>
 </body>
 </html>

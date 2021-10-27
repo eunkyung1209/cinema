@@ -117,7 +117,7 @@ select {
 									</tr>
 									<tr>
 										<td>내용 <span class="redStar">*</span></td>
-										<td><textarea style="width: 100%; height:300px;  padding-top: 5px; "  name="content" required></textarea> </td>
+										<td><textarea style="width: 100%; height:300px;  padding-top: 5px; "  name="content" required>${communityVO.content }</textarea> </td>
 									</tr>
 									<tr>
 										<td>비밀번호 <span class="redStar">*</span></td>

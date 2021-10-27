@@ -79,14 +79,14 @@ public class CommunityController {
 		return "redirect:/board/boardList";
 	}
 	
-	// 게시글 수정 -> 작성자만 수정 버튼 보이게하고싶음
+	// 게시글 수정폼
 	@GetMapping("/goUpdateBoard")
 	public String goUpdateBoard(CommunityVO communityVO, Model model) {
 		
 		
 		model.addAttribute("communityVO",boardService.selectBoardDetail(communityVO));
 		
-		return "board/community_updateBoard";
+		return "community/communityUpdateBoard";
 	}
 	
 	// 게시글 수정 -> 작성자만 수정 버튼 보이게하고싶음
