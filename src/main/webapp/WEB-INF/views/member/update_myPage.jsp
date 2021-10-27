@@ -9,7 +9,12 @@
 
 
 <!-- 스크립트 연결 -->
-<script type="text/javascript" src="/resources/member/js/join.js?ver=3"></script>
+<!-- 스크립트 연결 -->
+<!-- <script type="text/javascript" src="/resources/member/js/join.js?ver=3"></script> -->
+<script src="https://code.jquery.com/jquery-latest.min.js"></script> <!-- 제이쿼리 최신버전 가져오기 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="/resources/member/js/join.js?ver=30"></script>
 
 <style type="text/css">
 
@@ -149,28 +154,21 @@ select {
 								<!-- '필수입력' 복사하여 사용 ->  <span class="redStar">*</span> -->
 								<tbody>
 								
-									<tr style="height: 60px;">
-										<td >아이디<span class="redStar"> 변경불가</span></td>
-										<td >
-											${sessionScope.loginInfo.id }
-										</td>
-									</tr>
-									<tr style="height: 60px;">
-										<td >닉네임<span class="redStar"> 변경불가</span></td>
-										<td >
-											${sessionScope.loginInfo.nickName }
-										</td>
-									</tr>
 									<tr>
-										<td >이름 <span class="redStar">*</span></td>
+										<td ><label for="name">이름</label> <span class="redStar">*</span></td>
 										<td >
-										<input type="text" name="name" class="joinInput1" id="floatingInput" placeholder=" 이름을 입력하세요." value="${sessionScope.loginInfo.name }"required>
+											<input type="text" name="name" id="name" class="joinInput1" placeholder=" name" value="${sessionScope.loginInfo.name }" required>
+											<div class="check_font" id="name_check"></div>
 										</td>
 									</tr>
+									
 									<tr>
-										<td >생년월일 <span class="redStar">*</span></td>
+										<td ><label for="birthday">생년월일</label> <span class="redStar">*</span></td>
 										<td >
-											<input type="date" name="birthday" class="joinInput3" value="${sessionScope.loginInfo.birthday }" required>
+											<input type="text" name="birthday" id="birthday" class="joinInput2" placeholder=" ex) 19450815" value="${sessionScope.loginInfo.birthday }" required>
+
+											<div class="check_font" id="birth_check"></div>
+											
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;성별&nbsp;:&nbsp;
 											<c:if test="${sessionScope.loginInfo.gender eq '남'}">
@@ -184,20 +182,57 @@ select {
 												&nbsp;
 												<input type="radio" name="gender" value="여" checked>여자
 											</c:if>
+											
+											
+										</td>
+									</tr>
+									
+									<tr>
+										<td ><label for="tell">휴대전화</label> <span class="redStar">*</span></td>
+										<td >
+											<input type="text" name="tell"  id="tell" class="joinInput1" placeholder=" ex) 01011112222" value="${sessionScope.loginInfo.tell }" required>
+											
+											<div class="check_font" id="tell_check"></div>
+										</td>
+									</tr>
+									
+									<tr>
+										<td ><label for="id">아이디</label><span class="redStar">*</span></td>
+										<td >
+											<div  id="checkIdDiv">
+												<input type="text" id="id" name="id" class="joinInput1"  placeholder=" ex) eunbin98" value="${sessionScope.loginInfo.id }" required>
+												<!-- <input type="button" class="common_btn2" id="btn2" onclick="checkId();" value="중복확인"> -->
+												
+												<div class="check_font" id="id_check"></div>
+											</div>
 										</td>
 									</tr>
 									<tr>
-										<td >휴대폰 번호 <span class="redStar">*</span></td>
+										<td ><label for="nickName">닉네임</label><span class="redStar">*</span></td>
 										<td >
-											<input type="text" name="tell" class="joinInput1" placeholder=" 010-1111-1111 형식으로 입력하세요." value="${sessionScope.loginInfo.tell }"required>
+											<div  id="checkNickNameDiv">
+												<input type="text" id="nickName" name="nickName" class="joinInput1"  placeholder=" ex) oisone짱 " value="${sessionScope.loginInfo.nickName }" required>
+												<!-- <input type="button" class="common_btn2" id="btn2" onclick="checkId();" value="중복확인"> -->
+												
+												<div class="check_font" id="nickName_check"></div>
+											</div>
 										</td>
 									</tr>
+								
 									<tr>
-										<td >이메일 <span class="redStar">*</span></td>
+										<td ><label for="email">이메일</label><span class="redStar">*</span></td>
 										<td >
-											<input type="text" name="email" class="joinInput1"  id="floatingEmail" placeholder=" aa22@aaa 형식으로 입력하세요." value="${sessionScope.loginInfo.email }" required>
+											<div  id="checkEmailDiv">
+												<input type="text" id="email" name="email" class="joinInput1"  placeholder=" ex) eunbin@naver.com" value="${sessionScope.loginInfo.email }" required>
+												<!-- <input type="button" class="common_btn2" id="btn2" onclick="checkId();" value="중복확인"> -->
+												
+												<div class="check_font" id="email_check"></div>
+
+												
+											</div>
 										</td>
 									</tr>
+
 									<tr>
 										<td >마이시네마 <span class="redStar"></span></td>
 										<td >
@@ -228,6 +263,7 @@ select {
 												&nbsp;&nbsp;*'생년월일+휴대폰번호로'티켓출력
 											</c:if>
 										</td>
+
 									</tr>				
 									
 								</tbody>
