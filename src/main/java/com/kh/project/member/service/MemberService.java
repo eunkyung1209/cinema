@@ -10,10 +10,19 @@ public interface MemberService {
 	void join(MemberVO memberVO);
 	
 	//1-1) 아이디 체크
-	boolean overlapId(String id);
+	//boolean overlapId(String id);
 	
 	//1-2) 닉네임 체크
-	boolean overlapNick(String nickName);
+	//boolean overlapNick(String nickName);
+	
+	
+	//유효성 검사중
+	int checkOverId(String id); // 아이디 중복체크
+
+	int checkOverEmail(String email); // 이메일 중복체크
+	
+	int checkOverNickName(String nickName); // 닉네임 중복체크
+	
 	
 	//2. 로그인
 	MemberVO login(MemberVO memberVO);

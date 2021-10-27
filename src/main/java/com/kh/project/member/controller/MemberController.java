@@ -1,5 +1,6 @@
 package com.kh.project.member.controller;
 
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -7,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.project.member.service.MemberService;
@@ -26,27 +29,92 @@ public class MemberController {
 		return "member/join";
 	}
 	
+	/*
+	 * //1)id 중복 체크
+	 * 
+	 * @ResponseBody
+	 * 
+	 * @PostMapping("/checkId") public boolean checkId(String id) { return
+	 * memberService.overlapId(id); }
+	 * 
+	 * //2)닉네임 중복 체크
+	 * 
+	 * @ResponseBody
+	 * 
+	 * @PostMapping("/checkNick") public boolean checkNick(String nickName) { return
+	 * memberService.overlapNick(nickName); }
+	 * 
+	 * //1-1. 회원가입하기
+	 * 
+	 * @PostMapping("/join") public String join(MemberVO memberVO) {
+	 * memberService.join(memberVO);
+	 * 
+	 * return "redirect:/movie/mainPage"; }
+	 */
+	
+	
+	// 유효성 검사중
+	
+	
+	
+	
+	/*
+	 * // 멤버에이작스 작업중
+	 * 
+	 * @ResponseBody
+	 * 
+	 * @PostMapping("/memberAjax") public String memberAjax(MemberVO memberVO) {
+	 * memberService.join(memberVO);
+	 * 
+	 * return "redirect:/movie/mainPage"; }
+	 */
+	
+	/*
+	 * //1)id 중복 체크
+	 * 
+	 * @RequestMapping(value = "/idCheck", method = RequestMethod.GET)
+	 * 
+	 * @ResponseBody public int idCheck(@RequestParam("id") String id) {
+	 * 
+	 * return memberService.checkOverId(id); }
+	 */
+	
+	
+	// 은빈이 유효성 검사중
+	
 	//1)id 중복 체크
+	@RequestMapping("/idCheck")
 	@ResponseBody
-	@PostMapping("/checkId")
-	public boolean checkId(String id) {
-		return memberService.overlapId(id);
+	public int idCheck(@RequestParam("id") String id) {
+		
+		return memberService.checkOverId(id); 
 	}
 	
-	//2)닉네임 중복 체크
+	//2)email 중복 체크
+	@RequestMapping("/emailCheck")
 	@ResponseBody
-	@PostMapping("/checkNick")
-	public boolean checkNick(String nickName) {
-		return memberService.overlapNick(nickName);
-	}	
+	public int emailCheck(@RequestParam("email") String email) {
+		
+		return memberService.checkOverEmail(email);
+	}
+	
+	//3)nickName 중복 체크
+	@RequestMapping("/nickNameCheck")
+	@ResponseBody
+	public int nickNameCheck(@RequestParam("nickName") String nickName) {
+		
+		return memberService.checkOverNickName(nickName);
+	}
 	
 	//1-1. 회원가입하기
 	@PostMapping("/join")
 	public String join(MemberVO memberVO) {
 		memberService.join(memberVO);
 		
-		return "redirect:/movie/mainPage";
+		return "redirect:/movie/mainPage"; 
 	}
+
+
 	
 	//2. 로그인
 	@PostMapping("/login")
