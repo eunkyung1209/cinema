@@ -167,7 +167,6 @@ button:hover{
 										<td >
 											<input type="text" name="birthday" id="birthday" class="joinInput2" placeholder=" ex) 19450815" required>
 
-											<div class="check_font" id="birth_check"></div>
 											
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;성별&nbsp;:&nbsp;
@@ -175,6 +174,7 @@ button:hover{
 											&nbsp;
 											<input type="radio" name="gender" value="여">여자
 											
+											<div class="check_font" id="birth_check"></div>
 											
 										</td>
 									</tr>
