@@ -20,9 +20,14 @@
 	background-color: aqua;
 }
 .container-fluid{
-	width: 90%;
+	/* width: 90%; */
 	margin-top: 20px;
 	margin-bottom: 20px;
+}
+.menuBodyDiv{
+	/* height: 100px; */
+	padding-left: 8%;
+	padding-right: 8%;
 }
 body {
   line-height: 1;
@@ -33,7 +38,7 @@ body {
 </head>
 <body>
 <div class="container-fluid">
-	<div class="row">
+	<div class="row justify-content-center">
 		<div class="col">
 			<tiles:insertAttribute name="menu"/>
 		</div>

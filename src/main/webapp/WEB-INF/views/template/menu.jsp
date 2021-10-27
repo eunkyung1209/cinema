@@ -18,11 +18,11 @@ a{
 	color: gray;
 }
 
-/* .menuBodyDiv{
-	height: 100px;
+.menuBodyDiv{
+	/* height: 100px; */
 	padding-left: 8%;
 	padding-right: 8%;
-} */
+}
 .lineMenuDiv{
 	padding-top: 20px;
 }
@@ -87,8 +87,8 @@ a{
 </style>
 </head>
 <body>
-<div class="menuBodyDiv row">
-	<div class="col-12">
+<div class="menuBodyDiv row justify-content-center">
+	<div class="col">
 		<div class="row">
 			<div class="col-1 lineMenuDiv" >
 				<button  value="-" class="navbar-toggler btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -145,8 +145,8 @@ a{
 				            	MOVIE
 				            </a>
 				            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-				            	<li><a class="dropdown-item" href="/movie/movieList">영화 목록</a></li>
-				            	<li><a class="dropdown-item" href="#">Another action</a></li>
+				            	<li><a class="dropdown-item" href="/movie/movieList">현재상영작</a></li>
+				            	<li><a class="dropdown-item" href="/movie/movieList">상영예정작</a></li>
 				            	<li>
 				                	<hr class="dropdown-divider">
 				              	</li>

@@ -60,6 +60,9 @@ a:hover{
 	color: black;
 	font-weight: bold;
 }
+.disable{
+	color: gray;
+}
 </style>
 </head>
 <body>
@@ -90,7 +93,7 @@ a:hover{
 					</form>
 				</div>
 			</div>
-			<div class="row mb-3 justify-content-center"><!-- 영화 목록 테이블 -->
+			<div class="row mb-5 justify-content-center"><!-- 영화 목록 테이블 -->
 				<div class="col">
 					<table class="board_list">
 						<colgroup>
@@ -125,21 +128,30 @@ a:hover{
 					</table>
 				</div>
 			</div>
-			<div class="row"><!-- 페이징 -->
+<%-- 			<div class="row"><!-- 페이징 -->
 				<div class="col" >
 					<ul class="pagination justify-content-center">
-						<li class="<c:if test="${!movieInfo.prev }">disabled</c:if>">
-							<a href="/admin/movieManage?nowPage=${movieInfo.beginPage - 1 }">&nbsp;&nbsp; &lt; &nbsp;&nbsp;</a>
+						<li class="page-item <c:if test="${!movieVO.prev }">disabled</c:if>">
+							<a class="page-link" href="/admin/movieManage?nowPage=${movieVO.beginPage - 1 }"> &lt; </a>
 						</li>
-						<c:forEach begin="${movieInfo.beginPage }" end="${movieInfo.endPage }" var="pageNumber">
-							<li class="<c:if test="${movieInfo.nowPage eq pageNumber }">active</c:if>" aria-current="page">
-					     		<a href="/admin/movieManage?nowPage=${pageNumber }&searchKeyword=${movieInfo.searchKeyword}&searchValue=${movieInfo.searchValue}" >${pageNumber }</a>
+						<c:forEach begin="${movieVO.beginPage }" end="${movieVO.endPage }" var="pageNumber">
+							<li class="page-item <c:if test="${movieVO.nowPage eq pageNumber }">active</c:if>" aria-current="page">
+					     		<a class="page-link" href="/admin/movieManage?nowPage=${pageNumber }&searchKeyword=${movieVO.searchKeyword}&searchValue=${movieVO.searchValue}" >${pageNumber }</a>
 							</li>
 						</c:forEach>
-						<li class="<c:if test="${!movieInfo.next }">disabled</c:if>">
-							<a href="/admin/movieManage?nowPage=${movieInfo.endPage + 1 }">&nbsp;&nbsp; &gt; &nbsp;&nbsp;</a>
+						<li class="page-item <c:if test="${!movieVO.next }">disabled</c:if>">
+							<a class="page-link" href="/admin/movieManage?nowPage=${movieVO.endPage + 1 }"> &gt; </a>
 						</li>
 					</ul>
+				</div>
+			</div> --%>
+			<div class="row"><!-- 페이징 disabled 걸리게 변경.. -->
+				<div class="col text-center pagingDiv">
+					<a <c:if test="${movieVO.prev }">href="/board/boardList?nowPage=${movieVO.beginPage - 1 }"</c:if> class="disable">&nbsp;&nbsp; &lt; &nbsp;&nbsp;</a>
+					<c:forEach begin="${movieVO.beginPage }" end="${movieVO.endPage }" var="pageNumber">
+						<a href="/board/boardList?nowPage=${pageNumber }" <c:if test="${pageNumber eq movieVO.nowPage }">class="selectedPage"</c:if>>${pageNumber }</a> 
+					</c:forEach>
+					<a <c:if test="${movieVO.prev }">href="/board/boardList?nowPage=${movieVO.endPage + 1 }"</c:if> class="disable">&nbsp;&nbsp; &gt; &nbsp;&nbsp;</a>
 				</div>
 			</div>
 		</div>

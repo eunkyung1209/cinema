@@ -38,17 +38,22 @@ body{
 	width: 25px;
 	height: 25px;
 }
+.number{
+	padding: none;
+	background-color: white;
+	color:red;
+	font-size: 30px;
+	text-align: center;
+	position: absolute;
+	top: 2%;
+	left: 2%;
+}
 .star{
 	width: 17px;
 	height: 17px;
 }
 .card{
 	background-color: black;
-}
-.menuBodyDiv{
-	height: 100px;
-	padding-left: 8%;
-	padding-right: 8%;
 }
 </style>
 </head>
@@ -60,8 +65,8 @@ body{
 	<div class="row logo">
 		<img src="/resources/images/main/로고.png">
 	</div>
-	<div class="row text-right nowTime">
-		<div class="col">
+	<div class="row text-right nowTime justify-content-center">
+		<div class="col-10">
 			<!-- 시간 바뀌게.. -->
 			<img src="/resources/images/main/메인서브-시계.png">
 			${nowDateAndTime } | 10.19 17:01 기준
@@ -69,11 +74,13 @@ body{
 	</div>
 	<div class="row">
 		<!-- 영화 목록 조회 -->
-		<c:forEach items="${movieList }" var="movieInfo">
+		<div class="col-1"></div>
+		<c:forEach items="${movieList }" var="movieInfo" varStatus="status">
 			<div class="col-2">
 				<div class="card mb-3">
 					<a href="/movie/movieDetail?mvCode=${movieInfo.mvCode }"><img src="/resources/images/movie/${movieInfo.attachedImgName }" class="card-img-top"></a>
 					<div class="card-body">
+						<div class="number">${status.count }</div>
 						<h5 class="card-title">${movieInfo.title }</h5>
 						<p class="card-text">
 							${movieInfo.genre } 
@@ -84,6 +91,9 @@ body{
 				</div>
 			</div>
 		</c:forEach>
+		<div class="col-1"></div>
+	</div>
+	<div class="row"><!-- 영화 예시 -->
 		<div class="col-2">
 			<div class="card mb-3">
 				<a href="#"><img src="/resources/images/main/메인서브-01.png" class="card-img-top" alt="..."></a>
