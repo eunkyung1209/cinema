@@ -63,9 +63,9 @@ public class CustomerCenterController {
 		 Iterator<String> inputNames = multi.getFileNames();
 
 		// 첨부될 폴더
-		// 학원 -> C:\\Users\\kh202-24\\git\\cinema\\src\\main\\webapp\\resources\\images\\customer\\
-		// 집 -> 
-		String uploadPath = "C:\\Users\\YJH\\git\\cinema\\src\\main\\webapp\\resources\\images\\customer\\";
+		// 학원 -> 
+		// 집 -> "C:\\Users\\YJH\\git\\cinema\\src\\main\\webapp\\resources\\images\\customer\\";
+		String uploadPath = "C:\\Users\\kh202-24\\git\\cinema\\src\\main\\webapp\\resources\\images\\customer\\";
 
 		// 모든 첨부파일 정보가 들어갈 공간
 		List<CustomerCenterImgVO> imgList = new ArrayList<>();

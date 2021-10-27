@@ -174,7 +174,7 @@ input{
 				<div >
 					<form action="/customer/insertCustomerReply" method="post">
 						<input type="hidden" name="writer" value="${sessionScope.loginInfo.nickName }">
-						<input type="hidden" name="customerCode" id="customerCode" value="${customerBoard.customerCode}">
+						<input type="text" name="customerCode" id="customerCode" value="${customerBoard.customerCode}">
 						
 						<input type="text" name="content" <c:if test="${empty sessionScope.loginInfo }">readonly value="로그인 후 댓글 작성이 가능합니다" </c:if> style="width: 92%;">
 						<input type="submit" value="등록">
