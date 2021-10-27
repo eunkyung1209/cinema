@@ -93,7 +93,7 @@ public class MovieVO extends PageVO {
 		this.mvState = mvState;
 	}
 	public double getGrade() {
-		return grade;
+		return Double.valueOf(String.format("%.2f", grade));
 	}
 	public void setGrade(double grade) {
 		this.grade = grade;

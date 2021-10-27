@@ -124,8 +124,8 @@ a{
 			<div class="col-12">
 				<div class="col-12 menu_menu text-center">
 					<ul>
-					<c:choose>
-						<c:when test="${empty sessionScope.loginInfo or sessionScope.loginInfo.isAdmin eq 'N' }">
+					<%-- <c:choose>
+						<c:when test="${empty sessionScope.loginInfo or sessionScope.loginInfo.isAdmin eq 'N' }"> --%>
 				   		<!-- <li ><a href="#" > <label class="menuMovie" for="menuMovie">MOVIE</label> </a> 
 				   			<input id="menuMovie" type="checkbox">
 				   			<nav id="menuNav">
@@ -145,8 +145,8 @@ a{
 				            	MOVIE
 				            </a>
 				            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-				            	<li><a class="dropdown-item" href="/movie/movieList">현재상영작</a></li>
-				            	<li><a class="dropdown-item" href="/movie/movieList">상영예정작</a></li>
+				            	<li><a class="dropdown-item" href="/movie/movieList?mvState=Y">현재상영작</a></li>
+				            	<li><a class="dropdown-item" href="/movie/movieList?mvState=N">상영예정작</a></li>
 				            	<li>
 				                	<hr class="dropdown-divider">
 				              	</li>
@@ -196,7 +196,23 @@ a{
 				              	<li><a class="dropdown-item" href="#">Something else here</a></li>
 				            </ul>
 				      	</li>
-				        </c:when>
+			      		<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' }">
+			      			<li class="nav-item dropdown">
+					            <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					              	ADMIN
+					            </a>
+					            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+					              	<li><a class="dropdown-item" href="/admin/adminMemberList">회원 관리</a></li>
+					              	<li><a class="dropdown-item" href="/admin/movieManage">영화 관리</a></li>
+					              	<li><a class="dropdown-item" href="#">홈페이지 관리</a></li>
+					              	<li>
+					                	<hr style="color: black;" class="dropdown-divider">
+					              	</li>
+					              	<li><a class="dropdown-item" href="#">기타</a></li>
+					            </ul>
+					       	</li>
+			      		</c:if>
+				        <%-- </c:when>
 						<c:otherwise>
 				          <!-- !!!!!!!!!!! 관리자 페이지!!!!!!!!!!!!! -->
 				        <li class="nav-item dropdown">
@@ -214,7 +230,7 @@ a{
 				            </ul>
 				       	</li>
 				 		</c:otherwise>
-				 	</c:choose>
+				 	</c:choose> --%>
 				 	</ul>
 				 	
 				</div>

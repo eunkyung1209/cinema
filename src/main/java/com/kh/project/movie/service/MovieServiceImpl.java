@@ -16,7 +16,13 @@ public class MovieServiceImpl implements MovieService {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	//영화 목록 조회 - 메인화면, 영화목록
+	//영화 목록 조회 - 메인화면
+	@Override
+	public List<MovieVO> selectMainMovieList() {
+		return sqlSession.selectList("movieMapper.selectMainMovieList");
+	}
+	
+	//영화 목록 조회 - 영화목록
 	@Override
 	public List<MovieVO> selectMovieList(MovieVO movieVO) {
 		return sqlSession.selectList("movieMapper.selectMovieList", movieVO);
@@ -92,6 +98,18 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public void updateMovie(MovieVO movieVO) {
 		sqlSession.update("movieMapper.updateMovie", movieVO);
+	}
+	
+	//댓글 수정
+	@Override
+	public void updateReply(MovieReplyVO movieReplyVO) {
+		sqlSession.update("movieMapper.updateReply", movieReplyVO);
+	}
+	
+	//댓글 삭제
+	@Override
+	public void deleteReply(MovieReplyVO movieReplyVO) {
+		sqlSession.delete("movieMapper.deleteReply", movieReplyVO);
 	}
 	
 }

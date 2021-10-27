@@ -164,14 +164,14 @@ input[type="number"]{
 							<div class="row mb-1">
 								<div class="col">
 									&nbsp;&nbsp;${sessionScope.loginInfo.nickName } &nbsp;&nbsp;|&nbsp;&nbsp; 
-									평점 : <img src="/resources/images/main/메인서브-별점.PNG" class="star"> <input type="number" name="grade" min="0" max="5" value="5">
+									평점 : <img src="/resources/images/main/메인서브-별점.PNG" class="star"> <input type="number" name="grade" min="0" max="5" value="5" required>
 									<input type="hidden" name="writer" value="${sessionScope.loginInfo.nickName }">
 									<input type="hidden" name="mvCode" value="${movieInfo.mvCode}">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-11">
-									<input type="text" name="mvReplyContent" <c:if test="${empty sessionScope.loginInfo }">placeholder="로그인 후 댓글 작성이 가능합니다" readonly</c:if> style="width: 100%;">
+									<input type="text" name="mvReplyContent" <c:if test="${empty sessionScope.loginInfo }">placeholder="로그인 후 댓글 작성이 가능합니다" readonly</c:if> style="width: 100%;" required>
 								</div>
 								<div class="col-1">
 									<input type="submit" value="등록">
@@ -205,12 +205,14 @@ input[type="number"]{
 							<c:forEach items="${replyList }" var="replyInfo">
 								<tr>
 									<td>
+										<input type="hidden" name="mvCode" class="mvCode" value="${replyInfo.mvCode }">
+										<input type="hidden" name="mvReplyCode" class="mvReplyCode" value="${replyInfo.mvReplyCode }">
 										<div class="replyWriter">
 											${replyInfo.writer } &nbsp;&nbsp;|&nbsp;&nbsp; 
-											평점 : <img src="/resources/images/main/메인서브-별점.PNG" class="star"> ${replyInfo.grade }
+											평점 : <img src="/resources/images/main/메인서브-별점.PNG" class="star"> <span class="replyGrade" data-grade="${replyInfo.grade }">${replyInfo.grade }</span>
 										</div>
 										<div class="createDate mb-1">${replyInfo.createDate }</div>
-										<div class="replyContent">${replyInfo.mvReplyContent }</div>
+										<div class="replyContent" data-content="${replyInfo.mvReplyContent }">${replyInfo.mvReplyContent }</div>
 									</td>
 									<!-- 본인 또는 관리자 -->
 									<td class="correct" >
@@ -219,8 +221,8 @@ input[type="number"]{
 									           	<span class="nav-link dropdown-toggle" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									            </span>
 									            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-									              	<li><a class="dropdown-item" href="/movie/updateReply?mvReplyCode=${replyInfo.mvReplyCode}">댓글 수정</a></li>
-									              	<li><a class="dropdown-item" href="/movie/deleteReply?mvReplyCode=${replyInfo.mvReplyCode}">댓글 삭제</a></li>
+									              	<li><a class="dropdown-item" onclick="updateReply();">댓글 수정</a></li>
+									              	<li><a class="dropdown-item" onclick="deleteReply();">댓글 삭제</a></li>
 									            </ul>
 									     	</li>
 										</c:if>

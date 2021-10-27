@@ -8,7 +8,10 @@ import com.kh.project.movie.vo.MovieVO;
 
 public interface MovieService {
 	
-	//영화 목록 조회 - 메인화면, 영화목록
+	//영화 목록 조회 - 메인화면
+	List<MovieVO> selectMainMovieList();
+	
+	//영화 목록 조회 - 영화목록
 	List<MovieVO> selectMovieList(MovieVO movieVO);
 	
 	//영화 상세 조회 - String mvCode
@@ -46,5 +49,11 @@ public interface MovieService {
 	
 	//영화 정보 수정
 	void updateMovie(MovieVO movieVO);
+	
+	//댓글 수정
+	void updateReply(MovieReplyVO movieReplyVO);
+	
+	//댓글 삭제
+	void deleteReply(MovieReplyVO movieReplyVO);
 	
 }

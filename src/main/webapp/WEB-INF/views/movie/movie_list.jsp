@@ -71,7 +71,7 @@
 		<div style="height: 50px;"></div>
 		
 		<div  class="row justify-content-center">
-			<div class="col-8 text-center" >
+			<div class="col-8" >
 				<div class="row">
 					<!-- 영화 목록 조회 -->
 					<c:forEach items="${movieList }" var="movieInfo">

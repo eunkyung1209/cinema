@@ -27,11 +27,11 @@ public class MovieController {
 	
 	//메인 페이지로 이동
 	@GetMapping("/mainPage")
-	public String mainPage(Model model, MovieVO movieVO/* , Date date */) {
+	public String mainPage(Model model/* , Date date */) {
 //		//오늘의 일시
 //		model.addAttribute("nowDateAndTime", MovieController.getNowDateAndTime(date));
 		//영화 목록
-		model.addAttribute("movieList", movieService.selectMovieList(movieVO));
+		model.addAttribute("movieList", movieService.selectMainMovieList());
 		
 		return "movie/main_page";
 		//return "template/main_bin";
@@ -66,6 +66,30 @@ public class MovieController {
 		
 		//영화 평점 수정
 		movieService.updateGrade(movieReplyVO);
+		
+		//영화 코드
+		model.addAttribute("mvCode", movieReplyVO.getMvCode());
+		
+		return "redirect:/movie/movieDetail";
+	}
+	
+	//영화 댓글 수정
+	@GetMapping("/updateReply")
+	public String updateReply(MovieReplyVO movieReplyVO) {
+		//댓글 수정
+		
+		
+		//영화 평점 수정
+		
+		
+		return "";
+	}
+	
+	//영화 댓글 삭제
+	@GetMapping("/deleteReply")
+	public String deleteReply(MovieReplyVO movieReplyVO, Model model) {
+		//댓글 삭제
+		movieService.deleteReply(movieReplyVO);
 		
 		//영화 코드
 		model.addAttribute("mvCode", movieReplyVO.getMvCode());
