@@ -22,6 +22,18 @@
 		<result column="MY_CINEMA" 			property="myCinema"/>
 	</resultMap>
 	
+	<resultMap type="com.kh.project.community.vo.CommunityVO" id="board">
+		<id column="COMMU_CODE"         property="commuCode"/>
+		<result column="WRITER"         property="writer"/>
+		<result column="CREATE_DATE"    property="createDate"/>
+		<result column="READ_CNT"       property="readCnt"/>
+		<result column="TITLE"          property="title"/>
+		<result column="CONTENT"        property="content"/>
+		<result column="SECRET"         property="secret"/>
+		<result column="IS_SECRET"      property="isSecret"/>
+	</resultMap>
+	
+	
 	<!-- 1. 회원가입하기 -->
 	<insert id="join">
 		INSERT INTO OISONE_MEMBER(
@@ -91,25 +103,6 @@
 		FROM OISONE_MEMBER
 		WHERE NICKNAME = #{nickName}
 	</select>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	<!-- 2. 로그인 -->
@@ -215,6 +208,18 @@
 		DELETE OISONE_MEMBER
 		WHERE ID = #{id}
 	</delete>
+
+
+	<!-- 마이페이지 - 내가 쓴글만 조회 -->
+	<select id="myBoardList" resultMap="board">
+		SELECT COMMU_CODE
+		    , WRITER
+		    , READ_CNT
+		    , TITLE
+		    , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
+		    WHERE WRITER = #{writer}
+		FROM OISONE_COMMUNITY
+	</select>
 
 
 </mapper>

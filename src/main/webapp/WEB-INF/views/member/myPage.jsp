@@ -168,6 +168,26 @@ select {
 									
 								</tbody>
 							</table>
+							
+							<br>
+							<br>
+							<br>
+							<br>
+							<br>
+							<br>
+							
+<table style="border: 1px solid black;">
+	<tr>
+		<td>내 정보</td>
+		<td>내 주문내역</td>
+		<td><a >내 글보기</a></td>
+	</tr>
+	<tr>
+		<td>장바구니</td>
+		<td>나의 관심 모록</td>
+		<td> </td>
+	</tr>
+</table>
 						
 					</div>
 				</div>
