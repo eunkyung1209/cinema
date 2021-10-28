@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.project.community.vo.CommunityVO;
 import com.kh.project.member.vo.MemberVO;
 
 @Service("memberService")
@@ -111,6 +112,18 @@ public class MemberServiceImpl implements MemberService {
 	public void deleteMember(String id) {
 		sqlSession.delete("memberMapper.deleteMember", id);
 		
+	}
+	
+	//7. (로그인후) 마이페이지에서 내가 쓴글 확인하기
+	@Override
+	public List<CommunityVO> myBoardList(CommunityVO communityVO) {
+		return sqlSession.selectList("memberMapper.myBoardList", communityVO);
+	}
+	
+	//7-1. 커뮤 페이징 처리
+	@Override
+	public int selectCommuCnt(CommunityVO communityVO) {
+		return sqlSession.selectOne("memberMapper.selectCommuCnt", communityVO);
 	}
 
 

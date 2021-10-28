@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.project.community.service.CommunityService;
+import com.kh.project.community.vo.CommunityVO;
 import com.kh.project.member.service.MemberService;
 import com.kh.project.member.vo.MemberVO;
 
@@ -22,6 +25,9 @@ public class MemberController {
 	
 	@Resource(name = "memberService")
 	private MemberService memberService;
+	
+	@Resource(name = "boardService")
+	private CommunityService boardService;
 	
 	//1. 회원가입 페이지 가기
 	@GetMapping("/join")
@@ -176,5 +182,21 @@ public class MemberController {
 		return "redirect:/movie/mainPage";
 	}
 	
-	
+	//3-4 마이페이지에서 내가 쓴글 확인하기
+	@GetMapping("/myBoardList")
+	public String myBoardList(CommunityVO communityVO, Model model) {
+		
+		//-----페이징 처리------//
+		//전체 데이터 수
+		int dataCnt = memberService.selectCommuCnt(communityVO);
+		communityVO.setTotalCnt(dataCnt);
+		//페이징처리
+		communityVO.setPageInfo();
+		
+		model.addAttribute("boardList", memberService.myBoardList(communityVO));
+		
+		System.out.println("!!!!" + communityVO.getWriter());
+		
+		return "member/my_community_board_list";
+	}
 }

@@ -1,7 +1,9 @@
 package com.kh.project.community.vo;
 
+import com.kh.project.common.vo.PageVO;
+
 //커뮤니티 게시판
-public class CommunityVO {
+public class CommunityVO extends PageVO{
 	private String commuCode;
 	private String writer;
 	private String createDate;
