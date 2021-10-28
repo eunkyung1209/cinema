@@ -17,9 +17,9 @@ public class ReservationController {
 	private ReservationService reservationService;
 	
 	//
-	@GetMapping("/screeningSchedule")
+	@GetMapping("/goReserve")
 	public String screeningSchedule() {
-		return "reservation/screening_schedule";
+		return "reservation/reserve_form";
 	}
 		
 		
