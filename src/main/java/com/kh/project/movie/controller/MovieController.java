@@ -1,9 +1,5 @@
 package com.kh.project.movie.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kh.project.common.util.NowDateTime;
 import com.kh.project.movie.service.MovieService;
 import com.kh.project.movie.vo.MovieReplyVO;
 import com.kh.project.movie.vo.MovieVO;
@@ -28,8 +25,9 @@ public class MovieController {
 	//메인 페이지로 이동
 	@GetMapping("/mainPage")
 	public String mainPage(Model model/* , Date date */) {
-//		//오늘의 일시
-//		model.addAttribute("nowDateAndTime", MovieController.getNowDateAndTime(date));
+		//현재 일시
+		model.addAttribute("nowDateAndTime", NowDateTime.getNowDateTime());
+		
 		//영화 목록
 		model.addAttribute("movieList", movieService.selectMainMovieList());
 		
@@ -54,6 +52,9 @@ public class MovieController {
 		
 		//댓글 목록
 		model.addAttribute("replyList", movieService.selectReplyList(movieVO));
+
+		//영화 평점 수정
+		movieService.updateGrade(movieVO);
 		
 		return "movie/movie_detail";
 	}
@@ -64,9 +65,6 @@ public class MovieController {
 		//댓글 등록
 		movieService.insertReply(movieReplyVO);
 		
-		//영화 평점 수정
-		movieService.updateGrade(movieReplyVO);
-		
 		//영화 코드
 		model.addAttribute("mvCode", movieReplyVO.getMvCode());
 		
@@ -74,15 +72,15 @@ public class MovieController {
 	}
 	
 	//영화 댓글 수정
-	@GetMapping("/updateReply")
-	public String updateReply(MovieReplyVO movieReplyVO) {
+	@PostMapping("/updateReply")
+	public String updateReply(MovieReplyVO movieReplyVO, Model model) {
 		//댓글 수정
+		movieService.updateReply(movieReplyVO);
 		
+		//영화 코드
+		model.addAttribute("mvCode", movieReplyVO.getMvCode());
 		
-		//영화 평점 수정
-		
-		
-		return "";
+		return "redirect:/movie/movieDetail";
 	}
 	
 	//영화 댓글 삭제
@@ -96,13 +94,5 @@ public class MovieController {
 		
 		return "redirect:/movie/movieDetail";
 	}
-	
-	//오늘의 일시
-//	public String getNowDateAndTime(Date date) {
-//		SimpleDateFormat sdf = new SimpleDateFormat("MM.dd HH:mm");
-//		String today = sdf.format(date);
-//		
-//		return today + " 기준";
-//	}
 	
 }

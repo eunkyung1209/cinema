@@ -90,8 +90,8 @@ public class MovieServiceImpl implements MovieService {
 	
 	//영화 평점 수정
 	@Override
-	public void updateGrade(MovieReplyVO movieReplyVO) {
-		sqlSession.update("movieMapper.updateGrade", movieReplyVO);
+	public void updateGrade(MovieVO movieVO) {
+		sqlSession.update("movieMapper.updateGrade", movieVO);
 	}
 	
 	//영화 정보 수정

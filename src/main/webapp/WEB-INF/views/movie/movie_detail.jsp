@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="/resources/movie/js/movie_detail.js?ver=4"></script>
 <style type="text/css">
 /* .posterInfo{
 	width: 205px;
@@ -106,6 +107,7 @@ input[type="number"]{
 						<td>
 							<div><h4>${movieInfo.title }</h4></div>
 							<div>
+								<input type="hidden" id="mvCode" name="mvCode" value="${movieInfo.mvCode }">
 								장르 : ${movieInfo.genre }
 								&nbsp; | &nbsp;
 								댓글 평점 : <img src="/resources/images/main/메인서브-별점.PNG" class="star"> ${movieInfo.grade }
@@ -205,14 +207,16 @@ input[type="number"]{
 							<c:forEach items="${replyList }" var="replyInfo">
 								<tr>
 									<td>
-										<input type="hidden" name="mvCode" class="mvCode" value="${replyInfo.mvCode }">
-										<input type="hidden" name="mvReplyCode" class="mvReplyCode" value="${replyInfo.mvReplyCode }">
-										<div class="replyWriter">
-											${replyInfo.writer } &nbsp;&nbsp;|&nbsp;&nbsp; 
-											평점 : <img src="/resources/images/main/메인서브-별점.PNG" class="star"> <span class="replyGrade" data-grade="${replyInfo.grade }">${replyInfo.grade }</span>
-										</div>
-										<div class="createDate mb-1">${replyInfo.createDate }</div>
-										<div class="replyContent" data-content="${replyInfo.mvReplyContent }">${replyInfo.mvReplyContent }</div>
+										<form action="/movie/updateReply" method="post">
+											<input type="hidden" name="mvCode" value="${movieInfo.mvCode }">
+											<input type="hidden" name="mvReplyCode" value="${replyInfo.mvReplyCode }">
+											<div class="replyWriter">
+												${replyInfo.writer } &nbsp;&nbsp;|&nbsp;&nbsp; 
+												평점 : <img src="/resources/images/main/메인서브-별점.PNG" class="star"> <span class="replyGrade" data-grade="${replyInfo.grade }">${replyInfo.grade }</span>
+											</div>
+											<div class="createDate mb-1">${replyInfo.createDate }</div>
+											<div class="replyContent" data-mvReplyCode="${replyInfo.mvReplyCode }" data-content="${replyInfo.mvReplyContent }">${replyInfo.mvReplyContent }</div>
+										</form>
 									</td>
 									<!-- 본인 또는 관리자 -->
 									<td class="correct" >
@@ -221,8 +225,8 @@ input[type="number"]{
 									           	<span class="nav-link dropdown-toggle" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									            </span>
 									            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-									              	<li><a class="dropdown-item" onclick="updateReply();">댓글 수정</a></li>
-									              	<li><a class="dropdown-item" onclick="deleteReply();">댓글 삭제</a></li>
+									              	<li><a class="dropdown-item" onclick="updateReply('${replyInfo.mvReplyCode }');">댓글 수정</a></li>
+									              	<li><a class="dropdown-item" onclick="deleteReply('${replyInfo.mvReplyCode }');">댓글 삭제</a></li>
 									            </ul>
 									     	</li>
 										</c:if>

@@ -120,6 +120,7 @@
 		FROM OISONE_MOVIE_REPLY R, OISONE_MOVIE M
 		WHERE R.MV_CODE = M.MV_CODE
 		AND M.MV_CODE = #{mvCode}
+		ORDER BY MV_REPLY_CODE DESC
 	</select>
 	
 	<!-- 영화 목록 조회 - 관리자 -->

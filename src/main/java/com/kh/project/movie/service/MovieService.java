@@ -45,7 +45,7 @@ public interface MovieService {
 	void insertReply(MovieReplyVO movieReplyVO);
 	
 	//영화 평점 수정 - String mvCode
-	void updateGrade(MovieReplyVO movieReplyVO);
+	void updateGrade(MovieVO movieVO);
 	
 	//영화 정보 수정
 	void updateMovie(MovieVO movieVO);
