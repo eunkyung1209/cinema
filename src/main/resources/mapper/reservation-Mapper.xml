@@ -5,10 +5,143 @@
 	
 	<!-- 예매 -->
 	<resultMap type="com.kh.project.reservation.vo.ReservationVO" id="reservation">
-		
+	</resultMap>
+	
+	<!-- 영화관 -->
+	<resultMap type="com.kh.project.reservation.vo.TheaterVO" id="area">
+		<id column="AREA_CODE" 			property="areaCode"/>
+		<result column="AREA_NAME" 		property="areaName"/>
+		<result column="TEATER_CNT" 	property="teaterCnt"/>
+		<result column="LOC" 			property="loc"/>
+	</resultMap>
+	
+	<!-- 상영관 -->
+	<resultMap type="com.kh.project.reservation.vo.TheaterVO" id="theater">
+		<id column="THEATER_CODE" 			property="theaterCode"/>
+		<result column="AREA_NAME" 			property="areaName"/>
+		<result column="AREA_CODE" 			property="areaCode"/>
+		<result column="SEAT_ALL" 			property="seatAll"/>
+		<result column="SEAT_CNT" 			property="seatCnt"/>
+		<result column="THEATER_NAME" 		property="theaterName"/>
+		<result column="IS_FULL_THEATER" 	property="isFullTheater"/>
+		<result column="USE_THEATER" 		property="useTheater"/>
+	</resultMap>
+	
+	<!-- 좌석 -->
+	<resultMap type="com.kh.project.reservation.vo.TheaterVO" id="seat">
+		<id column="SEAT_CODE" 				property="seatCode"/>
+		<result column="AREA_NAME" 			property="areaName"/>
+		<result column="THEATER_CODE" 		property="theaterCode"/>
+		<result column="ROW_NUM" 			property="rowNum"/>
+		<result column="COL_NUM" 			property="colNum"/>
+		<result column="USE_SEAT" 			property="useSeat"/>
+	</resultMap>
+	
+	<!-- 상영시간표 -->
+	<resultMap type="com.kh.project.reservation.vo.MovieTimeVO" id="movieTime">
+		<id column="MV_TIME_CODE" 			property="mvTimeCode"/>
+		<result column="THEATER_CODE" 		property="theaterCode"/>
+		<result column="AREA_NAME" 			property="areaName"/>
+		<result column="SCREEN_DAY" 		property="screenDay"/>
+		<result column="SCREEN_TIME" 		property="screenTime"/>
+		<result column="MV_CODE" 			property="mvCode"/>
+		<result column="RUNNING_TIME" 		property="runningTime"/>
+		<result column="TITLE" 				property="title"/>
+		<result column="SEAT_ALL" 			property="seatAll"/>
+		<result column="SEAT_CNT" 			property="seatCnt"/>
+		<result column="THEATER_NAME" 		property="theaterName"/>
+		<result column="IS_FULL_THEATER" 	property="isFullTheater"/>
+	</resultMap>
+	
+	<!-- 영화 -->
+	<resultMap type="com.kh.project.movie.vo.MovieVO" id="movie">
+		<id column="MV_CODE"				property="mvCode"/>
+		<result column="TITLE"				property="title"/>
+		<result column="DIRECTOR"			property="director"/>
+		<result column="ACTOR"				property="actor"/>
+		<result column="GENRE"				property="genre"/>
+		<result column="AGE"				property="age"/>
+		<result column="RUNNING_TIME"		property="runningTime"/>
+		<result column="NATION"				property="nation"/>
+		<result column="OPEN_DATE"			property="openDate"/>
+		<result column="CONTENT"			property="content"/>
+		<result column="MV_STATE"			property="mvState"/>
+		<result column="GRADE"				property="grade"/>
+		<result column="ATTACHED_IMG_NAME"	property="attachedImgName"/>
 	</resultMap>
 	
 	
+	<!-- 영화관 조회 -->
+	<select id="selectArea" resultMap="area">
+		SELECT AREA_CODE 
+		    , AREA_NAME
+		    , TEATER_CNT
+		    , LOC
+		FROM OISONE_AREA
+	</select>
+	
+	<!-- 상영중인 영화목록 조회 -->
+	<select id="selectMovieState" resultMap="movie">
+		SELECT MV_CODE
+		    , TITLE
+		    , RUNNING_TIME
+		FROM OISONE_MOVIE
+		WHERE MV_STATE = 'Y'
+	</select>
+	
+	<!-- 상영가능한 상영관 조회 -->
+	<select id="selectUseTheater" resultMap="theater">
+		SELECT THEATER_CODE
+			, THEATER_NAME
+		    , AREA_NAME
+		    , SEAT_ALL
+		    , SEAT_CNT
+		FROM OISONE_THEATER
+		WHERE USE_THEATER = 'N'
+	</select>
+	
+	<!-- 상영등록해주기 -->
+	<insert id="insertMovieTime">
+		INSERT INTO OISONE_MOVIE_TIME(
+		    MV_TIME_CODE
+		    , THEATER_CODE
+		    , AREA_NAME
+		    , SCREEN_TIME
+		    , SCREEN_DAY
+		    , TITLE
+		    , MV_CODE
+		    , RUNNING_TIME
+		) VALUES(
+		    (SELECT 'MT_'||#{screenDay}||'_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MV_TIME_CODE,15,3))), 0)+1 , 3, 0)
+		    FROM OISONE_MOVIE_TIME)
+		    , #{theaterCode}
+		    , #{areaName}
+		    , #{screenTime}
+		    , #{screenDay}
+		    , #{title}
+		    , #{mvCode}
+		    , #{runningTime}
+		)
+	
+	</insert>
+	
+	<!-- 상영시간표 목록 띄우기 -->
+	<select id="selectMovieTime" resultMap="movieTime">
+		SELECT MV_TIME_CODE
+	        , SCREEN_DAY
+	        , SUBSTR(SCREEN_TIME,12, 5) AS SCREEN_TIME
+	        , MV_CODE
+	        , RUNNING_TIME
+	        , TITLE
+	        , TIME.THEATER_CODE
+	        , SEAT_ALL
+	        , SEAT_CNT
+	        , THEATER_NAME
+	        , IS_FULL_THEATER
+	    FROM OISONE_MOVIE_TIME TIME, OISONE_THEATER THEATER
+	    WHERE TIME.THEATER_CODE = THEATER.THEATER_CODE
+	
+	</select>
 	
 </mapper>
 

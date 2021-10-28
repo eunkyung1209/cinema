@@ -19,6 +19,9 @@ import com.kh.project.member.vo.MemberVO;
 import com.kh.project.movie.service.MovieService;
 import com.kh.project.movie.vo.MovieImgVO;
 import com.kh.project.movie.vo.MovieVO;
+import com.kh.project.reservation.service.ReservationService;
+import com.kh.project.reservation.service.ReservationServiceImpl;
+import com.kh.project.reservation.vo.MovieTimeVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -33,6 +36,9 @@ public class AdminController {
 	
 	@Resource(name = "memberService")
 	private MemberService memberService;
+	
+	@Resource(name = "reservationService")
+	private ReservationService reservationService;
 	
 	//영화 관리 페이지로 이동
 	@GetMapping("/movieManage")
@@ -164,6 +170,28 @@ public class AdminController {
 
 		return "admin/admin_member_detail";
 	}
+	
+	//영화 상영 등록페이지로 이동
+	@GetMapping("/goRegMovieTime")
+	public String goRegMovieTime(Model model) {
+		
+		//상영중인 영화리스트
+		model.addAttribute("statingMovieList", reservationService.selectMovieState());
+		//상영가능한 상영관 조회
+		model.addAttribute("useTheaterList", reservationService.selectUseTheater());
+		
+		return "admin/reg_movie_time";
+	}
+	
+	//영화 상영 등록
+	@PostMapping("/insertMovieTime")
+	public String insertMovieTime(MovieTimeVO movieTimeVO) {
+		
+		reservationService.insertMovieTime(movieTimeVO);
+		
+		return "redirect:/movie/mainPage";
+	}
+	
 	
 
 	
