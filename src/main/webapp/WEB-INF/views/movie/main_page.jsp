@@ -69,7 +69,7 @@ body{
 		<div class="col-10">
 			<!-- 시간 바뀌게.. -->
 			<img src="/resources/images/main/메인서브-시계.png">
-			${nowDateAndTime } | 10.19 17:01 기준
+			${nowDateTime } 기준
 		</div>
 	</div>
 	<div class="row">
@@ -100,8 +100,8 @@ body{
 				<div class="card-body">
 					<h5 class="card-title">베놈2</h5>
 					<p class="card-text">
-						<img src="/resources/images/main/메인서브-별점.PNG"> 7.5 &nbsp;|&nbsp;
-						<img src="/resources/images/main/메인서브-좋아요.PNG">
+						<img src="/resources/images/main/메인서브-별점.PNG" class="star"> 7.5 &nbsp;|&nbsp;
+						<img src="/resources/images/main/메인서브-좋아요.PNG" class="star">
 					</p>
 				</div>
 			</div>
@@ -112,8 +112,8 @@ body{
 				<div class="card-body">
 					<h5 class="card-title">영화제목</h5>
 					<p class="card-text">
-						<img src="/resources/images/main/메인서브-별점.PNG"> 7.5 &nbsp;|&nbsp;
-						<img src="/resources/images/main/메인서브-좋아요.PNG">
+						<img src="/resources/images/main/메인서브-별점.PNG" class="star"> 7.5 &nbsp;|&nbsp;
+						<img src="/resources/images/main/메인서브-좋아요.PNG" class="star">
 					</p>
 				</div>
 			</div>
@@ -124,8 +124,8 @@ body{
 				<div class="card-body">
 					<h5 class="card-title">영화제목</h5>
 					<p class="card-text">
-						<img src="/resources/images/main/메인서브-별점.PNG"> 7.5 &nbsp;|&nbsp;
-						<img src="/resources/images/main/메인서브-좋아요.PNG">
+						<img src="/resources/images/main/메인서브-별점.PNG" class="star"> 7.5 &nbsp;|&nbsp;
+						<img src="/resources/images/main/메인서브-좋아요.PNG" class="star">
 					</p>
 				</div>
 			</div>
@@ -136,8 +136,8 @@ body{
 				<div class="card-body">
 					<h5 class="card-title">영화제목</h5>
 					<p class="card-text">
-						<img src="/resources/images/main/메인서브-별점.PNG"> 7.5 &nbsp;|&nbsp;
-						<img src="/resources/images/main/메인서브-좋아요.PNG">
+						<img src="/resources/images/main/메인서브-별점.PNG" class="star"> 7.5 &nbsp;|&nbsp;
+						<img src="/resources/images/main/메인서브-좋아요.PNG" class="star">
 					</p>
 				</div>
 			</div>
@@ -148,20 +148,8 @@ body{
 				<div class="card-body">
 					<h5 class="card-title">영화제목</h5>
 					<p class="card-text">
-						<img src="/resources/images/main/메인서브-별점.PNG"> 7.5 &nbsp;|&nbsp;
-						<img src="/resources/images/main/메인서브-좋아요.PNG">
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-2">
-			<div class="card mb-3">
-				<a href="#"><img src="/resources/images/main/메인서브02.png" class="card-img-top" alt="..."></a>
-				<div class="card-body">
-					<h5 class="card-title">영화제목</h5>
-					<p class="card-text">
-						<img src="/resources/images/main/메인서브-별점.PNG"> 7.5 &nbsp;|&nbsp;
-						<img src="/resources/images/main/메인서브-좋아요.PNG">
+						<img src="/resources/images/main/메인서브-별점.PNG" class="star"> 7.5 &nbsp;|&nbsp;
+						<img src="/resources/images/main/메인서브-좋아요.PNG" class="star">
 					</p>
 				</div>
 			</div>

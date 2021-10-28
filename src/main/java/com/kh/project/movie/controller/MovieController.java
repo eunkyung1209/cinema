@@ -26,7 +26,7 @@ public class MovieController {
 	@GetMapping("/mainPage")
 	public String mainPage(Model model/* , Date date */) {
 		//현재 일시
-		model.addAttribute("nowDateAndTime", NowDateTime.getNowDateTime());
+		model.addAttribute("nowDateTime", NowDateTime.getNowDateTime());
 		
 		//영화 목록
 		model.addAttribute("movieList", movieService.selectMainMovieList());
