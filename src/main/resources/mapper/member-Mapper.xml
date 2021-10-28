@@ -255,7 +255,7 @@
 				FROM OISONE_COMMUNITY
  				WHERE WRITER = #{nickName}
 				<if test="searchValue != null and !searchValue.equals('')">
-					WHERE ${searchKeyword} LIKE '%'||#{searchValue}||'%'
+					AND ${searchKeyword} LIKE '%'||#{searchValue}||'%'
 				</if>
 				ORDER BY CREATE_DATE DESC
 			)

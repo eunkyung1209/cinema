@@ -111,15 +111,17 @@ a:hover{
 				<div class="col-8 search_box text-center" >
 				
 					<div>
-						<form action="/member/myBoardList">
+						<form action="/member/myBoardList" method="post">
+						<input type="hidden" name="nickName" value="${sessionScope.loginInfo.nickName}">
 						<!-- 셀렉트 박스 -->
-						<select class="selectBox_from">
+						<select class="selectBox_from" name="searchKeyword">
 							<option selected>선택</option>
-							<option value="TITLE" <c:if test="${communityVO.searchKeyword eq 'TITLE'}">selected</c:if>>제목</option>
+							<option value="TITLE" <c:if test="${memberVO.searchKeyword eq 'TITLE'}">selected</c:if>>제목</option>
+							<option value="CREATE_DATE" <c:if test="${memberVO.searchKeyword eq 'CREATE_DATE'}">selected</c:if>>등록일</option>
 						</select>
 						
 						<!-- 인풋 -->
-						<input type="text" class="inputSearch_form" placeholder="검색어를 입력해 주세요">
+						<input type="text" class="inputSearch_form" name="searchValue" placeholder="검색어를 입력해 주세요">
 						
 						<!-- 버튼 -->
 						<input class="common_btn" type="submit" value="검색">
@@ -163,7 +165,7 @@ a:hover{
 		<c:choose>
 			<c:when test="${empty boardList }">
 				<tr>
-					<td colspan="5">등록된 게시글이 없습니다.</td>
+					<td class="align-middle" colspan="5">등록된 게시글이 없습니다.</td>
 				</tr>
 			</c:when>
 			
@@ -202,18 +204,18 @@ a:hover{
 				
 			  <ul class="pagination justify-content-center">
 			  
-				    <li class=" <c:if test="${!communityVO.prev }">disabled</c:if>">
-				    		<a class="" href="/member/myBoardList?nowPage=${communityVO.beginPage - 1 }">&nbsp;&nbsp; < &nbsp;&nbsp;</a>
+				    <li class=" <c:if test="${!memberVO.prev }">disabled</c:if>">
+				    		<a class="" href="/member/myBoardList?nowPage=${memberVO.beginPage - 1 }">&nbsp;&nbsp; < &nbsp;&nbsp;</a>
 				    </li>
 				    
-				    <c:forEach begin="${communityVO.beginPage }" end="${communityVO.endPage }" var="pageNumber">
-						<li class=" <c:if test="${communityVO.nowPage eq pageNumber }"> active</c:if>">
-				     		 <a class="" href="/member/myBoardList?nowPage=${pageNumber }&searchKeyword=${communityVO.searchKeyword}&searchValue=${communityVO.searchValue}" >${pageNumber }</a>
+				    <c:forEach begin="${memberVO.beginPage }" end="${memberVO.endPage }" var="pageNumber">
+						<li class=" <c:if test="${memberVO.nowPage eq pageNumber }"> active</c:if>">
+				     		 <a class="" href="/member/myBoardList?nowPage=${pageNumber }&searchKeyword=${memberVO.searchKeyword}&searchValue=${memberVO.searchValue}" >${pageNumber }</a>
 				    	</li>
 					</c:forEach>
 				    
-				    <li class=" <c:if test="${!communityVO.next }"> disabled</c:if>">
-				     		<a class="" href="/member/myBoardList?nowPage=${communityVO.endPage + 1 }">&nbsp;&nbsp; > &nbsp;&nbsp;</a>
+				    <li class=" <c:if test="${!memberVO.next }"> disabled</c:if>">
+				     		<a class="" href="/member/myBoardList?nowPage=${memberVO.endPage + 1 }">&nbsp;&nbsp; > &nbsp;&nbsp;</a>
 				    </li>
 			    
 			  </ul>

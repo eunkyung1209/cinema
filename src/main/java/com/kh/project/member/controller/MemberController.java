@@ -183,15 +183,15 @@ public class MemberController {
 	}
 	
 	//3-4 마이페이지에서 내가 쓴글 확인하기
-	@GetMapping("/myBoardList")
+	@RequestMapping("/myBoardList")
 	public String myBoardList(CommunityVO communityVO, Model model, MemberVO memberVO) {
 		
 		//-----페이징 처리------//
 		//전체 데이터 수
 		int dataCnt = memberService.selectCommuCnt(communityVO);
-		communityVO.setTotalCnt(dataCnt);
+		memberVO.setTotalCnt(dataCnt);
 		//페이징처리
-		communityVO.setPageInfo();
+		memberVO.setPageInfo();
 		
 		model.addAttribute("boardList", memberService.myBoardList(memberVO));
 		
