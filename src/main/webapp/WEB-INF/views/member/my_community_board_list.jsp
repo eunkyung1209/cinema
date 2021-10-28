@@ -170,7 +170,7 @@ a:hover{
 			<c:otherwise>
 				<c:forEach items="${boardList }" var="communityVO" varStatus="status">
 					<tbody>
-						<c:if test="${sessionScope.loginInfo.nickName} eq ${communityVO.writer }">
+						<%-- <c:if test="${sessionScope.loginInfo.nickName} eq ${communityVO.writer }"> --%>
 						<tr>
 							<td scope="row" class="align-middle">${status.count } </td>
 							<td class="align-middle">${communityVO.title }</td>
@@ -178,7 +178,7 @@ a:hover{
 							<td class="align-middle">${communityVO.createDate }</td>
 							<td class="align-middle">${communityVO.readCnt }</td>
 						</tr>
-						</c:if>
+						<%-- </c:if> --%>
 					</tbody>
 				</c:forEach>
 			</c:otherwise>
@@ -207,7 +207,7 @@ a:hover{
 				    </li>
 				    
 				    <c:forEach begin="${communityVO.beginPage }" end="${communityVO.endPage }" var="pageNumber">
-						<li class=" <c:if test="${communityVO.nowPage eq pageNumber }"> active</c:if>" aria-current="page">
+						<li class=" <c:if test="${communityVO.nowPage eq pageNumber }"> active</c:if>">
 				     		 <a class="" href="/member/myBoardList?nowPage=${pageNumber }&searchKeyword=${communityVO.searchKeyword}&searchValue=${communityVO.searchValue}" >${pageNumber }</a>
 				    	</li>
 					</c:forEach>

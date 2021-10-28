@@ -184,7 +184,7 @@ public class MemberController {
 	
 	//3-4 마이페이지에서 내가 쓴글 확인하기
 	@GetMapping("/myBoardList")
-	public String myBoardList(CommunityVO communityVO, Model model) {
+	public String myBoardList(CommunityVO communityVO, Model model, MemberVO memberVO) {
 		
 		//-----페이징 처리------//
 		//전체 데이터 수
@@ -193,9 +193,9 @@ public class MemberController {
 		//페이징처리
 		communityVO.setPageInfo();
 		
-		model.addAttribute("boardList", memberService.myBoardList(communityVO));
+		model.addAttribute("boardList", memberService.myBoardList(memberVO));
 		
-		System.out.println("!!!!" + communityVO.getWriter());
+		System.out.println("!!!!" + memberVO.getNickName());
 		
 		return "member/my_community_board_list";
 	}

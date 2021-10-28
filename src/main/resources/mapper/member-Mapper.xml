@@ -253,7 +253,7 @@
 						, SECRET
 						, ROWNUM AS ROW_NUM
 				FROM OISONE_COMMUNITY
- 			<!-- 	WHERE WRITER = #{writer} -->
+ 				WHERE WRITER = #{nickName}
 				<if test="searchValue != null and !searchValue.equals('')">
 					WHERE ${searchKeyword} LIKE '%'||#{searchValue}||'%'
 				</if>

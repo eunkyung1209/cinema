@@ -180,7 +180,7 @@ select {
 	<tr>
 		<td>내 정보</td>
 		<td>내 주문내역</td>
-		<td><a href="/member/myBoardList">내 글보기</a></td>
+		<td><a href="/member/myBoardList?nickName=${sessionScope.loginInfo.nickName }">내 글보기</a></td>
 	</tr>
 	<tr>
 		<td>장바구니</td>

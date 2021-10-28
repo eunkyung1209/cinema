@@ -44,7 +44,7 @@ public interface MemberService {
 	void deleteMember(String id);
 	
 	//7. (로그인후) 마이페이지에서 내가 쓴글 확인하기
-	List<CommunityVO> myBoardList(CommunityVO communityVO);
+	List<CommunityVO> myBoardList(MemberVO memberVO);
 	
 	//7-1 커뮤 페이징
 	int selectCommuCnt(CommunityVO communityVO);

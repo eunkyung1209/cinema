@@ -116,8 +116,8 @@ public class MemberServiceImpl implements MemberService {
 	
 	//7. (로그인후) 마이페이지에서 내가 쓴글 확인하기
 	@Override
-	public List<CommunityVO> myBoardList(CommunityVO communityVO) {
-		return sqlSession.selectList("memberMapper.myBoardList", communityVO);
+	public List<CommunityVO> myBoardList(MemberVO memberVO) {
+		return sqlSession.selectList("memberMapper.myBoardList", memberVO);
 	}
 	
 	//7-1. 커뮤 페이징 처리
