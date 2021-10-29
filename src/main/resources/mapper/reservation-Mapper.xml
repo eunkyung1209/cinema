@@ -89,17 +89,6 @@
 		WHERE MV_STATE = 'Y'
 	</select>
 	
-	<!-- 상영가능한 상영관 조회 -->
-	<select id="selectUseTheater" resultMap="theater">
-		SELECT THEATER_CODE
-			, THEATER_NAME
-		    , AREA_NAME
-		    , SEAT_ALL
-		    , SEAT_CNT
-		FROM OISONE_THEATER
-		WHERE USE_THEATER = 'N'
-	</select>
-	
 	<!-- 상영등록해주기 -->
 	<insert id="insertMovieTime">
 		INSERT INTO OISONE_MOVIE_TIME(
@@ -149,7 +138,15 @@
 		WHERE MV_CODE = #{mvCode}
 	</select>
 	
-	
+	<!--상영등록) 상영가능한 상영관 조회 -->
+	<select id="selectUseTheaterAjax" resultMap="theater">
+		SELECT THEATER_CODE
+			, THEATER_NAME
+		    , AREA_NAME
+		FROM OISONE_THEATER
+		WHERE USE_THEATER = 'N'
+		AND AREA_NAME = #{areaName}
+	</select>
 	
 </mapper>
 

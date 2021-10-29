@@ -14,9 +14,6 @@ public interface ReservationService {
 	//상영중인 영화 조회
 	List<MovieVO> selectMovieState();
 	
-	//상영가능한 상영관 조회
-	List<TheaterVO> selectUseTheater();
-	
 	//상영등록해주기
 	void insertMovieTime(MovieTimeVO movieTimeVO);
 	
@@ -25,5 +22,8 @@ public interface ReservationService {
 	
 	//상영등록)선택한 영화 정보 불러오기
 	MovieVO selectMovieInfoAjax(String mvCode);
+	
+	//상영가능한 상영관 조회
+	List<TheaterVO> selectUseTheaterAjax(String areaName);
 	
 }

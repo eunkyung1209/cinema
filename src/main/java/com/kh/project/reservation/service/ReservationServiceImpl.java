@@ -28,11 +28,6 @@ public class ReservationServiceImpl implements ReservationService {
 		return sqlSession.selectList("reservationMapper.selectMovieState");
 	}
 
-	//사용가능한 상영관 조회
-	@Override
-	public List<TheaterVO> selectUseTheater() {
-		return sqlSession.selectList("reservationMapper.selectUseTheater");
-	}
 
 	//상영등록해주기
 	@Override
@@ -52,6 +47,11 @@ public class ReservationServiceImpl implements ReservationService {
 		return sqlSession.selectOne("reservationMapper.selectMovieInfoAjax", mvCode);
 	}
 	
+	//상영등록) 사용가능한 상영관 조회
+		@Override
+		public List<TheaterVO> selectUseTheaterAjax(String areaName) {
+			return sqlSession.selectList("reservationMapper.selectUseTheaterAjax", areaName);
+		}
 	
 	
 }

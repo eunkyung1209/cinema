@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/reservation/js/reg_movie_time.js?ver=5"></script>
+<script type="text/javascript" src="/resources/reservation/js/reg_movie_time.js?ver=9"></script>
 
 <style type="text/css">
 
@@ -115,11 +115,15 @@ select {
 										<td >상영관 <span class="redStar">*</span></td>
 										<td >
 											
+											<select name="areaName" id="areaSelector">
+													<c:forEach items="${areaList }" var="area">
+														<option value="${area.areaName }">${area.areaName }</option>
+													</c:forEach>
+												</select>
+										
 										
 											<select name="theaterCode" required>
-												<c:forEach items="${useTheaterList }" var="useTheater">
-													<option value="${useTheater.theaterCode }">${useTheater.theaterName } </option>
-												</c:forEach>
+													<option class="theaterCode" > </option>
 											</select>
 											
 										</td>
@@ -128,8 +132,16 @@ select {
 										<td >등록일 <span class="redStar">*</span></td>
 										<td >
 											<input type="date" name="screenDay" required>
-											<input type="time" name="screenTime" required>
-											<input type="time" name="screenEndTime" required>
+											<select name="screenTime" id="screenTime" required>
+												<option>선택</option>
+												<option value="07:00">07:00</option>
+												<option value="07:30">07:30</option>
+												<option value="08:00">08:00</option>
+												<option value="08:30">08:30</option>
+												<option value="09:00">09:00</option>
+												<option value="09:30">09:30</option>
+											</select>
+											<input type="time" name="screenEndTime" id="screenEndTime" required>
 										</td>
 									</tr>
 								</tbody>

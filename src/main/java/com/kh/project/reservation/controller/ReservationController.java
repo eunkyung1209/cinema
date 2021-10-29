@@ -1,5 +1,7 @@
 package com.kh.project.reservation.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kh.project.movie.vo.MovieVO;
 import com.kh.project.reservation.service.ReservationService;
 import com.kh.project.reservation.vo.MovieTimeVO;
+import com.kh.project.reservation.vo.TheaterVO;
 
 @Controller
 @RequestMapping("/reservation")
@@ -40,11 +43,8 @@ public class ReservationController {
 			
 			//상영중인 영화리스트
 			model.addAttribute("statingMovieList", reservationService.selectMovieState());
-			//상영가능한 상영관 조회
-			model.addAttribute("useTheaterList", reservationService.selectUseTheater());
 			//영화관 조회
 			model.addAttribute("areaList", reservationService.selectArea());
-			
 			
 			return "admin/reg_movie_time";
 		}
@@ -54,7 +54,16 @@ public class ReservationController {
 		@PostMapping("/selectMovieInfoAjax")
 		public MovieVO selectMovieInfoAjax(String mvCode) {
 			
+			//영화정보 셀렉트
 			return reservationService.selectMovieInfoAjax(mvCode);
+		}
+		
+		//영화 상영등록페이지에 상영관조회
+		@ResponseBody
+		@PostMapping("/selectUseTheaterAjax")
+		public List<TheaterVO> selectUseTheaterAjax(String areaName) {
+			
+			return reservationService.selectUseTheaterAjax(areaName);
 		}
 		
 		
@@ -62,6 +71,7 @@ public class ReservationController {
 		@PostMapping("/insertMovieTime")
 		public String insertMovieTime(MovieTimeVO movieTimeVO) {
 			
+			//상영등록 쿼리
 			reservationService.insertMovieTime(movieTimeVO);
 			
 			return "redirect:/movie/mainPage";
