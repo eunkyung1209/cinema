@@ -54,18 +54,25 @@ public class CommunityServiceImpl implements CommunityService {
 		return sqlSession.selectList("communityMapper.selectReply",communityReplyVO);
 	}
 
-	// 페이징 처리
-	public int selectCommuPage(CommunityVO communityVO) {
-		
-		return 0;
-	}
-
 	// 댓글등록
 	public void insertReply(CommunityReplyVO communityReplyVO) {
 		sqlSession.insert("communityMapper.insertReply",communityReplyVO);
 		
 	}
 
+	// 페이징 조회
+	public List<CommunityVO> pageBoardList(CommunityVO communityVO) {
+		
+		return sqlSession.selectList("communityMapper.selectReply",communityVO);
+	}
+
+	// 페이징 숫자처리
+	public int selectCommuPageCnt(CommunityVO communityVO) {
+		return sqlSession.selectOne("customerCenterMapper.selectCommuPageCnt", communityVO);
+		
+	}
+
+	
 
 
 	

@@ -83,7 +83,7 @@ select {
 								<thead>
 									<tr>
 										<td colspan="2" style="background-color: white; padding-bottom: 5px;" >
-											<span style="font-size: 20px;">게시글 작성</span> 
+											<span style="font-size: 20px;">게시글 수정</span> 
 											<span class="needInput" style=""><span class="redStar">*</span>필수입력</span>
 											<input type="hidden" name="isNotice" value="N">
 										</td>
@@ -93,19 +93,10 @@ select {
 								<!-- 자유롭게 수정하여 사용 단, 인풋태그 태그 초기화 작업을 하였기에 css사용시, 선택자를 input으로 주는 것을 지양할 것 -->
 								<!-- '필수입력' 복사하여 사용 ->  <span class="redStar">*</span> -->
 								<tbody>
-									<tr>
-										<td >분류 <span class="redStar">*</span></td>
-										<td >
-											<select>
-												<option>12</option>
-												<option>13</option>
-												<option>14</option>
-											</select>
-										</td>
-									</tr>
+								
 									<tr>
 										<td >제목 <span class="redStar">*</span></td>
-										<td ><input type="text" name="title" required> </td>
+										<td ><input type="text" name="title" value="${communityVO.title}" required></td>
 									</tr>
 									<tr>
 										<td >작성자 <span class="redStar">*</span></td>
@@ -121,7 +112,7 @@ select {
 									</tr>
 									<tr>
 										<td>비밀번호 <span class="redStar">*</span></td>
-	                   					<td><input type="password" name="secretNumber" required> </td>
+	                   					<td><input type="password" name="secretNumber"> </td>
 									</tr>
 									
 								</tbody>

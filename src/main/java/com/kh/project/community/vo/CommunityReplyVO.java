@@ -2,17 +2,17 @@ package com.kh.project.community.vo;
 
 //커뮤니티 게시판 댓글
 public class CommunityReplyVO {
-	private String commuReplyCode;
+	private String communityReplyCode;
 	private String createDate;
 	private String writer;
 	private String content;
 	private String commuCode;
 	
 	public String getCommuReplyCode() {
-		return commuReplyCode;
+		return communityReplyCode;
 	}
 	public void setCommuReplyCode(String commuReplyCode) {
-		this.commuReplyCode = commuReplyCode;
+		this.communityReplyCode = commuReplyCode;
 	}
 	public String getCreateDate() {
 		return createDate;
@@ -38,6 +38,7 @@ public class CommunityReplyVO {
 	public void setCommuCode(String commuCode) {
 		this.commuCode = commuCode;
 	}
+
 	
 	
 	

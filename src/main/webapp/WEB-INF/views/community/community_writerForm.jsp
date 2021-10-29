@@ -93,16 +93,7 @@ select {
 								<!-- 자유롭게 수정하여 사용 단, 인풋태그 태그 초기화 작업을 하였기에 css사용시, 선택자를 input으로 주는 것을 지양할 것 -->
 								<!-- '필수입력' 복사하여 사용 ->  <span class="redStar">*</span> -->
 								<tbody>
-									<tr>
-										<td >분류 <span class="redStar">*</span></td>
-										<td >
-											<select>
-												<option>12</option>
-												<option>13</option>
-												<option>14</option>
-											</select>
-										</td>
-									</tr>
+									
 									<tr>
 										<td >제목 <span class="redStar">*</span></td>
 										<td ><input type="text" name="title" required> </td>

@@ -18,7 +18,7 @@
 	
 	<!-- 커뮤니티 댓글 -->
 	<resultMap type="com.kh.project.community.vo.CommunityReplyVO" id="reply">
-		<id column="COMMU_REPLY_CODE"   property="commiReplyCode"/>
+		<id column="COMMU_REPLY_CODE"   property="communityReplyCode"/>
 		<result column="CREATE_DATE"    property="createDate"/>
 		<result column="WRITER"         property="writer"/>
 		<result column="CONTENT"        property="content"/>
@@ -130,6 +130,45 @@ WHERE  COMMU_REPLY_CODE =#{commuReplyCode}
 
 </delete>
 
+<!-- 페이징 -->
+<select id="pageBoardList" resultMap="board">
+		SELECT COMMU_CODE
+			, TITLE
+			, WRITER
+			, CREATE_DATE
+			, ROW_NUM
+		FROM
+		(
+			SELECT COMMU_CODE
+				, TITLE
+				, WRITER
+				, CREATE_DATE
+				, ROWNUM AS ROW_NUM
+			FROM
+			(
+				SELECT COMMU_CODE
+					, TITLE
+					, WRITER
+					, TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
+				FROM OISONE_COMMUNITY
+				<if test="searchValue != null and !searchValue.equals('')">
+				WHERE ${searchKeyword} LIKE '%'||#{searchValue}||'%'
+				</if>
+				ORDER BY COMMU_CODE DESC
+			)
+		)
+		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
+	</select>
+	
+
+	<select id="selectCommuPageCnt" resultType="int">
+		SELECT COUNT(COMMU_CODE)
+		FROM OISONE_COMMUNITY
+		<if test="searchValue != null and !searchValue.equals('')">
+		WHERE ${searchKeyword} LIKE '%'||#{searchValue}||'%'
+		</if>
+	</select>
+	
 
 </mapper>
 

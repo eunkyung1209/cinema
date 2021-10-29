@@ -33,8 +33,10 @@ public interface CommunityService {
 		
 	
 	// 페이징
-	int selectCommuPage(CommunityVO communityVO);
+	List<CommunityVO> pageBoardList(CommunityVO communityVO);
 	
+	//페이징 숫자
+	int selectCommuPageCnt(CommunityVO communityVO);
 	
 	
 	

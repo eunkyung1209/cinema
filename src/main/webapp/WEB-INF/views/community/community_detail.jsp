@@ -70,7 +70,7 @@ background-color: #f2f2f2
 				
 					<tr class="titleTr">
 						<td colspan="2" >
-						 ${communityVO.title }
+							 ${communityVO.title }
 						</td>	
 						
 						 <!-- 본인 또는 관리자에게만 보이는 버튼 -->
@@ -98,37 +98,77 @@ background-color: #f2f2f2
 				</table>
 			</div>
 		</div>
-		
-		
-		</div>
-			<c:if test="${ not empty sessionScope.loginInfo}"></c:if>
-			<div>
-				<form action="/insertReply" method="post">
-					<input type="hidden" name="commuCode " value="${communityVO.commuCode }">
-						<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' or sessionScope.loginInfo.nickName eq communityVO.writer}">
-							<textarea rows="3" cols="30" name="content"></textarea>
-							<input type="submit" value="등록" >
-						</c:if>
-				</form> 
+		<!-- 댓글목록 -->
+		<div class="row justify-content-center">
+			<div class="col-8 text-center" >
+				<div >
+					<form action="/board/insertReply" method="post">
+						<input type="hidden" name="writer" value="${sessionScope.loginInfo.nickName }">
+						<input type="hidden" name="commuCode" value="${communityVO.commuCode }">
+						
+						<div style="height: 30px;"></div>
+						
+						<input type="text" name="content" <c:if test="${empty sessionScope.loginInfo }">readonly value="로그인 후 댓글 작성이 가능합니다" </c:if> style="width: 92%;">
+						<input type="submit" value="등록">
+					</form>
+				</div>
+				
+				<div style="height: 30px;"></div>
+			
+				<table class="replyTable" >
+					<colgroup>
+						<col width="98%"><col>
+						<col width="2%"><col>
+					</colgroup>
+					
+					<c:choose>
+						<c:when test="${empty communityReplyVO }">
+							<tr>
+								<td colspan="2">
+									등록된 댓글이 없습니다.
+								</td>
+							</tr>
+						</c:when>
+						
+						
+						<c:otherwise>
+							<c:forEach items="${communityReplyVO}" var="communityReplyVO">
+								<tr>
+									<td>
+										<form action="/board/selectReply" method="post">
+											<input type="hidden" name="commuCode" value="${communityReplyVO.commuCode }">
+											<div class="replyWriter">
+												${communityReplyVO.writer }
+											</div>
+											<div class="createDate">${communityReplyVO.createDate }</div>
+											<div class="replyContent" data-replyCode="${communityReplyVO.communityReplyCode }" ><div class="upReply">${communityReplyVO.content }</div></div>
+										</form>
+									</td>
+									
+									<!-- 본인 또는 관리자 -->
+									<td class="correct" >
+										<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' or sessionScope.loginInfo.nickName eq communityVO.writer}">
+											<li class="nav-item dropdown">
+									           	<span class="nav-link dropdown-toggle" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									            </span>
+									            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+									              	<li><a class="dropdown-item" onclick="updateCustomerReply('${customerReply.customerReplyCode }');">댓글 수정</a></li>
+									              	<li><a class="dropdown-item" onclick="deleteCustomerReply('${customerReply.customerReplyCode }');">댓글 삭제</a></li>
+									            </ul>
+									     	</li>
+										</c:if>
+									</td>
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					
+					</c:choose>
+					
+					
+				</table>
+				
 			</div>
-				<c:forEach items="${replyList }" var="communityReplyVO">
-					<div class="replyDiv"  >
-						<div class="replyWriter">${communityReplyVO .writer }</div>
-						<div class="replyDate">${communityReplyVO.createDate }</div>
-						<div>${communityReplyVO.content }</div>
-							<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' or sessionScope.loginInfo.nickName eq communityVO.writer}">
-								<div>
-								<input type="button" value="삭제" onclick="location.href='deleteReply.re?replyNum=${communityReplyVO.replyNum}&boardNum=${communityVO.boardNum }';">
-								</div>
-							
-							</c:if>
-					</div>
-				</c:forEach>
-
-
-		
-		
-		
+		</div>
 		
 		<div style="height: 30px;"></div>
 		
@@ -137,13 +177,9 @@ background-color: #f2f2f2
 			<div class="col-8 text-center"  >
 				 <input class="common_btn" type="button" value="목록으로"  onclick="location.href='/board/boardList';">
 				
-				
-			
 			</div>
 		</div>
-	
-		
-	
 	</div>
+</div>
 </body>
 </html>

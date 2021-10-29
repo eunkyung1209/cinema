@@ -1,6 +1,7 @@
 package com.kh.project.community.controller;
 
-import java.util.List;
+
+import java.util.Calendar;
 
 import javax.annotation.Resource;
 
@@ -23,9 +24,10 @@ public class CommunityController {
 	@Resource(name = "boardService")
 	private CommunityService boardService;
 	
+	
 	// 게시글 목록화면
 	@GetMapping("/boardList")
-	public String boardList(Model model) {
+	public String boardList(Model model,CommunityVO communityVO) {
 		model.addAttribute("boardList", boardService.selectBoardList());
 		
 		return "community/community_board_list";
@@ -48,24 +50,26 @@ public class CommunityController {
 	}
 	//글 상세정보 ->게시글등록된걸 누르면 게시글 작성된화면 보여주기
 	@GetMapping("/boardDetail")
-	public String selectboardDetail(Model model,CommunityVO communityVO,CommunityReplyVO communityReplyVO) {
+	public String selectboardDetail(Model model,CommunityVO communityVO,CommunityReplyVO communityReplyVO ) {
 		//게시글 목록조회
 		model.addAttribute("communityVO",boardService.selectBoardDetail(communityVO));
-		// 댓글 목록조회
+		// 댓글 목록조회--> 안됨
 		model.addAttribute("communityReplyVO",boardService.selectReply(communityReplyVO));
-	
+		
+		
+		
 		return "community/community_detail";
 	}
 	
-	//게시글 상세보기화면
-		// 댓글 등록// 
+	//게시글 상세보기화면; 댓글 등록.
 		@PostMapping("/insertReply")
-		public String insertReply(CommunityReplyVO communityReplyVO, Model model, CommunityVO communityVO) {
+		public String insertReply(CommunityReplyVO communityReplyVO, Model model) {
 			//댓글등록
 			boardService.insertReply(communityReplyVO);
-			model.addAttribute("communityVO",boardService.selectBoardDetail(communityVO));
-			// 댓글 목록조회
-			// 게시글등록 데이터 넘겨와야함
+			
+			//커뮤코드 가져감
+			model.addAttribute("cummuCode", communityReplyVO.getCommuCode());
+		
 			
 			return "redirect:/board/boardDetail";
 		}
@@ -79,7 +83,7 @@ public class CommunityController {
 		return "redirect:/board/boardList";
 	}
 	
-	// 게시글 수정폼
+	// 게시글 수정폼으로!!
 	@GetMapping("/goUpdateBoard")
 	public String goUpdateBoard(CommunityVO communityVO, Model model) {
 		
@@ -100,11 +104,21 @@ public class CommunityController {
 		return "redirect:/board/boardWriterForm";
 	}
 	
-	// 댓글 수정
-	
-	
 	//댓글 삭제
 	
-
-	
+	//캘린더 객체 생성
+			Calendar cal = Calendar.getInstance();{
+			
+			//현재 날짜 및 시간을 문자열로 저장할 변수 생성
+			String nowDateTime = "";	//형식 : MM.dd HH:mm
+			
+			//현재 날짜 및 시간을 문자열로 생성
+			nowDateTime += cal.get(Calendar.MONTH) + 1;
+			nowDateTime += ".";
+			nowDateTime += cal.get(Calendar.DATE);
+			nowDateTime += " ";
+			nowDateTime += cal.get(Calendar.HOUR_OF_DAY);
+			nowDateTime += ":";
+			nowDateTime += cal.get(Calendar.MINUTE);
+			}	
 }
