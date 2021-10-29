@@ -135,7 +135,7 @@ background-color: #f2f2f2
 							<c:forEach items="${communityReplyVO}" var="communityReplyVO">
 								<tr>
 									<td>
-										<form action="/board/selectReply" method="post">
+									<form action="/board/selectReply" method="post">
 											<input type="hidden" name="commuCode" value="${communityReplyVO.commuCode }">
 											<div class="replyWriter">
 												${communityReplyVO.writer }
