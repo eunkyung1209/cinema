@@ -7,7 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.project.movie.vo.MovieVO;
 import com.kh.project.reservation.service.ReservationService;
 import com.kh.project.reservation.vo.MovieTimeVO;
 
@@ -40,9 +42,21 @@ public class ReservationController {
 			model.addAttribute("statingMovieList", reservationService.selectMovieState());
 			//상영가능한 상영관 조회
 			model.addAttribute("useTheaterList", reservationService.selectUseTheater());
+			//영화관 조회
+			model.addAttribute("areaList", reservationService.selectArea());
+			
 			
 			return "admin/reg_movie_time";
 		}
+		
+		//영화 상영페이지에 영화조회
+		@ResponseBody
+		@PostMapping("/selectMovieInfoAjax")
+		public MovieVO selectMovieInfoAjax(String mvCode) {
+			
+			return reservationService.selectMovieInfoAjax(mvCode);
+		}
+		
 		
 		//영화 상영 등록
 		@PostMapping("/insertMovieTime")
@@ -52,6 +66,5 @@ public class ReservationController {
 			
 			return "redirect:/movie/mainPage";
 		}
-		
 		
 }

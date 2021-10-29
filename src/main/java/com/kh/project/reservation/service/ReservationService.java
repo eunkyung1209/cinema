@@ -23,5 +23,7 @@ public interface ReservationService {
 	//상영시간표 목록 띄우기
 	List<MovieTimeVO> selectMovieTime();
 	
+	//상영등록)선택한 영화 정보 불러오기
+	MovieVO selectMovieInfoAjax(String mvCode);
 	
 }

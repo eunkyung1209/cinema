@@ -47,7 +47,6 @@
 		<result column="SCREEN_END_TIME" 	property="screenEndTime"/>
 		<result column="MV_CODE" 			property="mvCode"/>
 		<result column="RUNNING_TIME" 		property="runningTime"/>
-		<result column="TITLE" 				property="title"/>
 		<result column="SEAT_ALL" 			property="seatAll"/>
 		<result column="SEAT_CNT" 			property="seatCnt"/>
 		<result column="THEATER_NAME" 		property="theaterName"/>
@@ -112,7 +111,6 @@
 		    , SCREEN_DAY
 		    , MV_CODE
 		    , RUNNING_TIME
-		    , TITLE
 		) VALUES(
 		    (SELECT 'MT_'||#{screenDay}||'_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MV_TIME_CODE,15,3))), 0)+1 , 3, 0)
 		    FROM OISONE_MOVIE_TIME)
@@ -123,7 +121,6 @@
 		    , #{screenDay}
 		    , #{mvCode}
 		    , #{runningTime}
-            , #{title}
 			)
 	</insert>
 	
@@ -135,7 +132,6 @@
 	        , SCREEN_END_TIME
 	        , MV_CODE
 	        , RUNNING_TIME
-	        , TITLE
 	        , TIME.THEATER_CODE
 	        , SEAT_ALL
 	        , SEAT_CNT
@@ -144,6 +140,15 @@
 	    FROM OISONE_MOVIE_TIME TIME, OISONE_THEATER THEATER
 	    WHERE TIME.THEATER_CODE = THEATER.THEATER_CODE
 	</select>
+	
+	<!-- 상영등록) 영화정보 조회 -->
+	<select id="selectMovieInfoAjax" resultMap="movie">
+		SELECT TITLE
+		    , RUNNING_TIME
+		FROM OISONE_MOVIE
+		WHERE MV_CODE = #{mvCode}
+	</select>
+	
 	
 	
 </mapper>

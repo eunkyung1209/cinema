@@ -45,5 +45,13 @@ public class ReservationServiceImpl implements ReservationService {
 	public List<MovieTimeVO> selectMovieTime() {
 		return sqlSession.selectList("reservationMapper.selectMovieTime");
 	}
+
+	//상영등록)선택한 영화 정보 불러오기
+	@Override
+	public MovieVO selectMovieInfoAjax(String mvCode) {
+		return sqlSession.selectOne("reservationMapper.selectMovieInfoAjax", mvCode);
+	}
+	
+	
 	
 }

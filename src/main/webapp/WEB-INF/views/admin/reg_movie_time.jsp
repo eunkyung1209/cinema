@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="/resources/reservation/js/reg_movie_time.js?ver=5"></script>
+
 <style type="text/css">
 
 /* 작성테이블 */
@@ -97,17 +99,14 @@ select {
 									<tr>
 										<td >영화 <span class="redStar">*</span></td>
 										<td >
-											<select name="mvCode" required>
+											
+											<select name="mvCode" id="movieSeletor" required>
 												<c:forEach items="${statingMovieList }" var="statingMovie">
 													<option value="${statingMovie.mvCode }">${statingMovie.title } </option>
 												</c:forEach>
 											</select>
-											<select name="title" required>
-												<c:forEach items="${statingMovieList }" var="statingMovie">
-													<option value="${statingMovie.title }">${statingMovie.title } </option>
-												</c:forEach>
-											</select>
-											<input type="number" name="runningTime"  value="" required>
+											
+											<input type="number" name="runningTime" id="runningTime"  value="" required>
 											
 										</td>
 									</tr>
@@ -115,11 +114,7 @@ select {
 									<tr>
 										<td >상영관 <span class="redStar">*</span></td>
 										<td >
-											<select name="areaName" required>
-												<c:forEach items="${useTheaterList }" var="useTheater">
-													<option>${useTheater.areaName }</option>
-												</c:forEach>
-											</select>
+											
 										
 											<select name="theaterCode" required>
 												<c:forEach items="${useTheaterList }" var="useTheater">
