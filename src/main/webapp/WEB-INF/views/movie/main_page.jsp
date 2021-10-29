@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -11,124 +10,101 @@
 <style type="text/css">
 body{
 	background-color: black;
+	color: white;
  	margin: 0;
     padding: 0;
 }
 
-.b{
+.mainBannerSwiper{
+	z-index: 3;
+}
+/* .mainBigPicture_j{
+	background-image: url(resources/images/main/메인사진.jpg);
+	background-size: cover;
+	background-position: center;
+	height: 684px;
+} */
+
+/* .logo{
 	margin-top : 250px;
 	margin-bottom : 200px;
 	border-bottom: solid 5px white;
-	opacity:0.2;
-}
-.c{
+	opacity: 0.2;
+} */
+.logo > img{
 	text-align: center;
-}
-.subMain{
-	padding-left: 60px;
-}
-.subMainTable{
-	margin: 0 auto;
-}
-.subMenuTd_j{
-	padding-left: 20px;
-	padding-right: 20px;
-}
-.card{
-	width: 13rem;
-	background-color: black;
-	color: white;
 }
 
-.card-body{
-	text-align: center;
-	padding: 1.2rem 1rem;
+.nowTime{
+	font-size: 15px;
+	text-align: right;
+	padding-bottom: 14px;
 }
-.card-title{
-	font-size: 14px;
-	font-weight: bold;
+.nowTime img{
+	width: 25px;
+	height: 25px;
 }
-.card-text{
-	font-size: 11.5px;
-	font-weight: bold;
-}
+
 .number{
 	padding: none;
 	background-color: white;
 	color:red;
-	font-size: 40px;
+	font-size: 30px;
 	text-align: center;
 	position: absolute;
 	top: 2%;
 	left: 2%;
 }
-.subToday_j{
-	color: white;
-	text-align: right;
-	font-size: 15px;
-	padding-bottom: 14px;
-}
-.subToday_time_j{
-	width: 25px;
-	height: 25px;
-}
-.subToday_score_j{
+.star{
 	width: 17px;
 	height: 17px;
 }
-
-/* ---------------------- */
-
-.itemBannerTitle {
-	display: table;
-	margin: 1rem auto;
-	border-bottom: 1px solid black
+.card{
+	background-color: black;
 }
-a img {
-}
-.mainBannerSwiper {
-	z-index: 3;
-}
-.sideBannerGrid {
-	margin: 0 auto;
-	width: 100%;
-}
-.sideBannerDiv {
-	margin: 0;
-	width: 100%;
-}
-
 </style>
 </head>
 <body>
-
-
-<div>
-
-<!-- Swiper -->
-			<div class="swiper mainBannerSwiper">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide"><a><img src="/resources/images/main/메인사진.jpg" width="100%;"></img></a></div>
-					<div class="swiper-slide"><a><img src="/resources/images/main/로고.png" width="100%;"></img></a></div>
-			      
-				</div>
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
-				<div class="swiper-pagination"></div>
-			</div>
-			
-
-<div>
-  <div class="b"></div>
-</div>
-  	
-  <div class="row ">
-		<!-- 영화 목록 조회 -->
+<div class="row justify-content-center">
+	<!-- 상단 사진 변경 --><!-- Swiper -->
+	<div class="swiper mainBannerSwiper">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide"><a><img src="/resources/images/main/메인사진.jpg" width="100%;"></img></a></div>
+			<div class="swiper-slide"><a><img src="/resources/images/main/로고.png" width="100%;"></img></a></div>
+		</div>
+		<div class="swiper-button-next"></div>
+		<div class="swiper-button-prev"></div>
+		<div class="swiper-pagination"></div>
+	</div>
+	
+<!-- 	<div class="row mainBigPicture_j">
+		
+	</div> -->
+	
+	<!-- 로고 -->
+	<div class="row logo justify-content-center mt-5">
+		<div class="col-5"></div>
+		<div class="col-2">
+			<img src="/resources/images/main/로고.png" width="98%">
+		</div>
+		<div class="col-5"></div>
+	</div>
+	
+	<!-- 현재 일시 -->
+	<div class="row text-right nowTime justify-content-center">
+		<div class="col-10">
+			<img src="/resources/images/main/메인서브-시계.png">
+			${nowDateTime } 기준
+		</div>
+	</div>
+	
+	<!-- 영화 목록 조회 -->
+	<div class="row">
 		<div class="col-1"></div>
 		<c:forEach items="${movieList }" var="movieInfo" varStatus="status">
 			<div class="col-2">
 				<div class="card mb-3">
-					<a href="/movie/movieDetail?mvCode=${movieInfo.mvCode }"><img src="/resources/images/movie/${movieInfo.attachedImgName }" class="card-img-top"></a>
+					<a href="/movie/movieDetail?mvCode=${movieInfo.mvCode }"><img src="/resources/images/movie/${movieInfo.imgList[0].attachedImgName }" class="card-img-top"></a>
 					<div class="card-body">
 						<div class="number">${status.count }</div>
 						<h5 class="card-title">${movieInfo.title }</h5>
@@ -143,7 +119,9 @@ a img {
 		</c:forEach>
 		<div class="col-1"></div>
 	</div>
-	<div class="row"><!-- 영화 예시 -->
+	
+	<!-- 영화 예시 -->
+	<div class="row">
 		<div class="col-2">
 			<div class="card mb-3">
 				<a href="#"><img src="/resources/images/main/메인서브-01.png" class="card-img-top" alt="..."></a>
@@ -206,10 +184,7 @@ a img {
 		</div>
 	</div>
 </div>
-
-
 </body>
-
 <script>
 	var swiper = new Swiper(".mainBannerSwiper", {
 		slidesPerView : 1,
@@ -259,5 +234,4 @@ a img {
 		},
 	});
 </script>
-
 </html>
