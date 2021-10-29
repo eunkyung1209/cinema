@@ -5,7 +5,7 @@
 <mapper namespace="communityMapper">
 
 	<!-- 커뮤니티 게시글 -->
-	<resultMap type="com.kh.project.community.vo.CommunityVO" id="board">
+	<resultMap type="com.kh.project.community.vo.CommunityVO" id="commu">
 		<id column="COMMU_CODE"         property="commuCode"/>
 		<result column="WRITER"         property="writer"/>
 		<result column="CREATE_DATE"    property="createDate"/>
@@ -18,16 +18,84 @@
 	
 	<!-- 커뮤니티 댓글 -->
 	<resultMap type="com.kh.project.community.vo.CommunityReplyVO" id="reply">
-		<id column="COMMU_REPLY_CODE"   property="communityReplyCode"/>
+		<id column="COMMU_REPLY_CODE"   property="commuReplyCode"/>
 		<result column="CREATE_DATE"    property="createDate"/>
 		<result column="WRITER"         property="writer"/>
 		<result column="CONTENT"        property="content"/>
 		<result column="COMMU_CODE"     property="commuCode"/>
-		
 	</resultMap>
 	
+
+<!-- 커뮤니티 목록조회 -->
+<select id="selectCommuList" resultMap="commu">
+	SELECT COMMU_CODE
+		, WRITER
+		, CREATE_DATE
+		, READ_CNT
+		, TITLE
+		, CONTENT
+		, SECRET
+		, IS_SECRET
+		, ROW_NUM
+	FROM(
+			SELECT COMMU_CODE
+				, WRITER
+				, CREATE_DATE
+				, READ_CNT
+				, TITLE
+				, CONTENT
+				, SECRET
+				, IS_SECRET
+				, ROWNUM AS ROW_NUM
+		FROM(
+				SELECT COMMU_CODE
+					, WRITER
+					, TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
+					, READ_CNT
+					, TITLE
+					, CONTENT
+					, SECRET
+					, IS_SECRET
+					, ROWNUM AS ROW_NUM
+			FROM OISONE_COMMUNITY
+			<if test="searchValue != null and !searchValue.equals('')">
+				AND ${searchKeyword} LIKE '%'||#{searchValue}||'%'
+			</if>
+			ORDER BY CREATE_DATE DESC
+		)
+	)
+WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
+</select>
+
+<!-- 커뮤 게시글 전체 데이터 개수 조회 -->
+<select id="selectCommuCnt" resultType="int">
+	SELECT COUNT(COMMU_CODE)
+	FROM OISONE_COMMUNITY
+	<if test="searchValue != null and !searchValue.equals('')">
+	WHERE ${searchKeyword} LIKE '%'||#{searchValue}||'%'
+	</if>
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 <!--커뮤니티 게시글 조회  -->
-<select id="selectBoardList" resultMap="board">
+<!-- <select id="selectBoardList" resultMap="board">
 SELECT COMMU_CODE
     , WRITER
     , READ_CNT
@@ -35,11 +103,11 @@ SELECT COMMU_CODE
     , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
 FROM OISONE_COMMUNITY
 
-</select>
+</select> -->
 
 
 <!--커뮤니티 게시글 등록  -->
-<insert id="insertBoard">
+<!-- <insert id="insertBoard">
 INSERT INTO OISONE_COMMUNITY(
     COMMU_CODE
     , WRITER
@@ -53,10 +121,10 @@ INSERT INTO OISONE_COMMUNITY(
       , #{content}
       , #{secret}
 )
-</insert>
+</insert> -->
 
 <!--커뮤니티 상세보기 조회 -->
-<select id="selectBoardDetail" resultMap="board">
+<!-- <select id="selectBoardDetail" resultMap="board">
 SELECT COMMU_CODE
     , WRITER
     , CREATE_DATE
@@ -66,10 +134,10 @@ SELECT COMMU_CODE
    FROM OISONE_COMMUNITY   
 WHERE COMMU_CODE = #{commuCode}
 
-</select>
+</select> -->
 
 <!--댓글 조회  -->
-<select id="selectReply" resultMap="reply">
+<!-- <select id="selectReply" resultMap="reply">
 SELECT COMMU_REPLY_CODE
 	, TO_CHAR(CREATE_DATE, 'YYYY-MM-DD HH:MM') AS CREATE_DATE
 	, WRITER
@@ -77,11 +145,11 @@ SELECT COMMU_REPLY_CODE
 	, COMMU_CODE
 FROM OISONE_COMMUNITY_REPLY
 WHERE COMMU_CODE =#{commuCode}
-</select>
+</select> -->
 
 
 <!--댓글 등록  -->
-<insert id="insertReply">
+<!-- <insert id="insertReply">
 INSERT INTO OISONE_COMMUNITY_REPLY(
 	COMMU_REPLY_CODE
 	, WRITER
@@ -94,81 +162,43 @@ INSERT INTO OISONE_COMMUNITY_REPLY(
 	 , #{commuCode}
 )
 
-</insert>
+</insert> -->
 
 <!--커뮤니티 게시글 삭제  -->
-<delete id="deleteBoard">
+<!-- <delete id="deleteBoard">
 DELETE 
 FROM OISONE_COMMUNITY
 WHERE COMMU_CODE =#{commuCode}
 
-</delete>
+</delete> -->
 
 <!--커뮤니티 게시글 수정  -->
-<update id="updateBoard">
+<!-- <update id="updateBoard">
 UPDATE OISONE_COMMUNITY
 	SET 
 	TITLE =#{title}
 		, CONTENT =#{content}
 		, CREATE_DATE = SYSDATE
 WHERE COMMU_CODE =#{commuCode}
-</update>
+</update> -->
 
 <!--댓글 수정  -->
-<update id="updateReply">
+<!-- <update id="updateReply">
 UPDATE OISONE_COMMUNITY_REPLY
 	SET
 	TITLE =#{title}
 	, CONTENT =#{content}
 WHERE COMMU_REPLY_CODE = #{commuReplyCode}
-</update>
+</update> -->
 
 <!--댓글 삭제  -->
-<delete id="deleteReply">
+<!-- <delete id="deleteReply">
 DELETE OISONE_COMMUNITY_REPLY
 WHERE  COMMU_REPLY_CODE =#{commuReplyCode}
 
-</delete>
+</delete> -->
 
-<!-- 페이징 -->
-<select id="pageBoardList" resultMap="board">
-		SELECT COMMU_CODE
-			, TITLE
-			, WRITER
-			, CREATE_DATE
-			, ROW_NUM
-		FROM
-		(
-			SELECT COMMU_CODE
-				, TITLE
-				, WRITER
-				, CREATE_DATE
-				, ROWNUM AS ROW_NUM
-			FROM
-			(
-				SELECT COMMU_CODE
-					, TITLE
-					, WRITER
-					, TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
-				FROM OISONE_COMMUNITY
-				<if test="searchValue != null and !searchValue.equals('')">
-				WHERE ${searchKeyword} LIKE '%'||#{searchValue}||'%'
-				</if>
-				ORDER BY COMMU_CODE DESC
-			)
-		)
-		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
-	</select>
-	
 
-	<select id="selectCommuPageCnt" resultType="int">
-		SELECT COUNT(COMMU_CODE)
-		FROM OISONE_COMMUNITY
-		<if test="searchValue != null and !searchValue.equals('')">
-		WHERE ${searchKeyword} LIKE '%'||#{searchValue}||'%'
-		</if>
-	</select>
-	
 
 </mapper>
 

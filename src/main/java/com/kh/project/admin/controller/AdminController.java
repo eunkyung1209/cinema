@@ -32,8 +32,8 @@ import com.kh.project.reservation.vo.MovieTimeVO;
 public class AdminController {
 	//관리자 기능 구현
 	
-	@Resource(name = "boardService")
-	private CommunityService boardService;
+	@Resource(name = "communityService")
+	private CommunityService communityService;
 	
 	@Resource(name = "movieService")
 	private MovieService movieService;

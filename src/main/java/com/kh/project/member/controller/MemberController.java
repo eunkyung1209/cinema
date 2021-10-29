@@ -26,8 +26,6 @@ public class MemberController {
 	@Resource(name = "memberService")
 	private MemberService memberService;
 	
-	@Resource(name = "boardService")
-	private CommunityService boardService;
 	
 	//1. 회원가입 페이지 가기
 	@GetMapping("/join")

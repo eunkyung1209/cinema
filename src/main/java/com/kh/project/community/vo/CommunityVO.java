@@ -11,9 +11,15 @@ public class CommunityVO extends PageVO{
 	private String title;
 	private String content;
 	private String secret;
-	private String is_secret;
+	private String isSecret;
+
 	
-	
+	public String getIsSecret() {
+		return isSecret;
+	}
+	public void setIsSecret(String isSecret) {
+		this.isSecret = isSecret;
+	}
 	public String getCommuCode() {
 		return commuCode;
 	}
@@ -63,11 +69,6 @@ public class CommunityVO extends PageVO{
 		this.secret = secret;
 	}
 	
-	public String getIs_secret() {
-		return is_secret;
-	}
-	public void setIs_secret(String is_secret) {
-		this.is_secret = is_secret;
-	}
+	
 	
 }
