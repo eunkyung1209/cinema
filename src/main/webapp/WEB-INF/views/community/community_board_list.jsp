@@ -134,9 +134,32 @@ a:hover{
 		
 		</div>
 
-														<!-- 공간띄우기 -->
-												<div style="height: 80PX;"></div>
-
+<!-- 공간띄우기 -->
+		<div style="height: 50PX;"></div>
+		
+		<!-- 글쓰기버튼 -->
+		<div class="row justify-content-center">
+		
+			<div class="col-2">	</div>
+			
+				<div class="col-8 ">
+					<div class="row justify-content-center">
+						<div class="col-6">
+							<div style="text-align: left;">
+								<input class="btn btn-outline-secondary" type="button" onclick="location.href='/customer/goWriteCustomer';" id="button-addon2"  <c:if test="${empty sessionScope.loginInfo }">disabled</c:if> value="글쓰기">
+							</div>
+						</div>
+						
+						<div class="col-6" style="padding-top: 15px; text-align: right;"> 
+							<c:if test="${empty sessionScope.loginInfo }">
+								* 글쓰기는 로그인 후 이용가능합니다.
+							</c:if>
+						</div>					
+					</div>
+				</div>
+			<div class="col-2"></div>
+			
+		</div>
 
 		<!-- 테이블 -->
 		<div class="row justify-content-center" >

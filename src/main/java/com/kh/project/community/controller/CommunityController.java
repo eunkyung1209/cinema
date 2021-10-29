@@ -22,7 +22,7 @@ public class CommunityController {
 	private CommunityService communityService;
 	
 	
-	// 게시글 목록화면
+	// 1. 커뮤니티 게시글 목록화면
 	@GetMapping("/commuList")
 	public String commuList(Model model, CommunityVO communityVO) {
 		
@@ -35,6 +35,10 @@ public class CommunityController {
 		
 		return "community/community_board_list";
 	}
+	
+	// 2. 커뮤니티 게시글 작성 (로그인할때만 가능)
+	
+	
 	
 	
 	
