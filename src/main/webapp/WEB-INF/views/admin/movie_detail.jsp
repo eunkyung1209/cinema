@@ -55,51 +55,76 @@ td{
 					<!-- '필수입력' 복사하여 사용 ->  <span class="redStar">*</span> -->
 					<tbody>
 						<tr>
-							<td>Title</td>
+							<td>제목</td>
 							<td>${movieInfo.title }</td>
 						</tr>
 						<tr>
-							<td>Director</td>
+							<td>감독</td>
 							<td>${movieInfo.director }</td>
 						</tr>
 						<tr>
-							<td>Actor</td>
+							<td>배우</td>
 							<td>${movieInfo.actor }</td>
 						</tr>
 						<tr>
-							<td>Genre</td>
+							<td>장르</td>
 							<td>${movieInfo.genre }</td>
 						</tr>
 						<tr>
-							<td>Age</td>
-							<td>${movieInfo.age }</td>
+							<td>연령</td>
+							<td>
+								<c:choose>
+									<c:when test="${movieInfo.age eq 0 }"><!-- 전체 관람가 -->
+										전체
+									</c:when>
+									<c:otherwise><!-- 연령 출력 -->
+										${movieInfo.age }세 이상
+									</c:otherwise>
+								</c:choose>
+							</td>
 						</tr>
 						<tr>
-							<td>Running Time</td>
+							<td>러닝 타임</td>
 							<td>${movieInfo.runningTime }</td>
 						</tr>
 						<tr>
-							<td>Nation</td>
+							<td>국가</td>
 							<td>${movieInfo.nation }</td>
 						</tr>
 						<tr>
-							<td>Open Date</td>
+							<td>개봉일</td>
 							<td>${movieInfo.openDate }</td>
 						</tr>
 						<tr>
-							<td>Content</td>
+							<td>시놉시스</td>
 							<td><pre><c:out value="${movieInfo.content }"/></pre></td>
 						</tr>
 						<tr>
 							<td>상영 상태</td>
 							<td>
-								<c:if test="${movieInfo.mvState eq 'N' }">상영 X</c:if>
-								<c:if test="${movieInfo.mvState eq 'Y' }">상영 O</c:if>
+								<c:if test="${movieInfo.mvState eq 'N' }">상영예정작</c:if>
+								<c:if test="${movieInfo.mvState eq 'Y' }">현재상영작</c:if>
 							</td>
 						</tr>
 						<tr>
 							<td>포스터 이미지 파일명</td>
-                 					<td>${movieInfo.attachedImgName }</td>
+                 			<td>
+                 				<c:forEach items="${movieInfo.imgList }" var="imgInfo">
+                 					<c:if test="${imgInfo.isPoster eq 'Y' }">
+		                 				${imgInfo.attachedImgName }
+                 					</c:if>
+                 				</c:forEach>
+                 			</td>
+						</tr>
+						<tr>
+							<td>스틸컷 이미지 파일명</td>
+                 			<td>
+                 				<c:forEach items="${movieInfo.imgList }" var="imgInfo" varStatus="status">
+                 					<c:if test="${imgInfo.isPoster eq 'N' }">
+		                 				${imgInfo.attachedImgName }<c:if test="${!status.last }">, </c:if>
+                 					</c:if>
+                 				</c:forEach>
+                 			</td>
 						</tr>
 					</tbody>
 				</table>

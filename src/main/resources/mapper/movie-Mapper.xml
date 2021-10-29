@@ -17,6 +17,7 @@
 		<result column="MV_STATE"			property="mvState"/>
 		<result column="GRADE"				property="grade"/>
 		<result column="ATTACHED_IMG_NAME"	property="attachedImgName"/>
+		<collection property="imgList"		resultMap="image"/>
 	</resultMap>
 	
 	<!-- 댓글 -->
@@ -35,6 +36,7 @@
 		<result column="ORIGIN_IMG_NAME"	property="originImgName"/>
 		<result column="ATTACHED_IMG_NAME"	property="attachedImgName"/>
 		<result column="MV_CODE"			property="mvCode"/>
+		<result column="IS_POSTER"			property="isPoster"/>
 	</resultMap>
 	
 	
@@ -63,6 +65,7 @@
 			FROM OISONE_MOVIE M, OISONE_MOVIE_IMG I
 			WHERE M.MV_CODE = I.MV_CODE
 			AND MV_STATE = 'Y'
+			AND IS_POSTER = 'Y'
 			ORDER BY MV_CODE
 		)
 		WHERE ROWNUM &lt;= 5
@@ -80,6 +83,7 @@
 			, ATTACHED_IMG_NAME
 		FROM OISONE_MOVIE M, OISONE_MOVIE_IMG I
 		WHERE M.MV_CODE = I.MV_CODE
+		AND IS_POSTER = 'Y'
 		<if test="searchValue != null and !searchValue.equals('')">
 		AND ${searchKeyword} LIKE '%'||#{searchValue}||'%'
 		</if>
@@ -103,6 +107,7 @@
 			, CONTENT
 			, GRADE
 			, MV_STATE
+			, IS_POSTER
 			, ATTACHED_IMG_NAME
 		FROM OISONE_MOVIE M, OISONE_MOVIE_IMG I
 		WHERE M.MV_CODE = I.MV_CODE
@@ -154,6 +159,7 @@
 					, ATTACHED_IMG_NAME
 				FROM OISONE_MOVIE M, OISONE_MOVIE_IMG I
 				WHERE M.MV_CODE = I.MV_CODE
+				AND IS_POSTER = 'Y'
 				<if test="searchValue != null and !searchValue.equals('')">
 				AND ${searchKeyword} LIKE '%'||#{searchValue}||'%'
 				</if>
@@ -218,24 +224,28 @@
 	</insert>
 	
 	<!-- 다음에 들어갈 MOVIE_IMG_CODE를 조회 -->
-	<select id="selectNextImgCode" resultType="String">
-		SELECT 'MVI_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MOVIE_IMG_CODE, 5, 3))), 0) + 1, 3, '0')
+	<select id="selectNextImgNumber" resultType="int">
+		SELECT NVL(MAX(TO_NUMBER(SUBSTR(MOVIE_IMG_CODE, 5, 3))) + 1, 1)
 		FROM OISONE_MOVIE_IMG
 	</select>
 	
-	<!-- 영화 포스터 이미지 등록 -->
-	<insert id="insertImage">
+	<!-- 포스터&스틸컷 이미지들 등록 -->
+	<insert id="insertImages">
 		INSERT INTO OISONE_MOVIE_IMG (
 			MOVIE_IMG_CODE
 			, ORIGIN_IMG_NAME
 			, ATTACHED_IMG_NAME
 			, MV_CODE
-		) VALUES (
-			#{movieImgCode}
-			, #{originImgName}
-			, #{attachedImgName}
-			, #{mvCode}
-		)
+			, IS_POSTER
+		)			   <!-- List<ImgVO>		 ImgVO -->
+		<foreach collection="imgList" item="imgInfo" separator="UNION ALL">
+			SELECT #{imgInfo.movieImgCode}
+				, #{imgInfo.originImgName}
+				, #{imgInfo.attachedImgName}
+				, #{imgInfo.mvCode}
+				, #{imgInfo.isPoster}
+			FROM DUAL
+		</foreach>
 	</insert>
 	
 	
@@ -269,7 +279,7 @@
 	
 	
 	
-	<!-- 영화 정보 수정 -->
+	<!-- 영화 정보 수정 : 첨부파일은 수정 안 됨!! -->
 	<update id="updateMovie">
 		UPDATE OISONE_MOVIE
 		SET

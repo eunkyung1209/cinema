@@ -19,14 +19,16 @@
 
 .movieInfo{
 	margin: 0 12px;
+	width: 98%;
 }
 .movieInfo td{
 	vertical-align: top;
 }
+.movieInfo td:last-child{
+	padding-right: 0;
+}
 .movieInfo td > div{
 	margin-bottom: 10px;
-	padding-left: 20px;
-	padding-right: 20px;
 }
 
 .replyDiv{
@@ -102,7 +104,11 @@ input[type="number"]{
 				<table class="movieInfo">
 					<tr>
 						<td rowspan="2">
-							<img alt="" src="/resources/images/movie/${movieInfo.attachedImgName }" style="width: 250px;" class="posterInfo">
+							<c:forEach items="${movieInfo.imgList }" var="imgInfo">
+								<c:if test="${imgInfo.isPoster eq 'Y' }"><!-- 영화 포스터 이미지 -->
+									<img alt="" src="/resources/images/movie/${imgInfo.attachedImgName }" style="width: 250px;" class="posterInfo">
+								</c:if>
+							</c:forEach>
 						</td>
 						<td>
 							<div><h4>${movieInfo.title }</h4></div>
@@ -115,7 +121,21 @@ input[type="number"]{
 							<div><hr></div>
 							<div>감독 : ${movieInfo.director }</div>
 							<div>출연 : ${movieInfo.actor }</div>
-							<div>장르 : ${movieInfo.genre } &nbsp;| &nbsp;기본 : ${movieInfo.age } 이상, ${movieInfo.runningTime }분, ${movieInfo.nation }</div>
+							<div>
+								장르 : ${movieInfo.genre } 
+								&nbsp;| &nbsp;
+								기본 : 
+								<c:choose>
+									<c:when test="${movieInfo.age eq 0 }"><!-- 전체 관람가 -->
+										전체
+									</c:when>
+									<c:otherwise><!-- 연령 출력 -->
+										${movieInfo.age }세 이상
+									</c:otherwise>
+								</c:choose>
+								, ${movieInfo.runningTime }분
+								, ${movieInfo.nation }
+							</div>
 							<div>개봉 : ${movieInfo.openDate }</div>
 						</td>
 					</tr>
@@ -146,11 +166,31 @@ input[type="number"]{
 			</div>
 		</div>
 		
-		<!-- 영화 줄거리 -->
 		<div class="row justify-content-center">
 			<div class="col-8">
 				<hr>
+				<div style="margin-bottom: 20px;">시놉시스</div>
 				<pre><c:out value="${movieInfo.content }"/></pre>
+				<hr>
+			</div>
+		</div>
+		
+		<!-- 영화 스틸컷 -->
+		<div class="row justify-content-center">
+			<div class="col-8">
+				<hr>
+				<div style="margin-bottom: 20px;">스틸컷</div>
+				<div class="row">
+					<c:forEach items="${movieInfo.imgList }" var="imgInfo">
+						<c:if test="${imgInfo.isPoster eq 'N' }"><!-- 영화 스틸컷 이미지 -->
+							<div class="col-3">
+								<div class="card">
+									<img alt="" src="/resources/images/movie/${imgInfo.attachedImgName }" class="posterInfo">
+								</div>
+							</div>
+						</c:if>
+					</c:forEach>
+				</div>
 				<hr>
 			</div>
 		</div>
@@ -166,7 +206,7 @@ input[type="number"]{
 							<div class="row mb-1">
 								<div class="col">
 									&nbsp;&nbsp;${sessionScope.loginInfo.nickName } &nbsp;&nbsp;|&nbsp;&nbsp; 
-									평점 : <img src="/resources/images/main/메인서브-별점.PNG" class="star"> <input type="number" name="grade" min="0" max="5" value="5" required>
+									평점 : <img src="/resources/images/main/메인서브-별점.PNG" class="star"> <input type="number" name="grade" min="0" max="5" value="5" <c:if test="${empty sessionScope.loginInfo }">readonly</c:if> required>
 									<input type="hidden" name="writer" value="${sessionScope.loginInfo.nickName }">
 									<input type="hidden" name="mvCode" value="${movieInfo.mvCode}">
 								</div>

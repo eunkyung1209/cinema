@@ -6,7 +6,14 @@ public class MovieImgVO {
 	private String originImgName;
 	private String attachedImgName;
 	private String mvCode;
+	private String isPoster;
 	
+	public String getIsPoster() {
+		return isPoster;
+	}
+	public void setIsPoster(String isPoster) {
+		this.isPoster = isPoster;
+	}
 	public String getMovieImgCode() {
 		return movieImgCode;
 	}

@@ -52,9 +52,6 @@ public class MovieController {
 		
 		//댓글 목록
 		model.addAttribute("replyList", movieService.selectReplyList(movieVO));
-
-		//영화 평점 수정
-		movieService.updateGrade(movieVO);
 		
 		return "movie/movie_detail";
 	}
@@ -64,6 +61,9 @@ public class MovieController {
 	public String insertReply(HttpSession session, MovieReplyVO movieReplyVO, Model model) {
 		//댓글 등록
 		movieService.insertReply(movieReplyVO);
+
+		//영화 평점 수정
+		movieService.updateGrade(movieReplyVO);
 		
 		//영화 코드
 		model.addAttribute("mvCode", movieReplyVO.getMvCode());
@@ -76,6 +76,9 @@ public class MovieController {
 	public String updateReply(MovieReplyVO movieReplyVO, Model model) {
 		//댓글 수정
 		movieService.updateReply(movieReplyVO);
+
+		//영화 평점 수정
+		movieService.updateGrade(movieReplyVO);
 		
 		//영화 코드
 		model.addAttribute("mvCode", movieReplyVO.getMvCode());
@@ -88,6 +91,9 @@ public class MovieController {
 	public String deleteReply(MovieReplyVO movieReplyVO, Model model) {
 		//댓글 삭제
 		movieService.deleteReply(movieReplyVO);
+
+		//영화 평점 수정
+		movieService.updateGrade(movieReplyVO);
 		
 		//영화 코드
 		model.addAttribute("mvCode", movieReplyVO.getMvCode());

@@ -93,51 +93,58 @@ select {
 						<!-- '필수입력' 복사하여 사용 ->  <span class="redStar">*</span> -->
 						<tbody>
 							<tr>
-								<td>Title <span class="redStar">*</span></td>
+								<td>영화 제목 <span class="redStar">*</span></td>
 								<td><input type="text" name="title" required> </td>
 							</tr>
 							<tr>
-								<td>Director <span class="redStar">*</span></td>
+								<td>감독 <span class="redStar">*</span></td>
 								<td><input type="text" name="director" required> </td>
 							</tr>
 							<tr>
-								<td>Actor <span class="redStar">*</span></td>
+								<td>배우 <span class="redStar">*</span></td>
 								<td><input type="text" name="actor" required> </td>
 							</tr>
 							<tr>
-								<td>Genre <span class="redStar">*</span></td>
+								<td>장르 <span class="redStar">*</span></td>
 								<td><input type="text" name="genre" required> </td>
 							</tr>
 							<tr>
-								<td>Age <span class="redStar">*</span></td>
-								<td><input type="text" name="age" required> </td>
-							</tr>
-							<tr>
-								<td>Running Time <span class="redStar">*</span></td>
-								<td><input type="text" name="runningTime" required> </td>
-							</tr>
-							<tr>
-								<td>Nation <span class="redStar">*</span></td>
-								<td><input type="text" name="nation" required> </td>
-							</tr>
-							<tr>
-								<td>Open Date <span class="redStar">*</span></td>
-								<td><input type="date" name="openDate" required></td>
-							</tr>
-							<tr>
-								<td>Content</td>
-								<td><textarea style="width: 100%; height:150px;  padding-top: 5px; "  name="content" required></textarea> </td>
-							</tr>
-							<tr>
-								<td>상영 상태</td>
+								<td>연령 <span class="redStar">*</span></td>
 								<td>
-									<input type="radio" name="mvState" value="N" checked> 상영 X 
-									<input type="radio" name="mvState" value="Y"> 상영 O
+									<input type="text" name="age" required> 
+									<div style="margin-top: 5px;">* 숫자로 입력하시오.(전체관람가일 경우, 0 입력)</div>
 								</td>
 							</tr>
 							<tr>
-								<td>Choose Poster Image</td>
-                  					<td><input type="file" name="imageFile" required></td>
+								<td>러닝 타임 <span class="redStar">*</span></td>
+								<td><input type="text" name="runningTime" required> </td>
+							</tr>
+							<tr>
+								<td>국가 <span class="redStar">*</span></td>
+								<td><input type="text" name="nation" required> </td>
+							</tr>
+							<tr>
+								<td>개봉일 <span class="redStar">*</span></td>
+								<td><input type="date" name="openDate" required></td>
+							</tr>
+							<tr>
+								<td>시놉시스</td>
+								<td><textarea style="width: 100%; height:150px;  padding-top: 5px; "  name="content" required></textarea> </td>
+							</tr>
+							<tr>
+								<td>상영 상태 <span class="redStar">*</span></td>
+								<td>
+									<input type="radio" name="mvState" value="N" checked> 상영예정작 &nbsp;&nbsp;
+									<input type="radio" name="mvState" value="Y"> 현재상영작
+								</td>
+							</tr>
+							<tr>
+								<td>포스터 이미지 <span class="redStar">*</span></td>
+                  				<td><input type="file" name="file" required></td>
+							</tr>
+							<tr>
+								<td>스틸컷 이미지 <span class="redStar">*</span></td>
+                  				<td><input type="file" name="files" multiple required></td>
 							</tr>
 						</tbody>
 					</table>

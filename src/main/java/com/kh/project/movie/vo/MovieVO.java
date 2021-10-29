@@ -1,5 +1,7 @@
 package com.kh.project.movie.vo;
 
+import java.util.List;
+
 import com.kh.project.common.vo.PageVO;
 
 //영화
@@ -16,14 +18,21 @@ public class MovieVO extends PageVO {
 	private String content;
 	private String mvState;
 	private double grade;
-	
+	private List<MovieImgVO> imgList;
 	private String attachedImgName;
 	
+	public String getAttachedImgName() {
+		return attachedImgName;
+	}
 	public void setAttachedImgName(String attachedImgName) {
 		this.attachedImgName = attachedImgName;
 	}
-	public String getAttachedImgName() {
-		return attachedImgName;
+	
+	public List<MovieImgVO> getImgList() {
+		return imgList;
+	}
+	public void setImgList(List<MovieImgVO> imgList) {
+		this.imgList = imgList;
 	}
 	
 	public String getMvCode() {

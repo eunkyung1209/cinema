@@ -72,14 +72,14 @@ public class MovieServiceImpl implements MovieService {
 	
 	//다음 MOVIE_IMG_CODE를 조회
 	@Override
-	public String selectNextImgCode() {
-		return sqlSession.selectOne("movieMapper.selectNextImgCode");
+	public int selectNextImgNumber() {
+		return sqlSession.selectOne("movieMapper.selectNextImgNumber");
 	}
 	
 	//영화 포스터 이미지 등록
 	@Override
-	public void insertImage(MovieImgVO movieImgVO) {
-		sqlSession.insert("movieMapper.insertImage", movieImgVO);
+	public void insertImages(MovieVO movieVO) {
+		sqlSession.insert("movieMapper.insertImages", movieVO);
 	}
 	
 	//댓글 등록
@@ -90,8 +90,8 @@ public class MovieServiceImpl implements MovieService {
 	
 	//영화 평점 수정
 	@Override
-	public void updateGrade(MovieVO movieVO) {
-		sqlSession.update("movieMapper.updateGrade", movieVO);
+	public void updateGrade(MovieReplyVO movieReplyVO) {
+		sqlSession.update("movieMapper.updateGrade", movieReplyVO);
 	}
 	
 	//영화 정보 수정

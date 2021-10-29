@@ -36,16 +36,16 @@ public interface MovieService {
 	void insertMovie(MovieVO movieVO);
 	
 	//다음 MOVIE_IMG_CODE를 조회
-	String selectNextImgCode();
+	int selectNextImgNumber();
 	
-	//영화 포스터 이미지 등록
-	void insertImage(MovieImgVO movieImgVO);
+	//포스터&스틸컷 이미지 등록
+	void insertImages(MovieVO movieVO);
 	
 	//댓글 등록
 	void insertReply(MovieReplyVO movieReplyVO);
 	
 	//영화 평점 수정 - String mvCode
-	void updateGrade(MovieVO movieVO);
+	void updateGrade(MovieReplyVO movieReplyVO);
 	
 	//영화 정보 수정
 	void updateMovie(MovieVO movieVO);
