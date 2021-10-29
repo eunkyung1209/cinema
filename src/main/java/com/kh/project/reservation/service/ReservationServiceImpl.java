@@ -40,6 +40,7 @@ public class ReservationServiceImpl implements ReservationService {
 		 sqlSession.insert("reservationMapper.insertMovieTime", movieTimeVO);
 	}
 
+	//상영시간표 조회
 	@Override
 	public List<MovieTimeVO> selectMovieTime() {
 		return sqlSession.selectList("reservationMapper.selectMovieTime");

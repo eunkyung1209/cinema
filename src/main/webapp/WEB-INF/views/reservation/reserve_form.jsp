@@ -98,6 +98,7 @@ ul{
 <div class="row bodyDiv justify-content-center">
 	<div class="col-12">
 		
+		
 		<!-- 예매하기 영역 -->
 		<div class="row justify-content-center">
 			<div class="col-10 reserveDiv" >
@@ -184,8 +185,7 @@ ul{
 										<div class="col-3 m-1" >
 											<div class="ReserveInfoBtn">
 												<div class="screenTimeDiv m-1">${movieTimeInfo.screenTime }</div>
-												<div class="seatDiv m-1">${movieTimeInfo.seatLeft }/ ${movieTimeInfo.seatAll } ${movieTimeInfo.theaterName}</div>
-
+												<div class="seatDiv m-1">/ ${movieTimeInfo.seatAll } ${movieTimeInfo.seatCnt } ${movieTimeInfo.theaterName}</div>
 											</div>
 										</div>
 									</c:forEach>
