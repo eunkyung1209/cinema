@@ -18,7 +18,7 @@
 				</ul>
 			</div>
 			<div class="col-4 text-start pjEx pjEx-1">
-				<a href="/item/mainPage"><img alt="" src="/resources/images/item/logo/penLogo.png" width="250px;"></a>
+				<a href="/item/mainPage"><img alt="" src="" width="250px;"></a>
 				<br>
 				<span>프로젝트</span>
 				<br>
