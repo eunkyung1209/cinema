@@ -11,20 +11,18 @@ public class MovieTimeVO {
 	    private String runningTime;
 	    private String title;
 	    private String[] days;
+	    private String screenEndTime;
 	    
 	    private int seatAll;
         private int seatCnt;
         private String theaterName;
         private String isFullTheater;
         
-        private int seatLeft;
-        
-	    
-		public int getSeatLeft() {
-			return seatLeft;
+		public String getScreenEndTime() {
+			return screenEndTime;
 		}
-		public void setSeatLeft(int seatAll, int seatCnt) {
-			this.seatLeft = seatAll - seatCnt;
+		public void setScreenEndTime(String screenEndTime) {
+			this.screenEndTime = screenEndTime;
 		}
 		public int getSeatAll() {
 			return seatAll;

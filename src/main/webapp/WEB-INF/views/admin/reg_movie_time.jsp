@@ -132,8 +132,9 @@ select {
 									<tr>
 										<td >등록일 <span class="redStar">*</span></td>
 										<td >
-											<input type="date" name="days" required>
-											<input type="time" name="days" required>
+											<input type="date" name="screenDay" required>
+											<input type="time" name="screenTime" required>
+											<input type="time" name="screenEndTime" required>
 										</td>
 									</tr>
 								</tbody>
