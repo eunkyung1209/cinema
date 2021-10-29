@@ -11,13 +11,13 @@ $(document).ready(function(){
 (function($){
 
 	checkPw = function() {
-		var customerCode = $('#commuCode').val();
-		var secretNumber = $('#number').val();
+		var commuCode = $('#commuCode').val();
+		var secret = $('#secret').val();
 		var inputPw = $('#inputPw').val();
 		var test = $('#test').val();
 		
 		
-		if(test != number){
+		if(test != secret){
 			alert('비밀번호를 다시 입력하세요');
 			$('#test').val('');
 			

@@ -88,53 +88,63 @@ WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 
 <!-- 2. 커뮤 게시글 등록 -->
 <insert id="insertCommu">
-INSERT INTO OISONE_COMMUNITY(
-		COMMU_CODE
-		, WRITER
-		, TITLE
-		, CONTENT
-		<if test="secret != null and !secret.equals('')">
-		, SECRET
-		</if>
-		<if test="secret != null and !secret.equals('')">
-		, IS_SECRET = 'Y'
-		</if>
-		
-    )VALUES(
-      (SELECT 'CB_'||TO_CHAR((SYSDATE), 'YYMMDD')||'_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(COMMU_CODE, 11, 3))), 0)+1, 3, '0') AS COMMU_CODE  FROM OISONE_COMMUNITY)
-      , #{writer}
-      , #{title}
-      , #{content}
-      <if test="secret != null and !secret.equals('')">
-      , #{secret}
-      </if>
-      <if test="secret != null and !secret.equals('')">
-	   , #{isSecret} = 'Y'
-	  </if>
-)
+	INSERT INTO OISONE_COMMUNITY (
+			COMMU_CODE
+			, WRITER
+			, TITLE
+			, CONTENT
+			<if test="secret != null and !secret.equals('')">
+			, SECRET
+			</if>
+			<if test="secret != null and !secret.equals('')">
+			, IS_SECRET
+			</if>
+	    ) VALUES (
+	      (SELECT 'CB_'||TO_CHAR((SYSDATE), 'YYMMDD')||'_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(COMMU_CODE,11,3))), 0)+1, 3, 0) FROM OISONE_COMMUNITY)
+	      , #{writer}
+	      , #{title}
+	      , #{content}
+	      <if test="secret != null and !secret.equals('')">
+	      , #{secret}
+	      </if>
+	      <if test="secret != null and !secret.equals('')">
+		   , 'Y'
+		  </if>
+		)
 </insert>
 
 
-<!-- 커뮤니티 상세보기 조회 -->
-<!-- <select id="selectCommuDetail" resultMap="board">
+<!-- 3. 커뮤니티 상세보기 조회 -->
+<select id="selectCommuDetail" resultMap="commu">
 	SELECT COMMU_CODE
 		, WRITER
 		, TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
-		, READ_CNT
 		, TITLE
 		, CONTENT
-		, SECRET
-	   FROM OISONE_COMMUNITY   
+		, READ_CNT
+		<!-- , IS_SECRET -->
+	FROM OISONE_COMMUNITY   
 	WHERE COMMU_CODE = #{commuCode}
+	<if test="secret != null and !secret.equals('')">
+	AND SECRET = #{secret}
+	</if>
 </select>
- -->
 
+<!-- 3-1. 상세보기에서 내글 수정하기 -->
+<update id="updateCommu">
+	UPDATE OISONE_COMMUNITY
+	SET TITLE = #{title}
+	    , CONTENT  = #{content}
+	    , WRITER  = #{writer}
+	    , SECRET = #{secret}
+	WHERE COMMU_CODE = #{commuCode}
+</update>
 
-
-
-
-
-
+<!-- 3-1. 상세보기에서 내글 삭제하기  -->
+<delete id="deleteCommu">
+	DELETE OISONE_COMMUNITY
+	WHERE COMMU_CODE = #{commuCode}
+</delete>
 
 	
 <!--커뮤니티 게시글 조회  -->

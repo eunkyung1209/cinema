@@ -196,8 +196,15 @@ a:hover{
 					<tbody>
 						<%-- <c:if test="${sessionScope.loginInfo.nickName} eq ${communityVO.writer }"> --%>
 						<tr>
-							<td scope="row" class="align-middle">${status.count } </td>
-							<td class="align-middle"><a href="/community/selectCommuPw?commuCode=${communityInfo.commuCode }&secret=${communityInfo.secret }">${communityInfo.title }</a> </td>
+							<th scope="row" class="align-middle">${status.count }</th>
+							
+							<c:if test="${communityInfo.isSecret eq 'Y'}">
+								<td class="align-middle"><a href="/community/selectCommuPw?commuCode=${communityInfo.commuCode }&secret=${communityInfo.secret }">${communityInfo.title }</a> </td>
+							</c:if>
+							<c:if test="${communityInfo.isSecret eq 'N'}">
+								<td class="align-middle"><a href="/community/selectCommuDetail?commuCode=${communityInfo.commuCode }">${communityInfo.title }</a> </td>
+							</c:if>
+							
 							<td class="align-middle">${communityInfo.writer }</td>
 							<td class="align-middle">${communityInfo.createDate }</td>
 							<td class="align-middle">${communityInfo.readCnt }</td>

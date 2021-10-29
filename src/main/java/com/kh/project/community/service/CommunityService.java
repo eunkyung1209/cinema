@@ -15,13 +15,19 @@ public interface CommunityService {
 	int selectCommuCnt(CommunityVO communityVO);
 	
 	//1-2. 조회수 증가
-	void updaterReadCnt(int commuCode);
+	void updaterReadCnt(String commuCode);
 	
 	//2. 게시글 글 등록하기
 	void insertCommu(CommunityVO communityVO);
 	
 	//3. 게시글 상세 조회
-	CommunityVO selectCommuDetail(String commuCode);
+	CommunityVO selectCommuDetail(CommunityVO communityVO);
+	
+	//3-1. 게시글 상세 수정
+	void updateCommu(CommunityVO communityVO);
+	
+	//3-2. 게시글 상세 삭제
+	void deleteCommu(String commuCode);
 	
 	
 	

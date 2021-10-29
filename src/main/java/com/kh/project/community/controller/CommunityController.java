@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.kh.project.community.service.CommunityService;
 import com.kh.project.community.vo.CommunityVO;
 import com.kh.project.customerCenter.vo.CustomerCenterVO;
+import com.kh.project.member.vo.MemberVO;
 
 @Controller
 @RequestMapping("/community")
@@ -62,18 +63,46 @@ public class CommunityController {
 
 	// 3. 커뮤니티 상세보기
 	@GetMapping("/selectCommuDetail")
-	private String selectCommuDetail(Model model, String commuCode) {
+	private String selectCommuDetail(Model model, CommunityVO communityVO, String commuCode) {
+		
 		
 		//상세보기 정보
-		model.addAttribute("customerBoard", communityService.selectCommuDetail(commuCode));
+		model.addAttribute("commuList", communityService.selectCommuDetail(communityVO));
 		//댓글 목록 불러오기
 		//model.addAttribute("customerReplyList", communityService.selectCustomerReply(customerCode));
 		
-		return "customer/customer_board_detail";
+		//조회수 증가
+		communityService.updaterReadCnt(commuCode);
+		
+		return "community/community_detail";
 	}
 	
+	// 3-1. 커뮤니티 상세 수정 페이지 가기
+	@GetMapping("/goUpdateCommu")
+	public String goUpdateCommu(Model model, CommunityVO communityVO) {
+		
+		//원래정보 빼오기
+		model.addAttribute("commuList", communityService.selectCommuDetail(communityVO));
+		return "community/community_update_board";
+	}
 	
+	// 3-2. 커뮤니티 상세 수정
+	@PostMapping("/updateCommu")
+	public String updateCommu(CommunityVO communityVO) {
+		
+		communityService.updateCommu(communityVO);
+		
+		return "redirect:/community/commuList";
+	}
 	
+	// 3-3. 커뮤니티 상세 삭제
+	@GetMapping("/deleteCommu")
+	private String deleteCommu(Model model, String commuCode) {
+		
+		communityService.deleteCommu(commuCode);
+		
+		return "redirect:/community/commuList";
+	}
 	
 	
 	

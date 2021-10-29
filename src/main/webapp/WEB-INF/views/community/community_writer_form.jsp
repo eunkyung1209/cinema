@@ -85,7 +85,7 @@ select {
 										<td colspan="2" style="background-color: white; padding-bottom: 5px;" >
 											<span style="font-size: 20px;">게시글 작성</span> 
 											<span class="needInput" style=""><span class="redStar">*</span>필수입력</span>
-											<input type="hidden" name="isNotice" value="N">
+											<!-- <input type="hidden" name="isSecret" value="N"> -->
 										</td>
 									</tr>
 								</thead>	
@@ -108,7 +108,7 @@ select {
 				
 									<tr>
 										<td>비밀번호 <span class="redStar">*</span></td>
-	                   					<td><input type="password" name="secretNumber"> </td>
+	                   					<td><input type="password" name="secret"> </td>
 									</tr>
 								</tbody>
 							</table>
