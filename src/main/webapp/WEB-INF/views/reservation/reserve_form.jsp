@@ -98,6 +98,7 @@ ul{
 <div class="row bodyDiv justify-content-center">
 	<div class="col-12">
 		
+		
 		<!-- 예매하기 영역 -->
 		<div class="row justify-content-center">
 			<div class="col-10 reserveDiv" >

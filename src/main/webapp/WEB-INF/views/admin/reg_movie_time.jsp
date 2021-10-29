@@ -69,7 +69,7 @@ select {
 		<div style="height: 50px;"></div>
 	
 	<!-- 글 작성 테이블 입니다. 테이블 클래스명 : writeTable 수정 후 사용바랍니다.-->
-	<form action="/admin/insertMovieTime" method="post">
+	<form action="/reservation/insertMovieTime" method="post">
 			<div class="row justify-content-center align-middle">
 			
 				

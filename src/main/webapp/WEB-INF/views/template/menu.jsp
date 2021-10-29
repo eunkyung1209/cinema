@@ -216,7 +216,7 @@ a:hover {
 					            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
 					              	<li><a class="dropdown-item" href="/admin/adminMemberList">회원 관리</a></li>
 					              	<li><a class="dropdown-item" href="/admin/movieManage">영화 관리</a></li>
-					              	<li><a class="dropdown-item" href="/admin/goRegMovieTime">영화 상영 등록</a></li>
+					              	<li><a class="dropdown-item" href="/reservation/goRegMovieTime">영화 상영 등록</a></li>
 					              	<li><a class="dropdown-item" href="#">홈페이지 관리</a></li>
 					              	<li>
 					                	<hr style="color: black;" class="dropdown-divider">
