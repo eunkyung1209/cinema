@@ -2,6 +2,9 @@ package com.kh.project.admin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.kh.project.common.util.FileUploadUtil;
 import com.kh.project.community.service.CommunityService;
 import com.kh.project.member.service.MemberService;
 import com.kh.project.member.vo.MemberVO;
@@ -69,50 +73,133 @@ public class AdminController {
 	
 	//영화 등록
 	@PostMapping("/insertMovie")
-	public String insertMovie(Model model, MultipartHttpServletRequest multi, MultipartFile file, MovieVO movieVO) {
-		//----------코드 생성----------
-		//영화 코드
+	public String insertMovie(Model model, MultipartHttpServletRequest multi, MovieVO movieVO) {
+		//----------코드 관련 변수 생성----------
+		//다음에 들어갈 영화 코드 조회
 		String mvCode = movieService.selectNextMovieCode();
-		//영화 포스터 이미지 코드
-		String movieImgCode = movieService.selectNextImgCode();
+		//다음에 들어갈 이미지 코드의 숫자 조회
+		int movieImgNumber = movieService.selectNextImgNumber();
 		
-		//----------이미지 파일 단일 첨부----------
-		//영화 포스터 이미지 객체 생성
-		MovieImgVO movieImgVO = new MovieImgVO();
+		//----------이미지 파일들 첨부----------
+		//Iterator : 리스트로 생각
+		//inputNames : file, files (input태그의 name 속성 값)
+		//getFileNames() : 등록하는 파일들의 이름을 가져옴
+		Iterator<String> inputNames = multi.getFileNames();
+		
 		//첨부될 폴더
 		String uploadPath = "D:\\workspaceSTS\\Cinema\\src\\main\\webapp\\resources\\images\\movie\\";	//은경 - 학원 컴퓨터 경로
 		//String uploadPath = "C:\\Users\\Administrator\\git\\cinema\\src\\main\\webapp\\resources\\images\\movie\\";	//은경 - 노트북 경로
-		//input 태그에 접근해서 파일을 가져옴
-		file = multi.getFile("imageFile");	//파일첨부 input 태그 name 속성 값 = imageFile
-		//변환한 파일명 (영화제목을 파일명으로 쓰고, 그걸 그대로 저장)
-		String attachedFileName = file.getOriginalFilename();
-		//파일 저장한 경로 + 변환한 파일명
-		String uploadFile = uploadPath + attachedFileName;
+		
+		//모든 첨부파일 정보가 들어갈 공간
+		List<MovieImgVO> imgList = new ArrayList<>();
+		
 		//파일 첨부
-		try {
-			//transfer : 이동, 이전, 옮김
-			file.transferTo(new File(uploadFile));
+		while(inputNames.hasNext()) {	//input 태그의 개수만큼 반복(file, files - 2번)
+			//input 태그의 name 속성 값
+			String inputName = inputNames.next();
 			
-			//영화 포스터 이미지 정보 설정
-			movieImgVO.setMovieImgCode(movieImgCode);
-			movieImgVO.setOriginImgName(file.getOriginalFilename());
-			movieImgVO.setAttachedImgName(attachedFileName);
-			movieImgVO.setMvCode(mvCode);
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+			//실제 첨부 기능
+			try {
+				//다중 첨부(multiple) -> 스틸컷 이미지들
+				if(inputName.equals("files")) {	//input 태그 name="files" -> multiple
+					//input 태그에 하나씩 접근해서 파일을 다 가져옴 -> 파일 목록
+					List<MultipartFile> fileList = multi.getFiles(inputName);
+					
+					//파일 목록 중 하나씩 빼서 파일 첨부
+					for(MultipartFile file : fileList) {
+						//변환한 파일명
+						String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename();
+						
+						//파일 저장한 경로 + 변환한 파일명
+						String uploadFile = uploadPath + attachedFileName;
+						
+						//파일 첨부
+						file.transferTo(new File(uploadFile));
+						
+						//첨부한 파일에 대한 이미지 정보를 갖는 img -> imgList에 넣을 img 생성
+						MovieImgVO img = new MovieImgVO();
+						img.setMovieImgCode("MVI_" + String.format("%03d", movieImgNumber++));
+						img.setOriginImgName(file.getOriginalFilename());
+						img.setAttachedImgName(attachedFileName);
+						img.setMvCode(mvCode);
+						img.setIsPoster("N");
+						
+						//파일에 대한 이미지 정보를 imgList에 추가
+						imgList.add(img);
+					}
+				}
+				//단일 첨부 -> 포스터 이미지
+				else {	//input 태그 name="file"
+					//input 태그에 하나씩 접근해서 파일을 가져옴
+					MultipartFile file = multi.getFile(inputName);
+					
+					//변환한 파일명
+					String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename();
+					
+					//파일 저장한 경로 + 변환한 파일명
+					String uploadFile = uploadPath + attachedFileName;
+					
+					//파일 첨부		transfer : 이동, 이전, 옮김
+					file.transferTo(new File(uploadFile));
+					
+					//imgList에 넣을 img 생성
+					MovieImgVO img = new MovieImgVO();
+					img.setMovieImgCode("MVI_" + String.format("%03d", movieImgNumber++));
+					img.setOriginImgName(file.getOriginalFilename());
+					img.setAttachedImgName(attachedFileName);
+					img.setMvCode(mvCode);
+					img.setIsPoster("Y");
+					
+					//파일에 대한 이미지 정보를 imgList에 추가
+					imgList.add(img);
+				}
+			} catch (IllegalStateException e) {	//부적합한 상태로 예외 발생했을 때
+				e.printStackTrace();
+			} catch (IOException e) {	//입출력 예외 발생했을 때
+				e.printStackTrace();
+			}
+			
 		}
+		
+		
+		
+		//----------예전 단일첨부만 작성 해둔 내용!!!!!
+//		//영화 포스터 이미지 객체 생성
+//		MovieImgVO movieImgVO = new MovieImgVO();
+//		//첨부될 폴더
+//		String uploadPath = "D:\\workspaceSTS\\Cinema\\src\\main\\webapp\\resources\\images\\movie\\";	//은경 - 학원 컴퓨터 경로
+//		//String uploadPath = "C:\\Users\\Administrator\\git\\cinema\\src\\main\\webapp\\resources\\images\\movie\\";	//은경 - 노트북 경로
+//		//input 태그에 접근해서 파일을 가져옴
+//		file = multi.getFile("imageFile");	//파일첨부 input 태그 name 속성 값 = imageFile
+//		//변환한 파일명 (영화제목을 파일명으로 쓰고, 그걸 그대로 저장)
+//		String attachedFileName = file.getOriginalFilename();
+//		//파일 저장한 경로 + 변환한 파일명
+//		String uploadFile = uploadPath + attachedFileName;
+//		//파일 첨부
+//		try {
+//			//transfer : 이동, 이전, 옮김
+//			file.transferTo(new File(uploadFile));
+//			
+//			//영화 포스터 이미지 정보 설정
+//			movieImgVO.setMovieImgCode(movieImgCode);
+//			movieImgVO.setOriginImgName(file.getOriginalFilename());
+//			movieImgVO.setAttachedImgName(attachedFileName);
+//			movieImgVO.setMvCode(mvCode);
+//		} catch (IllegalStateException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		
 		//----------상품&이미지 정보 등록----------
 		//MV_CODE 설정
 		movieVO.setMvCode(mvCode);
-		//MOVIE_IMG_CODE 설정
-		movieImgVO.setMovieImgCode(movieImgCode);
 		//영화 정보 등록
 		movieService.insertMovie(movieVO);
+		//imgList 설정
+		movieVO.setImgList(imgList);
 		//영화 포스터 이미지 등록
-		movieService.insertImage(movieImgVO);
+		movieService.insertImages(movieVO);
 		
 		return "redirect:/admin/movieManage";
 	}
