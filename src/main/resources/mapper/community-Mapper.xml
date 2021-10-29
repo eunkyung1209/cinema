@@ -116,7 +116,7 @@ INSERT INTO OISONE_COMMUNITY(
 
 
 <!-- 커뮤니티 상세보기 조회 -->
-<select id="selectCommuDetail" resultMap="board">
+<!-- <select id="selectCommuDetail" resultMap="board">
 	SELECT COMMU_CODE
 		, WRITER
 		, TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
@@ -127,7 +127,7 @@ INSERT INTO OISONE_COMMUNITY(
 	   FROM OISONE_COMMUNITY   
 	WHERE COMMU_CODE = #{commuCode}
 </select>
-
+ -->
 
 
 
