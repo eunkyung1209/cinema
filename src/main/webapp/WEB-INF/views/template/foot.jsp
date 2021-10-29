@@ -17,6 +17,7 @@
 					<li><a>고객센터</a></li>
 				</ul>
 			</div>
+			
 			<div class="col-4 text-start pjEx pjEx-1">
 				<a href="/item/mainPage"><img alt="" src="/resources/images/item/logo/penLogo.png" width="250px;"></a>
 				<br>
