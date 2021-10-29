@@ -111,7 +111,7 @@ a:hover{
 				<div class="col-8 search_box text-center" >
 				
 					<div>
-						<form action="/commu/commuList" method="post">
+						<form action="/community/commuList" method="post">
 						<!-- 셀렉트 박스 -->
 						<select class="selectBox_from" name="searchKeyword">
 							<option selected>선택</option>
@@ -146,7 +146,7 @@ a:hover{
 					<div class="row justify-content-center">
 						<div class="col-6">
 							<div style="text-align: left;">
-								<input class="btn btn-outline-secondary" type="button" onclick="location.href='/customer/goWriteCustomer';" id="button-addon2"  <c:if test="${empty sessionScope.loginInfo }">disabled</c:if> value="글쓰기">
+								<input class="btn btn-outline-secondary" type="button" onclick="location.href='/community/commuWrite';" id="button-addon2"  <c:if test="${empty sessionScope.loginInfo }">disabled</c:if> value="글쓰기">
 							</div>
 						</div>
 						
@@ -185,22 +185,22 @@ a:hover{
 					  <tbody>
 		
 		<c:choose>
-			<c:when test="${empty boardList }">
+			<c:when test="${empty commuList }">
 				<tr>
 					<td class="align-middle" colspan="5">등록된 게시글이 없습니다.</td>
 				</tr>
 			</c:when>
 			
 			<c:otherwise>
-				<c:forEach items="${boardList }" var="communityVO" varStatus="status">
+				<c:forEach items="${commuList }" var="communityInfo" varStatus="status">
 					<tbody>
 						<%-- <c:if test="${sessionScope.loginInfo.nickName} eq ${communityVO.writer }"> --%>
 						<tr>
 							<td scope="row" class="align-middle">${status.count } </td>
-							<td class="align-middle">${communityVO.title }</td>
-							<td class="align-middle">${communityVO.writer }</td>
-							<td class="align-middle">${communityVO.createDate }</td>
-							<td class="align-middle">${communityVO.readCnt }</td>
+							<td class="align-middle"><a href="/community/selectCommuPw?commuCode=${communityInfo.commuCode }&secret=${communityInfo.secret }">${communityInfo.title }</a> </td>
+							<td class="align-middle">${communityInfo.writer }</td>
+							<td class="align-middle">${communityInfo.createDate }</td>
+							<td class="align-middle">${communityInfo.readCnt }</td>
 						</tr>
 						<%-- </c:if> --%>
 					</tbody>
@@ -227,17 +227,17 @@ a:hover{
 			  <ul class="pagination justify-content-center">
 			  
 				    <li class=" <c:if test="${!communityVO.prev }">disabled</c:if>">
-				    		<a class="" href="/commu/commuList?nowPage=${communityVO.beginPage - 1 }">&nbsp;&nbsp; < &nbsp;&nbsp;</a>
+				    		<a class="" href="/community/commuList?nowPage=${communityVO.beginPage - 1 }">&nbsp;&nbsp; < &nbsp;&nbsp;</a>
 				    </li>
 				    
 				    <c:forEach begin="${communityVO.beginPage }" end="${communityVO.endPage }" var="pageNumber">
 						<li class=" <c:if test="${communityVO.nowPage eq pageNumber }"> active</c:if>">
-				     		 <a class="" href="/commu/commuList?nowPage=${pageNumber }&searchKeyword=${communityVO.searchKeyword}&searchValue=${communityVO.searchValue}" >${pageNumber }</a>
+				     		 <a class="" href="/community/commuList?nowPage=${pageNumber }&searchKeyword=${communityVO.searchKeyword}&searchValue=${communityVO.searchValue}" >${pageNumber }</a>
 				    	</li>
 					</c:forEach>
 				    
 				    <li class=" <c:if test="${!communityVO.next }"> disabled</c:if>">
-				     		<a class="" href="/commu/commuList?nowPage=${communityVO.endPage + 1 }">&nbsp;&nbsp; > &nbsp;&nbsp;</a>
+				     		<a class="" href="/community/commuList?nowPage=${communityVO.endPage + 1 }">&nbsp;&nbsp; > &nbsp;&nbsp;</a>
 				    </li>
 			    
 			  </ul>

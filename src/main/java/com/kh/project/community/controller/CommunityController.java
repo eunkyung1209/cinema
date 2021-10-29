@@ -7,14 +7,16 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import com.kh.project.community.service.CommunityService;
 import com.kh.project.community.vo.CommunityVO;
+import com.kh.project.customerCenter.vo.CustomerCenterVO;
 
 @Controller
-@RequestMapping("/commu")
+@RequestMapping("/community")
 public class CommunityController {
 	//커뮤니티 기능 구현
 	
@@ -36,7 +38,39 @@ public class CommunityController {
 		return "community/community_board_list";
 	}
 	
-	// 2. 커뮤니티 게시글 작성 (로그인할때만 가능)
+	// 2. 커뮤니티 게시글 작성으로 이동 (로그인할때만 가능)
+	@GetMapping("/commuWrite")
+	private String goCommuWrite() {
+		return "community/community_writer_form";
+	}
+	
+	// 2-1. 커뮤니티 게시글 작성(로그인할때만 가능)
+	@PostMapping("/commuWrite")
+	private String CommuWrite(CommunityVO communityVO) {
+		
+		communityService.insertCommu(communityVO);
+		
+		return "redirect:/community/commuList";
+	}
+	
+	// 3. 커뮤니티 상세보기
+	// 고객센터 글 비번 입력
+	@GetMapping("/selectCommuPw")
+	private String selectCommuPw(CommunityVO communityVO) {
+		return "community/input_password";
+	}
+
+	// 3. 커뮤니티 상세보기
+	@GetMapping("/selectCommuDetail")
+	private String selectCommuDetail(Model model, String commuCode) {
+		
+		//상세보기 정보
+		model.addAttribute("customerBoard", communityService.selectCommuDetail(commuCode));
+		//댓글 목록 불러오기
+		//model.addAttribute("customerReplyList", communityService.selectCustomerReply(customerCode));
+		
+		return "customer/customer_board_detail";
+	}
 	
 	
 	

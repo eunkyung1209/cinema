@@ -73,6 +73,27 @@ public class CommunityServiceImpl implements CommunityService {
 	public int selectCommuCnt(CommunityVO communityVO) {
 		return sqlSession.selectOne("communityMapper.selectCommuCnt", communityVO);
 	}
+	
+	//1-2. 조회수 증가
+	@Override
+	public void updaterReadCnt(int commuCode) {
+		sqlSession.selectOne("communityMapper.updaterReadCnt", commuCode);
+		
+	}
+	
+	//2. 게시글 등록하기
+	@Override
+	public void insertCommu(CommunityVO communityVO) {
+		sqlSession.insert("communityMapper.insertCommu", communityVO);
+	}
+
+	@Override
+	public CommunityVO selectCommuDetail(String commuCode) {
+		return sqlSession.selectOne("communityMapper.selectCommuDetail", commuCode);
+	}
+
+	
+	
 
 
 	

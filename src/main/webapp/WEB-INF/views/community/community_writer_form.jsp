@@ -61,7 +61,7 @@ select {
 		<div class="row justify-content-center">
 			<div class="col-8">
 				<div class="col-3 subjectDiv">
-					<h5>CommuWriter</h5>
+					<h5>CommunityWrite</h5>
 				</div>
 			</div>
 		</div>
@@ -69,7 +69,7 @@ select {
 		<div style="height: 50px;"></div>
 	
 	<!-- 글 작성 테이블 입니다. 테이블 클래스명 : writeTable 수정 후 사용바랍니다.-->
-	<form action="/board/insertBoard" method="post">
+	<form action="/community/commuWrite" method="post">
 			<div class="row justify-content-center align-middle">
 			
 				<div class="row justify-content-center" >
@@ -93,28 +93,23 @@ select {
 								<!-- 자유롭게 수정하여 사용 단, 인풋태그 태그 초기화 작업을 하였기에 css사용시, 선택자를 input으로 주는 것을 지양할 것 -->
 								<!-- '필수입력' 복사하여 사용 ->  <span class="redStar">*</span> -->
 								<tbody>
-									
 									<tr>
 										<td >제목 <span class="redStar">*</span></td>
-										<td ><input type="text" name="title" required> </td>
+										<td ><input style="width: 100%;" type="text" name="title" required> </td>
 									</tr>
 									<tr>
 										<td >작성자 <span class="redStar">*</span></td>
 										<td> <input type="text" style="color: black;" name="writer" readonly required value="${sessionScope.loginInfo.nickName }"></td>
 									</tr>
 									<tr>
-										<td>작성일</td>
-										<td><input type="date" name="createDate"></td>
-									</tr>
-									<tr>
 										<td>내용 <span class="redStar">*</span></td>
 										<td><textarea style="width: 100%; height:300px;  padding-top: 5px; "  name="content" required></textarea> </td>
 									</tr>
+				
 									<tr>
 										<td>비밀번호 <span class="redStar">*</span></td>
-	                   					<td><input type="password" name="secretNumber" required> </td>
+	                   					<td><input type="password" name="secretNumber"> </td>
 									</tr>
-									
 								</tbody>
 							</table>
 						
@@ -126,7 +121,7 @@ select {
 				<!-- 기본 버튼 클래스명: common_btn -->
 				<div class="row justify-content-center">
 					<div class="col-8" style="text-align: center;">
-						<input class="common_btn" type="button" value="등록취소" onclick="location.href='/board/boardList';">
+						<input class="common_btn" type="button" value="등록취소" onclick="location.href='/community/commuList';">
 						<input class="common_btn" type="submit" value="등록">
 					</div>
 				</div>

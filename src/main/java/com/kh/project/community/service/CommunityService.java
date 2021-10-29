@@ -14,8 +14,14 @@ public interface CommunityService {
 	//1-1. 게시글 페이징
 	int selectCommuCnt(CommunityVO communityVO);
 	
+	//1-2. 조회수 증가
+	void updaterReadCnt(int commuCode);
 	
+	//2. 게시글 글 등록하기
+	void insertCommu(CommunityVO communityVO);
 	
+	//3. 게시글 상세 조회
+	CommunityVO selectCommuDetail(String commuCode);
 	
 	
 	

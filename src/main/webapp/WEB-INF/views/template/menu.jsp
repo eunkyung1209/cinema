@@ -200,7 +200,7 @@ a:hover {
 				              	COMMUNITY
 				            </a>
 				            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-				              	<li><a class="dropdown-item" href="/commu/commuList">커뮤니티 게시판</a></li>
+				              	<li><a class="dropdown-item" href="/community/commuList">커뮤니티 게시판</a></li>
 				              	<li><a class="dropdown-item" href="#">Another action</a></li>
 				              	<li>
 				                	<hr class="dropdown-divider">
