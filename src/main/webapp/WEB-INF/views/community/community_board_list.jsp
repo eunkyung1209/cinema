@@ -94,7 +94,7 @@ a:hover{
 		<div class="row justify-content-center">
 			<div class="col-8">
 				<div class="col-3 subjectDiv">
-					<h5>COMMUNITY</h5>
+					<h5>커뮤니티</h5>
 				</div>
 			</div>
 		</div>
@@ -116,6 +116,7 @@ a:hover{
 						<select class="selectBox_from" name="searchKeyword">
 							<option selected>선택</option>
 							<option value="TITLE" <c:if test="${communityVO.searchKeyword eq 'TITLE'}">selected</c:if>>제목</option>
+							<option value="WRITER" <c:if test="${communityVO.searchKeyword eq 'WRITER'}">selected</c:if>>작성자</option>
 							<option value="CREATE_DATE" <c:if test="${communityVO.searchKeyword eq 'CREATE_DATE'}">selected</c:if>>등록일</option>
 						</select>
 						

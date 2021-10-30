@@ -28,13 +28,17 @@ public class CommunityController {
 	
 	
 	// 1. 커뮤니티 게시글 목록화면
-	@GetMapping("/commuList")
+	@RequestMapping("/commuList")
 	public String commuList(Model model, CommunityVO communityVO) {
 		
-		//페이징 처리
-		communityVO.setTotalCnt(communityService.selectCommuCnt(communityVO));
+		//-----페이징 처리------//
+		//전체 데이터 수
+		int dataCnt = communityService.selectCommuCnt(communityVO);
+		communityVO.setTotalCnt(dataCnt);
+		//페이징처리
 		communityVO.setPageInfo();
 				
+		
 		//카테고리 목록 조회 후 jsp로 전달
 		model.addAttribute("commuList", communityService.selectCommuList(communityVO));
 		

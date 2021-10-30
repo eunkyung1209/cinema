@@ -59,7 +59,7 @@
 					, ROWNUM AS ROW_NUM
 			FROM OISONE_COMMUNITY
 			<if test="searchValue != null and !searchValue.equals('')">
-				AND ${searchKeyword} LIKE '%'||#{searchValue}||'%'
+			  	WHERE ${searchKeyword} LIKE '%'||#{searchValue}||'%'
 			</if>
 			ORDER BY CREATE_DATE ASC
 		)
