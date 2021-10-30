@@ -46,7 +46,17 @@
 		<div class="row justify-content-center">
 			<div class="col-8">
 				<div class="col-3 subjectDiv">
-					<h5>전체 영화</h5>
+					<c:choose>
+						<c:when test="${movieVO.mvState eq 'Y' }"><!-- 상영작 -->
+							<h5>현재상영작</h5>
+						</c:when>
+						<c:when test="${movieVO.mvState eq 'N' }"><!-- 예정작 -->
+							<h5>상영예정작</h5>
+						</c:when>
+						<c:otherwise><!-- 전체 영화 -->
+							<h5>전체 영화</h5>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 		</div>
@@ -57,6 +67,7 @@
 		<div class="row justify-content-center">
 			<div class="col-8 search_box" >
 				<form action="/movie/movieList" method="post">
+					<input type="hidden" name="mvState" value="${movieVO.mvState }">
 					<select class="selectBox_from" name="searchKeyword">
 						<option value="TITLE" <c:if test="${movieVO.searchKeyword eq 'TITLE'}">selected</c:if>>제목</option>
 						<option value="DIRECTOR" <c:if test="${movieVO.searchKeyword eq 'DIRECTOR'}">selected</c:if>>감독</option>

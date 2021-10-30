@@ -157,18 +157,21 @@ a:hover {
 				            	MOVIE
 				            </a>
 				            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+				            	<li><a class="dropdown-item" href="/movie/movieList">홈</a></li>
 				            	<li><a class="dropdown-item" href="/movie/movieList?mvState=Y">현재상영작</a></li>
 				            	<li><a class="dropdown-item" href="/movie/movieList?mvState=N">상영예정작</a></li>
 				            	<li>
 				                	<hr class="dropdown-divider">
 				              	</li>
-				              	<!-- 관리자 기능!! - 영화 관리 -->
-				              	<li><a class="dropdown-item" href="">Something else here</a></li>
+				              	<!-- 관리자 기능 - 영화 관리 -->
+				              	<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' }">
+					              	<li><a class="dropdown-item" href="/admin/movieManage">영화 관리</a></li>
+				              	</c:if>
 				            </ul>
 				      	</li>
 				          
 				        <li class="nav-item dropdown">
-				           	<a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				           	<a class="nav-link dropdown-toggle" href="/reservation/goReserve" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 				              	TICKET
 				            </a>
 				            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
@@ -177,38 +180,50 @@ a:hover {
 				            	<li>
 				                	<hr class="dropdown-divider">
 				              	</li>
-				              	<li><a class="dropdown-item" href="#">Something else here</a></li>
+				              	<!-- 관리자 기능 - 영화 상영시간 관리 -->
+				              	<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' }">
+					              	<li><a class="dropdown-item" href="/reservation/goRegMovieTime">영화 상영시간 등록</a></li>
+				              	</c:if>
 				           	</ul>
 				     	</li>
 				          
 				        <li class="nav-item dropdown">
 				           	<a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-				            	EVENT
+				            	EVENT / COMMUNITY
 				            </a>
 				            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-				              	<li><a class="dropdown-item" href="#">Action</a></li>
-				              	<li><a class="dropdown-item" href="#">Another action</a></li>
+				              	<li><a class="dropdown-item" href="#">이벤트/행사</a></li>
+				              	<li><a class="dropdown-item" href="#">행사 일정</a></li>
+				              	<li><a class="dropdown-item" href="/community/commuList">커뮤니티 게시판</a></li>
 				              	<li>
 				                	<hr class="dropdown-divider">
 				              	</li>
-				              	<li><a class="dropdown-item" href="#">Something else here</a></li>
+				              	<!-- 관리자 기능 - 회원 관리 -->
+				              	<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' }">
+					              	<li><a class="dropdown-item" href="/admin/adminMemberList">회원 관리</a></li>
+				              	</c:if>
 				            </ul>
 				     	</li>
 				          
 				        <li class="nav-item dropdown">
-				           	<a class="nav-link dropdown-toggle" href="/board/boardList" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-				              	COMMUNITY
+				           	<a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				              	THEATER RENTAL
 				            </a>
 				            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-				              	<li><a class="dropdown-item" href="/community/commuList">커뮤니티 게시판</a></li>
-				              	<li><a class="dropdown-item" href="#">Another action</a></li>
+				              	<li><a class="dropdown-item" href="#">상영관 대관 신청</a></li>
+				              	<li><a class="dropdown-item" href="#">상영관 대관 일정</a></li>
 				              	<li>
 				                	<hr class="dropdown-divider">
 				              	</li>
-				              	<li><a class="dropdown-item" href="#">Something else here</a></li>
+				              	<!-- 관리자 기능 - 대관 관리 -->
+				              	<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' }">
+					              	<li><a class="dropdown-item" href="#">대관 일정 관리</a></li>
+				              	</c:if>
 				            </ul>
 				      	</li>
-			      		<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' }">
+				      	
+				      	<!-- 관리자 메뉴 -->
+			      		<%-- <c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' }">
 			      			<li class="nav-item dropdown">
 					            <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					              	ADMIN
@@ -224,7 +239,8 @@ a:hover {
 					              	<li><a class="dropdown-item" href="#">기타</a></li>
 					            </ul>
 					       	</li>
-			      		</c:if>
+			      		</c:if> --%>
+			      		
 				        <%-- </c:when>
 						<c:otherwise>
 				          <!-- !!!!!!!!!!! 관리자 페이지!!!!!!!!!!!!! -->
