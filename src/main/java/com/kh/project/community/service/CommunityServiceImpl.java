@@ -105,6 +105,31 @@ public class CommunityServiceImpl implements CommunityService {
 	public void deleteCommu(String commuCode) {
 		sqlSession.delete("communityMapper.deleteCommu", commuCode);
 	}
+	
+	//4.댓글 목록 조회
+	@Override
+	public List<CommunityReplyVO> selectCommuReply(String commuCode) {
+		return sqlSession.selectList("communityMapper.selectCommuReply", commuCode);
+	}
+	
+	//4-1. 댓글 등록 하기
+	@Override
+	public void insertCommuReply(CommunityReplyVO communityReplyVO) {
+		sqlSession.insert("communityMapper.insertCommuReply", communityReplyVO);
+	}
+	
+	//4-2. 댓글 수정하기
+	@Override
+	public void updateCummuReply(CommunityReplyVO communityReplyVO) {
+		sqlSession.update("communityMapper.updateCummuReply", communityReplyVO);
+		
+	}
+	
+	//4-3. 댓글 삭제하기
+	@Override
+	public void deleteCummuReply(String commuReplyCode) {
+		sqlSession.delete("communityMapper.deleteCummuReply", commuReplyCode);
+	}
 
 	
 	

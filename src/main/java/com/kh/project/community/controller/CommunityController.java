@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import com.kh.project.community.service.CommunityService;
+import com.kh.project.community.vo.CommunityReplyVO;
 import com.kh.project.community.vo.CommunityVO;
+import com.kh.project.customerCenter.vo.CustomerCenterReplyVO;
 import com.kh.project.customerCenter.vo.CustomerCenterVO;
 import com.kh.project.member.vo.MemberVO;
 
@@ -68,8 +70,9 @@ public class CommunityController {
 		
 		//상세보기 정보
 		model.addAttribute("commuList", communityService.selectCommuDetail(communityVO));
+		
 		//댓글 목록 불러오기
-		//model.addAttribute("customerReplyList", communityService.selectCustomerReply(customerCode));
+		model.addAttribute("commuReplyList", communityService.selectCommuReply(commuCode));
 		
 		//조회수 증가
 		communityService.updaterReadCnt(commuCode);
@@ -103,6 +106,46 @@ public class CommunityController {
 		
 		return "redirect:/community/commuList";
 	}
+	
+	//4. 댓글 등록하기
+	@PostMapping("/insertCommuReply")
+	private String insertCommuReply(Model model, CommunityReplyVO communityReplyVO) {
+		
+		communityService.insertCommuReply(communityReplyVO);
+		
+		//등록 후 다시 페이지로 돌아가기
+		model.addAttribute("commuCode", communityReplyVO.getCommuCode());
+		
+		return "redirect:/community/selectCommuDetail";
+	}
+	
+	//4-1. 댓글 삭제하기
+	@PostMapping("updateCummuReply")
+	private String updateCummuReply(Model model, CommunityReplyVO communityReplyVO) {
+		
+		communityService.updateCummuReply(communityReplyVO);
+		
+		//상세보기 페이지 코드 넘겨주기
+		model.addAttribute("commuCode", communityReplyVO.getCommuCode());
+		
+		return "redirect:/community/selectCommuDetail";
+	}
+	
+	//4-2. 댓글 삭제하기
+	@GetMapping("/deleteCummuReply")
+	private String deleteCummuReply(String commuReplyCode, String commuCode, Model model) {
+		
+		communityService.deleteCummuReply(commuReplyCode);
+		
+		//상세보기 페이지 코드 넘겨주기
+		model.addAttribute("commuCode", commuCode);
+		
+		return "redirect:/community/selectCommuDetail";
+	}
+	
+	
+	
+	
 	
 	
 	

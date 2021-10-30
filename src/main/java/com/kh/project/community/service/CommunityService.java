@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kh.project.community.vo.CommunityReplyVO;
 import com.kh.project.community.vo.CommunityVO;
+import com.kh.project.customerCenter.vo.CustomerCenterReplyVO;
 import com.kh.project.member.vo.MemberVO;
 
 public interface CommunityService {
@@ -29,6 +30,17 @@ public interface CommunityService {
 	//3-2. 게시글 상세 삭제
 	void deleteCommu(String commuCode);
 	
+	//4.댓글 목록 조회
+	List<CommunityReplyVO> selectCommuReply(String commuCode);
+	
+	//4-1. 댓글 등록 하기
+	void insertCommuReply(CommunityReplyVO communityReplyVO);
+
+	//댓글 수정
+	void updateCummuReply(CommunityReplyVO communityReplyVO);
+	
+	//댓글 삭제
+	void deleteCummuReply(String commuReplyCode);
 	
 	
 
