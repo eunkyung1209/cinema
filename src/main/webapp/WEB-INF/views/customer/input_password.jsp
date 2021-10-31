@@ -29,7 +29,7 @@ text-align: center;
 				<input type="hidden" id="secretNumber" value="${customerCenterVO.secretNumber }">
 				<div>
 					비밀번호 <input type="password" id="test" >
-					<input type="button" class="btn btn-outline-secondary" value="입력" onclick="checkPw();">
+					<input type="button" class="common_btn" value="입력" onclick="checkPw();">
 				</div>
 				
 				
