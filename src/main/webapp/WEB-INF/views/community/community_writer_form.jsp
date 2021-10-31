@@ -46,7 +46,7 @@ select {
 /* *필수입력 문장  */
 .needInput{
 	font-size: 13px;
-	margin-left: 70%;
+	margin-left: 94%;
 }
  
 </style>
@@ -61,7 +61,7 @@ select {
 		<div class="row justify-content-center">
 			<div class="col-8">
 				<div class="col-3 subjectDiv">
-					<h5>CommunityWrite</h5>
+					<h5>커뮤니티 글쓰기</h5>
 				</div>
 			</div>
 		</div>
@@ -83,7 +83,6 @@ select {
 								<thead>
 									<tr>
 										<td colspan="2" style="background-color: white; padding-bottom: 5px;" >
-											<span style="font-size: 20px;">게시글 작성</span> 
 											<span class="needInput" style=""><span class="redStar">*</span>필수입력</span>
 											<!-- <input type="hidden" name="isSecret" value="N"> -->
 										</td>

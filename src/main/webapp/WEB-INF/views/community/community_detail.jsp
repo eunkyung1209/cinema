@@ -31,6 +31,7 @@ padding: 10px;
 
 }
 
+
 /* 제목 Tr */
 .titleTr{
 height: 10%; 
@@ -42,6 +43,46 @@ background-color: #f2f2f2
 .correct{
 	text-align: right;
 }
+
+.replyTable{
+	width: 97%;
+	text-align: left;
+	padding: 10px;
+}
+
+.replyTable tr{
+	border-top: 1px solid #c9c9c8;
+	border-bottom: 1px solid #c9c9c8;
+
+}
+
+
+input{
+	height: 50px;
+}
+
+.replyWriter{
+	font-size: 12px;
+	height: 30%;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.createDate{
+	font-size: 10px;
+	height: 20%;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	
+}
+
+.replyContent{
+	font-size: 14px;
+	margin: 5px;
+}
+
 
 
 </style>
@@ -60,7 +101,9 @@ background-color: #f2f2f2
 				</div>
 			</div>
 		</div>
-	
+		
+		<!-- 공간 -->
+		<div style="height: 50px;"></div>
 
 		<!-- 상세보기 정보를 불러오는 테이블 입니다. 테이블명 : boardDetail -->
 		<div class="row justify-content-center" >
@@ -193,7 +236,6 @@ background-color: #f2f2f2
 		<div class="row justify-content-center">
 			<div class="col-8 text-center"  >
 				 <input class="common_btn" type="button" value="목록으로"  onclick="location.href='/board/boardList';">
-				
 			</div>
 		</div>
 	</div>

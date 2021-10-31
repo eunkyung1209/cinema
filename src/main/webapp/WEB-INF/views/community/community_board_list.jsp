@@ -147,7 +147,7 @@ a:hover{
 					<div class="row justify-content-center">
 						<div class="col-6">
 							<div style="text-align: left;">
-								<input class="btn btn-outline-secondary" type="button" onclick="location.href='/community/commuWrite';" id="button-addon2"  <c:if test="${empty sessionScope.loginInfo }">disabled</c:if> value="글쓰기">
+								<input class="btn common_btn" type="button" onclick="location.href='/community/commuWrite';" id="button-addon2"  <c:if test="${empty sessionScope.loginInfo }">disabled</c:if> value="글쓰기">
 							</div>
 						</div>
 						
@@ -176,7 +176,8 @@ a:hover{
 					</colgroup>
 					<thead>
 					    <tr >
-					      <th scope="col" class="align-middle" >no</th>
+					      
+					      <th scope="col" class="align-middle" >NO</th>
 					      <th scope="col" class="align-middle">제목</th>
 					      <th scope="col" class="align-middle">작성자</th>
 					      <th scope="col" class="align-middle">등록일</th>
@@ -200,10 +201,15 @@ a:hover{
 							<th scope="row" class="align-middle">${status.count }</th>
 							
 							<c:if test="${communityInfo.isSecret eq 'Y'}">
-								<td class="align-middle"><a href="/community/selectCommuPw?commuCode=${communityInfo.commuCode }&secret=${communityInfo.secret }">${communityInfo.title }</a> </td>
+								<td class="align-middle">
+									<img alt="" width="10px" src="/resources/images/community/자물쇠.PNG">
+									<a href="/community/selectCommuPw?commuCode=${communityInfo.commuCode }&secret=${communityInfo.secret }">${communityInfo.title }</a>
+								 </td>
 							</c:if>
 							<c:if test="${communityInfo.isSecret eq 'N'}">
-								<td class="align-middle"><a href="/community/selectCommuDetail?commuCode=${communityInfo.commuCode }">${communityInfo.title }</a> </td>
+								<td class="align-middle">
+									<a href="/community/selectCommuDetail?commuCode=${communityInfo.commuCode }">${communityInfo.title }</a>
+								 </td>
 							</c:if>
 							
 							<td class="align-middle">${communityInfo.writer }</td>
