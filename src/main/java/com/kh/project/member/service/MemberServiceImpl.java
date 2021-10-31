@@ -49,15 +49,22 @@ public class MemberServiceImpl implements MemberService {
 		return sqlSession.selectOne("memberMapper.checkOverId", id);
 		
 	}
-	//아이디 중복체크
+	//이메일 중복체크
 	@Override
 	public int checkOverEmail(String email) {
 		return sqlSession.selectOne("memberMapper.checkOverEmail", email);
 	}
-	//아이디 중복체크
+	
+	//닉네임 중복체크
 	@Override
 	public int checkOverNickName(String nickName) {
 		return sqlSession.selectOne("memberMapper.checkOverNickName", nickName);
+	}
+	
+	//로그인
+	@Override
+	public int checkLogin(MemberVO memberVO) {
+		return sqlSession.selectOne("memberMapper.checkLogin", memberVO);
 	}
 	
 	
@@ -125,6 +132,8 @@ public class MemberServiceImpl implements MemberService {
 	public int selectCommuCnt(CommunityVO communityVO) {
 		return sqlSession.selectOne("memberMapper.selectCommuCnt", communityVO);
 	}
+
+
 
 
 

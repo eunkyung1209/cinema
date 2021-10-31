@@ -1,32 +1,34 @@
-//화면 로딩 후 바로 실행
 $(document).ready(function(){
 	
-	
-
-	
-});
-
-
-//함수 선언 영역
-(function($){
-
-	checkPw = function() {
-		var commuCode = $('#commuCode').val();
-		var secret = $('#secret').val();
-		var inputPw = $('#inputPw').val();
-		var test = $('#test').val();
+	$(document).on('click', '#loginBtn', function() {
 		
+		// id = "id" / name = "userId"
 		
-		if(test != secret){
-			alert('비밀번호를 다시 입력하세요');
-			$('#test').val('');
+			var id = $('#id').val();
+			var pw = $('#pw').val();
 			
-		}
-		
-		else{
-			location.href = '/community/selectCommuDetail?commuCode=' + commuCode;
-		}
-		
-	};     
-   
-})(jQuery);
+			$.ajax({
+				url : '/member/loginCheck',
+				type : 'get',
+				data:{'id':id, 'pw':pw}, //필요한 데이터
+				success : function(data) {
+					console.log("1 = 중복o / 0 = 중복x : "+ data);							
+					
+					if (data == 1) {
+						
+						$("#login_check").text("아이디 또는 비밀번호가 일치하지 않습니다.");
+						$("#login_check").css("color", "red");
+							
+					}
+					else {
+							
+						location.href = '/member/login';
+							
+					}
+							
+					}
+					
+				});
+		});
+	
+});(jQuery);

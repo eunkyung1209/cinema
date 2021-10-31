@@ -103,6 +103,14 @@
 		FROM OISONE_MEMBER
 		WHERE NICKNAME = #{nickName}
 	</select>
+	
+	<!--로그인 중복 유효성 검사 -->
+	<select id="checkLogin" resultType="int" parameterType="String">
+		SELECT COUNT(*)
+		FROM OISONE_MEMBER
+		WHERE ID = #{id}
+		AND PW = #{pw}
+	</select>
 
 
 	<!-- 2. 로그인 -->

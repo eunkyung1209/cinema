@@ -24,6 +24,9 @@ public interface MemberService {
 	
 	int checkOverNickName(String nickName); // 닉네임 중복체크
 	
+	//로그인 유효성
+	int checkLogin(MemberVO memberVO);
+	
 	
 	//2. 로그인
 	MemberVO login(MemberVO memberVO);

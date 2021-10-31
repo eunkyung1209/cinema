@@ -117,11 +117,17 @@ public class MemberController {
 		
 		return "redirect:/movie/mainPage"; 
 	}
-
-
 	
-	//2. 로그인
-	@PostMapping("/login")
+	//
+	@RequestMapping("/loginCheck")
+	@ResponseBody
+	public int loginCheck(MemberVO memberVO) {
+		
+		return memberService.checkLogin(memberVO);
+	}
+
+	//2-1. 로그인
+	@RequestMapping("/login")
 	public String login(MemberVO memberVO, HttpSession session) {
 		MemberVO loginInfo = memberService.login(memberVO);
 		
@@ -140,8 +146,28 @@ public class MemberController {
 		}
 		
 		//로그인 실패
-		return "redirect:/movie/mainPage";
+		return "redirect:/member/loginCheck";
 	}
+	
+	//------------로그인 인터셉터 *로그인 안했으면 하라고 하기*------------
+	// 고객센터 글 비번 입력
+	/*
+	 * @GetMapping("/inputLogin") private String inputLogin(MemberVO memberVO,
+	 * HttpSession session) {
+	 * 
+	 * MemberVO loginInfo = memberService.login(memberVO);
+	 * 
+	 * //로그인 성공 if(loginInfo != null) { session.setAttribute("loginInfo",
+	 * loginInfo);
+	 * 
+	 * //관리자이면 if(loginInfo.getIsAdmin().equals("Y")) { return
+	 * "redirect:/member/myPage"; } //일반회원이면 else {
+	 * //loginInfo.getIsAdmin().equals("N")인 경우 return "redirect:/member/myPage"; }
+	 * }
+	 * 
+	 * return "member/input_login"; }
+	 */
+	
 	
 	//로그아웃
 	@GetMapping("/logout")

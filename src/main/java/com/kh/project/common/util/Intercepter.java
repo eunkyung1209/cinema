@@ -18,7 +18,7 @@ public class Intercepter extends  HandlerInterceptorAdapter {
 
        if (result == null) {
 
-          response.sendRedirect("/member/login");
+          response.sendRedirect("");
           
           // false -> (이프문에 걸렸다) 정해준 경로로 가라response.sendRedirect("/member/login");
           return false;
