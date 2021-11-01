@@ -8,13 +8,6 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="/resources/admin/js/movie_manage.js?ver=2"></script>
 <style type="text/css">
-/* 목록조회 페이지 폼 */
-
-/* 검색 폼 */
-.searchForm{
-	text-align: right;
-}
-
 /*검색 버튼 기본폼 */
 .common_btn{
 	font-size: 14px;
