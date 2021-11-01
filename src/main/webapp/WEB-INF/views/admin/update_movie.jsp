@@ -146,6 +146,7 @@ select{
 				<div class="col-8 text-center">
 					<input type="hidden" name="mvCode" value="${movieInfo.mvCode }">
 					<input class="common_btn" type="submit" value="수정완료">
+					<input class="common_btn" type="button" value="뒤로가기" onclick="location.href='/admin/movieDetail?mvCode=${movieInfo.mvCode }';">
 				</div>
 			</div>
 		</form>

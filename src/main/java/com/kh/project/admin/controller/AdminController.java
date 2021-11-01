@@ -87,8 +87,8 @@ public class AdminController {
 		Iterator<String> inputNames = multi.getFileNames();
 		
 		//첨부될 폴더
-		String uploadPath = "D:\\workspaceSTS\\Cinema\\src\\main\\webapp\\resources\\images\\movie\\";	//은경 - 학원 컴퓨터 경로
-		//String uploadPath = "C:\\Users\\Administrator\\git\\cinema\\src\\main\\webapp\\resources\\images\\movie\\";	//은경 - 노트북 경로
+		//String uploadPath = "D:\\workspaceSTS\\Cinema\\src\\main\\webapp\\resources\\images\\movie\\";	//은경 - 학원 컴퓨터 경로
+		String uploadPath = "C:\\Users\\Administrator\\git\\cinema\\src\\main\\webapp\\resources\\images\\movie\\";	//은경 - 노트북 경로
 		
 		//모든 첨부파일 정보가 들어갈 공간
 		List<MovieImgVO> imgList = new ArrayList<>();

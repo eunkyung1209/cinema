@@ -122,6 +122,7 @@ body{
 	
 	<!-- 영화 예시 -->
 	<div class="row">
+		<div class="col-1"></div>
 		<div class="col-2">
 			<div class="card mb-3">
 				<a href="#"><img src="/resources/images/main/메인서브-01.png" class="card-img-top" alt="..."></a>
@@ -182,6 +183,7 @@ body{
 				</div>
 			</div>
 		</div>
+		<div class="col-1"></div>
 	</div>
 </div>
 </body>

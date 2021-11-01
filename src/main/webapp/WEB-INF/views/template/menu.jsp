@@ -220,8 +220,8 @@ a:hover {
 				              	THEATER RENTAL
 				            </a>
 				            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-				              	<li><a class="dropdown-item" href="#">상영관 대관 신청</a></li>
-				              	<li><a class="dropdown-item" href="#">상영관 대관 일정</a></li>
+				              	<li><a class="dropdown-item" href="/rental/goApplyRental">상영관 대관 신청</a></li>
+				              	<li><a class="dropdown-item" href="/rental/goRentalSchedule">상영관 대관 일정</a></li>
 				              	<li>
 				                	<hr class="dropdown-divider">
 				              	</li>

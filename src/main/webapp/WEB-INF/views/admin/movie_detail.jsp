@@ -137,7 +137,7 @@ td{
 		<div class="row justify-content-center">
 			<div class="col-8 text-center">
 				<input class="common_btn" type="button" value="수정하기" onclick="location.href='/admin/goUpdateMovie?mvCode=${movieInfo.mvCode}';">
-				<input class="common_btn" type="button" value="뒤로가기" onclick="history.back()">
+				<input class="common_btn" type="button" value="뒤로가기" onclick="location.href='/admin/movieManage';">
 			</div>
 		</div>
 	</div>

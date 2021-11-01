@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="/resources/common/foot.css?ver=1">
 </head>
 <body>
-	<div class="row footerRowDiv mt-5">
-		<div class="row justify-content-center">
+	<div class="row footerRowDiv justify-content-center">
+		<div class="row mt-5">
 			<div class="col-12 footerStartDiv">
 				<ul class="footUl">
 					<li>프로젝트</li>
