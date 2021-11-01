@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 모든 SQL문을 mapper태그 안에 작성 -->
+<mapper namespace="eventMapper">
+	
+	<!-- 영화추천 --><!-- 영화추천 쿼리 짜야 될 때 얘기해줘 기량아!! -->
+	<resultMap type="com.kh.project.movie.vo.MovieVO" id="movie">
+		
+	</resultMap>
+	
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
