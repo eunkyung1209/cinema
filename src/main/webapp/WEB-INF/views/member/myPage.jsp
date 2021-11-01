@@ -14,6 +14,7 @@
 
 <style type="text/css">
 
+
 /* 작성테이블 */
 .writeTable{
 margin: 0 auto;
@@ -74,6 +75,51 @@ select {
 	width: 90%;
 	margin: 0 auto;
 }
+
+
+/* 사진 글자 */
+			.jb-wrap {
+				width: 50%;
+				margin: 0px auto;
+				position: relative;
+			}
+			.jb-wrap img {
+				width: 100%;
+				vertical-align: middle;
+			}
+			.jb-text {
+				position: absolute;
+				top: 0px;
+				width: 100%;
+				height: 100%;
+			}
+			.jb-text-table {
+				display: table;
+				width: 100%;
+				height: 100%;
+			}
+			.jb-text-table-row {
+				display: table-row;
+			}
+			.jb-text-table-cell {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			.memeber_name {
+				margin: 0px 187px;
+				margin-bottom: -37px;
+				padding: 2px;
+				width: 130px;
+				text-align: right;
+			}
+			.memeber_id{
+				margin: 0px 275px;
+				margin-bottom: 1000px;
+				padding: 2px;
+				text-align: right;
+				width: 130px;
+			}
+
 </style>
 
 
@@ -98,100 +144,103 @@ select {
 	<div class="col-12">
 	
 	<!-- 글 작성 테이블 입니다. 테이블 클래스명 : writeTable 수정 후 사용바랍니다.-->
-			<div class="row justify-content-center align-middle">
+ 			<div class="row justify-content-center align-middle">
 			
-				<div class="row justify-content-center" >
-					<div class="col-8" >
-							<table class="writeTable">
-								<colgroup>
-									<col width="20%">
-									<col width="*">
-								</colgroup>	
-								
-								<!-- 자유롭게 수정하여 사용 단, 인풋태그 태그 초기화 작업을 하였기에 css사용시, 선택자를 input으로 주는 것을 지양할 것 -->
-								<!-- '필수입력' 복사하여 사용 ->  <span class="redStar">*</span> -->
-								<tbody>
-								
-									<tr>
-										<td >가입날짜</td>
-										<td >${sessionScope.loginInfo.joinDate } </td>
-									</tr>
-									<tr>
-										<td >이름</td>
-										<td >${sessionScope.loginInfo.name } </td>
-									</tr>
-									<tr>
-										<td >전화번호</td>
-										<td >${sessionScope.loginInfo.tell }</td>
-									</tr>
-									<tr>
-										<td >이메일</td>
-										<td >${sessionScope.loginInfo.email } </td>
-									</tr>
-									<tr>
-										<td >생일</td>
-										<td >${sessionScope.loginInfo.birthday } </td>
-									</tr>
-									<tr>
-										<td >마이시네마</td>
-										<td >${sessionScope.loginInfo.myCinema } </td>
-									</tr>
-									<tr>
-										<td >성별</td>
-										<td >${sessionScope.loginInfo.gender } </td>
-									</tr>
-									<tr>
-										<td >아이디</td>
-										<td >${sessionScope.loginInfo.id } </td>
-									</tr>
-									<tr>
-										<td >닉네임</td>
-										<td >${sessionScope.loginInfo.nickName } </td>
-									</tr>
-									<tr>
-										<td >무인티켓사용</td>
-										<td >${sessionScope.loginInfo.nonpeopleTicket } </td>
-									</tr>
-									<tr>
-										<td >마켓팅동의여부</td>
-										<td >${sessionScope.loginInfo.marketingAgree } </td>
-									</tr>
-									<tr>
-										<td >- 포인트</td>
-										<td >${sessionScope.loginInfo.point } </td>
-									</tr>
-									<tr>
-										<td >- 적립금</td>
-										<td >${sessionScope.loginInfo.savedMoney } </td>
-									</tr>
-									
-									
-								</tbody>
-							</table>
-							
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
-							
-<table style="border: 1px solid black;">
-	<tr>
-		<td>내 정보</td>
-		<td>내 주문내역</td>
-		<td><a href="/member/myBoardList?nickName=${sessionScope.loginInfo.nickName }">내 글보기</a></td>
-	</tr>
-	<tr>
-		<td>장바구니</td>
-		<td>나의 관심 모록</td>
-		<td> </td>
-	</tr>
-</table>
-						
+			<!-- 	<div class="row justify-content-center" >
+					<div class="col-8" style="text-align: center;" >
+						<div><img alt="" height="420px;" src="/resources/images/member/돼지저금통.PNG"><span></span> 이름</div>
+						<div>
+							이름
+						</div>
 					</div>
-				</div>
+				</div> - -->
 				
+				
+
+
+
+		
+<div class="jb-wrap">
+	<div class="jb-image"><img alt="" width="500px;" height="420px;" src="/resources/images/member/돼지저금통.PNG"></div>
+	<div class="jb-text"> 
+		<div class="jb-text-table">
+			<div class="jb-text-table-row">
+				<div class="jb-text-table-cell">
+				
+					<div class="memeber_name" style="font-size: 25px;">
+						<!-- <p class="memeber_name" style="font-size: 25px;"> -->
+						<table style="border: 1px solid black;">
+							<tr style="border: 1px solid black; ">
+								<td style="width: 80px;">d</td>
+								<td style="width: 60px;">d</td>
+								<td style="width: 60px;">d</td>
+								<td style="width: 60px;">d</td>
+								<td style="width: 60px;">d</td>
+								<td style="width: 60px;">d</td>
+							</tr>
+							<tr style="border: 1px solid black;">
+								<td style="width: 60px;">d</td>
+								<td style="width: 60px;">d</td>
+								<td style="width: 60px;">d</td>
+								<td style="width: 60px;">d</td>
+								<td style="width: 60px;">d</td>
+								<td style="width: 60px;">d</td>
+							</tr>
+							<tr style="border: 1px solid black;">
+								<td style="width: 60px;">d</td>
+							</tr>
+							<tr style="border: 1px solid black;">
+								<td style="width: 60px;">d</td>
+							</tr>
+							<tr style="border: 1px solid black;">
+								<td style="width: 60px;">d</td>
+							</tr>
+							<tr style="border: 1px solid black;">
+								<td style="width: 60px;">d</td>
+							</tr>
+							<tr style="border: 1px solid black;">
+								<td style="width: 60px;">d</td>
+							</tr>
+							<tr style="border: 1px solid black;">
+								<td style="width: 60px;">d</td>
+							</tr>
+
+						</table>
+						<!-- </p> -->
+					</div>
+					
+					
+					
+					
+					
+				</div>
+			</div>
+		</div>
+		
+				<%-- <div class="jb-text-table-cell">
+					<p class="memeber_id" style="font-size: 15px;">${sessionScope.loginInfo.id }</p>
+				</div> --%>
+				
+	</div>
+</div>				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+
 
 				<div style="height: 80px;"></div>
 				
