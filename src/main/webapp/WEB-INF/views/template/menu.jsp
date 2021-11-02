@@ -243,7 +243,7 @@ a:hover {
 				            </a>
 				            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
 				              	<li><a class="dropdown-item" href="/event/eventMain">이벤트/행사</a></li>
-				              	<li><a class="dropdown-item" href="#">행사 일정</a></li>
+				              	<li><a class="dropdown-item" href="/event/eventDate">행사 일정</a></li>
 				              	<li><a class="dropdown-item" href="/community/commuList">커뮤니티 게시판</a></li>
 				              	<li>
 				                	<hr class="dropdown-divider">
