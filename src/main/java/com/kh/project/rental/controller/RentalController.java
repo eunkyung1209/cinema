@@ -37,12 +37,20 @@ public class RentalController {
 		return "redirect:/rental/goApplyRental";
 	}
 	
-	//대관 예약 조회
-	@GetMapping("/applyRentalList")
-	public String applyRentalList() {
+	//대관 예약 조회 페이지로 이동
+	@GetMapping("/selectRentalList")
+	public String selectRentalList() {
 		//대관 예약 목록 조회
 		
-		return "rental/apply_rental_list";
+		return "rental/rental_list";
+	}
+	
+	//대관 예약 관리 페이지로 이동
+	@GetMapping("/rentalManage")
+	public String rentalManage() {
+		//대관 예약 목록 조회
+		
+		return "rental/rental_manage";
 	}
 	
 }

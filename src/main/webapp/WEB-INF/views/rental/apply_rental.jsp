@@ -22,6 +22,13 @@
 	border: 2px solid #e0e0e0;
 	border-radius: 0.4em;
 }
+.rental-notice > div{
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+.notice{
+	margin: 7px auto;
+}
 
 /*검색 버튼 기본폼 */
 .common_btn{
@@ -48,6 +55,9 @@ input{
 	width: 100%;
 	background-color: white;
 }
+.only-time{
+	width: 48%;
+}
 /* 셀렉트박스 폼 */
 .selectBox_from{
 	font-size: 14px;
@@ -71,11 +81,6 @@ input{
 .redStar{
 	color: red;
 }
-/* 시간 변경 안내 */
-.notice{
-	font-size: 10px;
-	float: right;
-}
 </style>
 </head>
 <body>
@@ -95,9 +100,12 @@ input{
 		<!-- 예약 안내 -->
 		<div class="row justify-content-center">
 			<div class="col-7 rental-notice text-center">
-				<div class="row mt-4 mb-4 justify-content-center">
-					&lt; 대관 예약 안내사항 &gt;
-					
+				<div class="row justify-content-center">
+					<div class="notice">&lt; 대관 예약 안내사항 &gt;</div>
+					<div class="notice"></div>
+					<div class="notice">대관 예약 신청 시, 해당 영화관 상황을 확인 후 결과를 안내해드립니다.</div>
+					<div class="notice">대관 예약 현황과 결과는 상영관 대관 예약 조회 페이지에서 확인하실 수 있습니다.</div>
+					<div class="notice"><span class="redStar">*</span> 예약한 시간은 영화관 사정상 변경될 수 있습니다.</div>
 				</div>
 			</div>
 		</div>
@@ -129,8 +137,8 @@ input{
 							</div>
 							<!-- 예약 시각 -->
 							<div class="mb-4">
-								<label for="timepicker" class="form-label">예약 시각 <span class="redStar">*</span></label><span class="notice"><span class="redStar">*</span> 예약한 시간은 영화관 사정상 변경될 수도 있습니다.</span>
-								<input type="text" id="timepicker" class="only-time" name="rtStartTime" placeholder="시작 시각">
+								<label for="timepicker" class="form-label">예약 시각 <span class="redStar">*</span></label><br>
+								<input type="text" id="timepicker" class="only-time" name="rtStartTime" placeholder="시작 시각"> ~ 
 								<input type="text" class="only-time" name="rtEndTime" placeholder="종료 시각">
 							</div>
 							<!-- 영화관 선택 -->
