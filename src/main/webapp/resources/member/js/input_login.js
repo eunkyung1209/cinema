@@ -4,7 +4,7 @@ $(document).ready(function(){
 		
 		// id = "id" / name = "userId"
 		
-			var id = $('#loginId').val();
+			var id = $('#loginIdd').val();
 			var pw = $('#loginPw').val();
 			
 			$.ajax({
