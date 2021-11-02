@@ -59,4 +59,9 @@ public class EventController {
 			return "event/detail_discount_1";
 		
 	}
+	// 이벤트 행사일정으로 이동
+		@GetMapping("/eventDate")
+		public String eventDate() {
+			return "event/event_Date";
+	}	
 }
