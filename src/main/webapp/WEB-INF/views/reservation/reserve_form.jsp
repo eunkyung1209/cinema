@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script type="text/javascript" src="/resources/reservation/js/reserve_form.js?ver=18"></script>
 <style type="text/css">
 
 .bodyDiv{
@@ -90,6 +92,10 @@ ul{
 
 }
 
+.areaName, .movieName{
+	cursor: pointer;
+}
+
 </style>
 
 
@@ -131,7 +137,7 @@ ul{
 					<div class="col-2 reserveArea" >
 						<!-- 타이틀 -->
 						<div class="row justify-content-center reserveTitle">
-							<div class="col-12" >
+							<div class="col-12 reserveTitleArea" >
 								선택한 영화관
 							</div>
 						</div>
@@ -139,9 +145,14 @@ ul{
 						<div class="row justify-content-center reserveAreaList">
 							<div class="col-12 align-middle" >
 								<ul>
-									<li class="m-3">My 영화관</li>
+									<li class="m-3 ">My 영화관</li>
 									<c:forEach items="${areaList }" var="areaInfo">
-										<li class="m-3">${areaInfo.areaName }</li>
+										<li class="m-3 areaName" onclick="areaNameClick('${areaInfo.areaName }');" data-areaName="${areaInfo.areaName }">
+											<div class="row justify-content-center">
+												<div class="col-10">${areaInfo.areaName }</div>
+												<div class="col-2 areaCheck" > &nbsp;</div>
+											</div>
+										</li>
 									</c:forEach>
 								</ul>
 							</div>
@@ -153,10 +164,38 @@ ul{
 					<div class="col-3 reserveMovie" >
 						<!-- 타이틀 -->
 						<div class="row justify-content-center reserveTitle">
-							<div class="col-12" >
+							<div class="col-12 reserveTitleMovie" >
 								선택한 영화
 							</div>
 						</div>
+						
+						<!-- 영화목록 -->
+						<div class="row justify-content-center reserveMovieList">
+							<c:forEach items="${statingMovieList }" var="statingMovie">
+								<li class="m-3 movieName" onclick="movieClick('${statingMovie.mvCode}', '${statingMovie.title }');" data-mvCode="${statingMovie. mvCode}">
+									<div class="row justify-content-center">
+										<div class="col-10">
+											<c:if test="${statingMovie. age eq 12}">
+												<img height="25px;" src="/resources/images/reservation/12.png">
+											</c:if>
+											<c:if test="${statingMovie. age eq 15}">
+												<img height="25px;" src="/resources/images/reservation/15.png">
+											</c:if>
+											<c:if test="${statingMovie. age eq 19}">
+												<img height="25px;" src="/resources/images/reservation/19.png">
+											</c:if>
+											<c:if test="${statingMovie. age eq 0}">
+												<img height="25px;" src="/resources/images/reservation/전체.png">
+											</c:if>
+											${statingMovie.title }
+										</div>
+										<div class="col-2 movieCheck" > &nbsp;</div>
+									</div>
+								</li>
+							</c:forEach>
+						</div>
+						
+						
 					</div>
 					
 					
@@ -179,13 +218,20 @@ ul{
 						<div class="row justify-content-center movieTimeList" >
 							<div class="col-12" >
 								
+								<!-- 상영할 영화 제목 -->
+								<div class="row">
+									<div class="col-12">
+										
+									</div>
+								</div>
+								
 								<!-- 상영시간이 뜨는 버튼 조회 -->
 								<div class="row ">
 									<c:forEach items="${ movieTimeList}" var="movieTimeInfo">
 										<div class="col-3 m-1" >
 											<div class="ReserveInfoBtn">
 												<div class="screenTimeDiv m-1">${movieTimeInfo.screenTime }</div>
-												<div class="seatDiv m-1">/ ${movieTimeInfo.seatAll } ${movieTimeInfo.seatCnt } ${movieTimeInfo.theaterName}</div>
+												<div class="seatDiv m-1">/ ${movieTimeInfo.seatAll }  ${movieTimeInfo.theaterName}</div>
 											</div>
 										</div>
 									</c:forEach>

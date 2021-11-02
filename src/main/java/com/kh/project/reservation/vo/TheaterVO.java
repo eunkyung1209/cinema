@@ -19,8 +19,17 @@ public class TheaterVO {
 	    private String useSeat;
 	    private int seatCnt;
 	    private String useTheater;
+	    private int seatLeft;
 	    
 	    
+	    
+	    
+		public int getSeatLeft() {
+			return seatLeft;
+		}
+		public void setSeatLeft(int seatCnt, int seatAll) {
+			this.seatLeft = seatAll - seatCnt;
+		}
 		public String getUseTheater() {
 			return useTheater;
 		}
