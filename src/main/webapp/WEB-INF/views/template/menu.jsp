@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script type="text/javascript" src="/resources/member/js/input_login.js?ver=4"></script>
+<script type="text/javascript" src="/resources/member/js/input_login.js?ver=11"></script>
 
 <style type="text/css">
 
@@ -289,17 +289,17 @@ a:hover {
 			           <form action="/member/login" method="post">
 			            
 			               	<div class="form-floating mb-3">
-			                  	<input type="text" name="id" class="form-control" id="id" placeholder="id" required>
+			                  	<input type="text" name="id" class="form-control" id="loginId" placeholder="id" required>
 			                  	<label for="floatingInput" style="color: #a4b0be">아이디</label>
 			                  	<div class="check_font" id="id_check"></div>
 			               	</div>
 			               	<div class="form-floating">
-			                  	<input type="password" name="pw" class="form-control" id="pw" placeholder="Password" required>
+			                  	<input type="password" name="pw" class="form-control" id="loginPw" placeholder="Password" required>
 			                  	<label for="floatingPassword" style="color: #a4b0be">비밀번호</label>
 			                  	<div class="check_font" id="pw_check"></div>
 			               	</div>
 			               	<div class="col-12 d-grid mt-4">
-			               		<input type="submit" class="btn" id="loginBtn" value="로그인">
+			               		<input type="button" class="btn" id="loginBtn" value="로그인">
 			                  	<div class="check_font" id="login_check"></div>
 			                  	
 			                  	<!-- <input type="button" class="btn" value="로그인" onclick="checkLogin();"> -->

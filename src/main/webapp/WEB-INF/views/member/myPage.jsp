@@ -79,7 +79,7 @@ select {
 
 /* 사진 글자 */
 			.jb-wrap {
-				width: 50%;
+				width: 67%;
 				margin: 0px auto;
 				position: relative;
 			}
@@ -128,7 +128,7 @@ select {
 
 		<!-- 페이지 머릿말 -->
 		<div class="row justify-content-center">
-			<div class="col-6">
+			<div class="col-8">
 				<div class="col-3 subjectDiv">
 					<h5>마이페이지</h5>
 				</div>
@@ -161,7 +161,7 @@ select {
 
 		
 <div class="jb-wrap">
-	<div class="jb-image"><img alt="" width="500px;" height="420px;" src="/resources/images/member/돼지저금통.PNG"></div>
+	<div class="jb-image"><img alt="" width="700px;" height="420px;" src="/resources/images/member/돼지저금통.PNG"></div>
 	<div class="jb-text"> 
 		<div class="jb-text-table">
 			<div class="jb-text-table-row">

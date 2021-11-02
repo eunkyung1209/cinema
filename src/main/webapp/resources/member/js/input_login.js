@@ -4,25 +4,25 @@ $(document).ready(function(){
 		
 		// id = "id" / name = "userId"
 		
-			var id = $('#id').val();
-			var pw = $('#pw').val();
+			var id = $('#loginId').val();
+			var pw = $('#loginPw').val();
 			
 			$.ajax({
 				url : '/member/loginCheck',
-				type : 'get',
+				type : 'post',
 				data:{'id':id, 'pw':pw}, //필요한 데이터
 				success : function(data) {
 					console.log("1 = 중복o / 0 = 중복x : "+ data);							
 					
-					if (data == 1) {
+					if (data == 0) {
 						
-						$("#login_check").text("아이디 또는 비밀번호가 일치하지 않습니다.");
 						$("#login_check").css("color", "red");
+						$("#login_check").text("아이디 또는 비밀번호가 일치하지 않습니다.");
 							
 					}
 					else {
 							
-						location.href = '/member/login';
+						location.href = '/movie/mainPage';
 							
 					}
 							
