@@ -127,10 +127,12 @@ a:hover {
 			<div class="col-7 logoDiv">
 				<c:choose>
 					<c:when test="${not empty logo }">
-						<a href="/movie/mainPage"><img alt="" height="50px" src="/resources/images/menu/logo_black.png"></a>
+						<!-- <a href="/movie/mainPage"><img alt="" height="50px" src="/resources/images/menu/logo_black.png"></a> -->
+						<a href="/movie/mainPage"><img alt="" height="45px" src="/resources/images/menu/logo_black_orange.png"></a>
 					</c:when>
 					<c:otherwise>
-						<a href="/movie/mainPage"><img alt="" height="50px" src="/resources/images/menu/logo_white.png"></a>
+						<!-- <a href="/movie/mainPage"><img alt="" height="50px" src="/resources/images/menu/logo_white.png"></a> -->
+						<a href="/movie/mainPage"><img alt="" height="45px" src="/resources/images/menu/logo_white_orange.png"></a>
 					</c:otherwise>
 				</c:choose>
 			</div>

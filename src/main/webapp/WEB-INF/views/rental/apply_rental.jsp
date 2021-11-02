@@ -30,19 +30,6 @@
 	margin: 7px auto;
 }
 
-/*검색 버튼 기본폼 */
-.common_btn{
-	font-size: 14px;
-	background-color: #4c4747;
-	color: white;
-	width: 80px;
-}
-.common_btn:hover{
-	font-size: 14px;
-	background-color: #5d5959;
-	color: white;
-	width: 80px;
-}
 /* 검색박스 폼 */
 .search_box{
 	padding: 22px;
@@ -54,6 +41,7 @@
 input{
 	width: 100%;
 	background-color: white;
+	padding-left: 10px;
 }
 .only-time{
 	width: 48%;
@@ -116,7 +104,7 @@ input{
 		<div class="row justify-content-center">
 			<div class="col-7 search_box">
 				<div class="row mt-4 mb-4 justify-content-center">
-					<div class="col-10">
+					<div class="col-11">
 						<form action="/rental/applyRental" method="post">
 							<!-- 신청인 아이디 -->
 							<div class="mb-4">
