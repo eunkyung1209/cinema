@@ -9,7 +9,12 @@
 <script type="text/javascript" src="/resources/event/js/event_Date.js?ver=1"></script>
 </head>
 <body>
-<h4>행사일정</h4>
+<div class="row justify-content-center">
+	<div class="col-8">
+		<div class="col-3 subjectDiv">
+			<h5>행사일정</h5>
+		</div>
+	
 <div class="container">
   <div class="my-calendar clearfix">
     <div class="clicked-date">
@@ -42,6 +47,8 @@
     </div>
   </div>
   <!-- // .my-calendar -->
+</div>
+</div>
 </div>
 
 </body>
