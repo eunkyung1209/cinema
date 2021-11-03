@@ -79,6 +79,23 @@ a:hover{
 	border-left: 1px solid #e0e0e0;
 }
 
+
+/*검색 버튼 기본폼 */
+.common_btn{
+	font-size: 14px;
+	background-color: #ed7d31;
+	color: white;
+	width: 80px;
+	height: 40px;
+}
+.common_btn:hover{
+	font-size: 14px;
+	background-color: #5d5959;
+	color: white;
+	width: 80px;
+	height: 40px;
+}
+
 </style>
 </head>
 
@@ -109,7 +126,7 @@ a:hover{
 							</svg>
 						</div>
 						<div>
-							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goCustomer';">전체문의</button> 
+							<input type="button"  class="btn btn-outline-secondary" value="전체문의" onclick="location.href='/customer/goCustomer';">
 						</div>
 					</div>
 					<div class="col-3 customerBox_s">
@@ -117,7 +134,7 @@ a:hover{
 							<img alt="" width="130px;" height="100px;" src="/resources/images/customer/공지사항.png">
 						</div>
 						<div>
-							<input type="button"  class="btn btn-outline-secondary" value="" onclick="location.href='/customer/goNotice';">공지사항
+							<input type="button"  class="btn btn-outline-secondary" value="공지사항" onclick="location.href='/customer/goNotice';">
 						</div>
 					</div>
 					<div class="col-3 customerBox_s">
@@ -125,7 +142,7 @@ a:hover{
 							<img alt="" width="130px;" height="100px;" src="/resources/images/customer/나의문의.png">
 						</div>
 						<div>
-							<input type="button" class="common_btn"  value="내 상담내역" <c:if test="${empty sessionScope.loginInfo }">disabled</c:if>  onclick="location.href='/customer/goMyCustomer?writer=${sessionScope.loginInfo.nickName }';">
+							<input type="button"  class="btn btn-outline-secondary"  value="내 상담내역" <c:if test="${empty sessionScope.loginInfo }">disabled</c:if>  onclick="location.href='/customer/goMyCustomer?writer=${sessionScope.loginInfo.nickName }';">
 						</div>
 					</div>
 					<div class="col-3 customerBox_s" >
@@ -133,7 +150,7 @@ a:hover{
 							<img alt="" width="130px;" height="100px;" src="/resources/images/customer/분실물_1.PNG">
 						</div>
 						<div>
-							<input type="button"  class="common_btn" onclick="location.href='/customer/goLost';" value="분실물">
+							<input type="button"   class="btn btn-outline-secondary" onclick="location.href='/customer/goLost';" value="분실물">
 						</div>
 					</div>
 				 </div> 
@@ -176,7 +193,7 @@ a:hover{
 					<div class="row justify-content-center">
 						<div class="col-6">
 							<div style="text-align: left;">
-								<input class="btn btn-outline-secondary" type="button" onclick="location.href='/customer/goWriteCustomer';" id="button-addon2"  <c:if test="${empty sessionScope.loginInfo }">disabled</c:if> value="글쓰기">
+								<input  class="btn common_btn" type="button" onclick="location.href='/customer/goWriteCustomer';" id="button-addon2"  <c:if test="${empty sessionScope.loginInfo }">disabled</c:if> value="글쓰기">
 							</div>
 						</div>
 						

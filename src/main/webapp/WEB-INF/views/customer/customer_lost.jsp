@@ -79,6 +79,22 @@ a:hover{
 	border-left: 1px solid #e0e0e0;
 }
 
+/*검색 버튼 기본폼 */
+.common_btn{
+	font-size: 14px;
+	background-color: #ed7d31;
+	color: white;
+	width: 80px;
+	height: 40px;
+}
+.common_btn:hover{
+	font-size: 14px;
+	background-color: #5d5959;
+	color: white;
+	width: 80px;
+	height: 40px;
+}
+
 </style>
 </head>
 
@@ -97,16 +113,18 @@ a:hover{
 	
 		<div style="height: 50px;"></div>
 		
-		<!-- 커스토머 박스 -->
+<!-- 커스토머 박스 -->
 		<div class="row justify-content-center">
 			<div class="col-8 customerBox" >
 				<div class="row justify-content-center" >
 					<div class="col-3 customerBox_s" >
 						<div>
-							<img alt="" width="130px;" height="100px;" src="/resources/images/customer/전체문의.png">
+							<svg xmlns="http://www.w3.org/2000/svg" width="70" height="100" fill="currentColor" class="bi bi-question-lg" viewBox="0 0 16 16">
+							  <path d="M3 4.075a.423.423 0 0 0 .43.44H4.9c.247 0 .442-.2.475-.445.159-1.17.962-2.022 2.393-2.022 1.222 0 2.342.611 2.342 2.082 0 1.132-.668 1.652-1.72 2.444-1.2.872-2.15 1.89-2.082 3.542l.005.386c.003.244.202.44.446.44h1.445c.247 0 .446-.2.446-.446v-.188c0-1.278.487-1.652 1.8-2.647 1.086-.826 2.217-1.743 2.217-3.667C12.667 1.301 10.393 0 7.903 0 5.645 0 3.17 1.053 3.001 4.075zm2.776 10.273c0 .95.758 1.652 1.8 1.652 1.085 0 1.832-.702 1.832-1.652 0-.985-.747-1.675-1.833-1.675-1.04 0-1.799.69-1.799 1.675z"/>
+							</svg>
 						</div>
 						<div>
-							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goCustomer';">전체문의</button> 
+							<input type="button"  class="btn btn-outline-secondary" value="전체문의" onclick="location.href='/customer/goCustomer';">
 						</div>
 					</div>
 					<div class="col-3 customerBox_s">
@@ -114,7 +132,7 @@ a:hover{
 							<img alt="" width="130px;" height="100px;" src="/resources/images/customer/공지사항.png">
 						</div>
 						<div>
-							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goNotice';">공지사항</button> 
+							<input type="button"  class="btn btn-outline-secondary" value="공지사항" onclick="location.href='/customer/goNotice';">
 						</div>
 					</div>
 					<div class="col-3 customerBox_s">
@@ -122,15 +140,15 @@ a:hover{
 							<img alt="" width="130px;" height="100px;" src="/resources/images/customer/나의문의.png">
 						</div>
 						<div>
-							<button class="btn btn-outline-secondary" <c:if test="${empty sessionScope.loginInfo }">disabled</c:if>  onclick="location.href='/customer/goMyCustomer?writer=${sessionScope.loginInfo.nickName }';">내 상담내역</button>
+							<input type="button"  class="btn btn-outline-secondary"  value="내 상담내역" <c:if test="${empty sessionScope.loginInfo }">disabled</c:if>  onclick="location.href='/customer/goMyCustomer?writer=${sessionScope.loginInfo.nickName }';">
 						</div>
 					</div>
 					<div class="col-3 customerBox_s" >
 						<div>
-							<img alt="" width="130px;" height="100px;" src="/resources/images/customer/분실물.png">
+							<img alt="" width="130px;" height="100px;" src="/resources/images/customer/분실물_1.PNG">
 						</div>
 						<div>
-							<button class="btn btn-outline-secondary" onclick="location.href='/customer/goLost';">분실물</button>
+							<input type="button"   class="btn btn-outline-secondary" onclick="location.href='/customer/goLost';" value="분실물">
 						</div>
 					</div>
 				 </div> 
@@ -184,7 +202,7 @@ a:hover{
 					<div class="row justify-content-center">
 						<div class="col-6">
 							<div style="text-align: left;">
-								<input class="btn btn-outline-secondary" type="button" onclick="location.href='/customer/goWriteCustomer';" id="button-addon2"  <c:if test="${empty sessionScope.loginInfo }">disabled</c:if> value="글쓰기">
+								<input class="btn common_btn" type="button" onclick="location.href='/customer/goWriteCustomer';" id="button-addon2"  <c:if test="${empty sessionScope.loginInfo }">disabled</c:if> value="글쓰기">
 							</div>
 						</div>
 						

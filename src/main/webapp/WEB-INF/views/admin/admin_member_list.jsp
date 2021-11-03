@@ -23,21 +23,22 @@
 /*검색 버튼 기본폼 */
 .common_btn{
 	font-size: 14px;
-	background-color: #4c4747;
+	background-color: #ed7d31;
 	color: white;
 	width: 80px;
+	height: 40px;
 }
 .common_btn:hover{
 	font-size: 14px;
 	background-color: #5d5959;
 	color: white;
 	width: 80px;
+	height: 40px;
 }
-
 /* 상세보기 버튼폼 */
 .common_btn2{
 	font-size: 12px;
-	background-color: #4c4747;
+	background-color: #ed7d31;
 	color: white;
 	width: 65px;
 }
@@ -92,6 +93,7 @@ a:hover{
 	color: black;
 	font-weight: bold;
 }
+
 
 </style>
 </head>
