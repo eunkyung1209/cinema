@@ -13,6 +13,29 @@ public class RentalVO extends PageVO {
 	private String id;
 	private String isComplete;
 	
+	private String areaName;
+	private String theaterName;
+	private String title;
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getAreaName() {
+		return areaName;
+	}
+	public void setAreaName(String areaName) {
+		this.areaName = areaName;
+	}
+	public String getTheaterName() {
+		return theaterName;
+	}
+	public void setTheaterName(String theaterName) {
+		this.theaterName = theaterName;
+	}
+	
 	public String getRtCode() {
 		return rtCode;
 	}

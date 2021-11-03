@@ -6,27 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-/* 이전에 내가 설정해둔 css */
-/* 
-body{
-	margin: 0 auto;
-} */
-.subjectDiv{
-	border-bottom: 2px solid #dddddd;
-}
-/* 
-thead > tr{
-	
-}
-table th, td{
-	border-top: 1px solid #ffffff;
-	border-bottom: 1px solid #ffffff;
-	border-right: 1px solid #ffffff;
-}
-tr > th, td :last-child {
-	border-right: none;
-} */
-
 /* 작성테이블 */
 .writeTable{
 	margin: 0 auto;
@@ -51,17 +30,6 @@ input[type="text"]{
 }
 select {
 	width: 30%; 
-}
-
-/* 필수입력 빨간 별 */
-.redStar{
-	color: red;
-} 
-
-/* *필수입력 문장  */
-.needInput{
-	font-size: 13px;
-	margin-left: 70%;
 }
 </style>
 </head>
