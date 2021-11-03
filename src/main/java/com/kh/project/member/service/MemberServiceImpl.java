@@ -63,8 +63,8 @@ public class MemberServiceImpl implements MemberService {
 	
 	//로그인
 	@Override
-	public int checkLogin(MemberVO memberVO) {
-		return sqlSession.selectOne("memberMapper.checkLogin", memberVO);
+	public MemberVO checkLogin(MemberVO memberVO) {
+		return sqlSession.selectOne("memberMapper.login", memberVO);
 	}
 	
 	

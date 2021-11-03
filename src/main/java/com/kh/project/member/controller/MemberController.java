@@ -118,12 +118,23 @@ public class MemberController {
 		return "redirect:/movie/mainPage"; 
 	}
 	
-	//
-	@RequestMapping("/loginCheck")
+	//로그인
 	@ResponseBody
-	public int loginCheck(MemberVO memberVO) {
+	@RequestMapping("/loginCheck")
+	public int loginCheck(MemberVO memberVO, HttpSession session) {
 		
-		return memberService.checkLogin(memberVO);
+		MemberVO loginInfo = memberService.checkLogin(memberVO);
+		
+		
+		//로그인 성공
+		if(loginInfo != null) {
+			session.setAttribute("loginInfo", loginInfo);
+			return 1;
+			
+		}
+		
+		//로그인 실패
+		return 0;
 	}
 
 	//2-1. 로그인

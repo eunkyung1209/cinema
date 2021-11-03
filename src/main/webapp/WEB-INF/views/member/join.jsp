@@ -13,7 +13,7 @@
 <script src="https://code.jquery.com/jquery-latest.min.js"></script> <!-- 제이쿼리 최신버전 가져오기 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
-<script type="text/javascript" src="/resources/member/js/join.js?ver=27"></script>
+<script type="text/javascript" src="/resources/member/js/join.js?ver=29"></script>
 
 
 
@@ -357,11 +357,12 @@ button:hover{
 						
 						<input class="common_btn" type="button" value="뒤로가기" onclick="location.href='/customer/goCustomer';">
 						
-						<button id="reg_submit">
+						<!-- <button id="reg_submit">
 							<i class="common_btn" aria-hidden="true"></i>회원가입
-						</button>
+						</button> -->
+						
 
-						<!-- <input type="button" class="common_btn" aria-hidden="true" id="reg_submit" value="회원가입" > -->
+						<input type="submit" class="common_btn" aria-hidden="true" id="reg_submit" value="회원가입" >
 					
 					</div>
 				</div>

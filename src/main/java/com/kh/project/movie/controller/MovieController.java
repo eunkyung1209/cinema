@@ -25,6 +25,9 @@ public class MovieController {
 	//메인 페이지로 이동
 	@GetMapping("/mainPage")
 	public String mainPage(Model model/* , Date date */) {
+		//상단에 검정 바탕 로고
+		model.addAttribute("logo", "black");
+		
 		//현재 일시
 		model.addAttribute("nowDateTime", NowDateTime.getNowDateTime());
 		

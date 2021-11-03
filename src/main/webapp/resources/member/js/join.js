@@ -20,14 +20,13 @@ $(document).ready(function(){
 	//$(document).on('change', '#id', function() { 
 
 	$("#id").blur(function() {
-	
 	// id = "id" / name = "userId"
 	
 		var id = $('#id').val();
 		
 		$.ajax({
 			url : '/member/idCheck',
-			type : 'get',
+			type : 'post',
 			data:{'id':id}, //필요한 데이터
 			success : function(data) {
 				console.log("1 = 중복o / 0 = 중복x : "+ data);							
@@ -168,7 +167,7 @@ $(document).ready(function(){
 	
 	$.ajax({
 		url : '/member/emailCheck',
-		type : 'get',
+		type : 'post',
 		data:{'email':email}, //필요한 데이터
 		success : function(data2) {
 			console.log("1 = 중복o / 0 = 중복x : "+ data2);							
@@ -216,7 +215,7 @@ $(document).ready(function(){
 	
 	$.ajax({
 		url : '/member/nickNameCheck',
-		type : 'get',
+		type : 'post',
 		data:{'nickName':nickName}, //필요한 데이터
 		success : function(data3) {
 			console.log("1 = 중복o / 0 = 중복x : "+ data3);							

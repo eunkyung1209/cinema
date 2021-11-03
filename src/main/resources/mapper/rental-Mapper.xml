@@ -3,8 +3,17 @@
 <!-- 모든 SQL문을 mapper태그 안에 작성 -->
 <mapper namespace="rentalMapper">
 	
-	<!-- 예매 -->
-	<resultMap type="com.kh.project.reservation.vo.ReservationVO" id="reservation">
+	<!-- 대관 예약 -->
+	<resultMap type="com.kh.project.rental.vo.RentalVO" id="rental">
+		<id column="RT_CODE" 				property="rtCode"/>
+		<result column="AREA_CODE" 			property="areaCode"/>
+		<result column="THEATER_CODE" 		property="theaterCode"/>
+		<result column="RT_DATE" 			property="rtCode"/>
+		<result column="RT_START_TIME" 		property="rtStartTime"/>
+		<result column="RT_END_TIME" 		property="rtEndTime"/>
+		<result column="MV_CODE" 			property="mvCode"/>
+		<result column="ID" 				property="id"/>
+		<result column="IS_COMPLETE" 		property="isComplete"/>
 	</resultMap>
 	
 	<!-- 영화관 -->
@@ -19,7 +28,6 @@
 	<resultMap type="com.kh.project.reservation.vo.TheaterVO" id="theater">
 		<id column="THEATER_CODE" 			property="theaterCode"/>
 		<result column="AREA_NAME" 			property="areaName"/>
-		<result column="AREA_CODE" 			property="areaCode"/>
 		<result column="SEAT_ALL" 			property="seatAll"/>
 		<result column="SEAT_CNT" 			property="seatCnt"/>
 		<result column="THEATER_NAME" 		property="theaterName"/>
@@ -71,47 +79,38 @@
 	</resultMap>
 	
 	
+	
 	<!-- 영화관 조회 -->
-	<select id="selectArea" resultMap="area">
-		SELECT AREA_CODE 
+	<select id="selectAreaList" resultMap="area">
+		SELECT AREA_CODE
 		    , AREA_NAME
-		    , TEATER_CNT
 		    , LOC
 		FROM OISONE_AREA
 	</select>
 	
+	<!-- 상영관 조회 -->
+<!-- 	<select id="selectTheaterList" resultMap="area">
+		SELECT THEATER_CODE
+		    , THEATER_NAME
+		    , AREA_CODE
+		FROM OISONE_THEATER T, OISONE_AREA A, OISONE_MOVIE_TIME MT
+		WHERE USE_THEATER = 'N'
+		AND T.AREA_NAME = A.AREA_NAME
+		AND A.AREA_CODE = #{areaCode}
+		AND MT.SCREEN_TIME = #{rtDate}
+		AND MT.SCREEN_TIME
+	</select> -->
+	
+	
+	
 	<!-- 상영중인 영화목록 조회 -->
-	<select id="selectMovieState" resultMap="movie">
+	<select id="selectMovie" resultMap="movie">
 		SELECT MV_CODE
 		    , TITLE
 		    , RUNNING_TIME
 		FROM OISONE_MOVIE
-		WHERE MV_STATE = 'Y'
 	</select>
 	
-	<!-- 상영등록해주기 -->
-	<insert id="insertMovieTime">
-		INSERT INTO OISONE_MOVIE_TIME(
-		    MV_TIME_CODE
-		    , THEATER_CODE
-		    , AREA_NAME
-		    , SCREEN_TIME
-            , SCREEN_END_TIME
-		    , SCREEN_DAY
-		    , MV_CODE
-		    , RUNNING_TIME
-		) VALUES(
-		    (SELECT 'MT_'||#{screenDay}||'_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MV_TIME_CODE,15,3))), 0)+1 , 3, 0)
-		    FROM OISONE_MOVIE_TIME)
-		    , #{theaterCode}
-		    , #{areaName}
-		    , #{screenTime}
-            , #{screenEndTime}
-		    , #{screenDay}
-		    , #{mvCode}
-		    , #{runningTime}
-			)
-	</insert>
 	
 	<!-- 상영시간표 목록 띄우기 -->
 	<select id="selectMovieTime" resultMap="movieTime">

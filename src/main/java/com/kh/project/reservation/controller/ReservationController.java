@@ -32,6 +32,8 @@ public class ReservationController {
 		model.addAttribute("areaList", reservationService.selectArea());
 		//상영시간표 목록 보내주기
 		model.addAttribute("movieTimeList", reservationService.selectMovieTime());
+		//상영중인 영화리스트
+		model.addAttribute("statingMovieList", reservationService.selectMovieState());
 		
 		
 		return "reservation/reserve_form";
