@@ -34,8 +34,8 @@
 	float: right;
 }
 
-/* input 태그들 길이 조정 */
-.rentalInput{
+/* input 태그들 조정 */
+.rentalInput, .time{
 	width: 100%;
 	background-color: white;
 	padding-left: 10px;
@@ -116,6 +116,15 @@
 									</c:otherwise>
 								</c:choose>
 							</div>
+							<!-- 영화관 선택 -->
+							<div class="mb-4">
+								<label for="datepicker" class="form-label">영화관 선택 <span class="redStar">*</span></label>
+								<select name="areaCode" class="selectBox_from rentalInput" required>
+									<c:forEach items="${areaList }" var="areaInfo">
+										<option value="${areaInfo.areaCode }">${areaInfo.loc } ${areaInfo.areaName }</option>
+									</c:forEach>
+								</select>
+							</div>
 							<!-- 대관 날짜 선택 -->
 							<div class="mb-4">
 								<label for="datepicker" class="form-label">대관 예약일 <span class="redStar">*</span></label>
@@ -125,12 +134,8 @@
 							<div class="mb-4">
 								<div class="row">
 									<div class="col-12">
-										<label for="timepicker" class="form-label">
-											예약 시각 <span class="redStar">*</span>
-										</label>
-										<div class="notice-time">
-											<span class="redStar">*</span> 예약한 시간은 영화관 사정상 변경될 수 있습니다.
-										</div><br>
+										<label for="timepicker" class="form-label">예약 시각 <span class="redStar">*</span></label>
+										<div class="notice-time"><span class="redStar">*</span> 예약한 시간은 영화관 사정상 변경될 수 있습니다.</div><br>
 									</div>
 								</div>
 								<div class="row">
@@ -143,15 +148,6 @@
 										<input type="text" id="endTime" class="only-time time" name="rtEndTime" placeholder="종료 시각" required>
 									</div>
 								</div>
-							</div>
-							<!-- 영화관 선택 -->
-							<div class="mb-4">
-								<label for="datepicker" class="form-label">영화관 선택 <span class="redStar">*</span></label>
-								<select name="areaCode" class="selectBox_from rentalInput" required>
-									<c:forEach items="${areaList }" var="areaInfo">
-										<option value="${areaInfo.areaCode }">${areaInfo.loc } ${areaInfo.areaName }</option>
-									</c:forEach>
-								</select>
 							</div>
 							<!-- 영화 선택 -->
 							<div class="mb-4">
@@ -193,7 +189,7 @@
     
 	//시각 선택
     $('.only-time').datepicker({
-        dateFormat: ' ',
+        dateFormat: '',
         timepicker: true,
         classes: 'only-timepicker'
     });

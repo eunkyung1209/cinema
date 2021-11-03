@@ -130,7 +130,7 @@
 			<if test="theaterCode != null and !theaterCode.equals('')">
 			, T.THEATER_NAME
 			</if>
-			, RT_DATE
+			, TO_CHAR(RT_DATE, 'YYYY-MM-DD') AS RT_DATE
 			, RT_START_TIME
 			, RT_END_TIME
 			, M.TITLE

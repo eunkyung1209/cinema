@@ -40,9 +40,12 @@ public class RentalController {
 	
 	//대관 예약
 	@PostMapping("/applyRental")
-	public String applyRental(RentalVO rentalVO) {
+	public String applyRental(RentalVO rentalVO, Model model) {
 		//대관 예약
 		rentalService.insertRental(rentalVO);
+		
+		//예약한 사람 id
+		model.addAttribute("id", rentalVO.getId());
 		
 		return "redirect:/rental/selectRentalList";
 	}
