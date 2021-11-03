@@ -78,8 +78,10 @@ body{
 	<!-- 상단 사진 변경 --><!-- Swiper -->
 	<div class="swiper mainBannerSwiper">
 		<div class="swiper-wrapper">
-			<div class="swiper-slide"><a><img src="/resources/images/main/메인사진.jpg" width="100%;"></img></a></div>
-			<div class="swiper-slide"><a><img src="/resources/images/main/로고.png" width="100%;"></img></a></div>
+			<div class="swiper-slide"><a><img src="/resources/images/main/론_메인2.jpg" width="100%;"></img></a></div>
+			<div class="swiper-slide"><a><img src="/resources/images/main/이터널스_메인3.jpg" width="100%;"></img></a></div>
+			<div class="swiper-slide"><a><img src="/resources/images/main/강릉_메인4.jpg" width="100%;"></img></a></div>
+			<div class="swiper-slide"><a><img src="/resources/images/main/캅샵_메인5.jpg" width="100%;"></img></a></div>
 		</div>
 		<div class="swiper-button-next"></div>
 		<div class="swiper-button-prev"></div>
@@ -180,7 +182,7 @@ body{
 	<div class="row logo justify-content-center mt-5">
 		<div class="col-5"></div>
 		<div class="col-2">
-			<img src="/resources/images/main/로고.png" width="98%">
+			<img src="/resources/images/menu/logo_black_orange.png" width="50%">
 		</div>
 		<div class="col-5"></div>
 	</div>
