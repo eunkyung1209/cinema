@@ -118,7 +118,7 @@ public class MemberController {
 		return "redirect:/movie/mainPage"; 
 	}
 	
-	//
+	//로그인
 	@ResponseBody
 	@RequestMapping("/loginCheck")
 	public int loginCheck(MemberVO memberVO, HttpSession session) {
