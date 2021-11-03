@@ -21,7 +21,7 @@
 }
 
 /*검색 버튼 기본폼 */
-.common_btn{
+/* .common_btn{
 	font-size: 14px;
 	background-color: #4c4747;
 	color: white;
@@ -32,7 +32,7 @@
 	background-color: #5d5959;
 	color: white;
 	width: 80px;
-}
+} */
 
 /* 검색창 폼 */
 .inputSearch_form{
