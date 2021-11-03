@@ -329,7 +329,7 @@ a:hover {
 				              	<li><a class="dropdown-item" href="/rental/goApplyRental">대관 예약 신청</a></li>
 				              	<li>
 				              		<c:if test="${sessionScope.loginInfo != null}">
-										<a class="dropdown-item" href="/rental/selectRentalList">대관 예약 조회</a>
+										<a class="dropdown-item" href="/rental/selectRentalList?id=${sessionScope.loginInfo.id }">대관 예약 조회</a>
 									</c:if>
 									<c:if test="${sessionScope.loginInfo == null}">
 										<span class="dropdown-item selectRental" data-bs-toggle="modal" data-bs-target="#loginModal" class="loginDiv">대관 예약 조회</span>
@@ -520,7 +520,7 @@ a:hover {
                <div style="background-color: white; height: 80px;border-radius: 10px; width: 350px; padding: 5px">
               
                
-                  <input type="text" id="sender" value="${sessionScope.id}" style="display: none;">
+                  <input type="text" id="sender" value="${sessionScope.loginInfo.nickName }" style="display: none;">
                   <input type="text" id="messageinput" style="width: 250px; height: 68px; border: none;"> 
                   
                   <button type="button" id="sendBtn" style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:53px;height: 40px" onclick="send();">전송</button> 
@@ -529,7 +529,7 @@ a:hover {
                </div>
                
                 <!-- Server responses get written here -->
-    			<div id="messages"></div>
+    			<div id="messages" class="m-3"></div>
                
                
             	<div style="height: 10px"></div>
@@ -566,7 +566,7 @@ a:hover {
             };
             
             ws.onclose = function(event){
-                writeResponse("--- ${sessionScope.id}님이 나가셨습니다 ---");
+                writeResponse("--- ${sessionScope.loginInfo.nickName }님이 나가셨습니다 ---");
             }
             
         }
