@@ -143,7 +143,7 @@ a:hover {
 					<div class="col-6">
 					
 						<a  href="#" class="text-decoration-none" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-list icon" viewBox="0 0 16 16">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ed7d31" class="bi bi-card-list icon" viewBox="0 0 16 16">
 								<path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
 								<path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
 							</svg>
@@ -153,35 +153,20 @@ a:hover {
 				    </button> -->
 					</div>
 					
+					
+					
 					<div class="col-6">
-								
 						 <!-- 채팅 아이콘 -->
 						<div class="col-6 chatIcon" > 
-						
-						<a  href="#" class="text-decoration-none" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar-a" aria-controls="offcanvasNavbar">
-							<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
+						<a  href="#" class="text-decoration-none"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar-a" aria-controls="offcanvasNavbar">
+							<svg xmlns="http://www.w3.org/2000/svg"  width="30" height="30" fill="#ed7d31" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
 							  <path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
 							</svg>
 						</a>
-						
-						
-							    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-							      <span class="navbar-toggler-icon"></span>
-							    </button>
-							    
-							   
-						
-						
-						
-						
-						
-						
-							
 						</div>
-					
 					</div>
 				
-					
+				
 				
 			
 				</div>	
@@ -217,27 +202,27 @@ a:hover {
 				
 					<div class="mypageDiv">
 						<a href="/customer/goCustomer?isNotice=N">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ed7d31" class="bi bi-telephone-fill" viewBox="0 0 16 16">
 								<path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
 							</svg> 고객센터
 						</a>
 						&nbsp;&nbsp;
 						<a href="/sample/sample">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-week-fill" viewBox="0 0 16 16">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ed7d31" class="bi bi-calendar-week-fill" viewBox="0 0 16 16">
 								<path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zM9.5 7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm3 0h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zM2 10.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z"/>
 							</svg> 빠른예매
 						</a>
 						&nbsp;&nbsp;
 						<c:if test="${sessionScope.loginInfo != null}">
 							<a href="/member/myPage">
-								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ed7d31" class="bi bi-person-fill" viewBox="0 0 16 16">
 									<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
 								</svg> 마이페이지
 							</a>
 						</c:if>
 						<c:if test="${sessionScope.loginInfo == null}">
 							<span data-bs-toggle="modal" data-bs-target="#loginModal" class="loginDiv">
-								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ed7d31" class="bi bi-person-fill" viewBox="0 0 16 16">
 									<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
 								</svg> 마이페이지
 							</span>
@@ -473,14 +458,14 @@ a:hover {
 		
 		<div class="offcanvas offcanvas-end  chat" tabindex="-1" id="offcanvasNavbar-a" aria-labelledby="offcanvasNavbarLabel" style="background-color: rgb(255, 209, 4); border-radius: 15px; " align="center" >
 
-		  <div class="chatInner">
+		  <div class="chatInner" style="">
 		  
 		  <!-- 머릿말 -->
 		  <div style="height: 100px; line-height: 44px; " align="left">
             
             	<div style="height: 7px"></div>
             
-               <div style="font-weight: bold; font-size: 30px; padding-left: 20px;">
+               <div style="font-weight: bold; font-size: 30px; padding-left: 20px; color: #3A2F0B;">
                		OISONE TALK
                		
                		<svg xmlns="http://www.w3.org/2000/svg" width="27" height="28" fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
@@ -490,15 +475,24 @@ a:hover {
                </div>
               	
                
-               <div style="padding-left: 180px;">
-               
-               		<button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:80px;height: 35px" onclick="openSocket();" > 채팅 참여</button>
-               		<!-- <button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:120px;height: 25px" onclick="javascript:clearText();">대화내용 지우기</button> -->
-        			<button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:80px;height: 35px; padding-top: -30px;" onclick="closeSocket();"><span style="padding-bottom: 5px;">채팅 나가기</span></button>
-        		
+               <div style="padding-left: 200px; margin-top: 10px; margin-bottom: 10px; vertical-align: top;" >
+               	
+               		<c:if test="${sessionScope.loginInfo != null}">
+	               		<button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:80px;" onclick="openSocket();" > 채팅 참여</button>
+	               		<!-- <button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:120px;height: 25px" onclick="javascript:clearText();">대화내용 지우기</button> -->
+	        			<button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:80px;height: 30px;" onclick="closeSocket();" value="채팅 나가기"><span style="padding-bottom: 50px; ">채팅 나가기</span></button>
+        			</c:if>
+        			
+               		<c:if test="${sessionScope.loginInfo == null}">
+	               		<button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:80px;" disabled  onclick="openSocket();" > 채팅 참여</button>
+	               		<!-- <button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:120px;height: 25px" onclick="javascript:clearText();">대화내용 지우기</button> -->
+	        			<button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:80px;height: 30px;" disabled onclick="closeSocket();" value="채팅 나가기"><span style="padding-bottom: 50px; ">채팅 나가기</span></button>
+        			</c:if>
+        			
+        			
         	   </div>	
         			
-        			<div style="height: 30px"></div>
+        			<div style="height: 90px"></div>
         			
                <i class="icon-down-open close" ></i>
                <!-- <button type="button" onclick="closeSocket();">대회방 나가기</button> --> 
@@ -509,11 +503,39 @@ a:hover {
             
             <div style="height: 440px; background: white;  border-radius: 10px; width: 350px; overflow: auto;" id="messageDiv">
             
+            
+            <c:if test="${sessionScope.loginInfo != null}">
                <div id="messages" style="text-align: left; padding-left: 10px;">
-               
-               
-            </div>
-               
+               </div>
+            </c:if>
+            
+            
+            <c:if test="${sessionScope.loginInfo == null}">
+               <div id="messages" style="text-align: left; padding-left: 10px; font-size: 2px; text-align: center;">
+               		<br>
+               		<br>
+               		<br>
+               		<br>
+               		<br>
+               		<br>
+               		<br>
+               		<br>
+               		<br>
+               		<br>
+               		<br>
+               		<br>
+               		<br>
+               		<br>
+               		<br>
+               		<br>
+               		<br>
+               		<br>
+               		채팅은 로그인 후<br><br>
+               		이용 가능합니다 :)
+               </div>
+            </c:if>
+            
+            
                
             </div> <!-- Server responses get written here -->
             <div style="height: 10px"></div>
