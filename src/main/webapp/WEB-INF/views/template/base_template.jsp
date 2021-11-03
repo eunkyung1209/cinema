@@ -16,7 +16,7 @@
 <!-- 부트스트랩 사용을 위해 css, js를 로딩 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-<script src="/resources/event/js/event_Date.js?ver=2"></script>
+<!-- <script src="/resources/event/js/event_Date.js?ver=2"></script> -->
 <!-- 슬라이드 -->
 <link  rel="stylesheet"  href="https://unpkg.com/swiper@7/swiper-bundle.min.css?ver=1" />
 
