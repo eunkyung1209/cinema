@@ -1,6 +1,8 @@
 package com.kh.project.rental.vo;
 
-public class RentalVO {
+import com.kh.project.common.vo.PageVO;
+
+public class RentalVO extends PageVO {
 	private String rtCode;
 	private String areaCode;
 	private String theaterCode;
