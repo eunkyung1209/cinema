@@ -15,7 +15,7 @@ public class RentalVO extends PageVO {
 	
 	private String areaName;
 	private String loc;
-	private String theaterName;
+	private String theaterNum;
 	private String title;
 	
 	public String getLoc() {
@@ -36,11 +36,11 @@ public class RentalVO extends PageVO {
 	public void setAreaName(String areaName) {
 		this.areaName = areaName;
 	}
-	public String getTheaterName() {
-		return theaterName;
+	public String getTheaterNum() {
+		return theaterNum;
 	}
-	public void setTheaterName(String theaterName) {
-		this.theaterName = theaterName;
+	public void setTheaterNum(String theaterNum) {
+		this.theaterNum = theaterNum;
 	}
 	
 	public String getRtCode() {

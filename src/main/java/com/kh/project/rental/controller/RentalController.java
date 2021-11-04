@@ -51,7 +51,7 @@ public class RentalController {
 	}
 	
 	//대관 예약 조회 페이지로 이동
-	@GetMapping("/selectRentalList")
+	@RequestMapping("/selectRentalList")
 	public String selectRentalList(Model model, RentalVO rentalVO) {
 		//회원 id
 		model.addAttribute("id", rentalVO.getId());

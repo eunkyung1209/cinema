@@ -100,7 +100,7 @@ tr, td{
 							</div>
 						</div>
 						<div class="col-2">
-							<div style="margin: 1em;">
+							<div style="margin: 1.5em auto;">
 								<input class="common_btn" type="submit" value="검색">
 							</div>
 						</div>
@@ -141,14 +141,20 @@ tr, td{
 								<th scope="row">${status.count }</th>
 								<td>
 									<div class="row justify-content-center">
-										<div class="col-8">${rentalInfo.loc } ${rentalInfo.areaName } ${rentalInfo.theaterName }</div>
+										<div class="col-8">${rentalInfo.loc } ${rentalInfo.areaName }<c:if test="${not empty rentalInfo.theaterNum }"> - ${rentalInfo.theaterNum }관</c:if></div>
 									</div>
 								</td>
 								<td>${rentalInfo.rtDate }</td>
 								<td>${rentalInfo.rtStartTime } ~ ${rentalInfo.rtEndTime }</td>
 								<td>${rentalInfo.title }</td>
 								<td>${rentalInfo.id }</td>
-								<td>${rentalInfo.isComplete }</td>
+								<td>
+									<c:choose>
+										<c:when test="${rentalInfo.isComplete eq 'Y' }">예약 완료</c:when>
+										<c:when test="${rentalInfo.isComplete eq 'N' }">예약 불가</c:when>
+										<c:otherwise>예약 대기</c:otherwise>
+									</c:choose>
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>

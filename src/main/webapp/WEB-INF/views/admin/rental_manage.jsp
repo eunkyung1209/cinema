@@ -82,9 +82,18 @@ tr, td{
 		<!-- 검색폼 -->
 		<div class="row justify-content-center">
 			<div class="col-8 search_box">
-				<form action="/rental/selectRentalList" method="post">
+				<form action="/admin/rentalManage" method="post">
 					<div class="row justify-content-center">
 						<div class="col-9">
+							<div class="row">
+								<div class="col">
+									<span class="division">지역</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="radio" name="loc" value="" checked>&nbsp;전체&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="radio" name="loc" value="서울">&nbsp;서울&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="radio" name="loc" value="울산">&nbsp;울산&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="radio" name="loc" value="부산">&nbsp;부산&nbsp;&nbsp;&nbsp;&nbsp;
+								</div>
+							</div>
 							<div class="row">
 								<div class="col">
 									<span class="division">영화관</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -105,7 +114,7 @@ tr, td{
 							</div>
 						</div>
 						<div class="col-2">
-							<div style="margin: 1em;">
+							<div style="margin: 2em auto;">
 								<input class="common_btn" type="submit" value="검색">
 							</div>
 						</div>
@@ -151,9 +160,9 @@ tr, td{
 								<td>${rentalInfo.loc } ${rentalInfo.areaName }</td>
 								<td>
 									<select name="theaterName" class="selectBox_from" style="width: 60px;" required>
-										<option value="" selected>선택</option>
+										<option value="" <c:if test="${empty rentalInfo.theaterNum }">selected</c:if>>선택</option>
 										<c:forEach varStatus="status"  begin="1" end="5" step="1">
-											<option value="${status.index }관">${status.index }관</option>
+											<option value="${status.index }관" <c:if test="${rentalInfo.theaterNum eq status.index }">selected</c:if>>${status.index }관</option>
 										</c:forEach>
 									</select>
 								</td>

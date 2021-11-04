@@ -274,8 +274,11 @@ public class AdminController {
 	//---------- < 대관 모듈 관련 > ----------
 	
 	//대관 예약 관리 페이지로 이동
-	@GetMapping("/rentalManage")
+	@RequestMapping("/rentalManage")
 	public String rentalManage(Model model, RentalVO rentalVO) {
+		//영화관 목록
+		model.addAttribute("areaList", rentalService.selectAreaList());
+		
 		//대관 예약 목록 조회
 		model.addAttribute("rentalList", rentalService.selectAdminRentalList(rentalVO));
 		
