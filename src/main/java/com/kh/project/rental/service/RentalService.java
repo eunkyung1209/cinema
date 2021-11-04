@@ -17,7 +17,13 @@ public interface RentalService {
 	//대관 예약 등록
 	void insertRental(RentalVO rentalVO);
 	
-	//대관 예약 목록 조회
+	//대관 예약 목록 조회 - 일반회원
 	List<RentalVO> selectRentalList(RentalVO rentalVO);
+	
+	//대관 예약 목록 조회 - 관리자
+	List<RentalVO> selectAdminRentalList(RentalVO rentalVO);
+	
+	//대관 예약정보 수정
+	void updateRental(RentalVO rentalVO);
 	
 }

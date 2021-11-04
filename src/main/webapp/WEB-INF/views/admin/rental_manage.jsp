@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="/resources/rental/js/rental_manage.js?ver=8"></script>
 <style type="text/css">
 /* 예약 안내 */
 .rental-notice{
@@ -18,6 +19,11 @@
 }
 .notice{
 	margin: 7px auto;
+}
+
+/* input, select 태그들 조정 */
+.time{
+	width: 60px;
 }
 
 /* 검색 구분 제목 */
@@ -51,23 +57,22 @@ tr, td{
 		<div class="row justify-content-center">
 			<div class="col-8">
 				<div class="col-3 subjectDiv">
-					<h5>대관 예약 조회</h5>
+					<h5>대관 예약 관리</h5>
 				</div>
 			</div>
 		</div>
 		
 		<div style="height: 50px;"></div>
 		
-		<!-- 예약 안내 -->
+		<!-- 예약 관리 주의사항 -->
 		<div class="row justify-content-center">
 			<div class="col-8 rental-notice text-center">
 				<div class="row justify-content-center">
-					<div class="notice">&lt; 대관 예약 안내 &gt;</div>
+					<div class="notice">&lt; 대관 예약 관리 주의사항 &gt;</div>
 					<div class="notice"></div>
-					<div class="notice">대관 예약 시, 해당 영화관과 논의 후 자세히 안내해드립니다.</div>
+					<div class="notice">해당 영화관과 논의 후, 결정되면 해당 예약 수정해주세요.</div>
 					<div class="notice">대관 예약에 대한 결과는 일정 시간이 소요됩니다.</div>
 					<div class="notice">본인이 예약한 목록만 확인하실 수 있습니다.</div>
-					<div class="notice"><span class="redStar">*</span> 예약한 시간은 영화관 사정상 변경될 수 있습니다.</div>
 				</div>
 			</div>
 		</div>
@@ -117,38 +122,58 @@ tr, td{
 				<table class="board_list">
 					<colgroup>
 						<col width="5%">
-						<col width="20%">
-						<col width="15%">
-						<col width="20%">
-						<col width="15%">
-						<col width="15%">
 						<col width="10%">
+						<col width="10%">
+						<col width="12%">
+						<col width="15%">
+						<col width="19%">
+						<col width="10%">
+						<col width="10%">
+						<col width="9%">
 					</colgroup>
 					<thead>
 						<tr>
 							<th>No</th>
-							<th>영화관&상영관</th>
+							<th>영화관</th>
+							<th>상영관</th>
 							<th>대관 예약일</th>
 							<th>예약 시간</th>
 							<th>신청 영화</th>
 							<th>신청인 ID</th>
 							<th>예약 상태</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach items="${rentalList }" var="rentalInfo" varStatus="status">
 							<tr>
 								<th scope="row">${status.count }</th>
+								<td>${rentalInfo.loc } ${rentalInfo.areaName }</td>
 								<td>
-									<div class="row justify-content-center">
-										<div class="col-8">${rentalInfo.loc } ${rentalInfo.areaName } ${rentalInfo.theaterName }</div>
-									</div>
+									<select name="theaterName" class="selectBox_from" style="width: 60px;" required>
+										<option value="" selected>선택</option>
+										<c:forEach varStatus="status"  begin="1" end="5" step="1">
+											<option value="${status.index }관">${status.index }관</option>
+										</c:forEach>
+									</select>
 								</td>
 								<td>${rentalInfo.rtDate }</td>
-								<td>${rentalInfo.rtStartTime } ~ ${rentalInfo.rtEndTime }</td>
+								<td>
+									<input type="text" name="rtStartTime" class="time" value="${rentalInfo.rtStartTime }" required> ~ 
+									<input type="text" name="rtEndTime" class="time" value="${rentalInfo.rtEndTime }" required>
+								</td>
 								<td>${rentalInfo.title }</td>
 								<td>${rentalInfo.id }</td>
-								<td>${rentalInfo.isComplete }</td>
+								<td>
+									<select name="isComplete" class="selectBox_from" style="width: 85px;" required>
+										<option value="W" <c:if test="${rentalInfo.isComplete eq 'W' }">selected</c:if>>예약 대기</option>
+										<option value="N" <c:if test="${rentalInfo.isComplete eq 'N' }">selected</c:if>>예약 불가</option>
+										<option value="Y" <c:if test="${rentalInfo.isComplete eq 'Y' }">selected</c:if>>예약 완료</option>
+									</select>
+								</td>
+								<td>
+									<input type="button" class="common_btn updateRental" data-rtCode="${rentalInfo.rtCode }" value="수정" style="width: 45px; height: 35px;" onclick="updateRental('${rentalInfo.rtCode }');">
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -158,5 +183,4 @@ tr, td{
 		
 	</div>
 </div>
-</body>
 </html>

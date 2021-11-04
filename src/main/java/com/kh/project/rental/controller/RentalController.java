@@ -65,12 +65,6 @@ public class RentalController {
 		return "rental/rental_list";
 	}
 	
-	//대관 예약 관리 페이지로 이동
-	@GetMapping("/rentalManage")
-	public String rentalManage() {
-		//대관 예약 목록 조회
-		
-		return "rental/rental_manage";
-	}
+	
 	
 }

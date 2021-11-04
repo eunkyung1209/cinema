@@ -8,20 +8,24 @@
 		<id column="RT_CODE" 				property="rtCode"/>
 		<result column="AREA_CODE" 			property="areaCode"/>
 		<result column="THEATER_CODE" 		property="theaterCode"/>
-		<result column="RT_DATE" 			property="rtCode"/>
+		<result column="RT_DATE" 			property="rtDate"/>
 		<result column="RT_START_TIME" 		property="rtStartTime"/>
 		<result column="RT_END_TIME" 		property="rtEndTime"/>
 		<result column="MV_CODE" 			property="mvCode"/>
 		<result column="ID" 				property="id"/>
 		<result column="IS_COMPLETE" 		property="isComplete"/>
+		<result column="AREA_NAME" 			property="areaName"/>
+		<result column="LOC" 				property="loc"/>
+		<result column="THEATER_NAME" 		property="theaterName"/>
+		<result column="TITLE"				property="title"/>
 	</resultMap>
 	
 	<!-- 영화관 -->
 	<resultMap type="com.kh.project.reservation.vo.TheaterVO" id="area">
-		<id column="AREA_CODE" 			property="areaCode"/>
-		<result column="AREA_NAME" 		property="areaName"/>
-		<result column="TEATER_CNT" 	property="teaterCnt"/>
-		<result column="LOC" 			property="loc"/>
+		<id column="AREA_CODE" 				property="areaCode"/>
+		<result column="AREA_NAME" 			property="areaName"/>
+		<result column="TEATER_CNT" 		property="teaterCnt"/>
+		<result column="LOC" 				property="loc"/>
 	</resultMap>
 	
 	<!-- 상영관 -->
@@ -123,16 +127,17 @@
 	
 	
 	
-	<!-- 예약 목록 조회 -->
+	<!-- 예약 목록 조회 : 일반회원 -->
 	<select id="selectRentalList" resultMap="rental">
 		SELECT RT_CODE
 			, A.AREA_NAME
+			, A.LOC
 			<if test="theaterCode != null and !theaterCode.equals('')">
 			, T.THEATER_NAME
 			</if>
 			, TO_CHAR(RT_DATE, 'YYYY-MM-DD') AS RT_DATE
 			, RT_START_TIME
-			, RT_END_TIME
+    		, RT_END_TIME
 			, M.TITLE
 			, ID
 			, IS_COMPLETE
@@ -140,17 +145,69 @@
 		WHERE ID = #{id}
 		AND R.AREA_CODE = A.AREA_CODE
 		AND R.MV_CODE = M.MV_CODE
-		<if test="theaterCode != null and !theaterCode.equals('')">
+		<if test="theaterCode != null and !theaterCode.equals('')"><!-- 상영관 데이터 있을때 -->
 		AND R.THEATER_CODE = T.THEATER_CODE
 		</if>
-		<if test="areaCode != null and !areaCode.equals('')">
+		<if test="areaCode != null and !areaCode.equals('')"><!-- 검색 - 영화관 -->
 		AND A.AREA_CODE = #{areaCode}
 		</if>
-		<if test="isComplete != null and !isComplete.equals('')">
+		<if test="isComplete != null and !isComplete.equals('')"><!-- 검색 - 예약 상태 -->
 		AND IS_COMPLETE = #{isComplete}
 		</if>
 		ORDER BY RT_DATE DESC
 	</select>
+	
+	
+	
+	<!-- 예약 목록 조회 : 관리자 -->
+	<select id="selectAdminRentalList" resultMap="rental">
+		SELECT RT_CODE
+			, A.AREA_NAME
+			, A.LOC
+			<if test="theaterCode != null and !theaterCode.equals('')">
+			, T.THEATER_NAME
+			</if>
+			, TO_CHAR(RT_DATE, 'YYYY-MM-DD') AS RT_DATE
+			, RT_START_TIME
+    		, RT_END_TIME
+			, M.TITLE
+			, ID
+			, IS_COMPLETE
+		FROM OISONE_RENTAL R, OISONE_AREA A<if test="theaterCode != null and !theaterCode.equals('')">, OISONE_THEATER T</if>, OISONE_MOVIE M
+		WHERE R.AREA_CODE = A.AREA_CODE
+		AND R.MV_CODE = M.MV_CODE
+		<if test="theaterCode != null and !theaterCode.equals('')"><!-- 상영관 데이터 있을때 -->
+		AND R.THEATER_CODE = T.THEATER_CODE
+		</if>
+		<if test="loc != null and !loc.equals('')"><!-- 검색 - 지역 -->
+		AND A.LOC = #{loc}
+		</if>
+		<if test="areaCode != null and !areaCode.equals('')"><!-- 검색 - 영화관 -->
+		AND A.AREA_CODE = #{areaCode}
+		</if>
+		<if test="isComplete != null and !isComplete.equals('')"><!-- 검색 - 예약 상태 -->
+		AND IS_COMPLETE = #{isComplete}
+		</if>
+		ORDER BY RT_DATE DESC
+	</select>
+	
+	
+	
+	<!-- 대관 예약정보 수정 -->
+	<update id="updateRental">
+		UPDATE OISONE_RENTAL
+		SET
+		THEATER_CODE = (SELECT T.THEATER_CODE
+						FROM OISONE_THEATER T, OISONE_RENTAL R, OISONE_AREA A
+						WHERE R.AREA_CODE = A.AREA_CODE
+						AND A.AREA_NAME = T.AREA_NAME
+						AND RT_CODE = #{rtCode}
+						AND T.THEATER_NAME = #{theaterName})
+		, RT_START_TIME = #{rtStartTime}
+		, RT_END_TIME = #{rtEndTime}
+		, IS_COMPLETE = #{isComplete}
+		WHERE RT_CODE = #{rtCode}
+	</update>
 	
 	
 	

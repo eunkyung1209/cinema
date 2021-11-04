@@ -34,10 +34,22 @@ public class RentalServiceImpl implements RentalService {
 		sqlSession.insert("rentalMapper.insertRental", rentalVO);
 	}
 	
-	//대관 예약 목록 조회
+	//대관 예약 목록 조회 - 일반회원
 	@Override
 	public List<RentalVO> selectRentalList(RentalVO rentalVO) {
 		return sqlSession.selectList("rentalMapper.selectRentalList", rentalVO);
+	}
+	
+	//대관 예약 목록 조회 - 관리자
+	@Override
+	public List<RentalVO> selectAdminRentalList(RentalVO rentalVO) {
+		return sqlSession.selectList("rentalMapper.selectAdminRentalList", rentalVO);
+	}
+	
+	//대관 예약정보 수정
+	@Override
+	public void updateRental(RentalVO rentalVO) {
+		sqlSession.update("rentalMapper.updateRental", rentalVO);
 	}
 	
 }

@@ -23,6 +23,8 @@ import com.kh.project.member.vo.MemberVO;
 import com.kh.project.movie.service.MovieService;
 import com.kh.project.movie.vo.MovieImgVO;
 import com.kh.project.movie.vo.MovieVO;
+import com.kh.project.rental.service.RentalService;
+import com.kh.project.rental.vo.RentalVO;
 import com.kh.project.reservation.service.ReservationService;
 import com.kh.project.reservation.service.ReservationServiceImpl;
 import com.kh.project.reservation.vo.MovieTimeVO;
@@ -43,6 +45,11 @@ public class AdminController {
 	
 	@Resource(name = "reservationService")
 	private ReservationService reservationService;
+	
+	@Resource(name = "rentalService")
+	private RentalService rentalService;
+	
+	//---------- < 영화 모듈 관련 > ----------
 	
 	//영화 관리 페이지로 이동
 	@GetMapping("/movieManage")
@@ -163,8 +170,6 @@ public class AdminController {
 			
 		}
 		
-		
-		
 		//----------예전 단일첨부만 작성 해둔 내용!!!!!
 //		//영화 포스터 이미지 객체 생성
 //		MovieImgVO movieImgVO = new MovieImgVO();
@@ -236,6 +241,10 @@ public class AdminController {
 		return "redirect:/admin/movieDetail";
 	}
 	
+	
+	
+	//---------- < 회원 모듈 관련 > ----------
+	
 	//1.회원 목록 조회
 	@RequestMapping("/adminMemberList")
 	public String adminMemberList(Model model, MemberVO memberVO) {
@@ -262,6 +271,24 @@ public class AdminController {
 	
 	
 	
-
+	//---------- < 대관 모듈 관련 > ----------
+	
+	//대관 예약 관리 페이지로 이동
+	@GetMapping("/rentalManage")
+	public String rentalManage(Model model, RentalVO rentalVO) {
+		//대관 예약 목록 조회
+		model.addAttribute("rentalList", rentalService.selectAdminRentalList(rentalVO));
+		
+		return "admin/rental_manage";
+	}
+	
+	//대관 예약정보 수정
+	@GetMapping("/updateRental")
+	public String updateRental(RentalVO rentalVO) {
+		//대관 예약정보 수정
+		rentalService.updateRental(rentalVO);
+		
+		return "redirect:/admin/rentalManage";
+	}
 	
 }
