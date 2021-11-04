@@ -79,6 +79,7 @@ body{
 	<div class="swiper mainBannerSwiper">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide"><a><img src="/resources/images/main/론_메인2.jpg" width="100%;"></img></a></div>
+			<div class="swiper-slide"><a><img src="/resources/images/main/론메인흐림_1.png" width="100%;"></img></a></div>
 			<div class="swiper-slide"><a><img src="/resources/images/main/이터널스_메인3.jpg" width="100%;"></img></a></div>
 			<div class="swiper-slide"><a><img src="/resources/images/main/강릉_메인4.jpg" width="100%;"></img></a></div>
 			<div class="swiper-slide"><a><img src="/resources/images/main/캅샵_메인5.jpg" width="100%;"></img></a></div>
