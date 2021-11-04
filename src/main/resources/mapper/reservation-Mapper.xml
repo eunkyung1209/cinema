@@ -51,6 +51,7 @@
 		<result column="SEAT_CNT" 			property="seatCnt"/>
 		<result column="THEATER_NAME" 		property="theaterName"/>
 		<result column="IS_FULL_THEATER" 	property="isFullTheater"/>
+		<result column="TITLE" 				property="title"/>
 	</resultMap>
 	
 	<!-- 영화 -->
@@ -80,14 +81,30 @@
 		ORDER BY AREA_CODE
 	</select>
 	
-	<!-- 상영중인 영화목록 조회 -->
-	<select id="selectMovieState" resultMap="movie">
+	<!-- 초기 영화목록 조회 -->
+	<select id="selectMovieState1" resultMap="movie">
 		SELECT MV_CODE
 		    , TITLE
-		    , RUNNING_TIME
+		    , MOVIE.RUNNING_TIME
 		    , AGE
-		FROM OISONE_MOVIE
+		FROM OISONE_MOVIE MOVIE
 		WHERE MV_STATE = 'Y'
+		ORDER BY MV_CODE
+	</select>
+	
+	
+	<!-- 상영중인 영화목록 조회 -->
+	<select id="selectMovieState2" resultMap="movie">
+		SELECT MOVIE.MV_CODE
+		    , TITLE
+		    , MOVIE.RUNNING_TIME
+		    , AGE
+		FROM OISONE_MOVIE MOVIE, OISONE_MOVIE_TIME TIME
+		WHERE MV_STATE = 'Y'
+		AND MOVIE.MV_CODE = TIME.MV_CODE
+		<if test="areaName != null and !areaName.equals('')">
+		AND AREA_NAME = #{areaName}
+		</if>
 		ORDER BY MV_CODE
 	</select>
 	
@@ -128,8 +145,17 @@
 	        , SEAT_CNT
 	        , THEATER_NAME
 	        , IS_FULL_THEATER
+	        , (SELECT TITLE
+        		FROM OISONE_MOVIE MOVIE
+       			WHERE MOVIE.MV_CODE = TIME.MV_CODE) AS TITLE
 	    FROM OISONE_MOVIE_TIME TIME, OISONE_THEATER THEATER
 	    WHERE TIME.THEATER_CODE = THEATER.THEATER_CODE
+	    <if test="areaName != null and !areaName.equals('')">
+		AND TIME.AREA_NAME = #{areaName}
+		</if>
+		<if test="mvCode != null and !mvCode.equals('')">
+	    AND MV_CODE = #{mvCode}
+	    </if>
 	    ORDER BY MV_TIME_CODE
 	</select>
 	
@@ -137,6 +163,7 @@
 	<select id="selectMovieInfoAjax" resultMap="movie">
 		SELECT TITLE
 		    , RUNNING_TIME
+		    , MV_CODE
 		FROM OISONE_MOVIE
 		WHERE MV_CODE = #{mvCode}
 		ORDER BY MV_CODE

@@ -55,11 +55,84 @@ $(document).ready(function(){
 				$('.reserveTitleArea').text(areaName);
 			}
 		});
+		
+		//영화관에 따른 상영시간표를 ajax로 조회
+		 $.ajax({
+	            url: '/reservation/selectMovieTimeAjax1', //요청경로
+	            type: 'post',
+	            data:{'areaName':areaName}, //필요한 데이터
+	            success: function(result) {
+	            	
+	            	$('#movieTimeBtn').empty();
+	            	
+	            	var str = '';
+	            	
+	            	//반복문
+	            	$(result).each(function(index, element) {
+	            		
+					str += '<div class="col-3 m-1" ><div class="reserveInfoBtn"> ' ;
+					str += '<div class="screenTimeDiv m-1">'  + element.screenTime + '</div>';
+					str += '<div class="seatDiv m-1">' + '/';
+					str += element.seatAll +' [' + element.theaterName + '] </div> </div> </div>';
+	            		
+	            		$('#movieTimeBtn').append(str);
+					});
+	            	
+	            },
+	            error: function(){
+	             //ajax 실행 실패 시 실행되는 구간
+	               alert('실패');
+	            }
+	      });
+		 
+		 /*//영화관에 따른 영화를 조회
+		 $.ajax({
+	            url: '/reservation/selectMovieTimeAjax2', //요청경로
+	            type: 'post',
+	            data:{'areaName':areaName}, //필요한 데이터
+	            success: function(result) {
+	            	
+	            	$('#movieTimeMovie').empty();
+	            	
+	            	//반복문
+	            	$(result).each(function(index, element) {
+	            		
+	            		var str = '';
+	            		
+	            		str += '<li class="m-3 movieName" onclick="movieClick(\'' + element.mvCode + '\', \'' + element.title + '\', \''+ areaName +'\');" ';
+	            		str += ' data-mvCode="' + element.mvCode + '">';
+	            		str += '<div class="row justify-content-center" ><div class="col-10">';
+	            		
+	            		if(element.age == 12){
+	            			str += '<img height="25px;" src="/resources/images/reservation/12.png">';
+	            		}
+	            		if(element.age == 15){
+	            			str += '<img height="25px;" src="/resources/images/reservation/15.png">';
+	            		}
+	            		if(element.age == 19){
+	            			str += '<img height="25px;" src="/resources/images/reservation/19.png">';
+	            		}
+	            		if(element.age == 0){
+	            			str += '<img height="25px;" src="/resources/images/reservation/전체.png">';
+	            		}
+					
+	            		str += element.title;
+						str += '</div><div class="col-2 movieCheck" > </div></div>';
+	            		
+	            		$('#movieTimeMovie').append(str);
+					});
+	            	
+	            	
+	            },
+	            error: function(){
+	             //ajax 실행 실패 시 실행되는 구간
+	               alert('실패');
+	            }
+	      });*/
 	};
 	
-	
 	//영화를 선택
-	movieClick = function(mvCode, title) {
+	movieClick = function(mvCode, title, areaName) {
 		
 		//반복문
 		$('.movieName').each(function(index, element){
@@ -75,9 +148,54 @@ $(document).ready(function(){
 		});
 		
 		
+		//영화관, 영화를 선택 후 상영시간표를 ajax로 조회
+		 $.ajax({
+	            url: '/reservation/selectMovieTimeAjax3', //요청경로
+	            type: 'post',
+	            data:{'areaName':areaName, 'mvCode':mvCode}, //필요한 데이터
+	            success: function(result) {
+	            	
+	            	$('#movieTimeBtn').empty();
+	            	
+	            	var str = '';
+	            	
+	            	//반복문
+	            	$(result).each(function(index, element) {
+	            	
+					str += '<div class="col-3 m-1" >'+ element.title +'<div class="reserveInfoBtn" onclick="movieTimeClick(\'' + element.mvTimeCode +'\');" data-mvTimeCode="' + element.mvTimeCode + '">';
+					str += '<div class="screenTimeDiv m-1">'+  element.screenTime + '</div>';
+					str += '<div class="seatDiv m-1">' + '/';
+					str += element.seatAll +' [' + element.theaterName + '] </div> </div> </div>';
+	            		
+	            		$('#movieTimeBtn').append(str);
+					});
+	            	
+	            },
+	            error: function(){
+	             //ajax 실행 실패 시 실행되는 구간
+	               alert('실패');
+	            }
+	      });
+		
 	};
 	
-	
+	//상영시간표 버튼을 클릭하면..
+	movieTimeClick = function(mvTimeCode) {
+		
+		//반복문
+		$('.reserveInfoBtn').each(function(index, element){
+			var mvTimeCodeAll = $(element).attr('data-mvTimeCode');
+			
+			
+			if(mvTimeCode == mvTimeCodeAll){
+				
+				$(this).css('color', 'red')
+				
+				$('.reserveTitleMovieTime').text(mvTimeCode);
+			}
+		});
+		
+	};
 	 
 	
    

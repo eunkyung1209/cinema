@@ -22,10 +22,17 @@ public class ReservationServiceImpl implements ReservationService {
 		return sqlSession.selectList("reservationMapper.selectArea");
 	}
 
+	//상영 중인 초기 영화목록 조회
+	@Override
+	public List<MovieVO> selectMovieState1() {
+		return sqlSession.selectList("reservationMapper.selectMovieState1");
+	}
+	
+	
 	//상영 중인 영화 목록 조회
 	@Override
-	public List<MovieVO> selectMovieState() {
-		return sqlSession.selectList("reservationMapper.selectMovieState");
+	public List<MovieVO> selectMovieState2(MovieTimeVO movieTimeVO) {
+		return sqlSession.selectList("reservationMapper.selectMovieState2", movieTimeVO);
 	}
 
 
@@ -37,8 +44,8 @@ public class ReservationServiceImpl implements ReservationService {
 
 	//상영시간표 조회
 	@Override
-	public List<MovieTimeVO> selectMovieTime() {
-		return sqlSession.selectList("reservationMapper.selectMovieTime");
+	public List<MovieTimeVO> selectMovieTime(MovieTimeVO movieTimeVO) {
+		return sqlSession.selectList("reservationMapper.selectMovieTime", movieTimeVO);
 	}
 
 	//상영등록)선택한 영화 정보 불러오기
@@ -52,6 +59,8 @@ public class ReservationServiceImpl implements ReservationService {
 		public List<TheaterVO> selectUseTheaterAjax(String areaName) {
 			return sqlSession.selectList("reservationMapper.selectUseTheaterAjax", areaName);
 		}
+
+		
 	
 	
 }

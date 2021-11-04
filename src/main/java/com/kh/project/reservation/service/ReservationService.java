@@ -11,19 +11,24 @@ public interface ReservationService {
 	//영화관 조회
 	List<TheaterVO> selectArea();	
 	
+	//상영중인 영화 초기 조회
+	List<MovieVO> selectMovieState1();
+	
 	//상영중인 영화 조회
-	List<MovieVO> selectMovieState();
+	List<MovieVO> selectMovieState2(MovieTimeVO movieTimeVO);
 	
 	//상영등록해주기
 	void insertMovieTime(MovieTimeVO movieTimeVO);
 	
 	//상영시간표 목록 띄우기
-	List<MovieTimeVO> selectMovieTime();
+	List<MovieTimeVO> selectMovieTime(MovieTimeVO movieTimeVO);
 	
 	//상영등록)선택한 영화 정보 불러오기
 	MovieVO selectMovieInfoAjax(String mvCode);
 	
 	//상영가능한 상영관 조회
 	List<TheaterVO> selectUseTheaterAjax(String areaName);
+	
+	
 	
 }

@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script type="text/javascript" src="/resources/reservation/js/reserve_form.js?ver=18"></script>
+
+<script type="text/javascript" src="/resources/reservation/js/reserve_form.js?ver=54"></script>
 <style type="text/css">
 
 .bodyDiv{
@@ -29,9 +30,9 @@
 	border-left: 1px solid gray;
 
 }
-.reserveOrder li{
+.reserveOrderDiv{
 	height: 200px;	
-	padding-top: 100px;
+	padding-top: 80px;
 }
 
 /* 선택한 타이틀 */
@@ -63,7 +64,7 @@ ul{
 	border: 1px solid gray;
 }
 
-.ReserveInfoBtn{
+.reserveInfoBtn{
 	
 	border :1px solid #c9c9c8;
 	display: inline-block;
@@ -80,7 +81,7 @@ ul{
     -webkit-user-select: none;
      user-select: none;
 }
-.ReserveInfoBtn:active{
+.reserveInfoBtn:active{
 	position: relative;
 	left: 2px;
 	top:2px;
@@ -112,24 +113,32 @@ ul{
 				
 					<!-- 예매순서 -->
 					<div class="col-1 reserveOrder" >
-						<ul>
-							<li>
-								<div class="m-1">01</div> 
+					
+						<div class="row reserveOrderDiv" style="background-color: orange;">
+							<div class="col-12">
+								<div class="m-1" >01</div> 
 								<div>상영시간</div> 
-							</li>
-							<li>
+							</div>
+						</div>
+						<div class="row reserveOrderDiv">
+							<div class="col-12">
 								<div class="m-1">02</div> 
 								<div>좌석선택</div>
-							</li>
-							<li>
+							</div>
+						</div>
+						<div class="row reserveOrderDiv">
+							<div class="col-12">
 								<div class="m-1">03</div>
 								<div>결제하기</div>
-							</li>
-							<li>
+							</div>
+						</div>
+						<div class="row reserveOrderDiv">
+							<div class="col-12">
 								<div class="m-1">04</div>
 								<div>결제완료</div>
-							</li>
-						</ul>
+							</div>
+						</div>
+						
 					</div>
 					
 					
@@ -170,11 +179,11 @@ ul{
 						</div>
 						
 						<!-- 영화목록 -->
-						<div class="row justify-content-center reserveMovieList">
+						<div class="row justify-content-center reserveMovieList" id="movieTimeMovie">
 							<c:forEach items="${statingMovieList }" var="statingMovie">
 								<li class="m-3 movieName" onclick="movieClick('${statingMovie.mvCode}', '${statingMovie.title }');" data-mvCode="${statingMovie. mvCode}">
-									<div class="row justify-content-center">
-										<div class="col-10">
+									<div class="row justify-content-center" >
+										<div class="col-11">
 											<c:if test="${statingMovie. age eq 12}">
 												<img height="25px;" src="/resources/images/reservation/12.png">
 											</c:if>
@@ -189,7 +198,7 @@ ul{
 											</c:if>
 											${statingMovie.title }
 										</div>
-										<div class="col-2 movieCheck" > &nbsp;</div>
+										<div class="col-1 movieCheck" > &nbsp;</div>
 									</div>
 								</li>
 							</c:forEach>
@@ -202,7 +211,7 @@ ul{
 					<!-- 상영시간 선택 -->
 					<div class="col-6 reservemMovieTime" >
 						<div class="row justify-content-center reserveTitle" >
-							<div class="col-12" >
+							<div class="col-12 reserveTitleMovieTime" >
 								선택한 상영시간
 							</div>
 						</div>
@@ -210,7 +219,9 @@ ul{
 						<!-- 달력이 들어갈 공간 -->
 						<div class="row">
 							<div class="col-12 movieCal">
-								달력
+								<div id='calendar'></div>
+
+
 							</div>
 						</div>
 							
@@ -221,20 +232,14 @@ ul{
 								<!-- 상영할 영화 제목 -->
 								<div class="row">
 									<div class="col-12">
-										
+									
 									</div>
 								</div>
 								
 								<!-- 상영시간이 뜨는 버튼 조회 -->
-								<div class="row ">
-									<c:forEach items="${ movieTimeList}" var="movieTimeInfo">
-										<div class="col-3 m-1" >
-											<div class="ReserveInfoBtn">
-												<div class="screenTimeDiv m-1">${movieTimeInfo.screenTime }</div>
-												<div class="seatDiv m-1">/ ${movieTimeInfo.seatAll }  ${movieTimeInfo.theaterName}</div>
-											</div>
-										</div>
-									</c:forEach>
+								<div class="row" id="movieTimeBtn" >
+									
+									  
 								</div>	
 							</div>
 						</div>
