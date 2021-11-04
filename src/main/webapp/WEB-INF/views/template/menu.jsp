@@ -325,7 +325,7 @@ a:hover {
 				              	</li>
 				              	<!-- 관리자 기능 - 대관 관리 -->
 				              	<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' }">
-					              	<li><a class="dropdown-item" href="/rental/rentalManage">대관 예약 관리</a></li>
+					              	<li><a class="dropdown-item" href="/admin/rentalManage">대관 예약 관리</a></li>
 				              	</c:if>
 				            </ul>
 				      	</li>
@@ -475,24 +475,24 @@ a:hover {
                </div>
               	
                
-               <div style="padding-left: 200px; margin-top: 10px; margin-bottom: 10px; vertical-align: top;" >
+               <div style="padding-left: 200px; margin-top: 4px; margin-bottom: 30px; vertical-align: top;" >
                	
                		<c:if test="${sessionScope.loginInfo != null}">
-	               		<button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:80px;" onclick="openSocket();" > 채팅 참여</button>
+	               		<button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:80px;height: 30px; line-height: 30px;" onclick="openSocket();" > 채팅 참여</button>
 	               		<!-- <button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:120px;height: 25px" onclick="javascript:clearText();">대화내용 지우기</button> -->
-	        			<button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:80px;height: 30px;" onclick="closeSocket();" value="채팅 나가기"><span style="padding-bottom: 50px; ">채팅 나가기</span></button>
+	        			<button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:80px;height: 30px; line-height: 30px;" onclick="closeSocket();" value="채팅 나가기"><span style="padding-bottom: 50px; ">채팅 나가기</span></button>
         			</c:if>
         			
                		<c:if test="${sessionScope.loginInfo == null}">
-	               		<button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:80px;" disabled  onclick="openSocket();" > 채팅 참여</button>
+	               		<button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:80px; height: 30px; line-height: 30px; " disabled  onclick="openSocket();" > 채팅 참여</button>
 	               		<!-- <button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:120px;height: 25px" onclick="javascript:clearText();">대화내용 지우기</button> -->
-	        			<button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:80px;height: 30px;" disabled onclick="closeSocket();" value="채팅 나가기"><span style="padding-bottom: 50px; ">채팅 나가기</span></button>
+	        			<button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:80px;height: 30px; line-height: 30px;" disabled onclick="closeSocket();" value="채팅 나가기"><span style="padding-bottom: 50px; ">채팅 나가기</span></button>
         			</c:if>
         			
         			
         	   </div>	
         			
-        			<div style="height: 90px"></div>
+        			<div style="height: 90px; margin-top: 30px;"></div>
         			
                <i class="icon-down-open close" ></i>
                <!-- <button type="button" onclick="closeSocket();">대회방 나가기</button> --> 
@@ -501,11 +501,13 @@ a:hover {
             
             
             
-            <div style="height: 440px; background: white;  border-radius: 10px; width: 350px; overflow: auto;" id="messageDiv">
+            <!-- <div style="height: 440px; background: white;  border-radius: 10px; width: 350px; overflow: auto;" id="messageDiv"> -->
+            <div style="height: 440px; background: white;  border-radius: 10px; width: 350px;" id="messageDiv">
             
             
             <c:if test="${sessionScope.loginInfo != null}">
-               <div id="messages" style="text-align: left; padding-left: 10px;">
+            
+               <div id="messages" style="text-align: left; font-size:14px; padding-left: 10px; padding-top: 10px;">
                </div>
             </c:if>
             
@@ -551,7 +553,7 @@ a:hover {
                </div>
                
                 <!-- Server responses get written here -->
-    			<div id="messages" class="m-3"></div>
+    			<div id="messages"  class="m-3"></div>
                
                
             	<div style="height: 10px"></div>
@@ -568,7 +570,7 @@ a:hover {
         
         function openSocket(){
             if(ws !== undefined && ws.readyState !== WebSocket.CLOSED ){
-                writeResponse("WebSocket is already opened.");
+               /*  writeResponse("WebSocket is already opened."); */
                 return;
             }
             //웹소켓 객체 만드는 코드
@@ -588,7 +590,7 @@ a:hover {
             };
             
             ws.onclose = function(event){
-                writeResponse("--- ${sessionScope.loginInfo.nickName }님이 나가셨습니다 ---");
+                writeResponse("<div style='text-align:center; font-size:14px; color:red; padding-top:4px;'>" + "--- ${sessionScope.loginInfo.nickName }님이 나가셨습니다 :p ---" + "</div>");
             }
             
         }

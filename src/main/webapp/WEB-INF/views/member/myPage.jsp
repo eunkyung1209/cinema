@@ -23,18 +23,19 @@ border-bottom: solid 1px #c9c9c8;
 height: 500px;
 }
 
-td:first-child{
+.td:first-child{
 	text-align: center;
-	background-color: #f2f2f2;
+	/* background-color: #f2f2f2; */
 }
 tr{
-border-bottom: 1px solid #c9c9c8;
+	border-bottom: 1px solid #c9c9c8;
 }
 
 td{
-vertical-align: middle;
-padding: 5px;
-padding-left: 10px;
+	vertical-align: middle;
+	padding: 5px;
+	padding-left: 10px;
+	border: 1px solid black;
 
 }
 input[type="password"], input[type="email"] {
@@ -161,7 +162,7 @@ select {
 
 		
 <div class="jb-wrap">
-	<div class="jb-image"><img alt="" width="700px;" height="420px;" src="/resources/images/member/돼지저금통.PNG"></div>
+	<div class="jb-image"><img alt="" width="700px;" height="420px;" src="/resources/images/member/돼지주황.PNG"></div>
 	<div class="jb-text"> 
 		<div class="jb-text-table">
 			<div class="jb-text-table-row">
@@ -169,41 +170,112 @@ select {
 				
 					<div class="memeber_name" style="font-size: 25px;">
 						<!-- <p class="memeber_name" style="font-size: 25px;"> -->
-						<table style="border: 1px solid black;">
+						
+						
+						<table class="pig" style="border: 1px solid black; margin-left: 35px; margin-top:10px;">
 							<tr style="border: 1px solid black; ">
-								<td style="width: 80px;">d</td>
-								<td style="width: 60px;">d</td>
-								<td style="width: 60px;">d</td>
-								<td style="width: 60px;">d</td>
-								<td style="width: 60px;">d</td>
-								<td style="width: 60px;">d</td>
+								<td colspan="4" style="width: 80px; background-color: none; "></td>
+								
+								<!--  -->
+								<td colspan="10" style="width: 80px; font-size:11px; height: 80px;">d</td>
+								
+								
+								<td style="width: 80px; font-size:15px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								
+								
+								
 							</tr>
-							<tr style="border: 1px solid black;">
-								<td style="width: 60px;">d</td>
-								<td style="width: 60px;">d</td>
-								<td style="width: 60px;">d</td>
-								<td style="width: 60px;">d</td>
-								<td style="width: 60px;">d</td>
-								<td style="width: 60px;">d</td>
+							<tr style="border: 1px solid black; ">
+							<td colspan="4" style="width: 80px; "></td>
+							
+								<!--  -->
+								<td colspan="10" style="width: 80px; font-size:11px; height: 82px;"></td>
+								
+								<td style="width: 80px; font-size:15px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								
+								
 							</tr>
-							<tr style="border: 1px solid black;">
-								<td style="width: 60px;">d</td>
+							
+							<tr style="border: 1px solid black; ">
+								<td style="width: 80px; font-size:10px; height: 80px;"></td>
+								
+								<td colspan="9" style="width: 80px; font-size:15px; height: 13px;"></td>
+								
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td colspan="5" style="width: 80px; font-size:14px; height: 13px;">d</td>
+								
+
 							</tr>
-							<tr style="border: 1px solid black;">
-								<td style="width: 60px;">d</td>
+							<tr style="border: 1px solid black; ">
+								<td style="width: 80px; font-size:10px; height: 80px;">d</td>
+								
+								<td colspan="9" style="width: 80px; font-size:15px; height: 13px;">d</td>
+								
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td colspan="5" style="width: 80px; font-size:14px; height: 13px;">d</td>
+								
 							</tr>
-							<tr style="border: 1px solid black;">
-								<td style="width: 60px;">d</td>
+							<tr style="border: 1px solid black; ">
+								<td style="width: 80px; font-size:0.1px; height: 0.1px;"></td>
+								<td style="width: 80px; font-size:0.1px; height: 0.1px;"></td>
+								<td style="width: 80px; font-size:0.1px; height: 0.1px;"></td>
+								<td style="width: 80px; font-size:0.1px; height: 0.1px;"></td>
+								<td style="width: 80px; font-size:0.1px; height: 0.1px;"></td>
+								<td style="width: 80px; font-size:0.1px; height: 0.1px;"></td>
+								<td style="width: 80px; font-size:0.1px; height: 0.1px;"></td>
+								<td style="width: 80px; font-size:0.1px; height: 0.1px;"></td>
+								<td style="width: 80px; font-size:0.1px; height: 0.1px;"></td>
+								<td style="width: 80px; font-size:0.1px; height: 0.1px;"></td>
+								<td style="width: 80px; font-size:0.1px; height: 0.1px;"></td>
+								<td style="width: 80px; font-size:0.1px; height: 0.1px;"></td>
+								<td style="width: 80px; font-size:0.1px; height: 0.1px;"></td>
+								<td style="width: 80px; font-size:0.1px; height: 0.1px;"></td>
+								<td style="width: 80px; font-size:0.1px; height: 0.1px;"></td>
+								<td style="width: 80px; font-size:0.1px; height: 0.1px;"></td>
+								<td style="width: 80px; font-size:0.1px; height: 0.1px;"></td>
+								<td style="width: 80px; font-size:0.1px; height: 0.1px;"></td>
+								<td style="width: 80px; font-size:0.1px; height: 0.1px;"></td>
+
+							
+								
+								
 							</tr>
-							<tr style="border: 1px solid black;">
-								<td style="width: 60px;">d</td>
-							</tr>
-							<tr style="border: 1px solid black;">
-								<td style="width: 60px;">d</td>
-							</tr>
-							<tr style="border: 1px solid black;">
-								<td style="width: 60px;">d</td>
-							</tr>
+							
+							
 
 						</table>
 						<!-- </p> -->
