@@ -23,15 +23,17 @@
 /*검색 버튼 기본폼 */
 .common_btn{
 	font-size: 14px;
-	background-color: #4c4747;
+	background-color: #ed7d31;
 	color: white;
 	width: 80px;
+	height: 40px;
 }
 .common_btn:hover{
 	font-size: 14px;
 	background-color: #5d5959;
 	color: white;
 	width: 80px;
+	height: 40px;
 }
 
 /* 검색창 폼 */

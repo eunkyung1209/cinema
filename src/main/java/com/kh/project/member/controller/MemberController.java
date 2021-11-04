@@ -2,8 +2,11 @@ package com.kh.project.member.controller;
 
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +25,8 @@ import com.kh.project.member.vo.MemberVO;
 @RequestMapping("/member")
 public class MemberController {
 	//회원 관련 기능 구현
+	
+	
 	
 	@Resource(name = "memberService")
 	private MemberService memberService;
@@ -121,14 +126,18 @@ public class MemberController {
 	//로그인
 	@ResponseBody
 	@RequestMapping("/loginCheck")
-	public int loginCheck(MemberVO memberVO, HttpSession session) {
+	public int loginCheck(MemberVO memberVO, HttpSession session,  HttpServletRequest request, String id) {
+		
 		
 		MemberVO loginInfo = memberService.checkLogin(memberVO);
 		
-		
 		//로그인 성공
 		if(loginInfo != null) {
+			
 			session.setAttribute("loginInfo", loginInfo);
+	    	
+			System.out.println("welcome = " + loginInfo.getId());
+			
 			return 1;
 			
 		}
@@ -138,27 +147,20 @@ public class MemberController {
 	}
 
 	//2-1. 로그인
-	@RequestMapping("/login")
-	public String login(MemberVO memberVO, HttpSession session) {
-		MemberVO loginInfo = memberService.login(memberVO);
-		
-		//로그인 성공
-		if(loginInfo != null) {
-			session.setAttribute("loginInfo", loginInfo);
-			
-			//관리자이면
-			if(loginInfo.getIsAdmin().equals("Y")) {
-				return "redirect:/movie/mainPage";
-			}
-			//일반회원이면
-			else {	//loginInfo.getIsAdmin().equals("N")인 경우
-				return "redirect:/movie/mainPage";
-			}
-		}
-		
-		//로그인 실패
-		return "redirect:/member/loginCheck";
-	}
+	/*
+	 * @RequestMapping("/login") public String login(MemberVO memberVO, HttpSession
+	 * session) { MemberVO loginInfo = memberService.login(memberVO);
+	 * 
+	 * //로그인 성공 if(loginInfo != null) { session.setAttribute("loginInfo",
+	 * loginInfo);
+	 * 
+	 * //관리자이면 if(loginInfo.getIsAdmin().equals("Y")) { return
+	 * "redirect:/movie/mainPage"; } //일반회원이면 else {
+	 * //loginInfo.getIsAdmin().equals("N")인 경우 return "redirect:/movie/mainPage"; }
+	 * }
+	 * 
+	 * //로그인 실패 return "redirect:/member/loginCheck"; }
+	 */
 	
 	//------------로그인 인터셉터 *로그인 안했으면 하라고 하기*------------
 	// 고객센터 글 비번 입력

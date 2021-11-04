@@ -7,36 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.star{
-	width: 17px;
-	height: 17px;
-}
-/* 검색박스 폼 */
-.search_box{
-	padding: 22px;
-	border: 1px solid #e0e0e0;
-	border-radius: 0.4em;
-	background-color:#f2f2f2;
-}
-/* 검색창 폼 */
-.inputSearch_form{
-   font-size: 14px;
-   border-radius: 4px;
-   border: 1px solid #e0e0e0;
-   width: 600px;
-}
-.inputSearch_form:focus{
-   border: 2px solid #c9c9c8;
-}
-/* 셀렉트박스 폼 */
-.selectBox_from{
-	font-size: 14px;
-	width: 110px;
-}
-.search_form{
-	background-color: #e0e0e0;
-	text-align:center;
-}
 </style>
 </head>
 <body>
@@ -65,7 +35,7 @@
 		
 		<!-- 검색폼 -->
 		<div class="row justify-content-center">
-			<div class="col-8 search_box" >
+			<div class="col-8 search_box text-center" >
 				<form action="/movie/movieList" method="post">
 					<input type="hidden" name="mvState" value="${movieVO.mvState }">
 					<select class="selectBox_from" name="searchKeyword">

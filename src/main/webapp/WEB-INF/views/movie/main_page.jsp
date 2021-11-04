@@ -62,20 +62,118 @@ body{
 .card{
 	background-color: black;
 }
+
+
+.chatIcon{
+	text-align: right;
+
+}
 </style>
 </head>
 <body>
+
+
+
 <div class="row justify-content-center">
 	<!-- 상단 사진 변경 --><!-- Swiper -->
 	<div class="swiper mainBannerSwiper">
 		<div class="swiper-wrapper">
-			<div class="swiper-slide"><a><img src="/resources/images/main/메인사진.jpg" width="100%;"></img></a></div>
-			<div class="swiper-slide"><a><img src="/resources/images/main/로고.png" width="100%;"></img></a></div>
+			<div class="swiper-slide"><a><img src="/resources/images/main/론_메인2.jpg" width="100%;"></img></a></div>
+			<div class="swiper-slide"><a><img src="/resources/images/main/론메인흐림_1.png" width="100%;"></img></a></div>
+			<div class="swiper-slide"><a><img src="/resources/images/main/이터널스_메인3.jpg" width="100%;"></img></a></div>
+			<div class="swiper-slide"><a><img src="/resources/images/main/강릉_메인4.jpg" width="100%;"></img></a></div>
+			<div class="swiper-slide"><a><img src="/resources/images/main/캅샵_메인5.jpg" width="100%;"></img></a></div>
 		</div>
 		<div class="swiper-button-next"></div>
 		<div class="swiper-button-prev"></div>
 		<div class="swiper-pagination"></div>
 	</div>
+	
+	
+
+	
+	
+	
+	
+			<%-- <div style="width: 400px; height: 600px; top: 400px; right: 150px; position: absolute; z-index: 3;" id="chat">
+			
+         <div style="background-color: rgb(255, 209, 4); border-radius: 15px;" align="center"> 
+            <div style="height: 100px; line-height: 44px; padding-left: 15px;" align="left">
+            
+            	<div style="height: 7px"></div>
+            
+               <div style="font-weight: bold; font-size: 30px;">
+               		OISONE TALK
+               		
+               		<svg xmlns="http://www.w3.org/2000/svg" width="27" height="28" fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
+					  <path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+					</svg>
+               		
+               </div>
+              	
+               
+               <div style="padding-left: 180px;">
+               
+               		<button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:80px;height: 35px" onclick="openSocket();" > 채팅 참여</button>
+               		<!-- <button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:120px;height: 25px" onclick="javascript:clearText();">대화내용 지우기</button> -->
+        			<button type="button"  style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:80px;height: 35px; padding-top: -30px;" onclick="closeSocket();"><span style="padding-bottom: 5px;">채팅 나가기</span></button>
+        		
+        	   </div>	
+        			
+        			<div style="height: 30px"></div>
+        			
+               <i class="icon-down-open close" ></i>
+               <!-- <button type="button" onclick="closeSocket();">대회방 나가기</button> --> 
+            </div>
+            <div style="height: 440px; background: white; border-radius: 10px; width: 350px; overflow: auto;" id="messageDiv">
+            
+               <div id="messages" style="text-align: left; padding-left: 10px;">
+               
+               
+            </div>
+               
+               
+            </div> <!-- Server responses get written here -->
+            <div style="height: 10px"></div>
+               <div style="background-color: white; height: 80px;border-radius: 10px; width: 350px; padding: 5px">
+              
+               
+                  <input type="text" id="sender" value="${sessionScope.id}" style="display: none;">
+                  <input type="text" id="messageinput" style="width: 250px; height: 68px; border: none;"> 
+                  
+                  <button type="button" id="sendBtn" style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:53px;height: 40px" onclick="send();">전송</button> 
+               		
+               
+               </div>
+               
+                <!-- Server responses get written here -->
+    			<div id="messages"></div>
+               
+               
+            <div style="height: 10px"></div>
+  
+		
+		
+		
+		
+		
+		</div>	
+	</div> --%>
+	
+	
+	
+       
+      
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 <!-- 	<div class="row mainBigPicture_j">
 		
@@ -85,7 +183,7 @@ body{
 	<div class="row logo justify-content-center mt-5">
 		<div class="col-5"></div>
 		<div class="col-2">
-			<img src="/resources/images/main/로고.png" width="98%">
+			<img src="/resources/images/menu/logo_black_orange.png" width="50%">
 		</div>
 		<div class="col-5"></div>
 	</div>
@@ -235,5 +333,16 @@ body{
 			},
 		},
 	});
+	
+	
+	
+	
+	
+	
+	/*  */
+	
+	
+	
+	
 </script>
 </html>

@@ -21,7 +21,7 @@
 }
 
 /*검색 버튼 기본폼 */
-.common_btn{
+/* .common_btn{
 	font-size: 14px;
 	background-color: #4c4747;
 	color: white;
@@ -32,7 +32,7 @@
 	background-color: #5d5959;
 	color: white;
 	width: 80px;
-}
+} */
 
 /* 검색창 폼 */
 .inputSearch_form{
@@ -70,6 +70,21 @@ tr, td{
 	vertical-align: middle;
 }
 
+/*검색 버튼 기본폼 */
+.common_btn{
+	font-size: 14px;
+	background-color: #ed7d31;
+	color: white;
+	width: 80px;
+	height: 40px;
+}
+.common_btn:hover{
+	font-size: 14px;
+	background-color: #5d5959;
+	color: white;
+	width: 80px;
+	height: 40px;
+}
 
 
 /* 페이징 폼 */
@@ -80,6 +95,8 @@ a:hover{
 	color: black;
 	font-weight: bold;
 }
+
+
 
 </style>
 </head>

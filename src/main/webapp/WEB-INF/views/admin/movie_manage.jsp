@@ -8,47 +8,6 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="/resources/admin/js/movie_manage.js?ver=2"></script>
 <style type="text/css">
-/*검색 버튼 기본폼 */
-.common_btn{
-	font-size: 14px;
-	background-color: #4c4747;
-	color: white;
-	width: 80px;
-}
-.common_btn:hover{
-	font-size: 14px;
-	background-color: #5d5959;
-	color: white;
-	width: 80px;
-}
-
-/* 검색박스 폼 */
-.search_box{
-	padding: 22px;
-	border: 1px solid #e0e0e0;
-	border-radius: 0.4em;
-	background-color:#f2f2f2;
-}
-/* 검색창 폼 */
-.inputSearch_form{
-   font-size: 14px;
-   border-radius: 4px;
-   border: 1px solid #e0e0e0;
-   width: 600px;
-}
-.inputSearch_form:focus{
-   border: 2px solid #c9c9c8;
-}
-/* 셀렉트박스 폼 */
-.selectBox_from{
-	font-size: 14px;
-	width: 110px;
-}
-.search_form{
-	background-color: #e0e0e0;
-	text-align:center;
-}
-
 /* 테이블 폼 */
 tr{
 	border-bottom: 1px solid #e0e0e0;
@@ -96,7 +55,7 @@ a:hover{
 		
 		<!-- 검색폼 -->
 		<div class="row justify-content-center">
-			<div class="col-8 search_box">
+			<div class="col-8 search_box text-center">
 				<form action="/movie/movieList" method="post">
 					<select class="selectBox_from" name="searchKeyword">
 						<option value="TITLE" <c:if test="${movieVO.searchKeyword eq 'TITLE'}">selected</c:if>>제목</option>

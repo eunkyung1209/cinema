@@ -29,31 +29,20 @@
 .notice{
 	margin: 7px auto;
 }
-
-/* 검색박스 폼 */
-.search_box{
-	padding: 22px;
-	border: 1px solid #e0e0e0;
-	border-radius: 0.4em;
-	background-color:#f2f2f2;
+.notice-time{
+	font-size: small;
+	float: right;
 }
-/* input 태그들 길이 조정 */
-input{
+
+/* input 태그들 조정 */
+.rentalInput, .time{
 	width: 100%;
 	background-color: white;
 	padding-left: 10px;
 }
-.only-time{
-	width: 48%;
-}
-/* 셀렉트박스 폼 */
-.selectBox_from{
-	font-size: 14px;
-	width: 110px;
-}
-.search_form{
-	background-color: #e0e0e0;
-	text-align:center;
+.time{
+	width: 35%;
+	padding-left: 10px;
 }
 
 /* picker */
@@ -65,9 +54,18 @@ input{
     border-top: none;
 }
 
-/* 필수입력 빨간 별 */
-.redStar{
-	color: red;
+/*검색 버튼 기본폼 */
+.common_btn{
+	font-size: 14px;
+	background-color: #ed7d31;
+	color: white;
+	width: 80px;
+}
+.common_btn:hover{
+	font-size: 14px;
+	background-color: #5d5959;
+	color: white;
+	width: 80px;
 }
 </style>
 </head>
@@ -89,7 +87,7 @@ input{
 		<div class="row justify-content-center">
 			<div class="col-7 rental-notice text-center">
 				<div class="row justify-content-center">
-					<div class="notice">&lt; 대관 예약 안내사항 &gt;</div>
+					<div class="notice">&lt; 대관 예약 안내 &gt;</div>
 					<div class="notice"></div>
 					<div class="notice">대관 예약 신청 시, 해당 영화관 상황을 확인 후 결과를 안내해드립니다.</div>
 					<div class="notice">대관 예약 현황과 결과는 상영관 대관 예약 조회 페이지에서 확인하실 수 있습니다.</div>
@@ -111,44 +109,57 @@ input{
 								<label for="inputId" class="form-label">신청인 ID <span class="redStar">*</span></label><br>
 								<c:choose>
 									<c:when test="${not empty sessionScope.loginInfo.id }">
-										<input type="text" id="inputId" name="id" value="${sessionScope.loginInfo.id }" readonly>
+										<input type="text" class="rentalInput" id="inputId" name="id" value="${sessionScope.loginInfo.id }" readonly required>
 									</c:when>
 									<c:otherwise>
-										<input type="text" placeholder="로그인 후 신청이 가능합니다" readonly>
+										<input type="text" class="rentalInput" placeholder="로그인 후 신청이 가능합니다" readonly>
 									</c:otherwise>
 								</c:choose>
+							</div>
+							<!-- 영화관 선택 -->
+							<div class="mb-4">
+								<label for="datepicker" class="form-label">영화관 선택 <span class="redStar">*</span></label>
+								<select name="areaCode" class="selectBox_from rentalInput" required>
+									<c:forEach items="${areaList }" var="areaInfo">
+										<option value="${areaInfo.areaCode }">${areaInfo.loc } ${areaInfo.areaName }</option>
+									</c:forEach>
+								</select>
 							</div>
 							<!-- 대관 날짜 선택 -->
 							<div class="mb-4">
 								<label for="datepicker" class="form-label">대관 예약일 <span class="redStar">*</span></label>
-								<input type="text" id="datepicker" name="rtDate" value="${nowDate }" readonly>
+								<input type="text" class="rentalInput" id="datepicker" name="rtDate" value="${nowDate }" readonly required>
 							</div>
 							<!-- 예약 시각 -->
 							<div class="mb-4">
-								<label for="timepicker" class="form-label">예약 시각 <span class="redStar">*</span></label><br>
-								<input type="text" id="timepicker" class="only-time" name="rtStartTime" placeholder="시작 시각"> ~ 
-								<input type="text" class="only-time" name="rtEndTime" placeholder="종료 시각">
-							</div>
-							<!-- 영화관 선택 -->
-							<div class="mb-4">
-								<label for="datepicker" class="form-label">원하는 영화관 선택 <span class="redStar">*</span></label>
-								<select name="areaCode" class="form-select">
-									<c:forEach items="${areaList }" var="areaInfo">
-										<option value="${areaInfo.areaCode }">${areaInfo.loc }${areaInfo.areaName }</option>
-									</c:forEach>
-								</select>
+								<div class="row">
+									<div class="col-12">
+										<label for="timepicker" class="form-label">예약 시각 <span class="redStar">*</span></label>
+										<div class="notice-time"><span class="redStar">*</span> 예약한 시간은 영화관 사정상 변경될 수 있습니다.</div><br>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-6">
+										시작 시각 : 
+										<input type="text" id="timepicker" class="only-time time" name="rtStartTime" placeholder="시작 시각" required>
+									</div>
+									<div class="col-6">
+										종료 시각 : 
+										<input type="text" id="endTime" class="only-time time" name="rtEndTime" placeholder="종료 시각" required>
+									</div>
+								</div>
 							</div>
 							<!-- 영화 선택 -->
 							<div class="mb-4">
-								<label for="datepicker" class="form-label">원하는 영화 선택 <span class="redStar">*</span></label>
-								<select name="mvCode" class="form-select">
+								<label for="datepicker" class="form-label">영화 선택 <span class="redStar">*</span></label>
+								<select name="mvCode" class="selectBox_from rentalInput" required>
 									<c:forEach items="${movieList }" var="movieInfo">
 										<option value="${movieInfo.mvCode }">${movieInfo.title }</option>
 									</c:forEach>
 								</select>
 							</div>
 							<div class="mt-5 text-center">
-								<input class="btn common_btn <c:if test="${empty sessionScope.loginInfo.id }">disabled</c:if>" type="submit" value="신청하기">
+								<input class="btn common_btn" type="submit" <c:if test="${empty sessionScope.loginInfo }">disabled</c:if> value="신청">
 							</div>
 						</form>
 					</div>
@@ -178,7 +189,7 @@ input{
     
 	//시각 선택
     $('.only-time').datepicker({
-        dateFormat: ' ',
+        dateFormat: '',
         timepicker: true,
         classes: 'only-timepicker'
     });

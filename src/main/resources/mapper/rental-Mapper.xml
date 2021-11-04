@@ -82,70 +82,77 @@
 	
 	<!-- 영화관 조회 -->
 	<select id="selectAreaList" resultMap="area">
-		SELECT AREA_CODE
+		SELECT AREA_CODE 
 		    , AREA_NAME
 		    , LOC
 		FROM OISONE_AREA
+		ORDER BY AREA_CODE
 	</select>
 	
-	<!-- 상영관 조회 -->
-<!-- 	<select id="selectTheaterList" resultMap="area">
-		SELECT THEATER_CODE
-		    , THEATER_NAME
-		    , AREA_CODE
-		FROM OISONE_THEATER T, OISONE_AREA A, OISONE_MOVIE_TIME MT
-		WHERE USE_THEATER = 'N'
-		AND T.AREA_NAME = A.AREA_NAME
-		AND A.AREA_CODE = #{areaCode}
-		AND MT.SCREEN_TIME = #{rtDate}
-		AND MT.SCREEN_TIME
-	</select> -->
-	
-	
-	
 	<!-- 상영중인 영화목록 조회 -->
-	<select id="selectMovie" resultMap="movie">
+	<select id="selectMovieList" resultMap="movie">
 		SELECT MV_CODE
 		    , TITLE
 		    , RUNNING_TIME
 		FROM OISONE_MOVIE
+		ORDER BY MV_CODE
 	</select>
 	
 	
-	<!-- 상영시간표 목록 띄우기 -->
-	<select id="selectMovieTime" resultMap="movieTime">
-		SELECT MV_TIME_CODE
-	        , SCREEN_DAY
-	        , SCREEN_TIME
-	        , SCREEN_END_TIME
-	        , MV_CODE
-	        , RUNNING_TIME
-	        , TIME.THEATER_CODE
-	        , SEAT_ALL
-	        , SEAT_CNT
-	        , THEATER_NAME
-	        , IS_FULL_THEATER
-	    FROM OISONE_MOVIE_TIME TIME, OISONE_THEATER THEATER
-	    WHERE TIME.THEATER_CODE = THEATER.THEATER_CODE
+	
+	<!-- 대관 예약 등록 -->
+	<insert id="insertRental">
+		INSERT INTO OISONE_RENTAL (
+			RT_CODE
+			, AREA_CODE
+			, RT_DATE
+			, RT_START_TIME
+			, RT_END_TIME
+			, MV_CODE
+			, ID
+		) VALUES (
+			(SELECT 'RT_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(RT_CODE, 4, 3))), 1) + 1, 3, '0') FROM OISONE_RENTAL)
+			, #{areaCode}
+			, #{rtDate}
+			, #{rtStartTime}
+			, #{rtEndTime}
+			, #{mvCode}
+			, #{id}
+		)
+	</insert>
+	
+	
+	
+	<!-- 예약 목록 조회 -->
+	<select id="selectRentalList" resultMap="rental">
+		SELECT RT_CODE
+			, A.AREA_NAME
+			<if test="theaterCode != null and !theaterCode.equals('')">
+			, T.THEATER_NAME
+			</if>
+			, TO_CHAR(RT_DATE, 'YYYY-MM-DD') AS RT_DATE
+			, RT_START_TIME
+			, RT_END_TIME
+			, M.TITLE
+			, ID
+			, IS_COMPLETE
+		FROM OISONE_RENTAL R, OISONE_AREA A<if test="theaterCode != null and !theaterCode.equals('')">, OISONE_THEATER T</if>, OISONE_MOVIE M
+		WHERE ID = #{id}
+		AND R.AREA_CODE = A.AREA_CODE
+		AND R.MV_CODE = M.MV_CODE
+		<if test="theaterCode != null and !theaterCode.equals('')">
+		AND R.THEATER_CODE = T.THEATER_CODE
+		</if>
+		<if test="areaCode != null and !areaCode.equals('')">
+		AND A.AREA_CODE = #{areaCode}
+		</if>
+		<if test="isComplete != null and !isComplete.equals('')">
+		AND IS_COMPLETE = #{isComplete}
+		</if>
+		ORDER BY RT_DATE DESC
 	</select>
 	
-	<!-- 상영등록) 영화정보 조회 -->
-	<select id="selectMovieInfoAjax" resultMap="movie">
-		SELECT TITLE
-		    , RUNNING_TIME
-		FROM OISONE_MOVIE
-		WHERE MV_CODE = #{mvCode}
-	</select>
 	
-	<!--상영등록) 상영가능한 상영관 조회 -->
-	<select id="selectUseTheaterAjax" resultMap="theater">
-		SELECT THEATER_CODE
-			, THEATER_NAME
-		    , AREA_NAME
-		FROM OISONE_THEATER
-		WHERE USE_THEATER = 'N'
-		AND AREA_NAME = #{areaName}
-	</select>
 	
 </mapper>
 
