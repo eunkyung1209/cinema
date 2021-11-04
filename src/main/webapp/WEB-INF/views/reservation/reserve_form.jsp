@@ -8,8 +8,32 @@
 <title>Insert title here</title>
 
 
+<!-- fullcalendar CDN -->
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
+<!-- fullcalendar 언어 CDN -->
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
+
+<script> 
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
+      });
+
+    </script>
+
+
+<!-- 자바 스크립트 -->
 <script type="text/javascript" src="/resources/reservation/js/reserve_form.js?ver=54"></script>
 <style type="text/css">
+
+
+
+
 
 .bodyDiv{
  text-align: center;
@@ -220,7 +244,6 @@ ul{
 						<div class="row">
 							<div class="col-12 movieCal">
 								<div id='calendar'></div>
-
 
 							</div>
 						</div>
