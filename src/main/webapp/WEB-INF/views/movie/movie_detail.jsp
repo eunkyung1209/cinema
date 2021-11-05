@@ -111,7 +111,23 @@ input[type="number"]{
 							</c:forEach>
 						</td>
 						<td>
-							<div><h4>${movieInfo.title }</h4></div>
+							<div>
+								<h4>
+									<c:if test="${movieInfo.age eq 12}">
+										<img height="25px;" src="/resources/images/reservation/12.png">
+									</c:if>
+									<c:if test="${movieInfo.age eq 15}">
+										<img height="25px;" src="/resources/images/reservation/15.png">
+									</c:if>
+									<c:if test="${movieInfo.age eq 19}">
+										<img height="25px;" src="/resources/images/reservation/19.png">
+									</c:if>
+									<c:if test="${movieInfo.age eq 0}">
+										<img height="25px;" src="/resources/images/reservation/전체.png">
+									</c:if>
+									${movieInfo.title }
+								</h4>
+							</div>
 							<div>
 								<input type="hidden" id="mvCode" name="mvCode" value="${movieInfo.mvCode }">
 								장르 : ${movieInfo.genre }

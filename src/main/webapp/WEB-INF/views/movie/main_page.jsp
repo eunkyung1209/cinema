@@ -171,7 +171,21 @@ body{
 				<div class="card mb-3">
 					<a href="/movie/movieDetail?mvCode=${movieInfo.mvCode }"><img src="/resources/images/movie/${movieInfo.imgList[0].attachedImgName }" class="card-img-top"></a>
 					<div class="card-body">
-						<h5 class="card-title">${movieInfo.title }</h5>
+						<h5 class="card-title">
+							<c:if test="${statingMovie. age eq 12}">
+								<img height="25px;" src="/resources/images/reservation/12.png">
+							</c:if>
+							<c:if test="${statingMovie. age eq 15}">
+								<img height="25px;" src="/resources/images/reservation/15.png">
+							</c:if>
+							<c:if test="${statingMovie. age eq 19}">
+								<img height="25px;" src="/resources/images/reservation/19.png">
+							</c:if>
+							<c:if test="${statingMovie. age eq 0}">
+								<img height="25px;" src="/resources/images/reservation/전체.png">
+							</c:if>
+							${movieInfo.title }
+						</h5>
 						<p class="card-text">
 							${movieInfo.genre } 
 							&nbsp;|&nbsp; 
