@@ -32,21 +32,15 @@
         calendar.render();
       }); */
        
-       
-       
        document.getElementById('my-button').addEventListener('click', function() {
     	   var date = calendar.getDate();
     	   alert("The current date of the calendar is " + date.toISOString());
     	 }); 
        
-       
-       
 </script>
 
 <!-- 자바 스크립트 -->
 <script type="text/javascript" src="/resources/reservation/js/reserve_form.js?ver=68"></script>
-
-
 <style type="text/css">
 
 /* picker */
@@ -283,7 +277,6 @@ ul{
 								</div> 
 								
 								<input type="hidden" value="${nowDate }" name="screenDay">
-								
 							</div>
 						</div>
 							

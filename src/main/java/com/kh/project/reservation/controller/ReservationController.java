@@ -88,6 +88,8 @@ public class ReservationController {
 		@ResponseBody
 		@PostMapping("/selectMovieTimeAjax1")
 		public List<MovieTimeVO> selectMovieTimeAjax1(MovieTimeVO movieTimeVO) {
+			//오늘 날짜를 세팅
+			movieTimeVO.setScreenDay(NowDateTime.getNowDate());
 			
 			return reservationService.selectMovieTime(movieTimeVO);
 		}
@@ -106,7 +108,8 @@ public class ReservationController {
 		@ResponseBody
 		@PostMapping("/selectMovieTimeAjax3")
 		public List<MovieTimeVO> selectMovieTimeAjax3(MovieTimeVO movieTimeVO) {
-			
+			//오늘 날짜를 세팅
+			movieTimeVO.setScreenDay(NowDateTime.getNowDate());
 			//영화 시간표 조회
 			return reservationService.selectMovieTime(movieTimeVO);
 			
@@ -116,7 +119,6 @@ public class ReservationController {
 		@GetMapping("/seatChoice")
 		public String seatChoice(String mvTimeCode) {
 			
-			System.out.println("!!!!!!!!!!!!!!" + mvTimeCode);
 			
 			return "reservation/seat_choice";
 		}
