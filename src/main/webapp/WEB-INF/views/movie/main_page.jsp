@@ -31,7 +31,7 @@ body{
 	border-bottom: solid 5px white;
 	opacity: 0.2;
 } */
-.logo > img{
+.logo{
 	text-align: center;
 }
 
@@ -45,20 +45,6 @@ body{
 	height: 25px;
 }
 
-.number{
-	padding: none;
-	background-color: white;
-	color:red;
-	font-size: 30px;
-	text-align: center;
-	position: absolute;
-	top: 2%;
-	left: 2%;
-}
-.star{
-	width: 17px;
-	height: 17px;
-}
 .card{
 	background-color: black;
 }
@@ -71,9 +57,6 @@ body{
 </style>
 </head>
 <body>
-
-
-
 <div class="row justify-content-center">
 	<!-- 상단 사진 변경 --><!-- Swiper -->
 	<div class="swiper mainBannerSwiper">
@@ -88,11 +71,6 @@ body{
 		<div class="swiper-button-prev"></div>
 		<div class="swiper-pagination"></div>
 	</div>
-	
-	
-
-	
-	
 	
 	
 			<%-- <div style="width: 400px; height: 600px; top: 400px; right: 150px; position: absolute; z-index: 3;" id="chat">
@@ -152,26 +130,8 @@ body{
                
             <div style="height: 10px"></div>
   
-		
-		
-		
-		
-		
 		</div>	
 	</div> --%>
-	
-	
-	
-       
-      
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -179,24 +139,31 @@ body{
 		
 	</div> -->
 	
+	<div style="height: 50px;"></div>
+	
 	<!-- 로고 -->
 	<div class="row logo justify-content-center mt-5">
-		<div class="col-5"></div>
+		<div class="col-1"></div>
+		<div class="col-4"><hr></div>
 		<div class="col-2">
-			<img src="/resources/images/menu/logo_black_orange.png" width="50%">
+			<img src="/resources/images/menu/logo_black_orange.png" width="40%">
 		</div>
-		<div class="col-5"></div>
+		<div class="col-4"><hr></div>
+		<div class="col-1"></div>
 	</div>
+	
+	<div style="height: 50px;"></div>
 	
 	<!-- 현재 일시 -->
 	<div class="row text-right nowTime justify-content-center">
 		<div class="col-10">
-			<img src="/resources/images/main/메인서브-시계.png">
-			${nowDateTime } 기준
+			<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="gray" class="bi bi-clock-fill clock" viewBox="0 0 16 16">
+				<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+			</svg> ${nowDateTime } 기준
 		</div>
 	</div>
 	
-	<!-- 영화 목록 조회 -->
+	<!-- 영화 목록 조회 : 영화 5개만 출력 -->
 	<div class="row">
 		<div class="col-1"></div>
 		<c:forEach items="${movieList }" var="movieInfo" varStatus="status">
@@ -204,12 +171,13 @@ body{
 				<div class="card mb-3">
 					<a href="/movie/movieDetail?mvCode=${movieInfo.mvCode }"><img src="/resources/images/movie/${movieInfo.imgList[0].attachedImgName }" class="card-img-top"></a>
 					<div class="card-body">
-						<div class="number">${status.count }</div>
 						<h5 class="card-title">${movieInfo.title }</h5>
 						<p class="card-text">
 							${movieInfo.genre } 
 							&nbsp;|&nbsp; 
-							<img src="/resources/images/main/메인서브-별점.PNG" class="star">${movieInfo.grade }
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill star" viewBox="0 0 16 16">
+								<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+							</svg> ${movieInfo.grade }
 						</p>
 					</div>
 				</div>
@@ -219,7 +187,7 @@ body{
 	</div>
 	
 	<!-- 영화 예시 -->
-	<div class="row">
+<!-- 	<div class="row">
 		<div class="col-1"></div>
 		<div class="col-2">
 			<div class="card mb-3">
@@ -282,7 +250,7 @@ body{
 			</div>
 		</div>
 		<div class="col-1"></div>
-	</div>
+	</div> -->
 </div>
 </body>
 <script>

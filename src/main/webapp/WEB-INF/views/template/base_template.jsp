@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title><tiles:insertAttribute name="title"/></title>
 <!-- 태그 초기화 작업 -->
-<link rel="stylesheet" href="/resources/common/reset.css?ver=11">
+<link rel="stylesheet" href="/resources/common/reset.css?ver=14">
 <style type="text/css" src="/resources/event/css/event_Date.css?ver=1"></style>
 <link rel="stylesheet" href="/resources/event/css/event_Date.css">
 <!-- 제이쿼리 문법을 로딩 -->

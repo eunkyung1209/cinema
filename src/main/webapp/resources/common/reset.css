@@ -154,9 +154,12 @@ input[type="file"]{
 
 
 /* 영화 정보 */
+.clock{
+	padding-bottom: 2px;
+}
 .star{
-	width: 17px;
-	height: 17px;
+	padding-bottom: 2px;
+	color: #f6c73b;
 }
 
 
