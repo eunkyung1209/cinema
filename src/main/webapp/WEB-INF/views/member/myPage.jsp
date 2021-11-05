@@ -33,9 +33,10 @@ tr{
 
 td{
 	vertical-align: middle;
-	padding: 5px;
-	padding-left: 10px;
+	padding: 3px;
+	padding-left: 16px;
 	border: 1px solid black;
+	text-align: left;
 
 }
 input[type="password"], input[type="email"] {
@@ -131,7 +132,7 @@ select {
 		<div class="row justify-content-center">
 			<div class="col-8">
 				<div class="col-3 subjectDiv">
-					<h5>마이페이지</h5>
+					<h5>${sessionScope.loginInfo.nickName }님의 마이페이지</h5>
 				</div>
 			</div>
 		</div>
@@ -168,28 +169,33 @@ select {
 			<div class="jb-text-table-row">
 				<div class="jb-text-table-cell">
 				
-					<div class="memeber_name" style="font-size: 25px;">
+					<div class="memeber_name" style="font-size: 25px; margin-top: 10px;">
 						<!-- <p class="memeber_name" style="font-size: 25px;"> -->
 						
 						
-						<table class="pig" style="border: 1px solid black; margin-left: 35px; margin-top:10px;">
+						<table class="pig" style="border: 1px solid black; margin-left: 35px; margin-top:-6px;">
 							<tr style="border: 1px solid black; ">
 								<td colspan="4" style="width: 80px; background-color: none; "></td>
 								
-								<!--  -->
-								<td colspan="10" style="width: 80px; font-size:11px; height: 80px;">d</td>
+								<!-- 이름 / 아이디 -->
+								<td colspan="10" style="width: 80px; font-size:11px; height: 80px; padding-top: 50px;">
+									<span style="font-size:20px;">${sessionScope.loginInfo.name }님 </span>
+									<span>&nbsp;${sessionScope.loginInfo.name }</span>
+								</td>
 								
 								
-								<td style="width: 80px; font-size:15px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:20px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
 								
 								
 								
@@ -197,19 +203,40 @@ select {
 							<tr style="border: 1px solid black; ">
 							<td colspan="4" style="width: 80px; "></td>
 							
-								<!--  -->
-								<td colspan="10" style="width: 80px; font-size:11px; height: 82px;"></td>
+								<!-- 등급  -->
+								<td colspan="10" style="width: 80px; font-size:15px; height: 82px; padding-bottom: 56px;">
+									고객님은 
+									<c:if test="${sessionScope.loginInfo.point >= 0 and sessionScope.loginInfo.point <= 100 }">
+									 	<span style="color: green; font-weight: bold;">그린</span>
+									</c:if>
+									<c:if test="${sessionScope.loginInfo.point >= 101 and sessionScope.loginInfo.point <= 200 }">
+									 	<span style="color: gray; font-weight: bold;">실버</span>
+									</c:if>
+									<c:if test="${sessionScope.loginInfo.point >= 201 and sessionScope.loginInfo.point <= 300 }">
+									 	<span style="color: yellow; font-weight: bold;">골드</span>
+									</c:if>
+									<c:if test="${sessionScope.loginInfo.point >= 301 and sessionScope.loginInfo.point <= 500 }">
+									 	<span style="color: aqua; font-weight: bold;">다이아</span>
+									</c:if>
+									<c:if test="${sessionScope.loginInfo.point >= 501}">
+									 	<span style="color: #ed7d31 font-weight: bold;">VVIP</span>
+									 </c:if>
+									입니다.
 								
-								<td style="width: 80px; font-size:15px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
+								</td>
+								
+								<td style="width: 80px; font-size:15px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
 								
 								
 							</tr>
@@ -217,36 +244,46 @@ select {
 							<tr style="border: 1px solid black; ">
 								<td style="width: 80px; font-size:10px; height: 80px;"></td>
 								
-								<td colspan="9" style="width: 80px; font-size:15px; height: 13px;"></td>
+								<!-- 포인트  -->
+								<td colspan="9" style="width: 80px; font-size:15px; height: 13px; padding-top: 33px;s">
+									${sessionScope.loginInfo.point }
+									<span style="font-size: 11px">point</span>
+								</td>
 								
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td colspan="5" style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								
+								<!-- 적립금 돼지저금통 -->
+								<td colspan="8" style="width: 80px; font-size:23px; height: 13px; font-weight: bold; padding-bottom: 42px; padding-left: 40px;">
+									${sessionScope.loginInfo.savedMoney } $
+								</td>
 								
 
 							</tr>
 							<tr style="border: 1px solid black; ">
-								<td style="width: 80px; font-size:10px; height: 80px;">d</td>
+								<td style="width: 80px; font-size:10px; height: 80px;"></td>
 								
-								<td colspan="9" style="width: 80px; font-size:15px; height: 13px;">d</td>
+								<!-- 마이시네마 -->
+								<td colspan="9" style="width: 80px; font-size:15px; height: 13px; padding-top: 25px;">
+									${sessionScope.loginInfo.myCinema }
+								</td>
 								
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td style="width: 80px; font-size:14px; height: 13px;">d</td>
-								<td colspan="5" style="width: 80px; font-size:14px; height: 13px;">d</td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td style="width: 80px; font-size:14px; height: 13px;"></td>
+								<td colspan="5" style="width: 80px; font-size:14px; height: 13px;"></td>
 								
 							</tr>
 							<tr style="border: 1px solid black; ">
@@ -296,12 +333,20 @@ select {
 	</div>
 </div>				
 				
-				
-				
-				
-				
-				
-				
+			
+			<div>
+				<table>
+					<tr>
+						<td style="width: 190px; margin-right: 500px; height: 40px;"></td>
+						<td style="width: 230px; margin-right: 500px;">
+							<img alt="" src="/resources/images/member/mypage_메뉴.PNG" style="width: 230px;">
+						</td>
+					</tr>
+					
+					
+
+				</table>				
+			</div>
 				
 				
 				
