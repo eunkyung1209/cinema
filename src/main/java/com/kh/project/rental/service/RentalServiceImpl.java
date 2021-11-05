@@ -40,6 +40,12 @@ public class RentalServiceImpl implements RentalService {
 		return sqlSession.selectList("rentalMapper.selectRentalList", rentalVO);
 	}
 	
+	//예약 데이터 총 개수 조회 - 관리자
+	@Override
+	public int selectRentalCnt() {
+		return sqlSession.selectOne("rentalMapper.selectRentalCnt");
+	}
+	
 	//대관 예약 목록 조회 - 관리자
 	@Override
 	public List<RentalVO> selectAdminRentalList(RentalVO rentalVO) {

@@ -276,6 +276,11 @@ public class AdminController {
 	//대관 예약 관리 페이지로 이동
 	@RequestMapping("/rentalManage")
 	public String rentalManage(Model model, RentalVO rentalVO) {
+		//예약 데이터 총 개수 조회
+		rentalVO.setTotalCnt(rentalService.selectRentalCnt());
+		rentalVO.setDisplayCnt(30);	//대관 예약 데이터 30개 한 페이지에 나오게 설정해둠!!
+		rentalVO.setPageInfo();
+		
 		//영화관 목록
 		model.addAttribute("areaList", rentalService.selectAreaList());
 		

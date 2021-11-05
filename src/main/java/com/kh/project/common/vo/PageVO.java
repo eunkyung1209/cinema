@@ -53,6 +53,11 @@ public class PageVO extends BaseSearchVO{
 		return endPage;
 	}
 	
+	//세터 추가..
+	public void setDisplayCnt(int displayCnt) {
+		this.displayCnt = displayCnt;
+	}
+	
 	//ROW_NUM 값 게터 세터
 	public int getStartNum() {
 		return startNum;

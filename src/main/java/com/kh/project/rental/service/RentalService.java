@@ -20,6 +20,9 @@ public interface RentalService {
 	//대관 예약 목록 조회 - 일반회원
 	List<RentalVO> selectRentalList(RentalVO rentalVO);
 	
+	//예약 데이터 총 개수 조회 - 관리자
+	int selectRentalCnt();
+	
 	//대관 예약 목록 조회 - 관리자
 	List<RentalVO> selectAdminRentalList(RentalVO rentalVO);
 	

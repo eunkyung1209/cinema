@@ -27,7 +27,7 @@
 	padding-bottom: 40px;
 }
 .notice{
-	margin: 7px auto;
+	margin: 5px auto;
 }
 .notice-time{
 	font-size: small;
@@ -89,9 +89,10 @@
 				<div class="row justify-content-center">
 					<div class="notice">&lt; 대관 예약 안내 &gt;</div>
 					<div class="notice"></div>
-					<div class="notice">대관 예약 신청 시, 해당 영화관 상황을 확인 후 결과를 안내해드립니다.</div>
+					<div class="notice">대관 예약 신청 시, 해당 영화관 상황을 확인 후 안내드립니다.</div>
 					<div class="notice">대관 예약 현황과 결과는 상영관 대관 예약 조회 페이지에서 확인하실 수 있습니다.</div>
-					<div class="notice"><span class="redStar">*</span> 예약한 시간은 영화관 사정상 변경될 수 있습니다.</div>
+					<div class="notice"><span class="redStar">*</span> 예약하신 시간은 영화관 사정상 변경될 수 있습니다.</div>
+					<div class="notice"><span class="redStar">*</span> 궁금한 사항은 고객센터를 이용해주세요.</div>
 				</div>
 			</div>
 		</div>

@@ -138,11 +138,11 @@ a:hover{
 		<!-- 페이징 disabled 걸리게 변경.. -->
 		<div class="row justify-content-center">
 			<div class="col-8 text-center pagingDiv">
-				<a <c:if test="${movieVO.prev }">href="/board/boardList?nowPage=${movieVO.beginPage - 1 }"</c:if> class="disable">&nbsp;&nbsp; &lt; &nbsp;&nbsp;</a>
+				<a <c:if test="${movieVO.prev }">href="/admin/movieManage?nowPage=${movieVO.beginPage - 1 }"</c:if> class="disable">&nbsp;&nbsp; &lt; &nbsp;&nbsp;</a>
 				<c:forEach begin="${movieVO.beginPage }" end="${movieVO.endPage }" var="pageNumber">
-					<a href="/board/boardList?nowPage=${pageNumber }" <c:if test="${pageNumber eq movieVO.nowPage }">class="selectedPage"</c:if>>${pageNumber }</a> 
+					<a href="/admin/movieManage?nowPage=${pageNumber }" <c:if test="${pageNumber eq movieVO.nowPage }">class="selectedPage"</c:if>>${pageNumber }</a> 
 				</c:forEach>
-				<a <c:if test="${movieVO.prev }">href="/board/boardList?nowPage=${movieVO.endPage + 1 }"</c:if> class="disable">&nbsp;&nbsp; &gt; &nbsp;&nbsp;</a>
+				<a <c:if test="${movieVO.prev }">href="/admin/movieManage?nowPage=${movieVO.endPage + 1 }"</c:if> class="disable">&nbsp;&nbsp; &gt; &nbsp;&nbsp;</a>
 			</div>
 		</div>
 	</div>

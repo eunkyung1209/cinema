@@ -17,7 +17,7 @@
 	padding-bottom: 40px;
 }
 .notice{
-	margin: 7px auto;
+	margin: 5px auto;
 }
 
 /* 검색 구분 제목 */
@@ -67,7 +67,8 @@ tr, td{
 					<div class="notice">대관 예약 시, 해당 영화관과 논의 후 자세히 안내해드립니다.</div>
 					<div class="notice">대관 예약에 대한 결과는 일정 시간이 소요됩니다.</div>
 					<div class="notice">본인이 예약한 목록만 확인하실 수 있습니다.</div>
-					<div class="notice"><span class="redStar">*</span> 예약한 시간은 영화관 사정상 변경될 수 있습니다.</div>
+					<div class="notice"><span class="redStar">*</span> 예약하신 시간은 영화관 사정상 변경될 수 있습니다.</div>
+					<div class="notice"><span class="redStar">*</span> 예약과 관련된 질문은 고객센터를 이용해주세요.</div>
 				</div>
 			</div>
 		</div>
@@ -78,6 +79,7 @@ tr, td{
 		<div class="row justify-content-center">
 			<div class="col-8 search_box">
 				<form action="/rental/selectRentalList" method="post">
+					<input type="hidden" name="id" value="${sessionScope.loginInfo.id }">
 					<div class="row justify-content-center">
 						<div class="col-9">
 							<div class="row">
@@ -100,7 +102,7 @@ tr, td{
 							</div>
 						</div>
 						<div class="col-2">
-							<div style="margin: 1.5em auto;">
+							<div style="margin: 1.5em auto; text-align: right;">
 								<input class="common_btn" type="submit" value="검색">
 							</div>
 						</div>

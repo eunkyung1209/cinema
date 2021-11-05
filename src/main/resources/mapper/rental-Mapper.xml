@@ -128,7 +128,7 @@
 	
 	
 	<!-- 예약 목록 조회 : 일반회원 -->
-	<select id="selectRentalList" resultMap="rental">
+ 	<select id="selectRentalList" resultMap="rental">
 		SELECT RT_CODE
 			, A.AREA_NAME
 			, A.LOC
@@ -153,6 +153,12 @@
 	</select>
 	
 	
+	
+	<!-- 예약 데이터 총 개수 조회 -->
+	<select id="selectRentalCnt" resultType="int">
+		SELECT COUNT(RT_CODE)
+		FROM OISONE_RENTAL
+	</select>
 	
 	<!-- 예약 목록 조회 : 관리자 -->
 	<select id="selectAdminRentalList" resultMap="rental">

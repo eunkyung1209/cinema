@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/rental/js/rental_manage.js?ver=8"></script>
+<script type="text/javascript" src="/resources/admin/js/rental_manage.js?ver=9"></script>
 <style type="text/css">
 /* 예약 안내 */
 .rental-notice{
@@ -18,7 +18,7 @@
 	padding-bottom: 40px;
 }
 .notice{
-	margin: 7px auto;
+	margin: 5px auto;
 }
 
 /* input, select 태그들 조정 */
@@ -65,19 +65,17 @@ tr, td{
 		<div style="height: 50px;"></div>
 		
 		<!-- 예약 관리 주의사항 -->
-		<div class="row justify-content-center">
+<!-- 		<div class="row justify-content-center">
 			<div class="col-8 rental-notice text-center">
 				<div class="row justify-content-center">
 					<div class="notice">&lt; 대관 예약 관리 주의사항 &gt;</div>
 					<div class="notice"></div>
-					<div class="notice">해당 영화관과 논의 후, 결정되면 해당 예약 수정해주세요.</div>
-					<div class="notice">대관 예약에 대한 결과는 일정 시간이 소요됩니다.</div>
-					<div class="notice">본인이 예약한 목록만 확인하실 수 있습니다.</div>
+					<div class="notice">해당 영화관과 논의 후 결정되면 해당 예약 수정해주세요.</div>
 				</div>
 			</div>
 		</div>
 		
-		<div style="height: 50px;"></div>
+		<div style="height: 50px;"></div> -->
 		
 		<!-- 검색폼 -->
 		<div class="row justify-content-center">
@@ -114,7 +112,7 @@ tr, td{
 							</div>
 						</div>
 						<div class="col-2">
-							<div style="margin: 2em auto;">
+							<div style="margin: 2em auto; text-align: right;">
 								<input class="common_btn" type="submit" value="검색">
 							</div>
 						</div>
@@ -187,6 +185,19 @@ tr, td{
 						</c:forEach>
 					</tbody>
 				</table>
+			</div>
+		</div>
+		
+		<div style="height: 50px;"></div>
+		
+		<!-- 페이징 disabled 걸리게 변경.. -->
+		<div class="row justify-content-center">
+			<div class="col-8 text-center pagingDiv">
+				<a <c:if test="${rentalVO.prev }">href="/admin/rentalManage?nowPage=${rentalVO.beginPage - 1 }"</c:if> class="disable">&nbsp;&nbsp; &lt; &nbsp;&nbsp;</a>
+				<c:forEach begin="${rentalVO.beginPage }" end="${rentalVO.endPage }" var="pageNumber">
+					<a href="/admin/rentalManage?nowPage=${pageNumber }" <c:if test="${pageNumber eq rentalVO.nowPage }">class="selectedPage"</c:if>>${pageNumber }</a> 
+				</c:forEach>
+				<a <c:if test="${rentalVO.prev }">href="/admin/rentalManage?nowPage=${rentalVO.endPage + 1 }"</c:if> class="disable">&nbsp;&nbsp; &gt; &nbsp;&nbsp;</a>
 			</div>
 		</div>
 		

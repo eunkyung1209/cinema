@@ -15,9 +15,16 @@ public class RentalVO extends PageVO {
 	
 	private String areaName;
 	private String loc;
+	private String theaterName;
 	private String theaterNum;
 	private String title;
 	
+	public String getTheaterName() {
+		return theaterName;
+	}
+	public void setTheaterName(String theaterName) {
+		this.theaterName = theaterName;
+	}
 	public String getLoc() {
 		return loc;
 	}
