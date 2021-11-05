@@ -44,7 +44,7 @@
 </script>
 
 <!-- 자바 스크립트 -->
-<script type="text/javascript" src="/resources/reservation/js/reserve_form.js?ver=64"></script>
+<script type="text/javascript" src="/resources/reservation/js/reserve_form.js?ver=68"></script>
 
 
 <style type="text/css">
@@ -282,7 +282,7 @@ ul{
 									</div>
 								</div> 
 								
-								
+								<input type="hidden" value="${nowDate }" name="screenDay">
 								
 							</div>
 						</div>
@@ -300,7 +300,6 @@ ul{
 								
 								<!-- 상영시간이 뜨는 버튼 조회 -->
 								<div class="row" id="movieTimeBtn" >
-									
 									  
 								</div>	
 							</div>

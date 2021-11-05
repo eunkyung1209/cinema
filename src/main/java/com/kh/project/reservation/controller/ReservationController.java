@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.project.common.util.NowDateTime;
 import com.kh.project.movie.vo.MovieVO;
 import com.kh.project.reservation.service.ReservationService;
 import com.kh.project.reservation.vo.MovieTimeVO;
@@ -37,7 +38,8 @@ public class ReservationController {
 		model.addAttribute("statingMovieList", reservationService.selectMovieState1());
 		//상영중인 영화리스트
 		model.addAttribute("statingMovieList2", reservationService.selectMovieState2(movieTimeVO));
-		
+		//오늘 날짜
+		model.addAttribute("nowDate", NowDateTime.getNowDate());	
 		
 		return "reservation/reserve_form";
 	}
@@ -109,5 +111,15 @@ public class ReservationController {
 			return reservationService.selectMovieTime(movieTimeVO);
 			
 		}
+		
+		//좌석선택 페이지로 이동(무비 타임 코드를 가지고,,)
+		@GetMapping("/seatChoice")
+		public String seatChoice(String mvTimeCode) {
+			
+			System.out.println("!!!!!!!!!!!!!!" + mvTimeCode);
+			
+			return "reservation/seat_choice";
+		}
+		
 		
 }

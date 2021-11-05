@@ -52,8 +52,6 @@ public class MovieTimeVO {
 			return days;
 		}
 		public void setDays(String[] days) {
-			String screenDay = days[0];
-			setScreenDay(screenDay);
 			
 			String screenTime = days[0] + " " + days[1];
 			setScreenTime(screenTime);

@@ -1,9 +1,6 @@
 //화면 로딩 후 바로 실행
 $(document).ready(function(){
 	
-	
-	
-
 	   $(document).on('change', '#movieSeletor', function() { 
 		   var mvCode = $('#movieSeletor').val();
 		   
@@ -17,8 +14,6 @@ $(document).ready(function(){
 	            	
 	            	$('#runningTime').val(runningTime);
 	            	
-	            	
-	            	
 	            },
 	            error: function(){
 	             //ajax 실행 실패 시 실행되는 구간
@@ -27,12 +22,6 @@ $(document).ready(function(){
 	      });
 	   });
 	   
-	  
-	  
-	
-	
-	 
-	
 });
 
 
@@ -203,10 +192,6 @@ $(document).ready(function(){
 		alert('셀클릭');
 	};
 	
-	
-	
-	
-	
 	//상영시간표 버튼을 클릭하면..
 	movieTimeClick = function(mvTimeCode) {
 		
@@ -215,11 +200,20 @@ $(document).ready(function(){
 			var mvTimeCodeAll = $(element).attr('data-mvTimeCode');
 			
 			
+			
 			if(mvTimeCode == mvTimeCodeAll){
 				
 				$(this).css('color', 'red')
-				
 				$('.reserveTitleMovieTime').text(mvTimeCode);
+				
+				
+				var result = confirm('좌석 선택을 진행 하시겠습니까?');
+				$(this).css('color', 'black')
+					$('.reserveTitleMovieTime').empty();
+				
+				if(result){
+					location.href='/reservation/seatChoice?mvTimeCode=' + mvTimeCode;
+				}
 			}
 		});
 		
