@@ -29,6 +29,9 @@ public interface ReservationService {
 	//상영가능한 상영관 조회
 	List<TheaterVO> selectUseTheaterAjax(String areaName);
 	
+	//좌석을 선택할 때) 예매한 영화 정보
+	MovieTimeVO selectMovieInfoForSeat(MovieTimeVO movieTimeVO);
+	
 	
 	
 }

@@ -17,7 +17,23 @@ public class MovieTimeVO {
         private int seatCnt;
         private String theaterName;
         private String isFullTheater;
+        private String attachedImgName;
+        private int seatLeft;
         
+        
+        
+		public int getSeatLeft() {
+			return seatLeft;
+		}
+		public void setSeatLeft(int seatLeft) {
+			this.seatLeft = seatLeft;
+		}
+		public String getAttachedImgName() {
+			return attachedImgName;
+		}
+		public void setAttachedImgName(String attachedImgName) {
+			this.attachedImgName = attachedImgName;
+		}
 		public String getScreenEndTime() {
 			return screenEndTime;
 		}

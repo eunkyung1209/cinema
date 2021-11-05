@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
 
+<script type="text/javascript" src="/resources/reservation/js/seat_choice.js?ver=8"></script>
+<style type="text/css">
 
 .bodyDiv{
  text-align: center;
@@ -48,63 +50,15 @@ ul{
 }
 
 /* 좌석 하나하나 선택 */
-.seat-wrapper{
-	margin: 3px;
-}
-
-
-/*  */
-.wrap {
-    width: 100%;
-    overflow: hidden;
-}
-
-ul, ol {
-    list-style: none;
-    float: left;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-}
-
-.colsHead {
-    width: 100%;
-    padding-left: 30px;
-}
-.rowsHead {
-    width: 30px;
-}
-
-li {
-    width: 30px;
-    height: 30px;
-    border: 1px;
-    text-align: center;
-    line-height: 30px;
-}
-
-.seat li {
-    float: left;
-    border: 1px solid skyblue;
-}
-
-.colsHead li {
-    float: left;
-    border: 1px solid white;
-}
-.rowsHead li {
-    border: 1px solid white;
-}
-
-.reserve {
-    background-color: orange;
-}
-
-.seat .ui-selecting {
-    background: #FECA40;
-}
-.seat .ui-selected {
-    background: #F39814; color: white;
+.seat {
+       width: 40px;
+       height: 40px;
+       margin: 3px;
+   }
+   
+.clicked {
+    background-color: red;
+    color: white;
 }
 
 
@@ -160,13 +114,37 @@ li {
 						<div class="row justify-content-center reserveTitle">
 							<div class="col-12 reserveTitleMtInfo" >
 								<div class="row">
-									<div class="col-2 reserveTitleMovitTimeInfo" > 
-										상영 시간 정보
+									<div class="col-5 reserveTitleMovitTimeInfo" > 
+										<div class="row">
+											<div class="col-6">
+												<img alt="" height="150px;" src="/resources/images/movie/${mvInfo.attachedImgName }">
+											</div>
+											
+											<div class="col-6">
+												<div>${mvInfo.title } </div> 
+												<div>
+													${mvInfo.screenDay }
+													${mvInfo.screenTime } ~ ${mvInfo.screenEndTime }
+												</div>
+												<div>
+													${mvInfo.areaName }
+													${mvInfo.theaterName }
+												</div>
+											
+											
+											</div>
+										</div>
+										
 									</div>
-									
-									<div class="col-10 reserveTitlePeople" >
-										인원 수 
-										<input type="number" value="0" min="0" max="20" required>
+									<div class="col-7 reserveTitlePeople" >
+										<div>
+											인원 수 
+											<input type="number" value="0" min="0" max="20" required>
+										</div>
+										
+										<div class="selectSeat1">
+											선택한 좌석
+										 </div>
 									</div>
 									
 									
@@ -184,48 +162,16 @@ li {
 								<img alt="" src="/resources/images/reservation/스크린.png">
 								<div style="height: 50px;"></div>
 								
+								<!-- 좌석 -->
+								<div class="seat-wrapper"></div>
 								
-								<fieldset>
-								    <legend>좌석 설정</legend>
-								    <p><label>행 : <input type="number" name="cols" value="4" /></label></p>
-								    <p><label>열 : <input type="number" name="rows" value="4" /></label></p>
-								</fieldset>
-								
-								<hr />
-								
-								<fieldset>
-								    <legend>선택한 좌석명</legend>
-								    <p class="result">없음</p>
-								</fieldset>
-								
-								<div class="wrap">
-								    <ul class="colsHead"></ul>
-								    <ul class="rowsHead"></ul>
-								    <ol class="seat"></ol>
-								</div>
-								
-								<div id="count">
-								    <p>선택한 좌석수 : <span id="wordcount">0</span>개</p>
-								</div>
-								
-								<button id="reset"> 다시 선택하기 </button>
-								
-								
-								
-								
+								<input type="button" onclick="seatClick();" value="ㅎㅇ">
 							</div>
-							
 							
 							
 						</div>
 					</div>	
 					
-					
-					 
-					
-				
-				
-				
 				
 				</div>
 			</div>
@@ -239,4 +185,86 @@ li {
 
 
 </body>
+<script>
+    let test = [];
+    let selectedSeats = new Array();
+    let selectedSeatsMap = [];
+    const seatWrapper = document.querySelector(".seat-wrapper");
+    let clicked = "";
+    let div = "";
+
+    for (let i = 1; i < 7; i++) {
+        div = document.createElement("div");
+        seatWrapper.append(div);
+        for (let j = 1; j < 11; j++) {
+            const input = document.createElement('input');
+            input.type = "button";
+            input.name = "seats"
+            input.classList = "seat";
+            //3중포문을 사용하지 않기위해 
+            mapping(input, i, j);
+            div.append(input);
+            input.addEventListener('click', function(e) {
+                console.log(e.target.value);
+                
+               
+                
+                //중복방지 함수
+                selectedSeats = selectedSeats.filter((element, index) => selectedSeats.indexOf(element) != index);
+
+                //click class가 존재할때(제거해주는 toggle)
+                if (input.classList.contains("clicked")) {
+                    input.classList.remove("clicked");
+                    clicked = document.querySelectorAll(".clicked");
+                    selectedSeats.splice(selectedSeats.indexOf(e.target.value), 1);
+                    clicked.forEach((data) => {
+                        selectedSeats.push(data.value);
+                    });
+                    //click class가 존재하지 않을때 (추가해주는 toggle)
+                } else {
+                    input.classList.add("clicked");
+                    clicked = document.querySelectorAll(".clicked");
+                    clicked.forEach((data) => {
+                        selectedSeats.push(data.value);
+                    })
+                }
+                console.log(selectedSeats);
+                
+                
+            })
+        }
+    }
+    
+    function seatClick() {
+        location.href = '/reservation/seat?seatCode=' + selectedSeats;
+	}
+    
+
+    function mapping(input, i, j) {
+        if (i === 1) {
+            input.value = "A" + j;
+        } else if (i === 1) {
+            input.value = "B" + j;
+        } else if (i === 2) {
+            input.value = "C" + j;
+        } else if (i === 3) {
+            input.value = "D" + j;
+        } else if (i === 4) {
+            input.value = "E" + j;
+        } else if (i === 5) {
+            input.value = "F" + j;
+        } else if (i === 6) {
+            input.value = "G" + j;
+        }
+    }
+    
+    
+    
+    
+</script>
+
+
+
+
+
 </html>

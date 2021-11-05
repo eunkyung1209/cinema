@@ -150,6 +150,8 @@ ul{
 
 </head>
 <body>
+<a href="/reservation/seat">예시</a>
+
 <div class="row bodyDiv justify-content-center">
 	<div class="col-12">
 		

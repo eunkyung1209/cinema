@@ -60,6 +60,12 @@ public class ReservationServiceImpl implements ReservationService {
 			return sqlSession.selectList("reservationMapper.selectUseTheaterAjax", areaName);
 		}
 
+		//좌석을 선택할 때) 예매한 영화 정보
+		@Override
+		public MovieTimeVO selectMovieInfoForSeat(MovieTimeVO movieTimeVO) {
+			return sqlSession.selectOne("reservationMapper.selectMovieInfoForSeat", movieTimeVO);
+		}
+
 		
 	
 	

@@ -156,8 +156,14 @@ input{
 					</tr>
 					<tr>
 						<td colspan="3">
+						
+							<c:choose>
+								<c:when test="${empty customerBoard.imgList}">없음</c:when>
+								<c:otherwise>
+									<div><img height="500px;" src="/resources/images/customer/${customerBoard.imgList[0].attachedImgName }"></div>
+								</c:otherwise>
+							</c:choose>
 							
-							<div><img height="500px;" src="/resources/images/customer/${customerBoard.imgList[0].attachedImgName }"></div>
 							<div>${customerBoard.content}</div>
 						</td>
 					</tr>

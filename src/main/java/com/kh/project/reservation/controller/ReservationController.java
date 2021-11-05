@@ -117,10 +117,21 @@ public class ReservationController {
 		
 		//좌석선택 페이지로 이동(무비 타임 코드를 가지고,,)
 		@GetMapping("/seatChoice")
-		public String seatChoice(String mvTimeCode) {
+		public String seatChoice(String mvTimeCode, MovieTimeVO movieTimeVO, Model model) {
+			movieTimeVO.setMvTimeCode(mvTimeCode);
 			
+			//좌석을 선택할 때) 예매한 영화 정보
+			model.addAttribute("mvInfo", reservationService.selectMovieInfoForSeat(movieTimeVO));
 			
 			return "reservation/seat_choice";
+		}
+		
+		//페이지 이동
+		@GetMapping("/seat")
+		public String seat(String seatCode) {
+			System.out.println("!!!!!!!!!!!!!!!!" + seatCode );
+			
+			return "reservation/seat";
 		}
 		
 		
