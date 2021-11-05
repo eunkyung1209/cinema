@@ -24,12 +24,17 @@ $(document).ready(function(){
 	
 		var id = $('#id').val();
 		
+
+		
+		
 		$.ajax({
 			url : '/member/idCheck',
 			type : 'post',
 			data:{'id':id}, //필요한 데이터
 			success : function(data) {
 				console.log("1 = 중복o / 0 = 중복x : "+ data);
+				
+
 
 				if (data == 1) {
 						// 1 : 아이디가 중복되는 문구

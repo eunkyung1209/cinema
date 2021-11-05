@@ -14,7 +14,7 @@
 <script src="https://code.jquery.com/jquery-latest.min.js"></script> <!-- 제이쿼리 최신버전 가져오기 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
-<script type="text/javascript" src="/resources/member/js/join.js?ver=30"></script>
+<script type="text/javascript" src="/resources/member/js/update.js?ver=4"></script>
 
 <style type="text/css">
 
@@ -167,10 +167,10 @@ select {
 										<td >
 											<input type="text" name="birthday" id="birthday" class="joinInput2" placeholder=" ex) 19450815" value="${sessionScope.loginInfo.birthday }" required>
 
-											<div class="check_font" id="birth_check"></div>
 											
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;성별&nbsp;:&nbsp;
+											
 											<c:if test="${sessionScope.loginInfo.gender eq '남'}">
 												<input type="radio" name="gender" value="남" checked>남자
 												&nbsp;
@@ -183,6 +183,7 @@ select {
 												<input type="radio" name="gender" value="여" checked>여자
 											</c:if>
 											
+											<div class="check_font" id="birth_check"></div>
 											
 										</td>
 									</tr>
@@ -196,10 +197,12 @@ select {
 										</td>
 									</tr>
 									
-									<tr>
+									<%-- <tr>
 										<td ><label for="id">아이디</label><span class="redStar">*</span></td>
 										<td >
 											<div  id="checkIdDiv">
+											
+												<input type="hidden" value="0" class="id">
 												<input type="text" id="id" name="id" class="joinInput1"  placeholder=" ex) eunbin98" value="${sessionScope.loginInfo.id }" required>
 												<!-- <input type="button" class="common_btn2" id="btn2" onclick="checkId();" value="중복확인"> -->
 												
@@ -211,6 +214,7 @@ select {
 										<td ><label for="nickName">닉네임</label><span class="redStar">*</span></td>
 										<td >
 											<div  id="checkNickNameDiv">
+												<input type="hidden" value="${sessionScope.loginInfo.nickName }" class="id">
 												<input type="text" id="nickName" name="nickName" class="joinInput1"  placeholder=" ex) oisone짱 " value="${sessionScope.loginInfo.nickName }" required>
 												<!-- <input type="button" class="common_btn2" id="btn2" onclick="checkId();" value="중복확인"> -->
 												
@@ -223,6 +227,7 @@ select {
 										<td ><label for="email">이메일</label><span class="redStar">*</span></td>
 										<td >
 											<div  id="checkEmailDiv">
+											<input type="hidden" value="${sessionScope.loginInfo.email }" class="id">
 												<input type="text" id="email" name="email" class="joinInput1"  placeholder=" ex) eunbin@naver.com" value="${sessionScope.loginInfo.email }" required>
 												<!-- <input type="button" class="common_btn2" id="btn2" onclick="checkId();" value="중복확인"> -->
 												
@@ -231,7 +236,7 @@ select {
 												
 											</div>
 										</td>
-									</tr>
+									</tr> --%>
 
 									<tr>
 										<td >마이시네마 <span class="redStar"></span></td>

@@ -443,10 +443,13 @@ select {
 										<a onclick="">개인정보 상세보기</a>
 										<br>
 										<br>
-										<a onclick="location.href='updateMyPage?id=${memberInfo.id }'">개인정보 수정</a>
+										<a onclick="location.href='updateMyPage?id=${memberInfo.id }';">개인정보 수정</a>
 										<br>
 										<br>
 										<a onclick="">E-mail/SMS 수신설정</a>
+										<br>
+										<br>
+										<a onclick="location.href='updatePW?id=${memberInfo.id }'">비밀번호 변경</a>
 										<br>
 										<br>
 										<input type="hidden" value="${sessionScope.loginInfo.id }" class="id"> 

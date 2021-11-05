@@ -200,12 +200,9 @@
 	<update id="updateMyPage">
 		UPDATE OISONE_MEMBER
 		SET
-		 NAME = #{name}
-		  , NICKNAME = #{nickName}
-		  , BIRTHDAY = #{birthday}
+		  BIRTHDAY = #{birthday}
 		  , GENDER = #{gender}
 		  , TELL = #{tell}
-		  , EMAIL = #{email}
 		  , NONPEOPLE_TICKET = #{nonpeopleTicket}
 		  , MY_CINEMA = #{myCinema}
 		 WHERE ID = #{id}

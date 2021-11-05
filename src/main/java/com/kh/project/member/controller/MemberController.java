@@ -208,6 +208,22 @@ public class MemberController {
 	}
 	
 	
+	//비밀번호수정
+	@GetMapping("/updatePW")
+	private String updatePW() {
+		return "member/input_password";
+	}
+	
+	//3-2. 마이페이지에서 비밀번호 수정
+	@PostMapping("/updatePW")
+	public String goupdatePW(MemberVO memberVO) {
+		memberService.updateMyPage(memberVO);
+		
+		return "redirect:/mmember/input_password";
+	}
+		
+	
+	
 	//3-1. 마이페이지에서 내정보 수정페이지로 넘어가기
 	@GetMapping("/updateMyPage")
 	public String goUpdateMyPage() {
@@ -219,8 +235,10 @@ public class MemberController {
 	public String updateMyPage(MemberVO memberVO) {
 		memberService.updateMyPage(memberVO);
 		
-		return "redirect:/movie/mainPage";
+		return "redirect:/member/myPage";
 	}
+	
+	
 	
 	//3-3. 마이페이지에서 회원 탈퇴하기
 	@GetMapping("/deleteMember")
