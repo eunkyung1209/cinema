@@ -156,6 +156,12 @@
 		<if test="mvCode != null and !mvCode.equals('')">
 	    AND MV_CODE = #{mvCode}
 	    </if>
+	     <if test="screenDay == null">
+	    AND SCREEN_DAY = SYSDATE
+	    </if>
+	    <if test="screenDay != null and !screenDay.equals('')">
+	    AND SCREEN_DAY = #{screenDay}
+	    </if>
 	    ORDER BY MV_TIME_CODE
 	</select>
 	

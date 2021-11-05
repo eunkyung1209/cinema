@@ -7,6 +7,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<!-- 값 제어를 위한 jquery -->
+<script src="/resources/rental/js/jquery-3.1.1.min.js"></script>
+<!-- Air datepicker css -->
+<link href="/resources/rental/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
+<!-- Air datepicker js -->
+<script src="/resources/rental/js/datepicker.js"></script>
+<!-- 달력 한글 추가를 위해 커스텀 -->
+<script src="/resources/rental/js/datepicker.ko.js"></script>
 
 <!-- fullcalendar CDN -->
 <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
@@ -16,22 +24,44 @@
 
 <script> 
 
-      document.addEventListener('DOMContentLoaded', function() {
+       /* document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: 'dayGridMonth'
         });
         calendar.render();
-      });
-
-    </script>
-
+      }); */
+       
+       
+       
+       document.getElementById('my-button').addEventListener('click', function() {
+    	   var date = calendar.getDate();
+    	   alert("The current date of the calendar is " + date.toISOString());
+    	 }); 
+       
+       
+       
+</script>
 
 <!-- 자바 스크립트 -->
-<script type="text/javascript" src="/resources/reservation/js/reserve_form.js?ver=54"></script>
+<script type="text/javascript" src="/resources/reservation/js/reserve_form.js?ver=64"></script>
+
+
 <style type="text/css">
 
+/* picker */
+.only-timepicker .datepicker--nav,
+.only-timepicker .datepicker--content {
+     display: none; 
+}
+.only-timepicker .datepicker--time {
+    border-top: none;
+}
 
+#datepicker{
+	text-align: center;
+
+}
 
 
 
@@ -236,15 +266,24 @@ ul{
 					<div class="col-6 reservemMovieTime" >
 						<div class="row justify-content-center reserveTitle" >
 							<div class="col-12 reserveTitleMovieTime" >
-								선택한 상영시간
+								
 							</div>
 						</div>
 						
 						<!-- 달력이 들어갈 공간 -->
 						<div class="row">
-							<div class="col-12 movieCal">
-								<div id='calendar'></div>
-
+							<div class="col-12 movieCalDiv" >
+								<div class="row">
+									<div class="movieCal col-6" id="datepicker" onclick="movieCalClick();">
+									
+									</div> 
+									
+									<div class="col-6" >
+									</div>
+								</div> 
+								
+								
+								
 							</div>
 						</div>
 							
@@ -282,4 +321,28 @@ ul{
 
 
 </body>
+
+
+<script>
+	//최소 날짜
+	var minDate = new Date();
+    minDate.setDate(minDate.getDate());
+
+    $('#datepicker').datepicker({
+      minDate: minDate
+   	});
+	
+	//날짜 선택
+    $("#datepicker").datepicker({
+    	language: 'ko'
+    	, dateFormat: 'yyyy-mm-dd'
+    });
+    
+	
+</script>
+
+
+
+
+
 </html>

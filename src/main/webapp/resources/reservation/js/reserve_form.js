@@ -179,6 +179,34 @@ $(document).ready(function(){
 		
 	};
 	
+	
+	
+	//달력의 날짜를 클릭하면..
+	movieCalClick = function() {
+		
+		//만약 disabled를 선택한다면,,
+		$(document).on('click', '.\-disabled-', function() { 
+			alert('지난 날짜는 선택이 불가합니다.');
+			
+			var able = false;
+		}); 
+		
+			
+		var date = $(this).attr('data-date');
+		
+			alert('date' + date);
+		
+	};
+	
+	
+	movieCalCellClick = function(){
+		alert('셀클릭');
+	};
+	
+	
+	
+	
+	
 	//상영시간표 버튼을 클릭하면..
 	movieTimeClick = function(mvTimeCode) {
 		
