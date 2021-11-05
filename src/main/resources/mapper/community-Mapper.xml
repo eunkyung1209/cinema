@@ -67,6 +67,41 @@
 WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 </select>
 
+
+<!-- 2. 나의 커뮤니티 목록조회 -->
+<select id="selectMyCommurByMypage" resultMap="commu">
+	SELECT COMMU_CODE
+		, WRITER
+		, CREATE_DATE
+		, READ_CNT
+		, TITLE
+		, CONTENT
+		, SECRET
+		, IS_SECRET
+		, ROW_NUM
+	FROM
+	(
+		SELECT COMMU_CODE
+			, WRITER
+			, TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
+			, READ_CNT
+			, TITLE
+			, CONTENT
+			, SECRET
+			, IS_SECRET
+			, ROWNUM AS ROW_NUM
+		FROM OISONE_COMMUNITY
+		ORDER BY CREATE_DATE DESC
+	)
+	WHERE ROWNUM &lt;= 4
+</select>
+
+
+
+
+
+
+
 <!-- 1-2. 커뮤 게시글 전체 데이터 개수 조회 -->
 <select id="selectCommuCnt" resultType="int">
 	SELECT COUNT(COMMU_CODE)

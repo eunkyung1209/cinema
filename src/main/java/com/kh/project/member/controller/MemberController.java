@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.project.community.service.CommunityService;
 import com.kh.project.community.vo.CommunityVO;
+import com.kh.project.customerCenter.service.CustomerCenterService;
+import com.kh.project.customerCenter.vo.CustomerCenterVO;
 import com.kh.project.member.service.MemberService;
 import com.kh.project.member.vo.MemberVO;
 
@@ -26,7 +28,8 @@ import com.kh.project.member.vo.MemberVO;
 public class MemberController {
 	//회원 관련 기능 구현
 	
-	
+	@Resource(name = "customerCenterService")
+	private CustomerCenterService customerCenterService;
 	
 	@Resource(name = "memberService")
 	private MemberService memberService;
@@ -189,12 +192,21 @@ public class MemberController {
 		
 		return "redirect:/movie/mainPage";
 	}
+
 	
 	//3. 마이페이지 *로그인후만 접근 가능*
 	@GetMapping("/myPage")
-	public String myPage() {
+	public String myPage(Model model, MemberVO memberVO) {
+		
+		//나의 상담내역 목록 보내기
+		model.addAttribute("customerBoardList", memberService.selectMyCustomerByMypage(memberVO));
+		
+		//나의 상담내역 목록 보내기
+		model.addAttribute("commuList", memberService.selectMyCommurByMypage(memberVO));
+		
 		return "member/myPage";
 	}
+	
 	
 	//3-1. 마이페이지에서 내정보 수정페이지로 넘어가기
 	@GetMapping("/updateMyPage")
@@ -236,4 +248,22 @@ public class MemberController {
 		
 		return "member/my_community_board_list";
 	}
+	
+	
+	//3-4 마이페이지에서 내가 쓴 큐엔에이 확인하기
+	//내 상담내역 페이지로 이동
+	/*
+	 * @GetMapping("/goMyCustomer") private String goMyCustomer(Model model,
+	 * CustomerCenterVO customerCenterVO) {
+	 * 
+	 * //-----페이징 처리------// //전체 데이터 수 int dataCnt =
+	 * customerCenterService.selectCustomerCnt(customerCenterVO);
+	 * customerCenterVO.setTotalCnt(dataCnt); //페이징처리
+	 * customerCenterVO.setPageInfo();
+	 * 
+	 * //나의 상담내역 목록 보내기 model.addAttribute("customerBoardList",
+	 * customerCenterService.selectMyCustomer(customerCenterVO));
+	 * 
+	 * return "redirect:member/myPage"; }
+	 */
 }

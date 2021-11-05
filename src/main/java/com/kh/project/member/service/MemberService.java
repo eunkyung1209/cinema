@@ -3,6 +3,7 @@ package com.kh.project.member.service;
 import java.util.List;
 
 import com.kh.project.community.vo.CommunityVO;
+import com.kh.project.customerCenter.vo.CustomerCenterVO;
 import com.kh.project.member.vo.MemberVO;
 
 public interface MemberService {
@@ -48,6 +49,13 @@ public interface MemberService {
 	
 	//7. (로그인후) 마이페이지에서 내가 쓴글 확인하기
 	List<CommunityVO> myBoardList(MemberVO memberVO);
+	
+	//7-1. (로그인후) 마이페이지에서 내가 쓴 고객센터 글 확인하기
+	List<CustomerCenterVO> selectMyCustomerByMypage(MemberVO memberVO);
+	
+	
+	//7-2. (로그인후) 마이페이지에서 내가 쓴 고객센터 글 확인하기
+	List<CommunityVO> selectMyCommurByMypage(MemberVO memberVO);
 	
 	//7-1 커뮤 페이징
 	int selectCommuCnt(CommunityVO communityVO);

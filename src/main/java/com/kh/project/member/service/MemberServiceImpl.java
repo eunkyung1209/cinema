@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.project.community.vo.CommunityVO;
+import com.kh.project.customerCenter.vo.CustomerCenterVO;
 import com.kh.project.member.vo.MemberVO;
 
 @Service("memberService")
@@ -127,12 +128,32 @@ public class MemberServiceImpl implements MemberService {
 		return sqlSession.selectList("memberMapper.myBoardList", memberVO);
 	}
 	
-	//7-1. 커뮤 페이징 처리
+	//7. 커뮤 페이징 처리
 	@Override
 	public int selectCommuCnt(CommunityVO communityVO) {
 		return sqlSession.selectOne("memberMapper.selectCommuCnt", communityVO);
 	}
+	
+	
+	//7-1. (로그인후) 마이페이지에서 내가 쓴 고객센터 글 확인하기
+	@Override
+	public List<CustomerCenterVO> selectMyCustomerByMypage(MemberVO memberVO) {
+		return sqlSession.selectList("customerCenterMapper.selectMyCustomerByMypage", memberVO);
+	}
+	
+	
+	//7-2. (로그인후) 마이페이지에서 내가 쓴 커뮤니티 글 확인하기
+	@Override
+	public List<CommunityVO> selectMyCommurByMypage(MemberVO memberVO) {
+		return sqlSession.selectList("communityMapper.selectMyCommurByMypage", memberVO);
+	}
 
+	
+	
+	
+	
+	
+	
 
 
 

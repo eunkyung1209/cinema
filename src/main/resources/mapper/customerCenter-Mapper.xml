@@ -181,6 +181,38 @@
 		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 	</select>
 	
+	<!-- 나의 문의내역 4개 리스트 조회 -->
+	<select id="selectMyCustomerByMypage" resultMap="customer">
+		SELECT CUSTOMER_CODE
+		    , CREATE_DATE
+		    , WRITER 
+		    , TITLE 
+		    , CONTENT 
+		    , IS_READ 
+		    , SECRET_NUMBER 
+		    , IS_NOTICE 
+		    , GROUP_CODE
+		    , ROWNUM
+		FROM
+		(
+            SELECT CUSTOMER_CODE
+                , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS CREATE_DATE
+                , WRITER 
+                , TITLE 
+                , CONTENT 
+                , IS_READ 
+                , SECRET_NUMBER 
+                , IS_NOTICE 
+                , GROUP_CODE
+            FROM OISONE_CUSTOMER
+            WHERE 1 = 1
+            AND IS_NOTICE = 'N'
+            AND WRITER = #{nickName}
+            ORDER BY CREATE_DATE DESC
+		)
+		WHERE ROWNUM &lt;= 4
+	</select>
+	
 	
 	<!-- 고객센터 게시판 글 등록 -->
 	<insert id="insertCustomerBoard">
