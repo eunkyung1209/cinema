@@ -449,7 +449,7 @@ select {
 										<a onclick="">E-mail/SMS 수신설정</a>
 										<br>
 										<br>
-										<a onclick="location.href='updatePW?id=${memberInfo.id }'">비밀번호 변경</a>
+											<a href="/member/updatePW?id=${sessionScope.loginInfo.id }">비밀번호 변경</a>
 										<br>
 										<br>
 										<input type="hidden" value="${sessionScope.loginInfo.id }" class="id"> 

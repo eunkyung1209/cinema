@@ -5,58 +5,197 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-.bodyDiv{
-	margin-top: 100px;
 
-}
-
-.passwordDiv{
-text-align: center;
-}
-
-</style>
+<!-- 스크립트 연결 -->
+<!-- <script type="text/javascript" src="/resources/member/js/join.js?ver=3"></script> -->
 <script src="https://code.jquery.com/jquery-latest.min.js"></script> <!-- 제이쿼리 최신버전 가져오기 -->
-<script type="text/javascript" src="/resources/member/js/update.js?ver=2"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="/resources/member/js/join.js?ver=29"></script>
+
+<style type="text/css">
+
+/* 작성테이블 */
+.writeTable{
+margin: 0 auto;
+width: 90%;
+border-bottom: solid 1px #c9c9c8;
+height: 500px;
+}
+
+td:first-child{
+	text-align: center;
+	background-color: #f2f2f2;
+}
+tr{
+border-bottom: 1px solid #c9c9c8;
+}
+
+td{
+vertical-align: middle;
+padding: 5px;
+padding-left: 10px;
+
+}
+
+
+
+input[type="password"], input[type="email"] {
+	width: 68%;
+
+}
+select {
+	width: 30%; 
+}
+
+/* 필수입력 빨간 별 */
+.redStar{
+	color: red;
+} 
+
+/* *필수입력 문장  */
+.needInput{
+	font-size: 13px;
+	margin-left: 61%;
+}
+ 
+ 
+ 
+.joinInput2{
+	width: 20%;
+}
+.joinInput1{
+	width: 68%;
+}
+.joinInput3{
+	width: 190px;
+}
+
+/*검색 버튼 기본폼 */
+.common_btn{
+	background-color: #4c4747;
+	color: white;
+	width: 80px;
+	font-size: 11px;
+}
+.common_btn:hover{
+	font-size: 11px;
+	background-color: #5d5959;
+	color: white;
+	width: 80px;
+}
+.agree{
+	background-color: white;
+	width: 90%;
+	margin: 0 auto;
+}
+
+/* 상세보기 버튼폼 */
+.common_btn2{
+	font-size: 12px;
+	background-color: #4c4747;
+	color: white;
+	width: 65px;
+}
+.common_btn2:hover{
+	font-size: 12px;
+	background-color: #5d5959;
+	color: white;
+	width: 65px;
+}
+</style>
+
+
 </head>
 <body>
-<form action="/member/updatePW" method="post" ><
-	<div class="row bodyDiv">
-		<div class="col-12">
-		
-			<div class="row justify-content-center"  >
-				
-				
-				
-				
-				<div class="col-5 passwordDiv">
-				
-					<label for="pw">비밀번호</label><span class="redStar">*</span>
-					
-						<input type="password" id="pw" name="pw" class="joinInput1"  placeholder=" password" required>
-						
-						<div class="check_font" id="pw_check"></div>
-					
-					<label for="pw2">비밀번호 확인</label><span class="redStar">*</span>
-					
-						<input type="password" id="pw2" name="pw2" class="joinInput1" placeholder=" confirm password" required>
-						
-						<div class="check_font" id="pw2_check"></div>
-				
+
+	<!-- 페이지 머릿말 -->
+		<div class="row justify-content-center">
+			<div class="col-7">
+				<div class="col-3 subjectDiv">
+					<h5>나의 비밀번호 변경</h5>
 				</div>
 			</div>
+		</div>
+	
+		<!-- 공간 -->
+		<div style="height: 60px;"></div>
+
+
+<form action="/member/updatePW" method="post" ><!-- id="joinForm" -->
+<input type="hidden" value="${sessionScope.loginInfo.id }" name="id"> 
+<div class="row bodyDiv" >
+	<div class="col-12">
+	
+	<!-- 글 작성 테이블 입니다. 테이블 클래스명 : writeTable 수정 후 사용바랍니다.-->
+			<div class="row justify-content-center align-middle">
 			
-			<div style="height: 80px;"></div>
-			
-			<!-- 기본 버튼 클래스명: common_btn -->
+				<div class="row justify-content-center" >
+					<div class="col-8" >
+							<table class="writeTable">
+								<colgroup>
+									<col width="20%">
+									<col width="*">
+								</colgroup>
+								
+								<thead>
+									<tr>
+										<td colspan="2" style="background-color: white; padding-bottom: 5px;" >
+											<span style="font-size: 17px;"> - ${sessionScope.loginInfo.name }님의 비밀번호 수정란입니다.</span> 
+											<span class="needInput" style=""><span class="redStar">*</span>필수입력</span>
+											<input type="hidden" name="isNotice" value="N">
+										</td>
+									</tr>
+								</thead>	
+								
+								<!-- 자유롭게 수정하여 사용 단, 인풋태그 태그 초기화 작업을 하였기에 css사용시, 선택자를 input으로 주는 것을 지양할 것 -->
+								<!-- '필수입력' 복사하여 사용 ->  <span class="redStar">*</span> -->
+								<tbody>
+								
+									<tr>
+										<td >현재 비밀번호 <span class="redStar">*</span></td>
+										<td >${memberDetail.pw} </td>
+									</tr>
+									
+									<tr>
+										<td ><label for="pw">비밀번호</label><span class="redStar">*</span></td>
+										<td >
+											<input type="password" id="pw" name="pw" class="joinInput1"  placeholder=" password" required>
+											
+											<div class="check_font" id="pw_check"></div>
+										</td>
+									</tr>
+									<tr>
+										<td ><label for="pw2">비밀번호 확인</label><span class="redStar">*</span></td>
+										<td >
+											<input type="password" id="pw2" name="pw2" class="joinInput1" placeholder=" confirm password" required>
+											
+											<div class="check_font" id="pw2_check"></div>
+										</td>
+									</tr>
+									
+									
+								</tbody>
+							</table>
+						
+					</div>
+				</div>
+				
+
+				<div style="height: 80px;"></div>
+				
+				
+				<!-- 기본 버튼 클래스명: common_btn -->
 				<div class="row justify-content-center">
 					<div class="col-8" style="text-align: center;">
 						<input class="common_btn" type="button" value="뒤로가기" onclick="location.href='/member/myPage';">
 						<input class="common_btn" type="submit" value="수정저장">
 					</div>
 				</div>
-		</div>
+			</div>
 	</div>
+</div>
 </form>
+
 </body>
 </html>

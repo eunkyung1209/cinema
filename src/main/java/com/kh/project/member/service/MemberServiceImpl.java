@@ -113,6 +113,12 @@ public class MemberServiceImpl implements MemberService {
 	public int updateMyPage(MemberVO memberVO) {
 		return sqlSession.update("memberMapper.updateMyPage", memberVO);
 	}
+	
+	//5-1. (로그인후) 마이페이지 나의 비밀번호 수정하기
+	@Override
+	public int updatePW(MemberVO memberVO) {
+		return sqlSession.update("memberMapper.updatePW", memberVO);
+	}
 
 	
 	//6. (로그인후) 마이페이지 회원탈퇴하기
@@ -147,6 +153,7 @@ public class MemberServiceImpl implements MemberService {
 	public List<CommunityVO> selectMyCommurByMypage(MemberVO memberVO) {
 		return sqlSession.selectList("communityMapper.selectMyCommurByMypage", memberVO);
 	}
+
 
 	
 

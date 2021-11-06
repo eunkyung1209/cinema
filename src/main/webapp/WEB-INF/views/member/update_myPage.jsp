@@ -127,6 +127,7 @@ select {
 
 <form action="/member/updateMyPage" method="post" ><!-- id="joinForm" -->
 <input type="hidden" value="${sessionScope.loginInfo.id }" name="id"> 
+<input type="hidden" value="${sessionScope.loginInfo.nickName }" name="nickName"> 
 <div class="row bodyDiv" >
 	<div class="col-12">
 	
@@ -144,7 +145,7 @@ select {
 								<thead>
 									<tr>
 										<td colspan="2" style="background-color: white; padding-bottom: 5px;" >
-											<span style="font-size: 17px;"> - ${sessionScope.loginInfo.name }님의 정보수정란입니다.</span> 
+											<span style="font-size: 17px;"> - ${memberDetail.name }님의 정보수정란입니다.</span> 
 											<span class="needInput" style=""><span class="redStar">*</span>필수입력</span>
 											<input type="hidden" name="isNotice" value="N">
 										</td>
@@ -158,7 +159,7 @@ select {
 									<tr>
 										<td ><label for="name">이름</label> <span class="redStar">*</span></td>
 										<td >
-											<input type="text" name="name" id="name" class="joinInput1" placeholder=" name" value="${sessionScope.loginInfo.name }" required>
+											<input type="text" name="name" id="name" class="joinInput1" placeholder=" name" value="${memberDetail.name }" required>
 											<div class="check_font" id="name_check"></div>
 										</td>
 									</tr>
@@ -166,16 +167,16 @@ select {
 									<tr>
 										<td ><label for="birthday">생년월일</label> <span class="redStar">*</span></td>
 										<td >
-											<input type="text" name="birthday" id="birthday" class="joinInput2" placeholder=" ex) 19450815" value="${sessionScope.loginInfo.birthday }" required>
+											<input type="text" name="birthday" id="birthday" class="joinInput2" placeholder=" ex) 19450815" value="${memberDetail.birthday }" required>
 
 											
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;성별&nbsp;:&nbsp;
 											
 											
-												<input type="radio" name="gender" value="남" <c:if test="${sessionScope.loginInfo.gender eq '남'}">checked</c:if>>남자
+												<input type="radio" name="gender" value="남" <c:if test="${memberDetail.gender eq '남'}">checked</c:if>>남자
 												&nbsp;
-												<input type="radio" name="gender" value="여" <c:if test="${sessionScope.loginInfo.gender eq '여'}">checked</c:if>>여자
+												<input type="radio" name="gender" value="여" <c:if test="${memberDetail.gender eq '여'}">checked</c:if>>여자
 											
 											
 											<div class="check_font" id="birth_check"></div>
@@ -186,7 +187,7 @@ select {
 									<tr>
 										<td ><label for="tell">휴대전화</label> <span class="redStar">*</span></td>
 										<td >
-											<input type="text" name="tell"  id="tell" class="joinInput1" placeholder=" ex) 01011112222" value="${sessionScope.loginInfo.tell }" required>
+											<input type="text" name="tell"  id="tell" class="joinInput1" placeholder=" ex) 01011112222" value="${memberDetail.tell }" required>
 											
 											<div class="check_font" id="tell_check"></div>
 										</td>
@@ -237,7 +238,7 @@ select {
 										<td >마이시네마 <span class="redStar"></span></td>
 										<td >
 											<select class="joinInput2" name="myCinema" >
-										      	<option value="${sessionScope.loginInfo.myCinema }" selected>${sessionScope.loginInfo.myCinema }</option>
+										      	<option value="${memberDetail.myCinema }" selected>${memberDetail.myCinema }</option>
 										      	<option value="선택안함">선택안함</option>
 										      	<option value="울산">울산</option>
 										      	<option value="서울" >서울</option>
@@ -249,14 +250,14 @@ select {
 									<tr>
 										<td>무인발권기<br>기능 설정</td>
 										<td>
-											<c:if test="${sessionScope.loginInfo.nonpeopleTicket eq 'Y'}">
+											<c:if test="${memberDetail.nonpeopleTicket eq 'Y'}">
 												<input type="radio" name="nonpeopleTicket" value="Y" checked>사용
 												&nbsp;
 												<input type="radio" name="nonpeopleTicket" value="N">사용안함
 												&nbsp;&nbsp;*'생년월일+휴대폰번호로'티켓출력
 											</c:if>
 											
-											<c:if test="${sessionScope.loginInfo.nonpeopleTicket eq 'N'}">
+											<c:if test="${memberDetail.nonpeopleTicket eq 'N'}">
 												<input type="radio" name="nonpeopleTicket" value="Y">사용
 												&nbsp;
 												<input type="radio" name="nonpeopleTicket" value="N" checked>사용안함

@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<script type="text/javascript" src="/resources/member/js/input_login.js?ver=13"></script>
+<script type="text/javascript" src="/resources/member/js/input_login.js?ver=19"></script>
 
 <style type="text/css">
 
@@ -395,8 +395,8 @@ a:hover {
 			                  	<label for="floatingPassword" style="color: #a4b0be">비밀번호</label>
 			               	</div>
 			               	<div class="col-12 d-grid mt-4">
+			                  	<div class="check_font" id="login_check" style="padding-bottom: 5px;"></div>
 			               		<input type="button" class="btn" id="loginBtn" value="로그인">
-			                  	<div class="check_font" id="login_check"></div>
 			                  	
 			                  	<!-- <input type="button" class="btn" value="로그인" onclick="checkLogin();"> -->
 			               	</div>
@@ -545,7 +545,7 @@ a:hover {
               
                
                   <input type="text" id="sender" value="${sessionScope.loginInfo.nickName }" style="display: none;">
-                  <input type="text" id="messageinput" style="width: 250px; height: 68px; border: none;"> 
+                  <input type="text" class="messageinput" id="messageinput" style="width: 250px; height: 68px; border: none;"> 
                   
                   <button type="button" id="sendBtn" style="background: #191970 ; outline: none;border: none;border-radius: 6px;color: white;   width:53px;height: 40px" onclick="send();">전송</button> 
                		
@@ -599,6 +599,7 @@ a:hover {
            // var text=document.getElementById("messageinput").value+","+document.getElementById("sender").value;
             var text = document.getElementById("messageinput").value+","+document.getElementById("sender").value;
             ws.send(text);
+            $('#messageinput').val('');
             text = "";
         }
         

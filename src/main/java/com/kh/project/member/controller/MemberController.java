@@ -220,10 +220,12 @@ public class MemberController {
 	
 	//3-2. 마이페이지에서 비밀번호 수정
 	@PostMapping("/updatePW")
-	public String goupdatePW(MemberVO memberVO) {
-		memberService.updateMyPage(memberVO);
+	public String goupdatePW(MemberVO memberVO, Model model) {
 		
-		return "redirect:/member/input_password";
+		
+		memberService.updatePW(memberVO);
+		
+		return "redirect:/member/myPage";
 	}
 		
 	
@@ -234,7 +236,10 @@ public class MemberController {
 	
 	//3-1. 마이페이지에서 내정보 수정페이지로 넘어가기
 	@GetMapping("/updateMyPage")
-	public String goUpdateMyPage(MemberVO memberVO) {
+	public String goUpdateMyPage(MemberVO memberVO, Model model) {
+		
+		//카테고리 목록 조회 후 jsp로 전달
+		model.addAttribute("memberDetail", memberService.selectMemberDetail(memberVO));
 		
 		return "member/update_myPage";
 	}
@@ -243,10 +248,22 @@ public class MemberController {
 	
 	//3-2. 마이페이지에서 내정보 수정하기
 	@PostMapping("/updateMyPage")
-	public String updateMyPage(MemberVO memberVO) {
+	public String updateMyPage(MemberVO memberVO, Model model) {
+		
+		//카테고리 목록 조회 후 jsp로 전달
+		model.addAttribute("memberDetail", memberService.selectMemberDetail(memberVO));
 		
 		
-		memberService.updateMyPage(memberVO);
+		 System.out.println("!!!!" + memberVO.getId());
+		 
+		 memberVO.setId(memberVO.getId());
+		 
+		 
+		 model.addAttribute("memberVO", memberVO);
+		 
+		 
+		 memberService.updateMyPage(memberVO);
+		 
 	
 		
 		return "redirect:/member/myPage";

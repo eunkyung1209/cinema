@@ -44,6 +44,9 @@ public interface MemberService {
 	//5. (로그인후) 마이페이지 나의 정보 수정하기
 	int updateMyPage(MemberVO memberVO);
 	
+	//5. (로그인후) 마이페이지  내 비밀번호 수정
+	int updatePW(MemberVO memberVO);
+	
 	//6. (로그인후) 마이페이지 회원탈퇴하기
 	void deleteMember(String id);
 	
