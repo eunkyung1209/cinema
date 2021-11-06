@@ -124,23 +124,12 @@
 							<div class="row" style="padding: 30px; border-bottom: 1px solid #e0e0e0;">
 								<!-- 포스터 -->
 								<div class="row moviePosterDiv">
-									<img alt="" src="/resources/images/movie/${movieInfo.포스터 }" width="150px">
+									<!-- 이미지 -->
 								</div>
 								<!-- 예매 상세 정보 -->
 								<div class="row">
 									<div class="movieTitleDiv">
-										<c:if test="${statingMovie. age eq 12}">
-											<img height="25px;" src="/resources/images/reservation/12.png">
-										</c:if>
-										<c:if test="${statingMovie. age eq 15}">
-											<img height="25px;" src="/resources/images/reservation/15.png">
-										</c:if>
-										<c:if test="${statingMovie. age eq 19}">
-											<img height="25px;" src="/resources/images/reservation/19.png">
-										</c:if>
-										<c:if test="${statingMovie. age eq 0}">
-											<img height="25px;" src="/resources/images/reservation/전체.png">
-										</c:if>
+										<!-- 연령 이미지 -->
 										<h5>영화제목</h5>
 									</div>
 									<div class="reserveInfoDiv">
