@@ -204,6 +204,10 @@ public class MemberController {
 		//나의 상담내역 목록 보내기
 		model.addAttribute("commuList", memberService.selectMyCommurByMypage(memberVO));
 		
+		//카테고리 목록 조회 후 jsp로 전달
+		model.addAttribute("memberDetail", memberService.selectMemberDetail(memberVO));
+		
+	
 		return "member/myPage";
 	}
 	
@@ -219,25 +223,47 @@ public class MemberController {
 	public String goupdatePW(MemberVO memberVO) {
 		memberService.updateMyPage(memberVO);
 		
-		return "redirect:/mmember/input_password";
+		return "redirect:/member/input_password";
 	}
 		
+	
+	
+	
+	
 	
 	
 	//3-1. 마이페이지에서 내정보 수정페이지로 넘어가기
 	@GetMapping("/updateMyPage")
-	public String goUpdateMyPage() {
+	public String goUpdateMyPage(MemberVO memberVO) {
+		
 		return "member/update_myPage";
 	}
+	
+	
 	
 	//3-2. 마이페이지에서 내정보 수정하기
 	@PostMapping("/updateMyPage")
 	public String updateMyPage(MemberVO memberVO) {
+		
+		
 		memberService.updateMyPage(memberVO);
+	
 		
 		return "redirect:/member/myPage";
 	}
 	
+	
+	
+	//2.회원 상세 조회
+	@GetMapping("/memberDetail")
+	public String memberDetail(Model model, MemberVO memberVO) {
+		
+		//카테고리 목록 조회 후 jsp로 전달
+		model.addAttribute("memberDetail", memberService.selectMemberDetail(memberVO));
+		
+
+		return "member/member_detail";
+	}
 	
 	
 	//3-3. 마이페이지에서 회원 탈퇴하기

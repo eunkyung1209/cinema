@@ -179,7 +179,6 @@
 	<!--3. (admin)멤버 상세 조회 -->
 	<select id="selectMemberDetail" resultMap="member">
 		SELECT ID
-			, PW
 			, NAME
 			, NICKNAME
 			, TO_CHAR(BIRTHDAY, 'YYYYMMDD') AS BIRTHDAY
@@ -196,17 +195,28 @@
 		WHERE ID = #{id}
 	</select>
 	
+	
+	
+	
+	
 	<!--4. 회원 마이페이지 나의 정보 수정하기  -->
 	<update id="updateMyPage">
 		UPDATE OISONE_MEMBER
 		SET
 		  BIRTHDAY = #{birthday}
 		  , GENDER = #{gender}
+		  , NAME = #{name}
 		  , TELL = #{tell}
 		  , NONPEOPLE_TICKET = #{nonpeopleTicket}
 		  , MY_CINEMA = #{myCinema}
 		 WHERE ID = #{id}
 	</update>
+	
+	
+	
+	
+	
+	
 	
 	<!--5. 회원 마이페이지에서 회원 탈퇴하기  -->
 	<delete id="deleteMember" >
@@ -276,6 +286,11 @@
 		WHERE ${searchKeyword} LIKE '%'||#{searchValue}||'%'
 		</if>
 	</select>
+	
+
+	
+	
+	
 	
 </mapper>
 

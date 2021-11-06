@@ -126,6 +126,7 @@ select {
 
 
 <form action="/member/updateMyPage" method="post" ><!-- id="joinForm" -->
+<input type="hidden" value="${sessionScope.loginInfo.id }" name="id"> 
 <div class="row bodyDiv" >
 	<div class="col-12">
 	
@@ -171,17 +172,11 @@ select {
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;성별&nbsp;:&nbsp;
 											
-											<c:if test="${sessionScope.loginInfo.gender eq '남'}">
-												<input type="radio" name="gender" value="남" checked>남자
-												&nbsp;
-												<input type="radio" name="gender" value="여">여자
-											</c:if>
 											
-											<c:if test="${sessionScope.loginInfo.gender eq '여'}">
-												<input type="radio" name="gender" value="남" >남자
+												<input type="radio" name="gender" value="남" <c:if test="${sessionScope.loginInfo.gender eq '남'}">checked</c:if>>남자
 												&nbsp;
-												<input type="radio" name="gender" value="여" checked>여자
-											</c:if>
+												<input type="radio" name="gender" value="여" <c:if test="${sessionScope.loginInfo.gender eq '여'}">checked</c:if>>여자
+											
 											
 											<div class="check_font" id="birth_check"></div>
 											
@@ -242,7 +237,7 @@ select {
 										<td >마이시네마 <span class="redStar"></span></td>
 										<td >
 											<select class="joinInput2" name="myCinema" >
-										      	<option value="value=${sessionScope.loginInfo.myCinema }" selected>선택안함</option>
+										      	<option value="${sessionScope.loginInfo.myCinema }" selected>${sessionScope.loginInfo.myCinema }</option>
 										      	<option value="선택안함">선택안함</option>
 										      	<option value="울산">울산</option>
 										      	<option value="서울" >서울</option>

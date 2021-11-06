@@ -60,4 +60,7 @@ public interface MemberService {
 	//7-1 커뮤 페이징
 	int selectCommuCnt(CommunityVO communityVO);
 	
+	
+
+	
 }

@@ -66,14 +66,12 @@ select {
 
 /*검색 버튼 기본폼 */
 .common_btn{
-	background-color: #4c4747;
 	color: white;
 	width: 80px;
 	font-size: 11px;
 }
 .common_btn:hover{
 	font-size: 11px;
-	background-color: #5d5959;
 	color: white;
 	width: 80px;
 }
@@ -137,7 +135,7 @@ select {
 		<div class="row justify-content-center">
 			<div class="col-8">
 				<div class="col-3 subjectDiv">
-					<h5>${sessionScope.loginInfo.nickName }님의 마이페이지</h5>
+					<h5>${memberDetail.nickName}님의 마이페이지</h5>
 				</div>
 			</div>
 		</div>
@@ -179,8 +177,8 @@ select {
 										
 										<!-- 이름 / 아이디 -->
 										<td colspan="10" style="width: 80px; font-size:11px; height: 80px; padding-top: 50px;">
-											<span style="font-size:20px;">&nbsp;&nbsp;&nbsp;${sessionScope.loginInfo.name }님 </span>
-											<span>&nbsp;&nbsp;${sessionScope.loginInfo.name }</span>
+											<span style="font-size:20px;">&nbsp;&nbsp;&nbsp;${memberDetail.name }님 </span>
+											<span>&nbsp;&nbsp;${memberDetail.id }</span>
 										</td>
 										
 										
@@ -206,19 +204,19 @@ select {
 										<!-- 등급  -->
 										<td colspan="10" style="width: 80px; font-size:15px; height: 82px; padding-bottom: 56px;">
 											&nbsp;&nbsp;&nbsp;&nbsp;고객님은 
-											<c:if test="${sessionScope.loginInfo.point >= 0 and sessionScope.loginInfo.point <= 100 }">
+											<c:if test="${memberDetail.point >= 0 and memberDetail.point <= 100 }">
 											 	<span style="color: green; font-weight: bold;">그린</span>
 											</c:if>
-											<c:if test="${sessionScope.loginInfo.point >= 101 and sessionScope.loginInfo.point <= 200 }">
+											<c:if test="${smemberDetail.point >= 101 and memberDetail.point <= 200 }">
 											 	<span style="color: gray; font-weight: bold;">실버</span>
 											</c:if>
-											<c:if test="${sessionScope.loginInfo.point >= 201 and sessionScope.loginInfo.point <= 300 }">
+											<c:if test="${memberDetail.point >= 201 and memberDetail.point <= 300 }">
 											 	<span style="color: yellow; font-weight: bold;">골드</span>
 											</c:if>
-											<c:if test="${sessionScope.loginInfo.point >= 301 and sessionScope.loginInfo.point <= 500 }">
+											<c:if test="${memberDetail.point >= 301 and memberDetail.point <= 500 }">
 											 	<span style="color: aqua; font-weight: bold;">다이아</span>
 											</c:if>
-											<c:if test="${sessionScope.loginInfo.point >= 501}">
+											<c:if test="${memberDetail.point >= 501}">
 											 	<span style="color: #ed7d31 font-weight: bold;">VVIP</span>
 											 </c:if>
 											입니다.
@@ -246,7 +244,7 @@ select {
 										
 										<!-- 포인트  -->
 										<td colspan="9" style="width: 80px; font-size:15px; height: 13px; padding-top: 33px;s">
-											${sessionScope.loginInfo.point }
+											${memberDetail.point }
 											<span style="font-size: 11px">point</span>
 										</td>
 										
@@ -261,7 +259,7 @@ select {
 										
 										<!-- 적립금 돼지저금통 -->
 										<td colspan="8" style="width: 90px; font-size:23px; height: 13px; font-weight: bold; padding-bottom: 42px; padding-left: 40px;">
-											&nbsp;&nbsp;&nbsp;&nbsp;${sessionScope.loginInfo.savedMoney } $
+											&nbsp;&nbsp;&nbsp;&nbsp;${memberDetail.savedMoney } $
 										</td>
 										
 		
@@ -271,7 +269,7 @@ select {
 										
 										<!-- 마이시네마 -->
 										<td colspan="9" style="width: 80px; font-size:15px; height: 13px; padding-top: 25px;">
-											${sessionScope.loginInfo.myCinema }
+											${memberDetail.myCinema }
 										</td>
 										
 										<td style="width: 80px; font-size:14px; height: 13px;"></td>
@@ -440,10 +438,12 @@ select {
 									</div>
 									<!-- 소제목 -->
 									<div style="font-size: 14px; text-align:left; padding-left: 20px;">
-										<a onclick="">개인정보 상세보기</a>
+										<a href="/member/memberDetail?id=${sessionScope.loginInfo.id }">개인정보 상세보기</a>
 										<br>
 										<br>
-										<a onclick="location.href='updateMyPage?id=${memberInfo.id }';">개인정보 수정</a>
+										<a href="/member/updateMyPage?id=${sessionScope.loginInfo.id }">개인정보 수정</a>
+										
+										
 										<br>
 										<br>
 										<a onclick="">E-mail/SMS 수신설정</a>
@@ -502,7 +502,7 @@ select {
 								  <c:choose>
 								  	<c:when test="${empty customerBoardList}">
 								  		<tr style="text-align: center; padding-left: 0px;">
-								  			<td colspan="5">
+								  			<td class="align-middle" style="text-align: center; padding-left: 0px;" colspan="5">
 								  				등록된 게시물이 없습니다.
 								  			</td>
 								  		</tr>
@@ -652,6 +652,7 @@ select {
 				<div class="row justify-content-center">
 					<div class="col-8" style="text-align: center;">
 						<input class="common_btn" type="button" value="뒤로가기" onclick="location.href='/movie/mainPage';">
+						
 						<%-- <input class="common_btn" type="button" value="내정보수정" onclick="location.href='updateMyPage?id=${memberInfo.id }';"> --%>
 						
 						<%-- <input type="hidden" value="${sessionScope.loginInfo.id }" class="id"> 
