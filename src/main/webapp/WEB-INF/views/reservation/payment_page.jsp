@@ -21,12 +21,11 @@
 	height: 800px;
 	margin: 0 auto;
 	margin: 20px;
-	border: 1px solid gray;
 }
 
 /* 예매하기 순서 */
 .reserveOrder{
-	border-right: 1px solid gray; 
+	border: 1px solid gray;
 }
 .reserveOrderDiv{
 	height: 200px;	
@@ -35,43 +34,114 @@
 
 /* 선택한 타이틀 */
 .reserveTitle{
-	height: 200px;
+	height: 50px;
 	background-color: #f2f2f2;
 	padding-top: 20px;
 	border-bottom: 1px solid gray;
+}
+
+/* 각 내용에 세로줄 */
+.reserveArea{
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+	border-right: 1px solid gray;
 }
 
 
 
 /* 영화 */
 .moviePosterDiv{
-	margin: 0 auto;
 	margin-bottom: 20px;
+}
+.moviePosterDiv > img{
+	margin: 0 auto;
+	width: 80%;
 }
 .movieTitleDiv{
 	margin-bottom: 10px;
 }
 
 /* 예매 상세 정보 - 일시, 영화관, 인원 */
+.reserveInfoDiv{
+	padding: 0;
+}
 .reserveInfoDiv table{
-	margin: 0 30px;
+	width: 100%;
+	/* margin: 0 30px; */
 }
 .reserveInfoDiv td{
 	padding: 5px;
 	text-align: left;
+	font-size: small;
 }
 .reserveInfoDiv tr > td:first-child{
 	font-weight: bold;
 }
 
-/* 적립금 정보 */
-.savedMoneyInfoDiv{
+/* 적립금&등급 정보 */
+.pointInfoDiv{
 	border: 1.5px solid #e0e0e0;
 	border-radius: 0.5em;
 	text-align: center;
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 220px;
 }
-.savedMoneyInfoDiv div:first-child{
+.pointInfoDiv div{
+	padding: 15px;
+	text-align: left;
+}
+.pointInfoDiv div:first-child{
 	border-right: 1.5px solid #eaeaea;
+}
+.pointInfoDiv div:last-child{
+	text-align: right;
+}
+
+/* 적립금사용&적립포인트 정보 */
+.payDiv{
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 130px;
+}
+.payDiv div{
+	padding: 15px;
+	text-align: left;
+}
+.payDiv div:last-child{
+	text-align: right;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"]{
+	width: 80px;
+	padding-left: 10px;
+}
+
+/* 결제 정보 */
+.payInfoDiv{
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+.payDiv div{
+	padding: 15px;
+	text-align: left;
+}
+.payDiv div:last-child{
+	text-align: right;
+}
+
+/* 결제 버튼 */
+.payBtnDiv{
+	/* display: inline-block; */
+	width: 100%;
+    height: 51px;
+    background: #ed7d31;
 }
 </style>
 </head>
@@ -121,16 +191,18 @@
 						<!-- 내용 -->
 						<div class="row justify-content-center">
 							<!-- 예매 상세 정보 -->
-							<div class="row" style="padding: 30px; border-bottom: 1px solid #e0e0e0;">
+							<div class="row justify-content-center" style="padding: 25px; border-bottom: 1px solid gray;">
 								<!-- 포스터 -->
 								<div class="row moviePosterDiv">
-									<!-- 이미지 -->
+									<img alt="" src="/resources/images/movie/20211031_102451438_듄_메인.jpg"><!-- 영화 포스터 - 데이터로 수정 -->
 								</div>
-								<!-- 예매 상세 정보 -->
-								<div class="row">
+								<!-- 예매 상세 -->
+								<div class="row reserveInfoDiv">
 									<div class="movieTitleDiv">
-										<!-- 연령 이미지 -->
-										<h5>영화제목</h5>
+										<h5>
+										<img height="25px;" src="/resources/images/reservation/12.png"><!-- 연령 로고 - 데이터로 수정 -->
+										영화제목<!-- 영화 제목 - 데이터로 수정 -->
+										</h5>
 									</div>
 									<div class="reserveInfoDiv">
 										<table>
@@ -155,7 +227,7 @@
 								</div>
 							</div>
 							<!-- 좌석 정보 -->
-							<div class="row" style="padding: 30px; border-bottom: 1px solid #e0e0e0;">
+							<div class="row" style="padding: 25px; border-bottom: 1px solid gray;">
 								<div class="reserveInfoDiv">
 									<table>
 										<colgroup>
@@ -177,22 +249,28 @@
 						<!-- 타이틀 -->
 						<div class="row justify-content-center reserveTitle">
 							<div class="col-12 reserveTitleArea" >
-								적립금/등급
+								적립금 / 등급
 							</div>
 						</div>
 						<!-- 내용 -->
 						<div class="row justify-content-center">
-							<!-- 적립금&등급 정보 -->
-							<div class="row" style="padding: 30px; border-bottom: 1px solid #e0e0e0;">
-								<!-- 적립금 정보 -->
-								<div class="row mb-1">적립금 정보</div>
-								<div class="row savedMoneyInfoDiv">
-									<div class="col-6">사용 가능한 적립금</div>
-									<div class="col-6">0 point</div>
+							<!-- 적립금 정보 -->
+							<div class="row" style="padding: 25px; border-bottom: 1px solid gray;">
+								<!-- 적립금 -->
+								<div class="row">적립금 정보</div>
+								<div class="row pointInfoDiv">
+									<div class="col-6">누구님의 적립금</div><!-- 이름 - 데이터로 수정 -->
+									<div class="col-6">0 원</div><!-- 적립금 - 데이터로 수정 -->
 								</div>
-								<!-- 등급 정보 -->
+							</div>
+							<!-- 등급 정보 -->
+							<div class="row" style="padding: 25px;">
+								<!-- 등급 -->
 								<div class="row">등급 정보</div>
-								<div class="row"></div>
+								<div class="row pointInfoDiv">
+									<div class="col-6">누구님의 등급</div><!-- 이름 - 데이터로 수정 -->
+									<div class="col-6">무슨 등급</div><!-- 등급 - 데이터로 수정 -->
+								</div>
 							</div>
 						</div>
 					</div>
@@ -207,7 +285,52 @@
 						</div>
 						<!-- 내용 -->
 						<div class="row justify-content-center">
-							
+							<!-- 사용 가능한 적립금 정보 -->
+							<div class="row" style="padding: 25px; border-bottom: 1px solid gray;">
+								<!-- 적립금 -->
+								<div class="row">적립금 사용</div>
+								<div class="row payDiv">
+									<div class="col-6">사용할 적립금</div>
+									<div class="col-6" style="padding-top: 5px;"><input type="number" name="savedMoney" min="0" max="2000" value="0"> 원</div><!-- 적립금 최댓값 제한 - 데이터로 수정 -->
+								</div>
+							</div>
+							<!-- 적립될 포인트 정보 -->
+							<div class="row" style="padding: 25px; border-bottom: 1px solid gray;">
+								<!-- 적립 포인트 -->
+								<div class="row">등급 포인트 적립</div>
+								<div class="row payDiv">
+									<div class="col-6">적립될 포인트</div>
+									<div class="col-6">0 포인트</div><!-- 적립금 - 데이터로 수정 -->
+								</div>
+							</div>
+							<!-- 결제 정보 -->
+							<div class="row" style="padding: 25px; border-bottom: 1px solid gray;">
+								<!-- 결제 요금 -->
+								<div class="row">결제</div>
+								<div class="row payInfoDiv">
+									<div class="col-6">상품 금액</div>
+									<div class="col-6">10,000 원</div><!-- 상품 금액 : (좌석수 X 10,000) - 데이터로 수정 -->
+								</div>
+								<div class="row payInfoDiv">
+									<div class="col-6">할인 금액</div>
+									<div class="col-6">0 원</div><!-- 할인 금액 : 사용할 적립금 금액 - 데이터로 수정 -->
+								</div>
+								<div class="row payInfoDiv" style="margin-bottom: 10px;">
+									<div class="col-6">결제 금액</div>
+									<div class="col-6">10,000 원</div><!-- 결제 금액 : (상품 금액 - 할인 금액) - 데이터로 수정 -->
+								</div>
+							</div>
+							<!-- 결제 버튼 -->
+							<!-- <a href="#" style="height: 100%;">
+							<span style="background-color: #ed7d31; color: white;">
+								<input type="button" value="결제하기">
+								결제하기
+							</span>
+							</a> -->
+							<div class="row payBtnDiv">
+								
+								결제하기
+							</div>
 						</div>
 					</div>
 					
