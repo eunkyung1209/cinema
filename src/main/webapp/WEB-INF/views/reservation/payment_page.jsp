@@ -65,12 +65,12 @@
 }
 
 /* 적립금 정보 */
-.pointInfoDiv{
+.savedMoneyInfoDiv{
 	border: 1.5px solid #e0e0e0;
 	border-radius: 0.5em;
 	text-align: center;
 }
-.pointInfoDiv div:first-child{
+.savedMoneyInfoDiv div:first-child{
 	border-right: 1.5px solid #eaeaea;
 }
 </style>
@@ -96,7 +96,7 @@
 								<div>좌석선택</div>
 							</div>
 						</div>
-						<div class="row reserveOrderDiv" style="background-color: orange;">
+						<div class="row reserveOrderDiv" style="background-color: #ed7d31; color: white;">
 							<div class="col-12">
 								<div class="m-1">03</div>
 								<div>결제하기</div>
@@ -150,12 +150,12 @@
 												<col width="*">
 											</colgroup>
 											<tr>
-												<td>일시</td>
-												<td>상영날짜 상영시작~상영종료</td>
-											</tr>
-											<tr>
 												<td>영화관</td>
 												<td>지역 영화관지점명 상영관</td>
+											</tr>
+											<tr>
+												<td>일시</td>
+												<td>상영날짜 상영시작~상영종료</td>
 											</tr>
 											<tr>
 												<td>인원</td>
@@ -170,12 +170,12 @@
 								<div class="reserveInfoDiv">
 									<table>
 										<colgroup>
-											<col width="15%">
+											<col width="20%">
 											<col width="*">
 										</colgroup>
 										<tr>
 											<td>좌석</td>
-											<td>행번호 열번호</td>
+											<td>행 열, 행 열, ...</td>
 										</tr>
 									</table>
 								</div>
@@ -188,15 +188,22 @@
 						<!-- 타이틀 -->
 						<div class="row justify-content-center reserveTitle">
 							<div class="col-12 reserveTitleArea" >
-								결제수단
+								적립금/등급
 							</div>
 						</div>
 						<!-- 내용 -->
 						<div class="row justify-content-center">
-							<div class="row">포인트 사용</div>
-							<div class="row m-1 pointInfoDiv">
-								<div class="col-6">사용 가능한 적립금</div>
-								<div class="col-6">0 point</div>
+							<!-- 적립금&등급 정보 -->
+							<div class="row" style="padding: 30px; border-bottom: 1px solid #e0e0e0;">
+								<!-- 적립금 정보 -->
+								<div class="row mb-1">적립금 정보</div>
+								<div class="row savedMoneyInfoDiv">
+									<div class="col-6">사용 가능한 적립금</div>
+									<div class="col-6">0 point</div>
+								</div>
+								<!-- 등급 정보 -->
+								<div class="row">등급 정보</div>
+								<div class="row"></div>
 							</div>
 						</div>
 					</div>
