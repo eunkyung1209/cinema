@@ -40,7 +40,7 @@
 </script>
 
 <!-- 자바 스크립트 -->
-<script type="text/javascript" src="/resources/reservation/js/reserve_form.js?ver=68"></script>
+<script type="text/javascript" src="/resources/reservation/js/reserve_form.js?ver=69"></script>
 <style type="text/css">
 
 /* picker */
@@ -150,7 +150,6 @@ ul{
 
 </head>
 <body>
-<a href="/reservation/seat">예시</a>
 
 <div class="row bodyDiv justify-content-center">
 	<div class="col-12">
@@ -164,7 +163,7 @@ ul{
 					<!-- 예매순서 -->
 					<div class="col-1 reserveOrder" >
 					
-						<div class="row reserveOrderDiv" style="background-color: orange;">
+						<div class="row reserveOrderDiv" style="background-color: #ed7d31; color: white;" >
 							<div class="col-12">
 								<div class="m-1" >01</div> 
 								<div>상영시간</div> 

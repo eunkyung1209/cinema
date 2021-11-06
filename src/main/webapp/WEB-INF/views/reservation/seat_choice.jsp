@@ -61,8 +61,12 @@ ul{
     color: white;
 }
 
+/* 상영 정보 */
+.movietTimeInfo{
+	margin-top: 80px;
+	text-align: left;
 
-
+}
 </style>
 
 
@@ -86,7 +90,7 @@ ul{
 								<div>상영시간</div> 
 							</div>
 						</div>
-						<div class="row reserveOrderDiv" style="background-color: orange;">
+						<div class="row reserveOrderDiv" style="background-color: #ed7d31; color: white;">
 							<div class="col-12">
 								<div class="m-1">02</div> 
 								<div>좌석선택</div>
@@ -116,11 +120,11 @@ ul{
 								<div class="row">
 									<div class="col-5 reserveTitleMovitTimeInfo" > 
 										<div class="row">
-											<div class="col-6">
+											<div class="col-3" >
 												<img alt="" height="150px;" src="/resources/images/movie/${mvInfo.attachedImgName }">
 											</div>
 											
-											<div class="col-6">
+											<div class="col-7 movietTimeInfo" >
 												<div>${mvInfo.title } </div> 
 												<div>
 													${mvInfo.screenDay }
@@ -137,14 +141,25 @@ ul{
 										
 									</div>
 									<div class="col-7 reserveTitlePeople" >
-										<div>
-											인원 수 
-											<input type="number" value="0" min="0" max="20" required>
+										<div class="row">
+											<div class="col-6">
+												<div>
+													인원 수 
+													<input type="number" value="0" min="0" max="20" id="seatCnt" required>
+												</div>
+												
+												<div class="selectSeat1 m-3" >
+													선택한 좌석 : <span id="seatChoiceIs"> </span>
+												 </div>
+											</div>
+											<div class="col-6">
+												<div class="m-3">
+													<input class="common_btn" type="button" onclick="seatClick();" value="결제진행">
+												</div> 
+											</div>
 										</div>
+										 
 										
-										<div class="selectSeat1">
-											선택한 좌석
-										 </div>
 									</div>
 									
 									
@@ -165,7 +180,7 @@ ul{
 								<!-- 좌석 -->
 								<div class="seat-wrapper"></div>
 								
-								<input type="button" onclick="seatClick();" value="ㅎㅇ">
+								
 							</div>
 							
 							
@@ -230,13 +245,15 @@ ul{
                 }
                 console.log(selectedSeats);
                 
+                document.getElementById('seatChoiceIs').textContent = selectedSeats;
+                document.getElementById('seatCnt').value = selectedSeats.length;
                 
             })
         }
     }
     
     function seatClick() {
-        location.href = '/reservation/seat?seatCode=' + selectedSeats;
+        location.href = '/reservation/payMent?seatCode=' + selectedSeats;
 	}
     
 

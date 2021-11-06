@@ -59,7 +59,7 @@ $(document).ready(function(){
 	            	//반복문
 	            	$(result).each(function(index, element) {
 	            		
-					str += '<div class="col-3 m-1" ><div class="reserveInfoBtn"> ' ;
+					str += '<div class="col-3 m-1" >' + element.title + '<div class="reserveInfoBtn"> ' ;
 					str += '<div class="screenTimeDiv m-1">'  + element.screenTime + '</div>';
 					str += '<div class="seatDiv m-1">' + '/';
 					str += element.seatAll +' [' + element.theaterName + '] </div> </div> </div>';
@@ -179,12 +179,10 @@ $(document).ready(function(){
 			
 			var able = false;
 		}); 
-		
 			
 		var date = $(this).attr('data-date');
 		
 			alert('date' + date);
-		
 	};
 	
 	

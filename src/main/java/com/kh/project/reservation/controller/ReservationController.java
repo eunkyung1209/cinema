@@ -126,13 +126,12 @@ public class ReservationController {
 			return "reservation/seat_choice";
 		}
 		
-		//페이지 이동
-		@GetMapping("/seat")
-		public String seat(String seatCode) {
+		//결제페이지로 이동
+		@GetMapping("/payMent")
+		public String goPayMent(String seatCode) {
 			System.out.println("!!!!!!!!!!!!!!!!" + seatCode );
 			
-			return "reservation/seat";
+			return "reservation/payment_page";
 		}
-		
 		
 }
