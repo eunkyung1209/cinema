@@ -1,7 +1,8 @@
 //화면 로딩 후 바로 실행
 $(document).ready(function(){
 	
-	   $(document).on('change', '#movieSeletor', function() { 
+	   $(document).on('click', '.movieCalDiv', function() { 
+		   
 		   var mvCode = $('#movieSeletor').val();
 		   
 		   $.ajax({
@@ -190,7 +191,7 @@ $(document).ready(function(){
 		alert('셀클릭');
 	};
 	
-	//상영시간표 버튼을 클릭하면..
+	//상영시간표 버튼 클릭하여 좌석선택 페이지로 이동
 	movieTimeClick = function(mvTimeCode) {
 		
 		//반복문
@@ -214,6 +215,12 @@ $(document).ready(function(){
 				}
 			}
 		});
+		
+	};
+	
+	//달력을 선택하면,,
+	calClick  = function(screenDay) {
+		
 		
 	};
 	 

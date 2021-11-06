@@ -40,7 +40,7 @@
 </script>
 
 <!-- 자바 스크립트 -->
-<script type="text/javascript" src="/resources/reservation/js/reserve_form.js?ver=69"></script>
+<script type="text/javascript" src="/resources/reservation/js/reserve_form.js?ver=74"></script>
 <style type="text/css">
 
 /* picker */
@@ -56,8 +56,6 @@
 	text-align: center;
 
 }
-
-
 
 .bodyDiv{
  text-align: center;
@@ -144,12 +142,45 @@ ul{
 .areaName, .movieName{
 	cursor: pointer;
 }
+/* 정훈 달력 */
+.movieCalDiv{
+	overflow: scroll;
+	overflow-x :hidden;
+	text-align: left;
+	height: 750px;
+
+}
+
+.calDiv{
+height: 35px; 
+width: 70px;
+cursor: pointer;
+text-align: center;
+padding-top: 10px;
+padding-left: 20px;
+
+
+}
+
+.day{
+	font-size: 18px;
+}
+
+.week-sat, .day-sat{
+	color: blue;
+}
+.week-sun, .day-sun{
+	color: red;
+}
+
 
 </style>
 
 
 </head>
 <body>
+
+<a href="/reservation/copy">예시</a>
 
 <div class="row bodyDiv justify-content-center">
 	<div class="col-12">
@@ -265,40 +296,69 @@ ul{
 							</div>
 						</div>
 						
-						<!-- 달력이 들어갈 공간 -->
 						<div class="row">
-							<div class="col-12 movieCalDiv" >
+							<div class="col-12 " >
 								<div class="row">
-									<div class="movieCal col-6" id="datepicker" onclick="movieCalClick();">
-									
-									</div> 
-									
-									<div class="col-6" >
+								
+									<!-- 달력이 들어갈 공간 -->
+									<div class="col-2 movieCalDiv justify-content-center" >
+										<div class="calDiv" onclick="calClick('2021-11-08');"> <span class="week">월</span> <span class="day">&nbsp; 8</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-09');"> <span class="week">화</span> <span class="day">&nbsp; 9</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-10');"> <span class="week">수</span> <span class="day"> 10</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-11');"> <span class="week">목</span> <span class="day"> 11</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-12');"> <span class="week">금</span> <span class="day"> 12</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-13');"> <span class="week week-sat">토</span> <span class="day day-sat"> 13</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-14');"> <span class="week week-sun">일</span> <span class="day day-sun"> 14</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-15');"> <span class="week">월</span> <span class="day"> 15</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-16');"> <span class="week">화</span> <span class="day"> 16</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-17');"> <span class="week">수</span> <span class="day"> 17</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-18');"> <span class="week">목</span> <span class="day"> 18</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-19');"> <span class="week">금</span> <span class="day"> 19</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-20');"> <span class="week week-sat">토</span> <span class="day day-sat"> 20</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-21');"> <span class="week week-sun">일</span> <span class="day day-sun"> 21</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-22');"> <span class="week">월</span> <span class="day"> 22</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-23');"> <span class="week">화</span> <span class="day"> 23</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-24');"> <span class="week">수</span> <span class="day"> 24</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-25');"> <span class="week">목</span> <span class="day"> 25</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-26');"> <span class="week">금</span> <span class="day"> 26</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-27');"> <span class="week week-sat">토</span> <span class="day day-sat"> 27</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-28');"> <span class="week week-sun">일</span> <span class="day day-sun"> 28</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-29');"> <span class="week">월</span> <span class="day"> 29</span> </div>
+										<div class="calDiv" onclick="calClick('2021-11-30');"> <span class="week">화</span> <span class="day"> 30</span> </div>
+										<div class="calDiv" onclick="calClick('2021-12-01');"> <span class="week">수</span> <span class="day">&nbsp; 1</span> </div>
+										<div class="calDiv" onclick="calClick('2021-12-02');"> <span class="week">목</span> <span class="day">&nbsp; 2</span> </div>
+										<div class="calDiv" onclick="calClick('2021-12-03');"> <span class="week">금</span> <span class="day">&nbsp; 3</span> </div>
+										<div class="calDiv" onclick="calClick('2021-12-04');"> <span class="week week-sat">토</span> <span class="day day-sat">&nbsp; 4</span> </div>
+										<div class="calDiv" onclick="calClick('2021-12-05');"> <span class="week week-sun">일</span> <span class="day day-sun">&nbsp; 5</span> </div>									
 									</div>
+									
+									<!-- 상영시간 목록 -->
+									<div class="col-10" >
+										<div class="row justify-content-center movieTimeList" >
+											<div class="col-12" >
+											
+												<input type="hidden" class="screenDay" id="datepicker" value="${nowDate }" name="screenDay">
+												<!-- <input class="movieCal" id="datepicker" onclick="movieCalClick();"> -->
+												
+												<!-- 상영할 영화 제목 -->
+												<div class="row">
+													<div class="col-12">
+													</div>
+												</div>
+												
+												<!-- 상영시간이 뜨는 버튼 조회 -->
+												<div class="row" id="movieTimeBtn" >
+													  
+												</div>	
+											</div>
+										</div>
+									</div>
+									
 								</div> 
 								
-								<input type="hidden" value="${nowDate }" name="screenDay">
+								
 							</div>
 						</div>
-							
-						<!-- 상영시간 목록 -->
-						<div class="row justify-content-center movieTimeList" >
-							<div class="col-12" >
-								
-								<!-- 상영할 영화 제목 -->
-								<div class="row">
-									<div class="col-12">
-									
-									</div>
-								</div>
-								
-								<!-- 상영시간이 뜨는 버튼 조회 -->
-								<div class="row" id="movieTimeBtn" >
-									  
-								</div>	
-							</div>
-						</div>
-						
 					</div>
 				
 				
@@ -314,28 +374,5 @@ ul{
 
 
 </body>
-
-
-<script>
-	//최소 날짜
-	var minDate = new Date();
-    minDate.setDate(minDate.getDate());
-
-    $('#datepicker').datepicker({
-      minDate: minDate
-   	});
-	
-	//날짜 선택
-    $("#datepicker").datepicker({
-    	language: 'ko'
-    	, dateFormat: 'yyyy-mm-dd'
-    });
-    
-	
-</script>
-
-
-
-
 
 </html>
