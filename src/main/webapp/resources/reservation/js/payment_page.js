@@ -4,13 +4,22 @@ $(document).ready(function(){
 	//사용할 적립금 금액이 바뀌면
 	$(document).on('change', '#savedMoney', function() {
 		//수정된 적립금 금액
-		var savedMoney = $('#savedMoney').val();
+		//var savedMoneyText = $('#savedMoney').val();
+		var savedMoney = parseInt($('#savedMoney').val());
+		//상품 금액
+		//var ticketPriceText = $('#ticketPrice').text();
+		var ticketPrice = $('#ticketPrice').text();
+		ticketPrice = ticketPrice.replace(/[^\d]+/g, "");
 		
 		//할인 금액 수정
-		$('#salePrice').val(savedMoney);
+		$('#salePrice').text(savedMoney.toLocaleString());
 		
-		//
+		//결제 금액 수정
+		$('#totalPrice').text((ticketPrice - savedMoney).toLocaleString());
 		
+		//값 변경되는지 확인
+		//console.log(savedMoney);
+		//console.log(ticketPrice);
 	});
 	
 	//이벤트 처리

@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="/resources/reservation/js/payment_page.js?ver=8"></script>
 
 <!-- 결제 아임포트 연동 -->
 <!-- jQuery -->
@@ -316,30 +317,21 @@ input[type="number"]{
 								<div class="row">결제</div>
 								<div class="row payInfoDiv justify-content-center">
 									<div class="col-4">상품 금액</div>
-									<div class="col-4"><fmt:formatNumber pattern="#,##0" id="price" value="10000"/> 원</div><!-- 상품 금액 : (좌석수 X 10,000) - 데이터로 수정 -->
+									<div class="col-4"><span id="ticketPrice"><fmt:formatNumber pattern="#,##0" value="10000"/></span> 원</div><!-- 상품 금액 : (좌석수 X 10,000) - 데이터로 수정 -->
 								</div>
 								<div class="row payInfoDiv justify-content-center">
 									<div class="col-4">할인 금액</div>
-									<div class="col-4">- <fmt:formatNumber pattern="#,##0" id="salePrice" value="0"/> 원</div><!-- 할인 금액 : 사용할 적립금 금액 - 데이터로 수정 -->
+									<div class="col-4">- <span id="salePrice"><fmt:formatNumber pattern="#,##0" value="0"/></span> 원</div><!-- 할인 금액 : 사용할 적립금 금액 - 데이터로 수정 -->
 								</div>
 								<div class="row payInfoDiv justify-content-center" style="margin-bottom: 10px;">
 									<div class="col-4">결제 금액</div>
-									<div class="col-4"><fmt:formatNumber pattern="#,##0" class="totalPrice" value="10000"/> 원</div><!-- 결제 금액 : (상품 금액 - 할인 금액) - 데이터로 수정 -->
+									<div class="col-4"><span id="totalPrice"><fmt:formatNumber pattern="#,##0" value="10000"/></span> 원</div><!-- 결제 금액 : (상품 금액 - 할인 금액) - 데이터로 수정 -->
 								</div>
 							</div>
 							<!-- 결제 버튼 -->
-							<!-- <a href="#" style="height: 100%;">
-							<span style="background-color: #ed7d31; color: white;">
-								<input type="button" value="결제하기">
-								결제하기
-							</span>
-							</a> -->
 							<div class="row" style="padding: 25px; padding-top: 0;">
-								<input type="button" class="common_btn" value="결제하기" style="width: 100%;">
+								<input type="button" class="btn_payment common_btn" value="결제하기" style="width: 100%;" data-mvTimeCode="mvTimeCode" data-id="id">
 							</div>
-							<!-- <div class="row payBtnDiv" onclick="pay();">
-								결제하기
-							</div> -->
 						</div>
 					</div>
 					
@@ -351,58 +343,54 @@ input[type="number"]{
 </body>
 
 <script>
-    var merchant_uid = "";
-    var name = "";
-    var amount = 0;
-    
-    // click 이벤트
-    $(".itemSection").on("click", ".orderBtn", function(){
-        // 서로 다른 결제건에 주문번호가 중복되지 않도록 주문번호에 현재시간 정보를 넣어줌
-        d = new Date();
-        merchant_uid = "order" + d.getTime();
-        name = $(this).parent().siblings(".itemTitle").children().text();
-        amount = $(this).parent().siblings(".itemPrice").children().attr("data-price");
-        iamport();
-    });
-
-    IMP.init('가맹점 식별코드');
-    function iamport(){
-        // IMP.request_pay(param, callback) 결제창 호출
-        IMP.request_pay({ // param
-        // KG이니시스
-        pg : 'html5_inicis',
-        // 결제수단
-        pay_method : 'card',
-        // 상품에서 관리하는 주문번호를 전달 - 바뀌어야됨
-        merchant_uid : merchant_uid,
-        // 결제창에 삽입할 상품명 - 바뀌어야됨
-        name : name,
-        // 금액 - 바뀌어야됨
-        amount : amount,
-        // 구매자 이메일
-        buyer_email : 'iamport@siot.do',
-        // 구매자 번호
-        buyer_tel : '010-1234-5678',
-        // 구매자 주소
-        buyer_addr : '서울특별시 강남구 삼성동',
-        // 구매자 우편번호
-        buyer_postcode : '12345',
-    }, function(rsp){ // callback
-            // 결제 성공시 처리할 내역
-            if(rsp.success){
-                var msg = '결제가 완료되었습니다.\n';
-                msg += '고유 ID: ' + rsp.imp_uid + '\n';
-                msg += '상점 거래 ID: ' + rsp.merchant_uid + '\n';
-                msg += '결제 금액: ' + rsp.paid_amount + '\n';
-                msg += '카드 승인번호: ' + rsp.apply_num;
-                // 결제 실패시 처리할 내역
-            }else{
-                var msg = '결제에 실패했습니다.\n';
-                msg += '에러내용: ' + rsp.error_msg;
-            }
-            alert(msg);
-        });
-    }
+	//class가 btn_payment인 태그를 클릭했을 때 작동
+	$(".btn_payment").click(function() {
+		//결제 금액
+		var totalPrice = $('#totalPrice').text();
+		totalPrice = totalPrice.replace(/[^\d]+/g, "");
+		//console.log(totalPrice);
+		
+		//가맹점 식별코드
+	  	IMP.init('imp42711377');
+		
+	  	//결제시 전달되는 정보
+		IMP.request_pay({
+				//KG이니시스
+			    pg : 'html5_inicis',
+			    //결제수단
+			    pay_method : 'card',
+				//예매번호
+			    merchant_uid : 'merchant_',
+				//결제창에 삽입할 상품명
+			    name : '주문명:결제테스트',
+			    //결제 금액
+			    amount : totalPrice,
+			    //회원 이름
+			    buyer_name : '구매자이름',
+			    //회원 연락처
+			    buyer_tel : '010-1234-5678',
+			    //회원 이메일
+			    buyer_email : 'iamport@siot.do',
+			}, function(rsp) {
+				var result = '';
+			    if ( rsp.success ) {
+			        var msg = '결제가 완료되었습니다.';
+			        msg += '고유ID : ' + rsp.imp_uid;
+			        msg += '상점 거래ID : ' + rsp.merchant_uid;
+			        msg += '결제 금액 : ' + rsp.paid_amount;
+			        msg += '카드 승인번호 : ' + rsp.apply_num;
+			        result ='0';
+			    } else {
+			        var msg = '결제에 실패하였습니다.';
+			        msg += '에러내용 : ' + rsp.error_msg;
+			        result ='1';
+			    }
+			    if(result=='0') {
+			    	location.href= $.getContextPath()+"/Cart/Success";
+			    }
+			    alert(msg);
+			});
+	});
 </script>
 
 </html>
