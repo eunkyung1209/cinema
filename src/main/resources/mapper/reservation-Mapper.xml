@@ -185,7 +185,8 @@
 	
 	<!-- 좌석을 선택할 때) 예매한 영화 정보 -->
 	<select id="selectMovieInfoForSeat" resultMap="movieTime">
-		SELECT AREA_NAME
+		SELECT MV_TIME_CODE
+			, AREA_NAME
 		    , TO_CHAR( SCREEN_DAY, 'YYYY-MM-DD' )AS SCREEN_DAY
 		    , SCREEN_TIME
 		    , SCREEN_END_TIME
@@ -207,9 +208,18 @@
 		                        AND IS_POSTER = 'Y')) AS ATTACHED_IMG_NAME
 		FROM OISONE_MOVIE_TIME
 		WHERE MV_TIME_CODE = #{mvTimeCode}
-			
-	
 	</select>
+	
+	
+	
+	
+	
+	<!-- 결제 페이지로 이동할 때) 예매할 티켓과 관련된 정보 : 상영시간 테이블, 좌석..? -->
+	<select id="">
+		
+	</select>
+	
+	
 	
 </mapper>
 

@@ -154,7 +154,7 @@ ul{
 											</div>
 											<div class="col-6">
 												<div class="m-3">
-													<input class="common_btn" type="button" onclick="seatClick();" value="결제진행">
+													<input class="common_btn" type="button" onclick="seatClick('${mvInfo.mvTimeCode}');" value="결제진행">
 												</div> 
 											</div>
 										</div>
@@ -208,7 +208,7 @@ ul{
     let clicked = "";
     let div = "";
 
-    for (let i = 1; i < 7; i++) {
+    for (let i = 1; i < 8; i++) {
         div = document.createElement("div");
         seatWrapper.append(div);
         for (let j = 1; j < 11; j++) {
@@ -252,25 +252,25 @@ ul{
         }
     }
     
-    function seatClick() {
-        location.href = '/reservation/payMent?seatCode=' + selectedSeats;
+    function seatClick(mvTimeCode) {
+        location.href = '/reservation/payMent?mvTimeCode=' + mvTimeCode + '&seatNames=' + selectedSeats;
 	}
     
 
     function mapping(input, i, j) {
         if (i === 1) {
             input.value = "A" + j;
-        } else if (i === 1) {
-            input.value = "B" + j;
         } else if (i === 2) {
-            input.value = "C" + j;
+            input.value = "B" + j;
         } else if (i === 3) {
-            input.value = "D" + j;
+            input.value = "C" + j;
         } else if (i === 4) {
-            input.value = "E" + j;
+            input.value = "D" + j;
         } else if (i === 5) {
-            input.value = "F" + j;
+            input.value = "E" + j;
         } else if (i === 6) {
+            input.value = "F" + j;
+        } else if (i === 7) {
             input.value = "G" + j;
         }
     }
