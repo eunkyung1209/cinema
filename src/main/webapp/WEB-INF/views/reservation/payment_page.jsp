@@ -155,7 +155,7 @@ input[type="number"]{
 <body>
 <div class="row bodyDiv justify-content-center">
 	<div class="col-12">
-		<!-- <form onsubmit="payment();" novalidate> -->
+		<form method="post" onsubmit="" novalidate>
 			
 			<!-- 예매하기 영역 -->
 			<div class="row justify-content-center">
@@ -377,7 +377,8 @@ input[type="number"]{
 								<!-- 결제 버튼 -->
 								<div class="row" style="padding: 25px; padding-top: 0;">
 									<!-- <input type="submit" class="btn_payment common_btn" value="결제하기" style="width: 100%;" data-mvTimeCode="mvTimeCode" data-id="id"> -->
-									<input type="button" class="btn_payment common_btn" value="결제하기" style="width: 100%;" data-mvTimeCode="mvTimeCode" data-id="id">
+									<!-- <input type="button" class="btn_payment common_btn" value="결제하기" style="width: 100%;" data-mvTimeCode="mvTimeCode" data-id="id"> -->
+									<input type="button" class="btn_payment common_btn" value="결제하기" style="width: 100%;">
 								</div>
 							</div>
 						</div>
@@ -386,14 +387,13 @@ input[type="number"]{
 				</div>
 			</div>
 			
-		<!-- </form> -->
+		</form>
 	</div>
 </div>
 </body>
 
 <script>
 	//class가 btn_payment인 태그를 클릭했을 때 작동
-	//payment = 
 	$(".btn_payment").click(function() {
 		//필요한 데이터 가져옴
 		var mvTitle = $('#title').val();
@@ -414,33 +414,42 @@ input[type="number"]{
 			    pay_method : 'card',
 				//예매번호 - 필수
 			    merchant_uid : 'merchant_' + new Date().getTime(),
-				//결제창에 삽입할 상품명
-			    name : 'OISONE : ' + mvTitle,
-			    //결제 금액 - 필수
-			    amount : totalPrice,
+				//결제창에 삽입할 상품명 : mvTitle
+			    name : 'OISONE: ${mvtInfo.title }',
+			    //결제 금액 - 필수 : totalPrice
+			    amount : 50,
 			    //회원 이름
-			    buyer_name : '구매자이름',
+			    buyer_name : '${memberInfo.name }',
 			    //회원 연락처 - 필수
-			    buyer_tel : '010-1234-5678',
+			    buyer_tel : '${memberInfo.tell }',
 			    //회원 이메일
-			    buyer_email : 'iamport@siot.do',
+			    buyer_email : '${memberInfo.email }',
 			}, function(rsp) {
 				var result = '';
 			    if ( rsp.success ) {	//결제 성공 시
+			    	//결제 성공 시 얼럿창
 			        var msg = '결제가 완료되었습니다.';
 			        //msg += '고유ID : ' + rsp.imp_uid;
 			        //msg += '상점 거래ID : ' + rsp.merchant_uid;
 			        //msg += '결제 금액 : ' + rsp.paid_amount;
 			        //msg += '카드 승인번호 : ' + rsp.apply_num;
-			        result ='0';
+			        
+			        //결제 후 페이지 이동 O
+			        //result ='0';
+			        location.href= $.getContextPath()+"/Cart/Success";
 			    } else {				//결제 실패 시
+			    	//결제 실패 시 얼럿창
 			        var msg = '결제에 실패하였습니다.';
 			        //msg += '에러내용 : ' + rsp.error_msg;
-			        result ='1';
+			        
+			        //결제 후 페이지 이동 X
+			        //result ='1';
 			    }
-			    if(result=='0') {
-			    	location.href= $.getContextPath()+"/Cart/Success";
-			    }
+			    //if(result=='0') {
+			    	//location.href= $.getContextPath()+"/Cart/Success";
+			    //}
+			    
+			    //결제 결과 얼럿창
 			    alert(msg);
 			});
 	});

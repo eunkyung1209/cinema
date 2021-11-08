@@ -58,7 +58,8 @@ public class MailController {
 			content += "<br><hr><h3>OISONE CINEMA입니다.<h3><hr><br>";
 			content += "<a href=\"http://localhost:8081//reservation/myReserve\"><img src=\"cid:이메일.png\" width='500px'></a>";
 			messageHelper.setText(content, true);
-			FileSystemResource file = new FileSystemResource(new File("C:\\Users\\YJH\\git\\cinema\\src\\main\\webapp\\resources\\images\\reservation\\이메일.png"));
+//			FileSystemResource file = new FileSystemResource(new File("C:\\Users\\YJH\\git\\cinema\\src\\main\\webapp\\resources\\images\\reservation\\이메일.png"));
+			FileSystemResource file = new FileSystemResource(new File("D:\\workspaceSTS\\Cinema\\src\\main\\webapp\\resources\\images\\reservation\\이메일.png"));
 			messageHelper.addInline("이메일.png", file);
 			
 //			//메일과 함께 첨부파일 전송하기
