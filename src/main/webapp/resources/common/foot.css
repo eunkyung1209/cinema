@@ -16,7 +16,7 @@ body{
 	padding-right: 3rem;
 	color: #777777;
     line-height: 1.8em;
-    border-right: 1px solid #efefef;
+   /*  border-right: 1px solid #efefef; */
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
@@ -28,8 +28,8 @@ body{
 	width: 250px;
 }
 .footerStartDiv{
-    border-top: 1px solid #ededed;
-    border-bottom: 1px solid #ededed;
+     border-top: 1px solid #e0e0e0;;
+    border-bottom: 1px solid #e0e0e0;;
 }
 .footUl > li{
 	float: left;
