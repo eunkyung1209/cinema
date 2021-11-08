@@ -11,11 +11,19 @@ public class ReservationVO {
 	
 //	private String isPay;
 	
-//	private String[] seatNames;
+	private String[] seatNames;
 //	private String seats;
+	
+	
 	
 	public String getResCode() {
 		return resCode;
+	}
+	public String[] getSeatNames() {
+		return seatNames;
+	}
+	public void setSeatNames(String[] seatNames) {
+		this.seatNames = seatNames;
 	}
 	public void setResCode(String resCode) {
 		this.resCode = resCode;

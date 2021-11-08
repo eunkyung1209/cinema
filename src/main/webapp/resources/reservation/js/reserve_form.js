@@ -46,7 +46,7 @@ $(document).ready(function(){
 			}
 		});
 		
-		//영화관에 따른 상영시간표를 ajax로 조회
+		/*//영화관에 따른 상영시간표를 ajax로 조회
 		 $.ajax({
 	            url: '/reservation/selectMovieTimeAjax1', //요청경로
 	            type: 'post',
@@ -73,7 +73,7 @@ $(document).ready(function(){
 	             //ajax 실행 실패 시 실행되는 구간
 	               alert('실패');
 	            }
-	      });
+	      });*/
 		 
 		 /*//영화관에 따른 영화를 조회
 		 $.ajax({
@@ -133,12 +133,16 @@ $(document).ready(function(){
 				$(this).children().children().next().text('V');
 				$(this).children().children().next().css('color', 'red')
 				
+				
+				$('.codeValue').html('<input type="hidden" id="mvCode">');
+				$('#mvCode').val(mvCode);
 				$('.reserveTitleMovie').text(title);
+				
 			}
 		});
 		
 		
-		//영화관, 영화를 선택 후 상영시간표를 ajax로 조회
+		/*//영화관, 영화를 선택 후 상영시간표를 ajax로 조회
 		 $.ajax({
 	            url: '/reservation/selectMovieTimeAjax3', //요청경로
 	            type: 'post',
@@ -165,31 +169,68 @@ $(document).ready(function(){
 	             //ajax 실행 실패 시 실행되는 구간
 	               alert('실패');
 	            }
+	      });*/
+		
+	};
+	
+	//달력을 선택하면,,
+	calClick  = function(screenDay) {
+		
+		var areaName = $('.reserveTitleArea').text();
+		var mvCode = $('#mvCode').val();
+		
+		
+		//반복문
+		$('.calDiv').each(function(index, element){
+			var dateAll = $(element).attr('data-date');
+			
+			if(dateAll == screenDay){
+				
+				$('.dateCheck').text('');
+				$(this).next().text('V');
+				$(this).next().css('color', 'red')
+				
+				$('.reserveTitleMovieTime').text(screenDay);
+			}
+		});
+		
+		
+		
+		//영화관, 영화, !날짜!를 선택후 ajax로 조회
+		$.ajax({
+	            url: '/reservation/selectMovieTimeAjax3', //요청경로
+	            type: 'post',
+	            data:{'areaName':areaName, 'mvCode':mvCode, 'screenDay':screenDay}, //필요한 데이터
+	            success: function(result) {
+	            	
+	            	$('#movieTimeBtn').empty();
+	            	
+	            	
+	            	//반복문
+	            	$(result).each(function(index, element) {
+	            	
+	            	var str = '';	
+	            		
+					str += '<div class="col-3 m-1" >' + '<span class="movieTitleR">'+ element.title + '</span>'+'<div class="reserveInfoBtn" onclick="movieTimeClick(\'' + element.mvTimeCode +'\');" data-mvTimeCode="' + element.mvTimeCode + '">';
+					str += '<div class="screenTimeDiv m-1">'+  element.screenTime + '</div>';
+					str += '<div class="seatDiv m-1">' + element.seatLeft + '/';
+					str +=  element.seatAll +' [' + element.theaterName + '] </div> </div> </div>';
+	            		
+	            		$('#movieTimeBtn').append(str);
+					});
+	            	
+	            },
+	            error: function(){
+	             //ajax 실행 실패 시 실행되는 구간
+	               alert('실패');
+	            }
 	      });
 		
 	};
 	
 	
 	
-	//달력의 날짜를 클릭하면..
-	movieCalClick = function() {
-		
-		//만약 disabled를 선택한다면,,
-		$(document).on('click', '.\-disabled-', function() { 
-			alert('지난 날짜는 선택이 불가합니다.');
-			
-			var able = false;
-		}); 
-			
-		var date = $(this).attr('data-date');
-		
-			alert('date' + date);
-	};
 	
-	
-	movieCalCellClick = function(){
-		alert('셀클릭');
-	};
 	
 	//상영시간표 버튼 클릭하여 좌석선택 페이지로 이동
 	movieTimeClick = function(mvTimeCode) {
@@ -197,7 +238,6 @@ $(document).ready(function(){
 		//반복문
 		$('.reserveInfoBtn').each(function(index, element){
 			var mvTimeCodeAll = $(element).attr('data-mvTimeCode');
-			
 			
 			
 			if(mvTimeCode == mvTimeCodeAll){
@@ -218,11 +258,12 @@ $(document).ready(function(){
 		
 	};
 	
-	//달력을 선택하면,,
-	calClick  = function(screenDay) {
+	
 		
 		
-	};
+		
+		
+	
 	 
 	
    

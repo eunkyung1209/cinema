@@ -121,8 +121,6 @@ public class ReservationController {
 		@ResponseBody
 		@PostMapping("/selectMovieTimeAjax3")
 		public List<MovieTimeVO> selectMovieTimeAjax3(MovieTimeVO movieTimeVO) {
-			//오늘 날짜를 세팅
-			movieTimeVO.setScreenDay(NowDateTime.getNowDate());
 			//영화 시간표 조회
 			return reservationService.selectMovieTime(movieTimeVO);
 			
@@ -146,11 +144,18 @@ public class ReservationController {
 			//좌석이름 배열 잘 넘어오나 확인!
 			System.out.println("!!!!!!!!!!!!!!!!" + reservationVO.getSeatName());
 			
+			String[] seatNames = new String[5];			
+			
+			seatNames[0] = reservationVO.getSeatName().substring(reservationVO.getSeatName().length()-2, reservationVO.getSeatName().length());
+			System.out.println("문자열 자르기!!!" + seatNames[0]);
+			
+			
 			//선택한 상영시간표 정보
 			model.addAttribute("mvtInfo", reservationService.selectReservationInfoBeforePay(movieTimeVO));
-			
 			//선택한 좌석 정보
 			model.addAttribute("seatInfo", reservationVO);
+			
+			
 			
 			//로그인 정보에서 id값 가져오기
 			String id = ((MemberVO)(session.getAttribute("loginInfo"))).getId();
@@ -161,6 +166,10 @@ public class ReservationController {
 			
 			return "reservation/payment_page";
 		}
+		
+		
+		
+		
 		
 		//카피
 		@GetMapping("/write")

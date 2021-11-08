@@ -57,6 +57,7 @@
 		<result column="RUNNING_TIME" 		property="runningTime"/>
 		<result column="SEAT_ALL" 			property="seatAll"/>
 		<result column="SEAT_CNT" 			property="seatCnt"/>
+		<result column="SEAT_LEFT" 			property="seatLeft"/>
 		<result column="THEATER_NAME" 		property="theaterName"/>
 		<result column="IS_FULL_THEATER" 	property="isFullTheater"/>
 		<result column="TITLE" 				property="title"/>
@@ -165,7 +166,7 @@
 		<if test="mvCode != null and !mvCode.equals('')">
 	    AND MV_CODE = #{mvCode}
 	    </if>
-	    AND SCREEN_DAY = #{screenDay}
+	     AND SCREEN_DAY = #{screenDay} 
 	    ORDER BY MV_TIME_CODE
 	</select>
 	
@@ -213,6 +214,11 @@
 		                        FROM OISONE_MOVIE_TIME
 		                        WHERE MV_TIME_CODE = #{mvTimeCode}
 		                        AND IS_POSTER = 'Y')) AS ATTACHED_IMG_NAME
+		     ,(SELECT (SEAT_ALL - SEAT_CNT)
+		        FROM OISONE_THEATER
+		        WHERE THEATER_CODE = (SELECT THEATER_CODE
+		                            FROM OISONE_MOVIE_TIME
+		                            WHERE MV_TIME_CODE = #{mvTimeCode})) AS SEAT_LEFT
 		FROM OISONE_MOVIE_TIME
 		WHERE MV_TIME_CODE = #{mvTimeCode}
 	</select>
