@@ -1,21 +1,6 @@
 //화면 로딩 후 바로 실행
 $(document).ready(function(){
 	
-	 $(document).on('click', '.clicked', function() { 
-		 
-		 var arr = []; 
-		 
-		//반복문
-		$(arr).each(function(index, element){
-				
-				alert('!!!' + element);
-			
-		});
-	
-	});
-	
-	
-	
 	
 	   $(document).on('change', '#movieSeletor', function() { 
 		   var mvCode = $('#movieSeletor').val();

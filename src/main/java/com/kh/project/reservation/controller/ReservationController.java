@@ -19,6 +19,11 @@ import com.kh.project.reservation.vo.MovieTimeVO;
 import com.kh.project.reservation.vo.ReservationVO;
 import com.kh.project.reservation.vo.TheaterVO;
 
+//import 확인
+import javax.mail.internet.MimeMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+
 @Controller
 @RequestMapping("/reservation")
 public class ReservationController {
@@ -141,10 +146,17 @@ public class ReservationController {
 		}
 		
 		//카피
-		@GetMapping("/copy")
+		@GetMapping("/write")
 		public String copy() {
 			
-			return "reservation/seat";
+			return "reservation/write";
 		}
+		
+		
+		
+		
+		
+		
+		
 		
 }

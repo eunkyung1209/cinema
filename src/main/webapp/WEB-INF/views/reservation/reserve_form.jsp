@@ -180,7 +180,8 @@ padding-left: 20px;
 </head>
 <body>
 
-<a href="/reservation/copy">예시</a>
+<a href="/reservation/write">예시</a>
+
 
 <div class="row bodyDiv justify-content-center">
 	<div class="col-12">
