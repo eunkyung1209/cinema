@@ -362,14 +362,26 @@ button:hover{
 						</button> -->
 						
 
-						<input type="submit" class="common_btn" aria-hidden="true" id="reg_submit" value="회원가입" >
+						<input type="submit" class="common_btn" aria-hidden="true" id="reg_submit" value="회원가입" onclick="joinMenber();">
 					
 					</div>
 				</div>
 			</div>
 	</div>
 </div>
+
 </form>
+
+
+<script type="text/javascript">
+
+jQuery('#joinForm').submit(
+	    function(){
+	            alert('✨✨✨회원가입이 완료되었습니다✨✨✨');
+	    }
+	);
+
+</script>
 
 </body>
 </html>

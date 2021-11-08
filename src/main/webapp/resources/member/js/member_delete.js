@@ -56,10 +56,17 @@ $(document).ready(function(){});
 		 var result = confirm('정말 탈퇴하시나요?');
 		 var id = $('.id').val();
 		 
-		 alert("탈퇴가 취소되었습니다.");
+		 
+		 if(result == false){
+		        
+		        alert("탈퇴가 취소되었습니다.");
+		        
+		     }
 	     
-	     if(result){
+		 else if(result == true){
 	        location.href = '/member/deleteMember?id=' + id;
+	        
+	        alert("탈퇴가 완료되었습니다.");
 	        
 	     }
 	  };
