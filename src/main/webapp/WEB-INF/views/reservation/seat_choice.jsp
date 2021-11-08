@@ -154,7 +154,14 @@ ul{
 											</div>
 											<div class="col-6">
 												<div class="m-3">
-													<input class="common_btn" type="button" onclick="seatClick('${mvInfo.mvTimeCode}');" value="결제진행">
+													<c:choose>
+														<c:when test="${sessionScope.loginInfo != null}">
+															<input class="common_btn" type="button" onclick="seatClick('${mvInfo.mvTimeCode}');" value="결제진행">
+														</c:when>
+														<c:otherwise>
+															<input class="common_btn" type="button" onclick="goLoginAlert();" value="결제진행">
+														</c:otherwise>
+													</c:choose>
 												</div> 
 											</div>
 										</div>
@@ -253,8 +260,14 @@ ul{
     }
     
     function seatClick(mvTimeCode) {
-        location.href = '/reservation/payMent?mvTimeCode=' + mvTimeCode + '&seatNames=' + selectedSeats;
+    	var seatCnt = $('#seatCnt').val();
+    	
+        location.href = '/reservation/payMent?mvTimeCode=' + mvTimeCode + '&seatCnt=' + seatCnt + '&seatName=' + selectedSeats;
 	}
+    
+    goLoginAlert = function(){
+    	alert('로그인이 필요한 기능입니다.\n로그인하고 이용해주세요!');
+    }
     
 
     function mapping(input, i, j) {

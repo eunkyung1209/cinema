@@ -20,6 +20,8 @@ public class MovieTimeVO {
         private String attachedImgName;
         private int seatLeft;
         
+        private int age;
+        private String loc;
         
         
 		public int getSeatLeft() {
@@ -119,7 +121,19 @@ public class MovieTimeVO {
 		}
 		public void setTitle(String title) {
 			this.title = title;
-		} 
+		}
+		public int getAge() {
+			return age;
+		}
+		public void setAge(int age) {
+			this.age = age;
+		}
+		public String getLoc() {
+			return loc;
+		}
+		public void setLoc(String loc) {
+			this.loc = loc;
+		}
 	
 	    
 	    

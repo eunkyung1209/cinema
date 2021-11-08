@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.project.common.util.NowDateTime;
+import com.kh.project.member.service.MemberService;
+import com.kh.project.member.vo.MemberVO;
 import com.kh.project.movie.vo.MovieVO;
 import com.kh.project.reservation.service.ReservationService;
 import com.kh.project.reservation.vo.MovieTimeVO;
@@ -21,6 +23,8 @@ import com.kh.project.reservation.vo.TheaterVO;
 
 //import 확인
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
@@ -31,6 +35,9 @@ public class ReservationController {
 	
 	@Resource(name = "reservationService")
 	private ReservationService reservationService;
+	
+	@Resource(name = "memberService")
+	private MemberService memberservice;
 	
 	//예매하기 페이지로 이동
 	@GetMapping("/goReserve")
@@ -135,12 +142,22 @@ public class ReservationController {
 		
 		//결제페이지로 이동
 		@GetMapping("/payMent")
-		public String goPayMent(ReservationVO reservationVO, Model model, MovieTimeVO movieTimeVO) {
+		public String goPayMent(Model model, MovieTimeVO movieTimeVO, ReservationVO reservationVO, HttpSession session, MemberVO memberVO) {
 			//좌석이름 배열 잘 넘어오나 확인!
-			System.out.println("!!!!!!!!!!!!!!!!" + reservationVO.getSeats());
+			System.out.println("!!!!!!!!!!!!!!!!" + reservationVO.getSeatName());
 			
 			//선택한 상영시간표 정보
-			//model.addAttribute("mvInfo", attributeValue)
+			model.addAttribute("mvtInfo", reservationService.selectReservationInfoBeforePay(movieTimeVO));
+			
+			//선택한 좌석 정보
+			model.addAttribute("seatInfo", reservationVO);
+			
+			//로그인 정보에서 id값 가져오기
+			String id = ((MemberVO)(session.getAttribute("loginInfo"))).getId();
+			memberVO.setId(id);
+			
+			//예매할 회원 정보
+			model.addAttribute("memberInfo", memberservice.selectMemberDetail(memberVO));
 			
 			return "reservation/payment_page";
 		}

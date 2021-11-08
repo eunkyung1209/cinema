@@ -34,4 +34,9 @@ public interface ReservationService {
 	
 	
 	
+	
+	
+	//결제 페이지로 이동할 때) 예매할 티켓과 관련된 정보 : 상영시간 테이블
+	MovieTimeVO selectReservationInfoBeforePay(MovieTimeVO movieTimeVO);
+	
 }

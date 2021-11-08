@@ -55,18 +55,26 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 	
 	//상영등록) 사용가능한 상영관 조회
-		@Override
-		public List<TheaterVO> selectUseTheaterAjax(String areaName) {
-			return sqlSession.selectList("reservationMapper.selectUseTheaterAjax", areaName);
-		}
+	@Override
+	public List<TheaterVO> selectUseTheaterAjax(String areaName) {
+		return sqlSession.selectList("reservationMapper.selectUseTheaterAjax", areaName);
+	}
 
-		//좌석을 선택할 때) 예매한 영화 정보
-		@Override
-		public MovieTimeVO selectMovieInfoForSeat(MovieTimeVO movieTimeVO) {
-			return sqlSession.selectOne("reservationMapper.selectMovieInfoForSeat", movieTimeVO);
-		}
-
-		
+	//좌석을 선택할 때) 예매한 영화 정보
+	@Override
+	public MovieTimeVO selectMovieInfoForSeat(MovieTimeVO movieTimeVO) {
+		return sqlSession.selectOne("reservationMapper.selectMovieInfoForSeat", movieTimeVO);
+	}
+	
+	
+	
+	
+	
+	//결제 페이지로 이동할 때) 예매할 티켓과 관련된 정보 : 상영시간 테이블
+	@Override
+	public MovieTimeVO selectReservationInfoBeforePay(MovieTimeVO movieTimeVO) {
+		return sqlSession.selectOne("reservationMapper.selectReservationInfoBeforePay", movieTimeVO);
+	}
 	
 	
 }

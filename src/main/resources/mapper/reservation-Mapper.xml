@@ -5,6 +5,13 @@
 	
 	<!-- 예매 -->
 	<resultMap type="com.kh.project.reservation.vo.ReservationVO" id="reservation">
+		<id column="RES_CODE"			property="resCode"/>
+		<result column="ID" 			property="id"/>
+		<result column="MV_TIME_CODE" 	property="mvTimeCode"/>
+		<result column="SEAT_NAME" 		property="seatName"/>
+		<result column="SEAT_CNT" 		property="seatCnt"/>
+		<result column="RE_DATE" 		property="reDate"/>
+		<result column="TOTAL_PRICE" 	property="totalPrice"/>
 	</resultMap>
 	
 	<!-- 영화관 -->
@@ -214,9 +221,26 @@
 	
 	
 	
-	<!-- 결제 페이지로 이동할 때) 예매할 티켓과 관련된 정보 : 상영시간 테이블, 좌석..? -->
-	<select id="">
-		
+	<!-- 결제 페이지로 이동할 때) -->
+	<!-- 예매할 티켓과 관련된 정보 : 상영시간 테이블 -->
+	<select id="selectReservationInfoBeforePay" resultMap="movieTime">
+		SELECT MV_TIME_CODE
+			, ATTACHED_IMG_NAME
+			, AGE
+			, TITLE
+			, LOC
+			, A.AREA_NAME
+			, THEATER_NAME
+			, TO_CHAR(SCREEN_DAY, 'YYYY-MM-DD') AS SCREEN_DAY
+			, SCREEN_TIME
+			, SCREEN_END_TIME
+		FROM OISONE_MOVIE_TIME MT, OISONE_MOVIE M, OISONE_MOVIE_IMG MI, OISONE_AREA A, OISONE_THEATER T
+		WHERE M.MV_CODE = MI.MV_CODE
+        AND IS_POSTER = 'Y'
+		AND MV_TIME_CODE = #{mvTimeCode}
+		AND MT.AREA_NAME = A.AREA_NAME
+		AND A.AREA_NAME = T.AREA_NAME
+		AND MT.THEATER_CODE = T.THEATER_CODE
 	</select>
 	
 	
