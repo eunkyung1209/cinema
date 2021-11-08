@@ -102,6 +102,7 @@ public class AdminController {
 		//모든 첨부파일 정보가 들어갈 공간
 		List<MovieImgVO> imgList = new ArrayList<>();
 		
+		
 		//파일 첨부
 		while(inputNames.hasNext()) {	//input 태그의 개수만큼 반복(file, files - 2번)
 			//input 태그의 name 속성 값

@@ -2,7 +2,7 @@ package com.kh.project.common.vo;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class EmailDTO {
+public class MailVo {
 	    private String senderName;    //발신자 이름
 	    private String senderMail;    //발신자 이메일 주소
 	    private String receiveMail;    //수신자 이메일 주소
@@ -11,7 +11,42 @@ public class EmailDTO {
 	    private MultipartFile files;	//파일 첨부
 	    
 	    
-	    public MultipartFile getFiles() {
+	    private String fromMail;
+	    private String toMail;
+	    private String title;
+	    private String content;
+	    
+	    
+	    
+	    
+	    public String getFromMail() {
+			return fromMail;
+		}
+		public void setFromMail(String fromMail) {
+			this.fromMail = "OISONE_CINEMA@gmail.com";
+		}
+		public String getToMail() {
+			return toMail;
+		}
+		public void setToMail(String toMail) {
+			this.toMail = toMail;
+		}
+		public String getTitle() {
+			return title;
+		}
+		public void setTitle(String title) {
+			this.title = title;
+		}
+		public String getContent() {
+			return content;
+		}
+		public void setContent(String content) {
+			this.content = content;
+		}
+		public void setMessage(String message) {
+			this.message = message;
+		}
+		public MultipartFile getFiles() {
 			return files;
 		}
 		public void setFiles(MultipartFile files) {
