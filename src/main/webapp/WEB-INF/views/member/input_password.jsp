@@ -98,7 +98,7 @@ select {
 		<div class="row justify-content-center">
 			<div class="col-7">
 				<div class="col-3 subjectDiv">
-					<h5>나의 비밀번호 변경</h5>
+					<h5>비밀번호 변경</h5>
 				</div>
 			</div>
 		</div>
@@ -107,7 +107,7 @@ select {
 		<div style="height: 60px;"></div>
 
 
-<form action="/member/updatePW" method="post" ><!-- id="joinForm" -->
+<form action="/member/updatePW" method="post" id="pwForm" ><!-- id="joinForm" -->
 <input type="hidden" value="${sessionScope.loginInfo.id }" name="id"> 
 <input type="hidden" value="${sessionScope.loginInfo.nickName }" name="nickName"> 
 <div class="row bodyDiv" >
@@ -138,13 +138,13 @@ select {
 								<!-- '필수입력' 복사하여 사용 ->  <span class="redStar">*</span> -->
 								<tbody>
 								
-									<tr>
-										<td >현재 비밀번호 <span class="redStar">*</span></td>
-										<td >${memberDetail.pw} </td>
-									</tr>
+									<%-- <tr>
+										<td ><span style="color: red;"> 현재 비밀번호 </span></td>
+										<td ><span style="color: red;"> ${sessionScope.loginInfo.pw } </span></td>
+									</tr> --%>
 									
 									<tr>
-										<td ><label for="pw">비밀번호</label><span class="redStar">*</span></td>
+										<td ><label for="pw">변경 비밀번호</label><span class="redStar">*</span></td>
 										<td >
 											<input type="password" id="pw" name="pw" class="joinInput1"  placeholder=" password" required>
 											
@@ -152,7 +152,7 @@ select {
 										</td>
 									</tr>
 									<tr>
-										<td ><label for="pw2">비밀번호 확인</label><span class="redStar">*</span></td>
+										<td ><label for="pw2">변경 비밀번호 확인</label><span class="redStar">*</span></td>
 										<td >
 											<input type="password" id="pw2" name="pw2" class="joinInput1" placeholder=" confirm password" required>
 											
@@ -182,6 +182,16 @@ select {
 	</div>
 </div>
 </form>
+
+<script type="text/javascript">
+
+jQuery('#pwForm').submit(
+	    function(){
+	            alert('비밀번호가 변경되었습니다.');
+	    }
+	);
+
+</script>
 
 </body>
 </html>

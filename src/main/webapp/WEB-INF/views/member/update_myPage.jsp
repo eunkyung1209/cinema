@@ -59,7 +59,7 @@ select {
 /* *필수입력 문장  */
 .needInput{
 	font-size: 13px;
-	margin-left: 61%;
+	margin-left: 65%;
 }
  
  
@@ -101,7 +101,7 @@ select {
 		<div class="row justify-content-center">
 			<div class="col-7">
 				<div class="col-3 subjectDiv">
-					<h5>나의 정보수정</h5>
+					<h5>정보수정</h5>
 				</div>
 			</div>
 		</div>
@@ -110,7 +110,7 @@ select {
 		<div style="height: 60px;"></div>
 
 
-<form action="/member/updateMyPage" method="post" ><!-- id="joinForm" -->
+<form action="/member/updateMyPage" method="post" id="updateForm" ><!-- id="joinForm" -->
 <input type="hidden" value="${sessionScope.loginInfo.id }" name="id"> 
 <input type="hidden" value="${sessionScope.loginInfo.nickName }" name="nickName"> 
 <div class="row bodyDiv" >
@@ -273,6 +273,17 @@ select {
 	</div>
 </div>
 </form>
+
+
+<script type="text/javascript">
+
+jQuery('#updateForm').submit(
+	    function(){
+	            alert('정보수정이 완료되었습니다.');
+	    }
+	);
+
+</script>
 
 </body>
 </html>

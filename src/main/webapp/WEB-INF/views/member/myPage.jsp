@@ -438,10 +438,10 @@ select {
 									</div>
 									<!-- 소제목 -->
 									<div style="font-size: 14px; text-align:left; padding-left: 20px;">
-										<a href="/member/memberDetail?id=${sessionScope.loginInfo.id }">개인정보 상세보기</a>
+										<a href="/member/memberDetail?id=${sessionScope.loginInfo.id }" style="color: black;">개인정보 상세보기</a>
 										<br>
 										<br>
-										<a href="/member/updateMyPage?id=${sessionScope.loginInfo.id }">개인정보 수정</a>
+										<a href="/member/updateMyPage?id=${sessionScope.loginInfo.id }" style="color: black;">개인정보 수정</a>
 										
 										
 										<br>
@@ -449,7 +449,7 @@ select {
 										<a onclick="">E-mail/SMS 수신설정</a>
 										<br>
 										<br>
-											<a href="/member/updatePW?id=${sessionScope.loginInfo.id }">비밀번호 변경</a>
+											<a href="/member/updatePW?id=${sessionScope.loginInfo.id }" style="color: black;">비밀번호 변경</a>
 										<br>
 										<br>
 										<input type="hidden" value="${sessionScope.loginInfo.id }" class="id"> 
