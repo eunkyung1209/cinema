@@ -57,14 +57,12 @@ select {
 
 /*검색 버튼 기본폼 */
 .common_btn{
-	background-color: #4c4747;
 	color: white;
 	width: 80px;
 	font-size: 11px;
 }
 .common_btn:hover{
 	font-size: 11px;
-	background-color: #5d5959;
 	color: white;
 	width: 80px;
 }
@@ -187,7 +185,7 @@ select {
 				<!-- 기본 버튼 클래스명: common_btn -->
 				<div class="row justify-content-center">
 					<div class="col-8" style="text-align: center;">
-						<input class="common_btn" type="button" value="뒤로가기" onclick="location.href='/admin/adminMemberList';">
+						<input class="common_btn" type="button" value="뒤로가기" onclick="location.href='/member/myPage?id=${sessionScope.loginInfo.id }&nickName=${sessionScope.loginInfo.nickName }';">
 					</div>
 				</div>
 			</div>

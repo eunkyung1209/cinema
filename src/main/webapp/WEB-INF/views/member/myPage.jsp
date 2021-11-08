@@ -10,7 +10,7 @@
 
 <!-- 스크립트 연결 -->
 
-<script type="text/javascript" src="/resources/member/js/member_delete.js?ver=21"></script>
+<script type="text/javascript" src="/resources/member/js/member_delete.js?ver=22"></script>
 
 <style type="text/css">
 

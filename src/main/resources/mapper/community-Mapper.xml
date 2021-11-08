@@ -91,6 +91,7 @@ WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 			, IS_SECRET
 			, ROWNUM AS ROW_NUM
 		FROM OISONE_COMMUNITY
+		WHERE WRITER = #{nickName}
 		ORDER BY CREATE_DATE DESC
 	)
 	WHERE ROWNUM &lt;= 4
