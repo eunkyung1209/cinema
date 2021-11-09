@@ -249,6 +249,53 @@
 		AND MT.THEATER_CODE = T.THEATER_CODE
 	</select>
 	
+	<!-- 예매내역 등록 -->
+	<insert id="insertReservationAjax">
+		INSERT INTO OISONE_RESERVATION (
+			RES_CODE
+			, ID
+			, MV_TIME_CODE
+			, SEAT_NAME
+			, SEAT_CNT
+			, TOTAL_PRICE
+		) VALUES (
+			(SELECT 'RES_'||TO_CHAR(TO_DATE(#{screenDay}), 'YYMMDD')||'_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(RES_CODE, 12, 3))), 0)+1 , 3, 0)
+			FROM OISONE_RESERVATION WHERE MV_TIME_CODE = #{mvTimeCode})
+			, #{id}
+			, #{mvTimeCode}
+			, #{seatName}
+			, #{seatCnt}
+			, #{totalPrice}
+		)
+	</insert>
+	
+	<!-- 예매내역 상세 조회 -->
+	<select id="selectReservationDetail" resultMap="reservation">
+		SELECT RES_CODE
+			, R.MV_TIME_CODE
+			, ATTACHED_IMG_NAME
+			, AGE
+			, TITLE
+			, LOC
+			, A.AREA_NAME
+			, THEATER_NAME
+			, TO_CHAR(SCREEN_DAY, 'YYYY-MM-DD') AS SCREEN_DAY
+			, SCREEN_TIME
+			, SCREEN_END_TIME
+            , SEAT_NAME
+            , R.SEAT_CNT
+			, TOTAL_PRICE
+		FROM OISONE_RESERVATION R, OISONE_MOVIE_TIME MT, OISONE_MOVIE M, OISONE_MOVIE_IMG MI, OISONE_AREA A, OISONE_THEATER T
+		WHERE R.MV_TIME_CODE = MT.MV_TIME_CODE
+		AND M.MV_CODE = MI.MV_CODE
+        AND IS_POSTER = 'Y'
+		AND R.MV_TIME_CODE = #{mvTimeCode}
+		AND MT.AREA_NAME = A.AREA_NAME
+		AND A.AREA_NAME = T.AREA_NAME
+		AND MT.THEATER_CODE = T.THEATER_CODE
+        AND R.ID = #{id}
+	</select>
+	
 	
 	
 </mapper>

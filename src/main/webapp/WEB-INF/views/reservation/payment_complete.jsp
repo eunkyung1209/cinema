@@ -145,56 +145,16 @@ input[type="number"]{
 						</div>
 						<!-- 내용 -->
 						<div class="row justify-content-center">
-							<!-- 사용 가능한 적립금 정보 -->
-							<div class="row" style="padding: 25px; border-bottom: 1px solid gray;">
-								<!-- 적립금 -->
-								<div class="row">적립금 사용</div>
+							<!-- 결제&예매 정보 -->
+							<div class="col-8">
+								<!-- 결제 완료 안내 -->
+								<div class="row">
+									누구 회원님, 결제가 완료되었습니다.
+								</div>
 								<div class="row payDiv">
-									<div class="col-6">사용할 적립금</div>
-									<div class="col-6" style="padding-top: 5px;">
-										<input type="number" name="savedMoney" id="savedMoney" min="0" max="2000" value="0"> 원
-									</div><!-- 적립금 최댓값 제한 - 데이터로 수정 -->
+									<div class="col-6"></div>
 								</div>
 							</div>
-							<!-- 적립될 포인트 정보 -->
-							<div class="row" style="padding: 25px; border-bottom: 1px solid gray;">
-								<!-- 적립 포인트 -->
-								<div class="row">등급 포인트 적립</div>
-								<div class="row payDiv">
-									<div class="col-6">적립될 포인트</div>
-									<div class="col-6">0 포인트</div><!-- 적립금 - 데이터로 수정 -->
-								</div>
-							</div>
-							<!-- 결제 정보 -->
-							<div class="row" style="padding: 25px; padding-bottom: 15px;">
-								<!-- 결제 요금 -->
-								<div class="row">결제</div>
-								<div class="row payInfoDiv justify-content-center">
-									<div class="col-4">상품 금액</div>
-									<div class="col-4">10,000 원</div><!-- 상품 금액 : (좌석수 X 10,000) - 데이터로 수정 -->
-								</div>
-								<div class="row payInfoDiv justify-content-center">
-									<div class="col-4">할인 금액</div>
-									<div class="col-4">0 원</div><!-- 할인 금액 : 사용할 적립금 금액 - 데이터로 수정 -->
-								</div>
-								<div class="row payInfoDiv justify-content-center" style="margin-bottom: 10px;">
-									<div class="col-4">결제 금액</div>
-									<div class="col-4">10,000 원</div><!-- 결제 금액 : (상품 금액 - 할인 금액) - 데이터로 수정 -->
-								</div>
-							</div>
-							<!-- 결제 버튼 -->
-							<!-- <a href="#" style="height: 100%;">
-							<span style="background-color: #ed7d31; color: white;">
-								<input type="button" value="결제하기">
-								결제하기
-							</span>
-							</a> -->
-							<div class="row" style="padding: 25px; padding-top: 0;">
-								<input type="button" class="common_btn" value="결제하기" style="width: 100%;">
-							</div>
-							<!-- <div class="row payBtnDiv" onclick="pay();">
-								결제하기
-							</div> -->
 						</div>
 					</div>
 					

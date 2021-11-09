@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.project.movie.vo.MovieVO;
 import com.kh.project.reservation.vo.MovieTimeVO;
+import com.kh.project.reservation.vo.ReservationVO;
 import com.kh.project.reservation.vo.TheaterVO;
 
 @Service("reservationService")
@@ -74,6 +75,12 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public MovieTimeVO selectReservationInfoBeforePay(MovieTimeVO movieTimeVO) {
 		return sqlSession.selectOne("reservationMapper.selectReservationInfoBeforePay", movieTimeVO);
+	}
+	
+	//예매내역 등록
+	@Override
+	public int insertReservationAjax(ReservationVO reservationVO) {
+		return sqlSession.insert("reservationMapper.insertReservationAjax", reservationVO);
 	}
 	
 	

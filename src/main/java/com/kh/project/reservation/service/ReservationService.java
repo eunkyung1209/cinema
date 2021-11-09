@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kh.project.movie.vo.MovieVO;
 import com.kh.project.reservation.vo.MovieTimeVO;
+import com.kh.project.reservation.vo.ReservationVO;
 import com.kh.project.reservation.vo.TheaterVO;
 
 public interface ReservationService {
@@ -38,5 +39,8 @@ public interface ReservationService {
 	
 	//결제 페이지로 이동할 때) 예매할 티켓과 관련된 정보 : 상영시간 테이블
 	MovieTimeVO selectReservationInfoBeforePay(MovieTimeVO movieTimeVO);
+	
+	//예매내역 등록
+	int insertReservationAjax(ReservationVO reservationVO);
 	
 }
