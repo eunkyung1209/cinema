@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/reservation/js/payment_page.js?ver=8"></script>
+<script type="text/javascript" src="/resources/reservation/js/payment_page.js?ver=9"></script>
 
 <!-- 결제 아임포트 연동 -->
 <!-- jQuery -->
@@ -155,7 +155,13 @@ input[type="number"]{
 <body>
 <div class="row bodyDiv justify-content-center">
 	<div class="col-12">
-		<form method="post" onsubmit="" novalidate>
+		<form id="paymentForm" onsubmit="" novalidate>
+			<input type="hidden" id="resCode" name="resCode">
+			<input type="hidden" name="id" value="${sessionScope.loginInfo.id }">
+			<input type="hidden" id="mvTimeCode" name="mvTimeCode" value="${mvtInfo.mvTimeCode }">
+			<input type="hidden" name="seatName" value="${seatInfo.seatName }">
+			<input type="hidden" name="seatCnt" value="${seatInfo.seatCnt }">
+			<input type="hidden" id="screenDay" name="screenDay" value="${mvtInfo.screenDay }">
 			
 			<!-- 예매하기 영역 -->
 			<div class="row justify-content-center">
@@ -204,7 +210,7 @@ input[type="number"]{
 								<div class="row justify-content-center" style="padding: 25px; border-bottom: 1px solid gray;">
 									<!-- 포스터 -->
 									<div class="row moviePosterDiv">
-										<img alt="" src="/resources/images/movie/${mvtInfo.attachedImgName }"><!-- 영화 포스터 - 데이터로 수정 -->
+										<img alt="" src="/resources/images/movie/${mvtInfo.attachedImgName }">
 									</div>
 									<!-- 예매 상세 -->
 									<div class="row reserveInfoDiv">
@@ -221,8 +227,8 @@ input[type="number"]{
 											</c:if>
 											<c:if test="${mvtInfo.age eq 0}">
 												<img height="25px;" src="/resources/images/reservation/전체.png">
-											</c:if><!-- 연령 로고 - 데이터로 수정 -->
-											${mvtInfo.title } <!-- 영화 제목 - 데이터로 수정 -->
+											</c:if>
+											${mvtInfo.title }
 											<input type="hidden" id="title" name="title" value="듄">
 											</h5>
 										</div>
@@ -236,25 +242,18 @@ input[type="number"]{
 													<td>영화관</td>
 													<td>
 														${mvtInfo.loc } ${mvtInfo.areaName } ${mvtInfo.theaterName }
-														<!-- <input type="hidden" id="loc" name="loc" value="울산">
-														<input type="hidden" id="areaName" name="areaName" value="삼산점">
-														<input type="hidden" id="theaterName" name="theaterName" value="1관"> -->
 													</td>
 												</tr>
 												<tr>
 													<td>일시</td>
 													<td>
 														${mvtInfo.screenDay }&nbsp;&nbsp;${mvtInfo.screenTime } ~ ${mvtInfo.screenEndTime }
-														<!-- <input type="hidden" id="screenDay" name="screenDay" value="2021-11-08">
-														<input type="hidden" id="screenTime" name="screenTime" value="13:00">
-														<input type="hidden" id="screenEndTime" name="screenEndTime" value="15:10"> -->
 													</td>
 												</tr>
 												<tr>
 													<td>인원</td>
 													<td>
 														${seatInfo.seatCnt } 명
-														<!-- <input type="hidden" id="" name="" value=""> -->
 													</td>
 												</tr>
 											</table>
@@ -294,8 +293,8 @@ input[type="number"]{
 									<!-- 적립금 -->
 									<div class="row">적립금 정보</div>
 									<div class="row pointInfoDiv">
-										<div class="col-6">${memberInfo.name }님의 적립금</div><!-- 이름 - 데이터로 수정 -->
-										<div class="col-6">${memberInfo.savedMoney } 원</div><!-- 적립금 - 데이터로 수정 -->
+										<div class="col-6">${memberInfo.name }님의 적립금</div>
+										<div class="col-6">${memberInfo.savedMoney } 원</div>
 									</div>
 								</div>
 								<!-- 등급 정보 -->
@@ -303,7 +302,7 @@ input[type="number"]{
 									<!-- 등급 -->
 									<div class="row">등급 정보</div>
 									<div class="row pointInfoDiv">
-										<div class="col-6">${memberInfo.name }님의 등급</div><!-- 이름 - 데이터로 수정 -->
+										<div class="col-6">${memberInfo.name }님의 등급</div>
 										<div class="col-6">
 											<c:if test="${memberInfo.point >= 0 and memberInfo.point <= 100 }">
 											 	<span style="color: green; font-weight: bold;">그린</span>
@@ -321,7 +320,7 @@ input[type="number"]{
 												<span style="color: #ed7d31 font-weight: bold;">VVIP</span>
 											</c:if>
 											등급
-										</div><!-- 등급 - 데이터로 수정 -->
+										</div>
 									</div>
 								</div>
 							</div>
@@ -354,7 +353,7 @@ input[type="number"]{
 									<div class="row">등급 포인트 적립</div>
 									<div class="row payDiv">
 										<div class="col-6">적립될 포인트</div>
-										<div class="col-6">${seatInfo.seatCnt * 10 } 포인트</div><!-- 적립금 - 데이터로 수정 -->
+										<div class="col-6">${seatInfo.seatCnt * 10 } 포인트</div>
 									</div>
 								</div>
 								<!-- 결제 정보 -->
@@ -363,7 +362,7 @@ input[type="number"]{
 									<div class="row">결제</div>
 									<div class="row payInfoDiv justify-content-center">
 										<div class="col-4">상품 금액</div>
-										<div class="col-4"><span id="ticketPrice"><fmt:formatNumber pattern="#,##0" value="10000"/></span> 원</div><!-- 상품 금액 : (좌석수 X 10,000) - 데이터로 수정 -->
+										<div class="col-4"><span id="ticketPrice"><fmt:formatNumber pattern="#,##0" value="${seatInfo.seatCnt * 10000 }"/></span> 원</div><!-- 상품 금액 : (좌석수 X 10,000) - 데이터로 수정 -->
 									</div>
 									<div class="row payInfoDiv justify-content-center">
 										<div class="col-4">할인 금액</div>
@@ -371,7 +370,10 @@ input[type="number"]{
 									</div>
 									<div class="row payInfoDiv justify-content-center" style="margin-bottom: 10px;">
 										<div class="col-4">결제 금액</div>
-										<div class="col-4"><span id="totalPrice"><fmt:formatNumber pattern="#,##0" value="10000"/></span> 원</div><!-- 결제 금액 : (상품 금액 - 할인 금액) - 데이터로 수정 -->
+										<div class="col-4">
+											<span id="totalPrice"><fmt:formatNumber pattern="#,##0" value="${seatInfo.seatCnt * 10000 }"/></span> 원
+											<input type="hidden" name="totalPrice" class="totalPrice" value="${seatInfo.seatCnt * 10000 }">
+										</div><!-- 결제 금액 : (상품 금액 - 할인 금액) - 데이터로 수정 -->
 									</div>
 								</div>
 								<!-- 결제 버튼 -->
@@ -395,17 +397,13 @@ input[type="number"]{
 <script>
 	//class가 btn_payment인 태그를 클릭했을 때 작동
 	$(".btn_payment").click(function() {
-		//필요한 데이터 가져옴
-		var mvTitle = $('#title').val();
-		
 		//결제 금액
-		var totalPrice = $('#totalPrice').text();
-		totalPrice = totalPrice.replace(/[^\d]+/g, "");
-		//console.log(totalPrice);
+		var totalPrice = $('.totalPrice').val();
 		
 		//가맹점 식별코드
 	  	IMP.init('imp42711377');
 		
+		//IMP.request_pay(param, callback) 호출
 	  	//결제시 전달되는 정보
 		IMP.request_pay({
 				//KG이니시스 - 필수
@@ -415,31 +413,81 @@ input[type="number"]{
 				//예매번호 - 필수
 			    merchant_uid : 'merchant_' + new Date().getTime(),
 				//결제창에 삽입할 상품명 : mvTitle
-			    name : 'OISONE: ${mvtInfo.title }',
+			    name : 'OISONE CINEMA: ${mvtInfo.title }',
 			    //결제 금액 - 필수 : totalPrice
-			    amount : 50,
+			    amount : totalPrice,
 			    //회원 이름
 			    buyer_name : '${memberInfo.name }',
 			    //회원 연락처 - 필수
 			    buyer_tel : '${memberInfo.tell }',
 			    //회원 이메일
 			    buyer_email : '${memberInfo.email }',
-			}, function(rsp) {
-				var result = '';
+			}, function(rsp) {	//callback
+				//var result = '';
 			    if ( rsp.success ) {	//결제 성공 시
-			    	//결제 성공 시 얼럿창
+			    	//결제 성공 시 얼럿창 내용
 			        var msg = '결제가 완료되었습니다.';
 			        //msg += '고유ID : ' + rsp.imp_uid;
 			        //msg += '상점 거래ID : ' + rsp.merchant_uid;
 			        //msg += '결제 금액 : ' + rsp.paid_amount;
 			        //msg += '카드 승인번호 : ' + rsp.apply_num;
 			        
+			        //다음 예매코드 조회 시 필요한 데이터
+			        var mvTimeCode = $('#mvTimeCode').val();
+			        var screenDay = $('#screenDay').val();
+			        
+			        //결제 후 다음 예매코드 조회 -> ajax 사용
+					$.ajax({
+				        url: '/reservation/selectNextResCodeAjax', //요청경로
+				        type: 'get',
+				        data: {
+				        		'mvTimeCode':mvTimeCode,
+				        		'screenDay':screenDay
+				        		},
+				        async: false,	//동기.. 순차적으로 진행하도록..
+				        success: function(result) {
+				        	//ajax 실행 성공 시 실행되는 구간
+				        	alert(result);
+				        	
+				        	//input태그에 예매코드 값 설정
+							$('#resCode').val(result);
+				        },
+				        error: function(){
+				        	//ajax 실행 실패 시 실행되는 구간
+				        	alert('다음 코드 조회 실패');
+				        }
+					});
+			        
+			        //예매내역에 넣을 데이터들 세팅
+			        var paymentForm = $('#paymentForm').serialize(); //serialize() : 입력된 모든 element를 문자열의 데이터에 serialize 한다.
+			        
+			        //예매코드 데이터
+			        var resCode = $('#resCode').val();
+			        
+			        //결제 후 예매내역 insert 하기 -> ajax 사용
+					$.ajax({
+				        url: '/reservation/insertReservationAjax', //요청경로
+				        type: 'post',
+				        data: paymentForm, //필요한 데이터
+				        async: false,	//동기.. 순차적으로 진행하도록..
+				        success: function(result) {
+				        	//ajax 실행 성공 시 실행되는 구간
+				        	alert(msg);
+							
+					        location.href = '/reservation/payComplete?resCode=' + resCode;
+				        },
+				        error: function(){
+				        	//ajax 실행 실패 시 실행되는 구간
+				        	alert('디비 입력 실패');
+				        }
+					});
+			        
 			        //결제 후 페이지 이동 O
 			        //result ='0';
-			        location.href= $.getContextPath()+"/Cart/Success";
 			    } else {				//결제 실패 시
 			    	//결제 실패 시 얼럿창
-			        var msg = '결제에 실패하였습니다.';
+			    	alert('결제에 실패하였습니다.');
+			        //var msg = '결제에 실패하였습니다.';
 			        //msg += '에러내용 : ' + rsp.error_msg;
 			        
 			        //결제 후 페이지 이동 X
@@ -450,7 +498,7 @@ input[type="number"]{
 			    //}
 			    
 			    //결제 결과 얼럿창
-			    alert(msg);
+			    //alert(msg);
 			});
 	});
 </script>

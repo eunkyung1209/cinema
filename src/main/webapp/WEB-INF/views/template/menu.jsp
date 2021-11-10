@@ -12,6 +12,8 @@
 <title>Insert title here</title>
 
 <script type="text/javascript" src="/resources/member/js/input_login.js?ver=19"></script>
+<!-- 슬라이드 -->
+<link  rel="stylesheet"  href="https://unpkg.com/swiper@7/swiper-bundle.min.css?ver=1" />
 
 <style type="text/css">
 
@@ -122,8 +124,15 @@ a:hover {
 
 }
 
-
-
+.bigSizeFont{
+	font-size: 14px;
+	font-weight: bold;
+}
+.smallSizeFont{
+	font-size: 13px;
+	margin-left: 25px;
+	
+}
 
 
 
@@ -224,7 +233,8 @@ a:hover {
 							<span data-bs-toggle="modal" data-bs-target="#loginModal" class="loginDiv">
 								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ed7d31" class="bi bi-person-fill" viewBox="0 0 16 16">
 									<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-								</svg> 마이페이지
+								</svg>
+								마이페이지
 							</span>
 						</c:if>
 						
@@ -277,7 +287,18 @@ a:hover {
 				            </a>
 				            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
 				            	<li><a class="dropdown-item" href="/reservation/goReserve">예매하기</a></li>
-				             	<li><a class="dropdown-item" href="#">Another action</a></li>
+				            	
+				            	<c:if test="${sessionScope.loginInfo != null}">
+				             		<li><a class="dropdown-item" href="#">나의 예매내역</a></li>
+				             	</c:if>
+				            	<c:if test="${sessionScope.loginInfo == null}">
+				             		<li>
+						            	<span data-bs-toggle="modal" data-bs-target="#loginModal" class="loginDiv">
+						             		<a class="dropdown-item" href="#">나의 예매내역</a>
+						             	</span>
+				             		</li>
+				             	</c:if>
+				             	
 				            	<li>
 				                	<hr class="dropdown-divider">
 				              	</li>
@@ -414,37 +435,199 @@ a:hover {
 	      	</div>
 	   	</div>
 	   
+	   
+	   
+	   
+	   
 	  <!-- 메뉴맵 -->
 		<div class="offcanvas offcanvas-start lineMenuBody" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" >
 		    <div class="offcanvas-header">
-		       	<h5 class="offcanvas-title" id="offcanvasNavbarLabel">MENU MAP</h5>
+		       	<h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="font-weight: bold;">MENU</h5>
+		       	
 		        <button type="button" class="btn-close text-reset" style="background-color: white;" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 		    </div>
+		    
+		    		      <div style="text-align: right; padding-right: 30px;">
+							<c:choose>
+								<c:when test="${not empty sessionScope.loginInfo }">
+										${sessionScope.loginInfo.nickName }님 반갑습니다.
+<!-- 									<a href="/member/logout" >
+										로그아웃
+									</a> -->
+								</c:when>
+								<c:otherwise>
+									<span data-bs-toggle="modal" data-bs-target="#loginModal" >
+										로그인
+									</span>
+									<a href="/member/join" >
+										회원가입
+									</a>
+								</c:otherwise>
+							</c:choose>
+						</div>
+						
+						<div style="height: 10px;"></div>
+		    
+		    	<div class="swiper mainBannerSwiper" style="width: 400px;">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide"><a><img src="/resources/images/main/론_메인2.jpg" width="400px"></img></a></div>
+					<div class="swiper-slide"><a><img src="/resources/images/main/이터널스_메인3.jpg" width="400px"></img></a></div>
+					<div class="swiper-slide"><a><img src="/resources/images/main/메인-귀토.jpg" width="400px"></img></a></div>
+					<div class="swiper-slide"><a><img src="/resources/images/main/메인-매트릭스.jpg" width="400px"></img></a></div>
+					<div class="swiper-slide"><a><img src="/resources/images/main/메인-엔칸토.jpg" width="400px"></img></a></div>
+					<div class="swiper-slide"><a><img src="/resources/images/main/강릉_메인4.jpg" width="400px"></img></a></div>
+					<div class="swiper-slide"><a><img src="/resources/images/main/캅샵_메인5.jpg" width="400px"></img></a></div>
+				</div>
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-pagination"></div>
+			</div>
+		    
+		    
+		    
+		    
+		    
+		    
 		    <div class="offcanvas-body">
-		      	<form class="d-flex" action="#">
-		          	<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-		          	<button class="btn btn-outline-secondary" type="submit">Search</button>
-		        </form>
+	<!-- 	      	<form class="d-flex" action="#">
+		          	<input class="form-control me-2" type="search" placeholder="검색어를 입력해주세요.">
+		          	<button class="btn btn-outline-secondary" type="submit">검색</button>
+		        </form> -->
+		        
+
+	        
+	        <div style="height: 10px;"></div>
+		        
+		        
+		        
 		        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-		          	<li class="nav-item">
+		        
+		          	<!-- <li class="nav-item">
 		            	<a class="nav-link active" aria-current="page" href="/movie/mainPage">Home</a>
-		          	</li>
+		          	</li> -->
+		          	
 		          	<li class="nav-item">
-		            	<a class="nav-link" href="#">Link</a>
+		            	<div class="mypageDiv" style="text-align: center;">
+							<a href="/customer/goCustomer?isNotice=N">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ed7d31" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+									<path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+								</svg> 고객센터
+							</a>
+							&nbsp;&nbsp;
+							<a href="/sample/sample">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ed7d31" class="bi bi-calendar-week-fill" viewBox="0 0 16 16">
+									<path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zM9.5 7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm3 0h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zM2 10.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z"/>
+								</svg> 빠른예매
+							</a>
+							&nbsp;&nbsp;
+							<c:if test="${sessionScope.loginInfo != null}">
+								<a href="/member/myPage?id=${sessionScope.loginInfo.id }&nickName=${sessionScope.loginInfo.nickName }">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ed7d31" class="bi bi-person-fill" viewBox="0 0 16 16">
+										<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+									</svg><span style="font-size: 13px;"> 마이페이지</span>
+								</a>
+							</c:if>
+							<c:if test="${sessionScope.loginInfo == null}">
+								<span data-bs-toggle="modal" data-bs-target="#loginModal" class="loginDiv">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ed7d31" class="bi bi-person-fill" viewBox="0 0 16 16">
+										<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+									</svg> <span style="font-size: 13px;">마이페이지</span>
+								</span>
+							</c:if>
+						</div>
+					
 		          	</li>
-		          	<li class="nav-item dropdown">
-		            	<a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-		              		Dropdown
-		            	</a>
-				       	<ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-				          	<li><a class="dropdown-item" href="#">Action</a></li>
-				            <li><a class="dropdown-item" href="#">Another action</a></li>
-				            <li>
-				              	<hr class="dropdown-divider">
-				            </li>
-				            <li><a class="dropdown-item" href="#">Something else here</a></li>
-				       	</ul>
-		          	</li>
+		          	
+		          	<li><div style="height: 30px;"></div></li>
+		     
+		          	
+		          	
+		          	<li><a class="bigSizeFont">
+		          	
+		          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+					  <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+					</svg>
+		          	
+		          		EVENT / COMMUNITY
+		          	</a></li>
+		          		<li><div style="height: 15px;"></div></li>
+		          	<li><a class="smallSizeFont" href="/event/eventMain">이벤트/행사</a></li>
+		          		<li><div style="height: 10px;"></div></li>
+	              	<li><a class="smallSizeFont" href="/event/eventDate">행사 일정</a></li>
+	              		<li><div style="height: 10px;"></div></li>
+	              	<li><a class="smallSizeFont" href="/community/commuList">커뮤니티 게시판</a></li>
+	              	
+	              	
+	              	<li><div style="height: 30px;"></div></li>
+	              	
+	              	
+	              	<li><a class="bigSizeFont">
+	              	
+	              	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+					  <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+					</svg>
+	              	
+	              		MOVIE
+	              	</a></li>
+	              		<li><div style="height: 15px;"></div></li>
+	              	<li><a class="smallSizeFont" href="/movie/movieList?mvState=Y">현재상영작</a></li>
+	              		<li><div style="height: 10px;"></div></li>
+	            	<li><a class="smallSizeFont" href="/movie/movieList?mvState=N">상영예정작</a></li>
+	              	
+	              	
+	              	<li><div style="height: 30px;"></div></li>
+	              	
+	              	
+	              	<li><a class="bigSizeFont">
+	              	
+	              	 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+					  <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+					</svg>
+	              	
+	              		TICKET
+	              	</a></li>
+	              		<li><div style="height: 15px;"></div></li>
+	              	<li><a class="smallSizeFont" href="/reservation/goReserve">예매하기</a></li>
+	              		<li><div style="height: 10px;"></div></li>
+	              		
+	              	<c:if test="${sessionScope.loginInfo != null}">
+	             		<li><a class="smallSizeFont" href="#">나의 예매내역</a></li>
+	             	</c:if>
+	            	<c:if test="${sessionScope.loginInfo == null}">
+	             		<li>
+			            	<span data-bs-toggle="modal" data-bs-target="#loginModal" class="loginDiv">
+			             		<a class="smallSizeFont" href="#">나의 예매내역</a>
+			             	</span>
+	             		</li>
+	             	</c:if>
+	              	
+	              	
+	              	<li><div style="height: 30px;"></div></li>
+	              	
+	              	
+	              	<li><a class="bigSizeFont">
+	              	
+	              	 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+					  <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+					</svg>
+	              	
+	              		THEATER RENTAL
+	              	</a></li>
+	              		<li><div style="height: 15px;"></div></li>
+              		<li><a class="smallSizeFont" href="/rental/goApplyRental">대관 예약 신청</a></li>
+              			<li><div style="height: 10px;"></div></li>
+	              	<li>
+	              		<c:if test="${sessionScope.loginInfo != null}">
+							<a class="smallSizeFont" href="/rental/selectRentalList?id=${sessionScope.loginInfo.id }">대관 예약 조회</a>
+						</c:if>
+						<c:if test="${sessionScope.loginInfo == null}">
+							<span class="smallSizeFont" data-bs-toggle="modal" data-bs-target="#loginModal" class="loginDiv">대관 예약 조회</span>
+						</c:if>
+	              	</li>
+	              	
+	              	
+		          	
+		          	
 		       	</ul>
 		  	</div>
 		</div>
@@ -619,6 +802,60 @@ a:hover {
   </script>
 		
 		
+		
+
+	<!-- swipe -->
+	
+	<script>
+	var swiper = new Swiper(".mainBannerSwiper", {
+		slidesPerView : 1,
+		spaceBetween : 30,
+		centeredSlides : true,
+		autoplay : {
+			delay : 2500,
+			disableOnInteraction : false,
+		},
+		loop : true,
+		pagination : {
+			el : ".swiper-pagination",
+			clickable : true,
+		},
+		navigation : {
+			nextEl : ".swiper-button-next",
+			prevEl : ".swiper-button-prev",
+		},
+	});
+
+	var swiper = new Swiper(".itemSwiper", {
+		slidesPerView : 1,
+		spaceBetween : 10,
+		autoplay : {
+			delay : 2000,
+			disableOnInteraction : true,
+			loop : true,
+		},
+			loop : true,
+		pagination : {
+			el : ".swiper-pagination",
+			clickable : true,
+		},
+		breakpoints : {
+			640 : {
+				slidesPerView : 2,
+				spaceBetween : 20,
+			},
+			768 : {
+				slidesPerView : 4,
+				spaceBetween : 40,
+			},
+			1024 : {
+				slidesPerView : 5,
+				spaceBetween : 50,
+			},
+		},
+	});
+	</script>
+	
 		
 </div>
 </div>

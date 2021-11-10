@@ -224,11 +224,12 @@ select {
 										<td >
 											<select class="joinInput2" name="myCinema" >
 										      	<option value="${memberDetail.myCinema }" selected>${memberDetail.myCinema }</option>
-										      	<option value="선택안함">선택안함</option>
-										      	<option value="울산">울산</option>
-										      	<option value="서울" >서울</option>
-										      	<option value="부산" >부산</option>
-										      	<option value="김해" >김해</option>
+										      	<option value="선택안함" selected>선택안함</option>
+										      	<option value="서울-강남점">서울-강남점</option>
+										      	<option value="서울-서초점" >서울-서초점</option>
+										      	<option value="울산-삼산점" >울산-삼산점</option>
+										      	<option value="부산-서면점" >부산-서면점</option>
+										      	<option value="부산-해운대점" >부산-해운대점</option>
 										    </select>
 										</td>
 									</tr>

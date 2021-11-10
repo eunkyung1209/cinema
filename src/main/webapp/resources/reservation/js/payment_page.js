@@ -16,6 +16,7 @@ $(document).ready(function(){
 		
 		//결제 금액 수정
 		$('#totalPrice').text((ticketPrice - savedMoney).toLocaleString());
+		$('.totalPrice').val(ticketPrice - savedMoney);
 		
 		//값 변경되는지 확인
 		//console.log(savedMoney);
