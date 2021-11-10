@@ -138,24 +138,23 @@ public class ReservationController {
 		}
 		
 		
+		
 		//결제페이지로 이동
 		@GetMapping("/payMent")
 		public String goPayMent(Model model, MovieTimeVO movieTimeVO, ReservationVO reservationVO, HttpSession session, MemberVO memberVO) {
-			//좌석이름 배열 잘 넘어오나 확인!
+			//좌석이름 'A1, A2, A3' 이런식으로 잘 넘어오나 확인!
+			//-> 선택한 좌석을 ReservationVO의 seatNames[]로 받고, seatName에도 잘 담김!
 			System.out.println("!!!!!!!!!!!!!!!!" + reservationVO.getSeatName());
 			
-			String[] seatNames = new String[5];			
-			
-			seatNames[0] = reservationVO.getSeatName().substring(reservationVO.getSeatName().length()-2, reservationVO.getSeatName().length());
-			System.out.println("문자열 자르기!!!" + seatNames[0]);
-			
+//			String[] seatNames = new String[5];			
+//			
+//			seatNames[0] = reservationVO.getSeatName().substring(reservationVO.getSeatName().length()-2, reservationVO.getSeatName().length());
+//			System.out.println("문자열 자르기!!!" + seatNames[0]);
 			
 			//선택한 상영시간표 정보
 			model.addAttribute("mvtInfo", reservationService.selectReservationInfoBeforePay(movieTimeVO));
 			//선택한 좌석 정보
 			model.addAttribute("seatInfo", reservationVO);
-			
-			
 			
 			//로그인 정보에서 id값 가져오기
 			String id = ((MemberVO)(session.getAttribute("loginInfo"))).getId();
@@ -167,7 +166,28 @@ public class ReservationController {
 			return "reservation/payment_page";
 		}
 		
+		//다음 예매코드 조회
+		@ResponseBody	//에이작스
+		@GetMapping("/selectNextResCodeAjax")
+		public String selectNextResCodeAjax(ReservationVO reservationVO) {
+			return reservationService.selectNextResCodeAjax(reservationVO);
+		}
 		
+		//예매내역 등록
+		@ResponseBody	//에이작스
+		@PostMapping("/insertReservationAjax")
+		public int insertReservationAjax(ReservationVO reservationVO) {
+			return reservationService.insertReservationAjax(reservationVO);
+		}
+		
+		//결제완료 페이지로 이동
+		@GetMapping("/payComplete")
+		public String goPayComplete(Model model, ReservationVO reservationVO) {
+			//예매내역 정보
+			model.addAttribute("resInfo", reservationService.selectDetailReservation(reservationVO));
+			
+			return "reservation/payment_complete";
+		}
 		
 		
 		

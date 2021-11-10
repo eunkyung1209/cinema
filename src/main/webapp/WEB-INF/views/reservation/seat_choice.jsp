@@ -262,7 +262,7 @@ ul{
     function seatClick(mvTimeCode) {
     	var seatCnt = $('#seatCnt').val();
     	
-        location.href = '/reservation/payMent?mvTimeCode=' + mvTimeCode + '&seatCnt=' + seatCnt + '&seatName=' + selectedSeats;
+        location.href = '/reservation/payMent?mvTimeCode=' + mvTimeCode + '&seatCnt=' + seatCnt + '&seatNames=' + selectedSeats;
 	}
     
     goLoginAlert = function(){
