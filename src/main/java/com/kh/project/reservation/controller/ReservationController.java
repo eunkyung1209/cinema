@@ -166,6 +166,13 @@ public class ReservationController {
 			return "reservation/payment_page";
 		}
 		
+		//다음 예매코드 조회
+		@ResponseBody	//에이작스
+		@GetMapping("/selectNextResCodeAjax")
+		public String selectNextResCodeAjax(ReservationVO reservationVO) {
+			return reservationService.selectNextResCodeAjax(reservationVO);
+		}
+		
 		//예매내역 등록
 		@ResponseBody	//에이작스
 		@PostMapping("/insertReservationAjax")
@@ -177,7 +184,7 @@ public class ReservationController {
 		@GetMapping("/payComplete")
 		public String goPayComplete(Model model, ReservationVO reservationVO) {
 			//예매내역 정보
-			
+			model.addAttribute("resInfo", reservationService.selectDetailReservation(reservationVO));
 			
 			return "reservation/payment_complete";
 		}

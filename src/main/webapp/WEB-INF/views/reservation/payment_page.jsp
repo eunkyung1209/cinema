@@ -156,11 +156,12 @@ input[type="number"]{
 <div class="row bodyDiv justify-content-center">
 	<div class="col-12">
 		<form id="paymentForm" onsubmit="" novalidate>
+			<input type="hidden" id="resCode" name="resCode">
 			<input type="hidden" name="id" value="${sessionScope.loginInfo.id }">
-			<input type="hidden" name="mvTimeCode" value="${mvtInfo.mvTimeCode }">
+			<input type="hidden" id="mvTimeCode" name="mvTimeCode" value="${mvtInfo.mvTimeCode }">
 			<input type="hidden" name="seatName" value="${seatInfo.seatName }">
 			<input type="hidden" name="seatCnt" value="${seatInfo.seatCnt }">
-			<input type="hidden" name="screenDay" value="${mvtInfo.screenDay }">
+			<input type="hidden" id="screenDay" name="screenDay" value="${mvtInfo.screenDay }">
 			
 			<!-- 예매하기 영역 -->
 			<div class="row justify-content-center">
@@ -431,19 +432,49 @@ input[type="number"]{
 			        //msg += '결제 금액 : ' + rsp.paid_amount;
 			        //msg += '카드 승인번호 : ' + rsp.apply_num;
 			        
+			        //다음 예매코드 조회 시 필요한 데이터
+			        var mvTimeCode = $('#mvTimeCode').val();
+			        var screenDay = $('#screenDay').val();
+			        
+			        //결제 후 다음 예매코드 조회 -> ajax 사용
+					$.ajax({
+				        url: '/reservation/selectNextResCodeAjax', //요청경로
+				        type: 'get',
+				        data: {
+				        		'mvTimeCode':mvTimeCode,
+				        		'screenDay':screenDay
+				        		},
+				        async: false,	//동기.. 순차적으로 진행하도록..
+				        success: function(result) {
+				        	//ajax 실행 성공 시 실행되는 구간
+				        	alert(result);
+				        	
+				        	//input태그에 예매코드 값 설정
+							$('#resCode').val(result);
+				        },
+				        error: function(){
+				        	//ajax 실행 실패 시 실행되는 구간
+				        	alert('다음 코드 조회 실패');
+				        }
+					});
+			        
 			        //예매내역에 넣을 데이터들 세팅
 			        var paymentForm = $('#paymentForm').serialize(); //serialize() : 입력된 모든 element를 문자열의 데이터에 serialize 한다.
+			        
+			        //예매코드 데이터
+			        var resCode = $('#resCode').val();
 			        
 			        //결제 후 예매내역 insert 하기 -> ajax 사용
 					$.ajax({
 				        url: '/reservation/insertReservationAjax', //요청경로
 				        type: 'post',
 				        data: paymentForm, //필요한 데이터
+				        async: false,	//동기.. 순차적으로 진행하도록..
 				        success: function(result) {
 				        	//ajax 실행 성공 시 실행되는 구간
 				        	alert(msg);
 							
-					        location.href = '/reservation/payComplete';
+					        location.href = '/reservation/payComplete?resCode=' + resCode;
 				        },
 				        error: function(){
 				        	//ajax 실행 실패 시 실행되는 구간

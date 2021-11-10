@@ -52,51 +52,58 @@
 
 
 
-/* 적립금사용&적립포인트 정보 */
-.payDiv{
-	text-align: center;
-	margin: 0 auto;
-	margin-top: 20px;
-	margin-bottom: 130px;
+/* 예매 정보 */
+.reservationInfoDiv{
+	border: 1px solid #e0e0e0;
+	margin: 25px auto;
+	padding: 20px;
 }
-.payDiv div{
+.reservationInfoDiv img{
+	margin: 0 auto;
+	width: 73%;
+}
+.reservationInfoDiv > div{
 	padding: 15px;
-	text-align: left;
 }
-.payDiv div:last-child{
-	text-align: right;
-}
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-input[type="number"]{
-	width: 80px;
-	padding-left: 10px;
+.reservationInfoDiv > div:first-child{
+	/* border-right: 1px solid #e0e0e0; */
 }
 
-/* 결제 정보 */
-.payInfoDiv{
-	text-align: center;
+/* 예매 정보 - 테이블 */
+.detailInfoDiv{
+	padding: 0;
+	margin-bottom: 
+}
+.detailInfoDiv table{
+	width: 100%;
+	/* margin: 0 30px; */
+}
+.detailInfoDiv table:first-child{
+	border-bottom: 1.5px solid gray;
+}
+.detailInfoDiv td{
+	padding: 10px;
+	text-align: left;
+}
+.detailInfoDiv table:first-child td{
+	padding-bottom: 20px;
+}
+.detailInfoDiv table:last-child tr:first-child td{
+	padding-top: 20px;
+}
+
+/* 예매 안내사항 */
+.noticeDiv{
+	text-align: left;
 	margin: 0 auto;
-	margin-top: 20px;
+	font-size: 11px;
+	padding-bottom: 50px;
 }
-.payInfoDiv div{
-	text-align: left;
+.noticeDiv div{
+	padding: 5px 0;
 }
-.payInfoDiv div:last-child{
-	text-align: right;
-}
-
-/* 결제 버튼 */
-.payBtnDiv{
-	/* display: inline-block; */
-	width: 100vw;
-    height: 51px;
-    background: #ed7d31;
-    vertical-align: middle;
-    text-align: center;
+.noticeDiv div:nth-child(-n + 5) {
+	color: red;
 }
 </style>
 </head>
@@ -136,10 +143,10 @@ input[type="number"]{
 					</div>
 					
 					<!-- 결제 정보 -->
-					<div class="col-11 reserveArea" >
+					<div class="col-11 reserveArea">
 						<!-- 타이틀 -->
 						<div class="row justify-content-center reserveTitle">
-							<div class="col-12 reserveTitleArea" >
+							<div class="col-12 reserveTitleArea">
 								결제완료
 							</div>
 						</div>
@@ -148,11 +155,78 @@ input[type="number"]{
 							<!-- 결제&예매 정보 -->
 							<div class="col-8">
 								<!-- 결제 완료 안내 -->
-								<div class="row">
-									누구 회원님, 결제가 완료되었습니다.
+								<div class="row justify-content-center" style="padding: 50px; padding-bottom: 0;">
+									<div class="col-12 mb-3">
+										<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-credit-card-2-back" viewBox="0 0 16 16">
+											<path d="M11 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1z"/>
+											<path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm13 2v5H1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm-1 9H2a1 1 0 0 1-1-1v-1h14v1a1 1 0 0 1-1 1z"/>
+										</svg>
+									</div>
+									<div class="col-12" style="font-size: 16px;">
+										${sessionScope.loginInfo.name } 회원님, 결제가 완료되었습니다.
+									</div>
 								</div>
-								<div class="row payDiv">
-									<div class="col-6"></div>
+								<!-- 예매 정보 -->
+								<div class="row justify-content-center reservationInfoDiv">
+									<div class="col-4">
+										<img alt="" src="/resources/images/movie/${resInfo.attachedImgName }">
+									</div>
+									<div class="col-8 detailInfoDiv">
+										<table>
+											<colgroup>
+												<col width="20%">
+												<col width="*">
+											</colgroup>
+											<tr>
+												<td>예매코드</td>
+												<td>${resInfo.resCode }</td>
+											</tr>
+										</table>
+										<table>
+											<colgroup>
+												<col width="20%">
+												<col width="*">
+											</colgroup>
+											<tr>
+												<td>상영관</td>
+												<td>${resInfo.loc } ${resInfo.areaName } ${resInfo.theaterName }</td>
+											</tr>
+											<tr>
+												<td>상영일시</td>
+												<td>${resInfo.screenDay }&nbsp;&nbsp;${resInfo.screenTime } ~ ${resInfo.screenEndTime }</td>
+											</tr>
+											<tr>
+												<td>관람인원</td>
+												<td>${resInfo.seatCnt } 명</td><!-- 인원 - 데이터로 수정 -->
+											</tr>
+											<tr>
+												<td>좌석</td>
+												<td>${resInfo.seatName }</td><!-- 좌석이름 - 데이터로 수정 -->
+											</tr>
+											<tr>
+												<td>결제금액</td>
+												<td>${resInfo.totalPrice } 원</td><!-- 결제금액 - 데이터로 수정 -->
+											</tr>
+										</table>
+									</div>
+								</div>
+								<!-- 예매 안내사항 -->
+								<div class="row noticeDiv">
+									<div>· 온라인 예매 취소는 상영 시작 20분 전까지 온라인에서 가능합니다.</div>
+									<div>· 상영시작 20분전 이후부터는 영화관 현장에서만 취소 가능합니다.</div>
+									<div>· 반드시 전체 취소만 가능하며, 예매 티켓의 부분 취소는 불가능합니다.</div>
+									<div>· 티켓 발권 완료 시 환불은 발권된 티켓 모두 지참 후 해당 영화관에서만 가능합니다.</div>
+									<div>· 무대인사 예매 취소는 상영시작 24시간 전까지 가능합니다.</div>
+									<div>· 적립 예정 포인트는 영화 관람 다음 날 적립됩니다.</div>
+									<div>· 예고편 상영 등 사정에 의해 본 영화 시작이 10여분 정도 차이 날 수 있습니다.</div>
+									<div>· 개인정보 보호 정책에 따라 주민번호로 예매 티켓을 찾을 수 없습니다. 꼭 예매코드를 확인해주세요</div>
+								</div>
+								<!-- 버튼 -->
+								<div class="row justify-content-center">
+									<div class="col">
+										<input type="button" class="common_btn" style="width: 160px;" value="나의 예매내역 가기" onclick="location.href='#';">
+										<input type="button" class="common_btn" style="width: 160px;" value="홈으로 바로가기" onclick="location.href='/movie/mainPage';">
+									</div>
 								</div>
 							</div>
 						</div>

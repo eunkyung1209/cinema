@@ -77,10 +77,22 @@ public class ReservationServiceImpl implements ReservationService {
 		return sqlSession.selectOne("reservationMapper.selectReservationInfoBeforePay", movieTimeVO);
 	}
 	
+	//다음 예매코드 조회
+	@Override
+	public String selectNextResCodeAjax(ReservationVO reservationVO) {
+		return sqlSession.selectOne("reservationMapper.selectNextResCodeAjax", reservationVO);
+	}
+	
 	//예매내역 등록
 	@Override
 	public int insertReservationAjax(ReservationVO reservationVO) {
 		return sqlSession.insert("reservationMapper.insertReservationAjax", reservationVO);
+	}
+	
+	//결제한 예매내역 조회
+	@Override
+	public ReservationVO selectDetailReservation(ReservationVO reservationVO) {
+		return sqlSession.selectOne("reservationMapper.selectDetailReservation", reservationVO);
 	}
 	
 	

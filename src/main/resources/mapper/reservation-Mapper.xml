@@ -5,13 +5,19 @@
 	
 	<!-- 예매 -->
 	<resultMap type="com.kh.project.reservation.vo.ReservationVO" id="reservation">
-		<id column="RES_CODE"			property="resCode"/>
-		<result column="ID" 			property="id"/>
-		<result column="MV_TIME_CODE" 	property="mvTimeCode"/>
-		<result column="SEAT_NAME" 		property="seatName"/>
-		<result column="SEAT_CNT" 		property="seatCnt"/>
-		<result column="RE_DATE" 		property="reDate"/>
-		<result column="TOTAL_PRICE" 	property="totalPrice"/>
+		<id column="RES_CODE"				property="resCode"/>
+		<result column="ID" 				property="id"/>
+		<result column="MV_TIME_CODE" 		property="mvTimeCode"/>
+		<result column="SEAT_NAME" 			property="seatName"/>
+		<result column="SEAT_CNT" 			property="seatCnt"/>
+		<result column="RE_DATE" 			property="reDate"/>
+		<result column="TOTAL_PRICE" 		property="totalPrice"/>
+		<result column="ATTACHED_IMG_NAME"	property="attachedImgName"/>
+		<result column="AREA_NAME" 			property="areaName"/>
+		<result column="THEATER_NAME" 		property="theaterName"/>
+		<result column="SCREEN_DAY" 		property="screenDay"/>
+		<result column="SCREEN_TIME" 		property="screenTime"/>
+		<result column="SCREEN_END_TIME" 	property="screenEndTime"/>
 	</resultMap>
 	
 	<!-- 영화관 -->
@@ -62,6 +68,7 @@
 		<result column="IS_FULL_THEATER" 	property="isFullTheater"/>
 		<result column="TITLE" 				property="title"/>
 		<result column="ATTACHED_IMG_NAME"	property="attachedImgName"/>
+		<result column="AGE"				property="age"/>
 	</resultMap>
 	
 	<!-- 영화 -->
@@ -247,6 +254,13 @@
 		AND MT.AREA_NAME = A.AREA_NAME
 		AND A.AREA_NAME = T.AREA_NAME
 		AND MT.THEATER_CODE = T.THEATER_CODE
+		AND MT.MV_CODE = M.MV_CODE
+	</select>
+	
+	<!-- 다음 예매코드 조회 -->
+	<select id="selectNextResCodeAjax" resultType="String">
+		SELECT 'RES_'||TO_CHAR(TO_DATE(#{screenDay}), 'YYMMDD')||'_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(RES_CODE, 12, 3))), 0)+1 , 3, 0)
+		FROM OISONE_RESERVATION WHERE MV_TIME_CODE = #{mvTimeCode}
 	</select>
 	
 	<!-- 예매내역 등록 -->
@@ -259,8 +273,7 @@
 			, SEAT_CNT
 			, TOTAL_PRICE
 		) VALUES (
-			(SELECT 'RES_'||TO_CHAR(TO_DATE(#{screenDay}), 'YYMMDD')||'_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(RES_CODE, 12, 3))), 0)+1 , 3, 0)
-			FROM OISONE_RESERVATION WHERE MV_TIME_CODE = #{mvTimeCode})
+			#{resCode}
 			, #{id}
 			, #{mvTimeCode}
 			, #{seatName}
@@ -270,9 +283,8 @@
 	</insert>
 	
 	<!-- 예매내역 상세 조회 -->
-	<select id="selectReservationDetail" resultMap="reservation">
+	<select id="selectDetailReservation" resultMap="reservation">
 		SELECT RES_CODE
-			, R.MV_TIME_CODE
 			, ATTACHED_IMG_NAME
 			, AGE
 			, TITLE
@@ -288,12 +300,12 @@
 		FROM OISONE_RESERVATION R, OISONE_MOVIE_TIME MT, OISONE_MOVIE M, OISONE_MOVIE_IMG MI, OISONE_AREA A, OISONE_THEATER T
 		WHERE R.MV_TIME_CODE = MT.MV_TIME_CODE
 		AND M.MV_CODE = MI.MV_CODE
+		AND MT.MV_CODE = M.MV_CODE
         AND IS_POSTER = 'Y'
-		AND R.MV_TIME_CODE = #{mvTimeCode}
 		AND MT.AREA_NAME = A.AREA_NAME
 		AND A.AREA_NAME = T.AREA_NAME
 		AND MT.THEATER_CODE = T.THEATER_CODE
-        AND R.ID = #{id}
+		AND RES_CODE = #{resCode}
 	</select>
 	
 	
