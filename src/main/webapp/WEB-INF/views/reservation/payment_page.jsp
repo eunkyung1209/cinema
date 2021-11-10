@@ -447,7 +447,8 @@ input[type="number"]{
 				        async: false,	//동기.. 순차적으로 진행하도록..
 				        success: function(result) {
 				        	//ajax 실행 성공 시 실행되는 구간
-				        	alert(result);
+				        	//데이터 확인해봄!
+				        	//alert(result);
 				        	
 				        	//input태그에 예매코드 값 설정
 							$('#resCode').val(result);
