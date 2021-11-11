@@ -433,6 +433,26 @@ input[type="number"]{
 			        //msg += '결제 금액 : ' + rsp.paid_amount;
 			        //msg += '카드 승인번호 : ' + rsp.apply_num;
 			        
+			        //결제 후 메일 전송 -> ajax 사용
+		        	$.ajax({
+				        url: '/mail/mailForm', //요청경로
+				        type: 'post',
+				        data:{
+				        	'toMail':'${memberInfo.email }',
+				        	'title':'[OISONE CINEMA] 예매 확인 메일',
+				        	'content':'  '
+				        }, //필요한 데이터
+				        async: false,	//동기.. 순차적으로 진행하도록..
+				        success: function(result) {
+				        	//ajax 실행 성공 시 실행되는 구간
+				        	//alert('메일 전송 성공');
+				        },
+				        error: function(){
+				        	//ajax 실행 실패 시 실행되는 구간
+				        	alert('메일 전송 실패');
+				        }
+				  	});
+			        
 			        //다음 예매코드 조회 시 필요한 데이터
 			        var mvTimeCode = $('#mvTimeCode').val();
 			        var screenDay = $('#screenDay').val();
@@ -441,10 +461,10 @@ input[type="number"]{
 					$.ajax({
 				        url: '/reservation/selectNextResCodeAjax', //요청경로
 				        type: 'get',
-				        data: {
-				        		'mvTimeCode':mvTimeCode,
-				        		'screenDay':screenDay
-				        		},
+				        data:{
+				        	'mvTimeCode':mvTimeCode,
+				        	'screenDay':screenDay
+				        },
 				        async: false,	//동기.. 순차적으로 진행하도록..
 				        success: function(result) {
 				        	//ajax 실행 성공 시 실행되는 구간
