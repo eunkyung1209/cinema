@@ -149,7 +149,7 @@ $(document).ready(function(){
 			  
 			  //클릭한 날의 년월일 데이터
 			  var evenDate = $('.day-active').attr('data-fdate');
-			  alert(evenDate);
+			  //alert(evenDate);
 			  
 			  $.ajax({
 

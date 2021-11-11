@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/event/css/event_Date.css?ver=2">
-<script type="text/javascript"
-	src="/resources/event/js/event_Date.js?ver=1"></script>
+<script type="text/javascript" src="/resources/event/js/event_Date.js?ver=2"></script>
 </head>
 <body>
 	<!-- 캘린더 구현 -->
