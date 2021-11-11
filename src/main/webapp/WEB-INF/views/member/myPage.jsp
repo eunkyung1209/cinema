@@ -207,14 +207,14 @@ select {
 											<c:if test="${memberDetail.point >= 0 and memberDetail.point <= 100 }">
 											 	<span style="color: green; font-weight: bold;">그린</span>
 											</c:if>
-											<c:if test="${smemberDetail.point >= 101 and memberDetail.point <= 200 }">
+											<c:if test="${memberDetail.point >= 101 and memberDetail.point <= 200 }">
 											 	<span style="color: gray; font-weight: bold;">실버</span>
 											</c:if>
 											<c:if test="${memberDetail.point >= 201 and memberDetail.point <= 300 }">
-											 	<span style="color: yellow; font-weight: bold;">골드</span>
+											 	<span style="color: #F4C006; font-weight: bold;">골드</span>
 											</c:if>
 											<c:if test="${memberDetail.point >= 301 and memberDetail.point <= 500 }">
-											 	<span style="color: aqua; font-weight: bold;">다이아</span>
+											 	<span style="color: #0BD2E9; font-weight: bold; font-size: 13px;">다이아</span>
 											</c:if>
 											<c:if test="${memberDetail.point >= 501}">
 											 	<span style="color: #ed7d31 font-weight: bold;">VVIP</span>
