@@ -5,6 +5,7 @@ import java.io.File;
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kh.project.common.vo.MailVo;
+import com.kh.project.member.vo.MemberVO;
  
  
 @Controller // 컨트롤러 어노테이션 선언
@@ -33,13 +35,17 @@ public class MailController {
 	}
 
 	@PostMapping("/mailForm")
-	public String mailFormPost(MailVo vo){
+	public String mailFormPost(MailVo vo, HttpSession session){
 		System.out.println("메소드!!");
+		
+		String id = ((MemberVO)(session.getAttribute("loginInfo"))).getId();
 		
 		String fromMail = "abcd@gmail.com";
 		String toMail = vo.getToMail();
 		String title = vo.getTitle();
 		String content = vo.getContent();
+		
+		
 		
 		try {
 			System.out.println("트라이문@@!!");
@@ -56,10 +62,10 @@ public class MailController {
 			//메세지 내용과 함께 사진을 전송한다
 			content = content.replace("\n", "<br/>");
 			content += "<br><hr><h3>OISONE CINEMA입니다.<h3><hr><br>";
-			content += "<a href=\"http://localhost:8081//reservation/myReserve\"><img src=\"cid:이메일.png\" width='500px'></a>";
+			content += "<a href=\"http://localhost:8081//reservation/goMyReservation?ID="+ id + "\"><img src=\"cid:이메일.png\" width='500px'></a>";
 			messageHelper.setText(content, true);
-//			FileSystemResource file = new FileSystemResource(new File("C:\\Users\\YJH\\git\\cinema\\src\\main\\webapp\\resources\\images\\reservation\\이메일.png"));
-			FileSystemResource file = new FileSystemResource(new File("D:\\workspaceSTS\\Cinema\\src\\main\\webapp\\resources\\images\\reservation\\이메일.png"));
+			FileSystemResource file = new FileSystemResource(new File("C:\\Users\\YJH\\git\\cinema\\src\\main\\webapp\\resources\\images\\reservation\\이메일.png"));
+//			FileSystemResource file = new FileSystemResource(new File("D:\\workspaceSTS\\Cinema\\src\\main\\webapp\\resources\\images\\reservation\\이메일.png"));
 			messageHelper.addInline("이메일.png", file);
 			
 //			//메일과 함께 첨부파일 전송하기

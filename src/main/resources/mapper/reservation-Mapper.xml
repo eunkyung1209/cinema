@@ -118,8 +118,7 @@
 		    , MOVIE.RUNNING_TIME
 		    , AGE
 		FROM OISONE_MOVIE MOVIE, OISONE_MOVIE_TIME TIME
-		WHERE MV_STATE = 'Y'
-		AND MOVIE.MV_CODE = TIME.MV_CODE
+		WHERE MOVIE.MV_CODE = TIME.MV_CODE
 		<if test="areaName != null and !areaName.equals('')">
 		AND AREA_NAME = #{areaName}
 		</if>
