@@ -479,7 +479,7 @@ input[type="number"]{
 				        	//ajax 실행 성공 시 실행되는 구간
 				        	alert(msg);
 							
-					        location.href = '/reservation/payComplete?resCode=' + resCode;
+					        location.href = '/reservation/payComplete?resCode=' + resCode + '&seatName=' + seatName + '&seatCnt=' + seatCnt + '&theaterCode=' + theaterCode;
 				        },
 				        error: function(){
 				        	//ajax 실행 실패 시 실행되는 구간

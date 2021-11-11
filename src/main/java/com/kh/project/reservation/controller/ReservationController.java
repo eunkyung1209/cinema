@@ -178,13 +178,18 @@ public class ReservationController {
 		
 		//결제완료 페이지로 이동
 		@GetMapping("/payComplete")
-		public String goPayComplete(Model model, ReservationVO reservationVO, String seatName, int seatCnt, String theaterCode) {
+		public String goPayComplete(Model model, ReservationVO reservationVO, String seatName, String seatCnt, String theaterCode) {
 			
 			//예매내역 정보
 			model.addAttribute("resInfo", reservationService.selectDetailReservation(reservationVO));
 			reservationVO.setSeatName(seatName);
-			reservationVO.setSeatCnt(seatCnt);
+			reservationVO.setSeatCnt(Integer.parseInt(seatCnt));
 			reservationVO.setTheaterCode(theaterCode);
+			
+			System.out.println("싯 네임" + reservationVO.getSeatName());
+			System.out.println("싯 씨엔티" + reservationVO.getSeatCnt());
+			System.out.println("씨어터 코드" + reservationVO.getTheaterCode());
+			
 			
 			//좌석이름 'A1, A2, A3' 이런식으로 잘 넘어오나 확인!
 			//-> 선택한 좌석을 ReservationVO의 seatNames[]로 받고, seatName에도 잘 담김!
