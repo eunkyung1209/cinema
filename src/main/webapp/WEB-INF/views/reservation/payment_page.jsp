@@ -447,7 +447,8 @@ input[type="number"]{
 				        async: false,	//동기.. 순차적으로 진행하도록..
 				        success: function(result) {
 				        	//ajax 실행 성공 시 실행되는 구간
-				        	alert(result);
+				        	//데이터 확인해봄!
+				        	//alert(result);
 				        	
 				        	//input태그에 예매코드 값 설정
 							$('#resCode').val(result);
@@ -463,6 +464,9 @@ input[type="number"]{
 			        
 			        //예매코드 데이터
 			        var resCode = $('#resCode').val();
+			        var seatName = $('#seatName').val();
+	                var seatCnt = $('#seatCnt').val();
+	                var theaterCode = $('#theaterCode').val();
 			        
 			        //결제 후 예매내역 insert 하기 -> ajax 사용
 					$.ajax({
