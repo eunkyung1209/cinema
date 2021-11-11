@@ -129,9 +129,6 @@ $(document).ready(function(){
 			//addEventListener 여러 이벤트를 등록할 수 있고, 특정 이벤트를 제거(removeEventListener)할 수 있음.
 			//.target말고도 this라는 객체를 이용해 현재 이벤트가 발생한 대상을 가리킬 수 있다. 
 			//이때 주의할 점은 e.target과 this는 DOM 객체이고, jQuery 객체가 아니기 때문에 jQuery 메소드를 사용할 수 없다
-			
-			
-			// 해당일자 클릭..
 			$calBody.addEventListener('click', (e) => {
 			  if (e.target.classList.contains('day')) {
 			    if (init.activeDTag) {
@@ -143,46 +140,17 @@ $(document).ready(function(){
 			    e.target.classList.add('day-active');
 			    init.activeDTag = e.target;
 			    init.activeDate.setDate(day);
-			   }
+			    
+		
+			  }
 			  
 		
-			  
-			  //클릭한 날의 년월일 데이터
-			  var evenDate = $('.day-active').attr('data-fdate');
-			  alert(evenDate);
-			  
-			  $.ajax({
-
-					url: '/event/eventAjax', 
-					type: 'post',
-					data: {'evenDate' : evenDate}, 
-					success: function(result) { 
-						
-						let list = '';
-						$('#aaaa').empty();
-						var text = document.createTextNode("\u00a0");
-						text = encodeURIComponent(text);
-						
-						list+= '<h6>이달의 행사</h6>';
-						list += '\u00a0';
-						list+= '<ul>';
-						$(result).each(function(index, element) {
-							
-							list+='<li>'+ element.evenDate + '\u00a0'+'\u00a0'+'\u00a0'+'\u00a0'+'\u00a0'+'\u00a0'+'\u00a0'+'\u00a0' + element.evenName+'</li>';
-							
-							
-						})
-						list+= '</ul>';
-						$('#aaaa').append(list);
-						
-					}
-			  });
-			  
-	});
+				
+			});
+		
 });
 
 //함수 선언 영역
 (function($){
    
-	
 })(jQuery);

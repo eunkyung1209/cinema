@@ -8,7 +8,28 @@
 		
 	</resultMap>
 	
+	<resultMap type="com.kh.project.event.vo.EventVO" id="event">
+		<result column="EVEN_NAME" property="evenName"/>
+		<result column="EVEN_DATE" property="evenDate"/>
 	
+	</resultMap>
+	
+	<!--전체 행사조회 -->
+	<select id="selectEvent" resultMap="event">
+	SELECT EVEN_NAME
+	    , EVEN_DATE
+	FROM OISONE_EVENT
+	</select>
+	
+	
+	<!-- 버튼 클릭시 이달의 행사 조회 -->
+	<select id="selectEventAjax" resultMap="event">
+	SELECT EVEN_NAME
+	    , EVEN_DATE
+	FROM OISONE_EVENT
+	WHERE SUBSTR(EVEN_DATE, 1, 10) &lt;= #{evenDate}
+	AND SUBSTR(EVEN_DATE, 14) &gt;= #{evenDate}
+	</select>	
 	
 </mapper>
 
