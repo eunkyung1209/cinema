@@ -224,7 +224,7 @@
 								<!-- 버튼 -->
 								<div class="row justify-content-center">
 									<div class="col">
-										<input type="button" class="common_btn" style="width: 160px;" value="나의 예매내역 가기" onclick="location.href='#';">
+										<input type="button" class="common_btn" style="width: 160px;" value="나의 예매내역 가기" onclick="location.href='/reservation/goMyReservation?id=${sessionScope.loginInfo.id}';">
 										<input type="button" class="common_btn" style="width: 160px;" value="홈으로 바로가기" onclick="location.href='/movie/mainPage';">
 									</div>
 								</div>
