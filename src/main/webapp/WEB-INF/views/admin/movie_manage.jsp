@@ -56,7 +56,7 @@ a:hover{
 		<!-- 검색폼 -->
 		<div class="row justify-content-center">
 			<div class="col-8 search_box text-center">
-				<form action="/movie/movieList" method="post">
+				<form action="/admin/movieManage" method="post">
 					<select class="selectBox_from" name="searchKeyword">
 						<option value="TITLE" <c:if test="${movieVO.searchKeyword eq 'TITLE'}">selected</c:if>>제목</option>
 						<option value="DIRECTOR" <c:if test="${movieVO.searchKeyword eq 'DIRECTOR'}">selected</c:if>>감독</option>

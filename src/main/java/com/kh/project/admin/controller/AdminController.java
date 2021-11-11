@@ -52,7 +52,7 @@ public class AdminController {
 	//---------- < 영화 모듈 관련 > ----------
 	
 	//영화 관리 페이지로 이동
-	@GetMapping("/movieManage")
+	@RequestMapping("/movieManage")
 	public String movieManage(Model model, MovieVO movieVO) {
 		//페이징 처리
 		movieVO.setTotalCnt(movieService.selectMovieCnt(movieVO));
