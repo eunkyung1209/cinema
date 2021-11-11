@@ -154,7 +154,7 @@
 				SELECT ID
 				, NAME
 				, NICKNAME
-				, TELL
+				, TO_CHAR(SUBSTR(TELL,1,3)) || '-' || TO_CHAR(SUBSTR(TELL,4,4)) || '-' || TO_CHAR(SUBSTR(TELL,8,4)) AS TELL
 				, ROWNUM AS ROW_NUM
 			FROM OISONE_MEMBER
 			<if test="searchValue != null and !searchValue.equals('')">
@@ -181,9 +181,9 @@
 		SELECT ID
 			, NAME
 			, NICKNAME
-			, TO_CHAR(BIRTHDAY, 'YYYYMMDD') AS BIRTHDAY
+			, TO_CHAR(BIRTHDAY, 'YYYY/MM/DD') AS BIRTHDAY
 			, GENDER
-			, TELL
+			, TO_CHAR(SUBSTR(TELL,1,3)) || '-' || TO_CHAR(SUBSTR(TELL,4,4)) || '-' || TO_CHAR(SUBSTR(TELL,8,4)) AS TELL
 			, EMAIL
 			, POINT
 			, SAVED_MONEY
