@@ -190,6 +190,7 @@
     
 	//시각 선택
     $('.only-time').datepicker({
+    	dateFormat : ' ',
         timepicker: true,
         classes: 'only-timepicker'
     });
