@@ -1,5 +1,7 @@
 package com.kh.project.reservation.vo;
 
+import java.util.List;
+
 public class TheaterVO {
 	
 		//영화관
@@ -20,10 +22,16 @@ public class TheaterVO {
 	    private int seatCnt;
 	    private String useTheater;
 	    private int seatLeft;
+	    private List<String> seatCodeList;
 	    
 	    
 	    
-	    
+		public List<String> getSeatCodeList() {
+			return seatCodeList;
+		}
+		public void setSeatCodeList(List<String> seatCodeList) {
+			this.seatCodeList = seatCodeList;
+		}
 		public int getSeatLeft() {
 			return seatLeft;
 		}

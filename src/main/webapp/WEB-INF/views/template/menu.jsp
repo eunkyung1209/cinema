@@ -289,7 +289,7 @@ a:hover {
 				            	<li><a class="dropdown-item" href="/reservation/goReserve">예매하기</a></li>
 				            	
 				            	<c:if test="${sessionScope.loginInfo != null}">
-				             		<li><a class="dropdown-item" href="#">나의 예매내역</a></li>
+				             		<li><a class="dropdown-item" href="/reservation/goMyReservation?id=${sessionScope.loginInfo.id}">나의 예매내역</a></li>
 				             	</c:if>
 				            	<c:if test="${sessionScope.loginInfo == null}">
 				             		<li>
@@ -591,7 +591,7 @@ a:hover {
 	              		<li><div style="height: 10px;"></div></li>
 	              		
 	              	<c:if test="${sessionScope.loginInfo != null}">
-	             		<li><a class="smallSizeFont" href="#">나의 예매내역</a></li>
+	             		<li><a class="smallSizeFont" href="/reservation/goMyReservation?id=${sessionScope.loginInfo.id}">나의 예매내역</a></li>
 	             	</c:if>
 	            	<c:if test="${sessionScope.loginInfo == null}">
 	             		<li>

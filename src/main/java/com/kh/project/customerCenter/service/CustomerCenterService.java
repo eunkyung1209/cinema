@@ -16,6 +16,9 @@ public interface CustomerCenterService {
 	//고객센터 글 상세보기
 	CustomerCenterVO selectCustomerBoardDetail(String customerCode);
 	
+	//관리자 조회 여부 업데이트
+	void updateIsRead(String customerCode);
+	
 	//다음 customerCode 조회
 	String selectNextCustomerCode();
 	
@@ -54,6 +57,8 @@ public interface CustomerCenterService {
 	
 	//댓글 수정
 	void updateCustomerReply(CustomerCenterReplyVO customerCenterReplyVO);
+	
+	
 	
 	
 }

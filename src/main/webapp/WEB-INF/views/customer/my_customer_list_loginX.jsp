@@ -7,8 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-
 <style type="text/css">
 
 /* 목록조회 페이지 폼 */
@@ -81,7 +79,6 @@ a:hover{
 	border-left: 1px solid #e0e0e0;
 }
 
-
 /*검색 버튼 기본폼 */
 .common_btn{
 	font-size: 14px;
@@ -106,18 +103,18 @@ a:hover{
 <div class="row bodyDiv">
 	<div class="col-12">
 	
-	<!-- 페이지 머릿말 -->
+		<!-- 페이지 머릿말 -->
 		<div class="row justify-content-center">
 			<div class="col-8">
 				<div class="col-3 subjectDiv">
-					<h5>고객 센터</h5>
+					<h5>나의 상담내역</h5>
 				</div>
 			</div>
 		</div>
 		
 		<div style="height: 50px;"></div>
 		
-		<!-- 커스토머 박스 -->
+<!-- 커스토머 박스 -->
 		<div class="row justify-content-center">
 			<div class="col-8 customerBox" >
 				<div class="row justify-content-center" >
@@ -158,7 +155,6 @@ a:hover{
 				 </div> 
 			</div>
 		</div>
-		
 		<div style="height: 50px;"></div>
 		
 		
@@ -167,21 +163,21 @@ a:hover{
 			<div class="row justify-content-center">
 				<div class="col-8 search_box text-center" >
 					<div>
-						<form action="/customer/goCustomer"  method="post">
+						<form action="/customer/goCustomer">
 						<!-- 셀렉트 박스 -->
-						<select class="selectBox_from" name="searchKeyword">
+						<select class="selectBox_from">
 							<option selected>선택</option>
-							<option value="TITLE" <c:if test="${customerCenterVO.searchKeyword eq 'TITLE'}">selected</c:if>>제목</option>
-							<option value="WRITER" <c:if test="${customerCenterVO.searchKeyword eq 'WRITER'}">selected</c:if>>작성자</option>
+							<option value="TITLE" >제목</option>
+							<option value="WRITER" >작성자</option>
 						</select>
 						
-						<!-- <select class="selectBox_from" name="">
+						<select class="selectBox_from" name="">
 							<option>글 분류</option>
 							<option value="GROUP_001">기타</option>
 							<option value="GROUP_002">시설 문의</option>
 							<option value="GROUP_003">영화 문의</option>
 							<option value="GROUP_004">결제 문의</option>
-						</select> -->
+						</select>
 						
 						<!-- 인풋 -->
 						<input type="text" class="inputSearch_form" name="searchValue" placeholder="검색어를 입력해 주세요">
@@ -206,7 +202,7 @@ a:hover{
 					<div class="row justify-content-center">
 						<div class="col-6">
 							<div style="text-align: left;">
-								<input  class="btn common_btn" type="button" onclick="location.href='/customer/goWriteCustomer';" id="button-addon2"  <c:if test="${empty sessionScope.loginInfo }">disabled</c:if> value="글쓰기">
+								<input class="btn common_btn" type="button" onclick="location.href='/customer/goWriteCustomer';" id="button-addon2"  <c:if test="${empty sessionScope.loginInfo }">disabled</c:if> value="글쓰기">
 							</div>
 						</div>
 						
@@ -242,80 +238,17 @@ a:hover{
 					    </tr>
 					  </thead>
 					  
-					  <c:choose>
-					  	<c:when test="${empty customerBoardList}">
 					  		<tr>
 					  			<td colspan="5">
-					  				등록된 게시물이 없습니다.
+					  				나의 상담내역은 로그인 후 확인 가능합니다.
 					  			</td>
 					  		</tr>
-					  	</c:when>
-					  	
-					  	
-					  	<c:otherwise>
-					  		<c:forEach items="${customerBoardList}" var="customerBoard" varStatus="status">
-							  <tbody>
-								<tr>
-							      <th scope="row" class="align-middle">${status.count }</th>
-								  <td>
-								  	<c:if test="${customerBoard.groupCode eq 'GROUP_001'}">
-										기타
-									</c:if>
-									<c:if test="${customerBoard.groupCode eq 'GROUP_002'}">
-										시설물 문의
-									</c:if>
-									<c:if test="${customerBoard.groupCode eq 'GROUP_003'}">
-										영화 문의
-									</c:if>
-									<c:if test="${customerBoard.groupCode eq 'GROUP_004'}">
-										결제 문의
-									</c:if>
-								  </td>   
-							      <td class="align-middle"><a href="/customer/selectCustomerBoardPw?customerCode=${customerBoard.customerCode }&secretNumber=${customerBoard.secretNumber }">${customerBoard.title }</a> </td>
-							      <td class="align-middle">${customerBoard.writer }</td>
-							      <td class="align-middle">${customerBoard.createDate } </td>
-							    </tr>
-							   </tbody>
-							</c:forEach>
-					  	
-					  	</c:otherwise>
-					  </c:choose>
-					  
-					   
-					 
 					</table>
 			</div>
 		</div>
 			
 				<!-- 공간띄우기 -->
 			<div style="height: 30px;"></div>
-		
-		
-		<!-- 페이징 -->	
-		<div class="row justify-content-center">
-			<div class="col-8" >
-				
-			  <ul class="pagination justify-content-center">
-			  
-				    <li class=" <c:if test="${!customerCenterVO.prev }">disabled</c:if>">
-				    		<a class="" href="/customer/goCustomer?nowPage=${customerCenterVO.beginPage - 1 }">&nbsp;&nbsp; < &nbsp;&nbsp;</a>
-				    </li>
-				    
-				    <c:forEach begin="${customerCenterVO.beginPage }" end="${customerCenterVO.endPage }" var="pageNumber">
-						<li class=" <c:if test="${customerCenterVO.nowPage eq pageNumber }"> active</c:if>" aria-current="page">
-				     		 <a class="" href="/customer/goCustomer?nowPage=${pageNumber }&searchKeyword=${customerCenterVO.searchKeyword}&searchValue=${customerCenterVO.searchValue}" >${pageNumber }</a>
-				    	</li>
-					</c:forEach>
-				    
-				    <li class=" <c:if test="${!customerCenterVO.next }"> disabled</c:if>">
-				     		<a class="" href="/customer/goCustomer?nowPage=${customerCenterVO.endPage + 1 }">&nbsp;&nbsp; > &nbsp;&nbsp;</a>
-				    </li>
-			  </ul>
-				
-			</div>
-		</div>
-	
-	
 	
 	</div>
 </div>

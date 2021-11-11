@@ -142,7 +142,7 @@ a:hover{
 							<img alt="" width="130px;" height="100px;" src="/resources/images/customer/나의문의.png">
 						</div>
 						<div>
-							<input type="button"  class="btn btn-outline-secondary"  value="내 상담내역" <c:if test="${empty sessionScope.loginInfo }">disabled</c:if>  onclick="location.href='/customer/goMyCustomer?writer=${sessionScope.loginInfo.nickName }';">
+							<input type="button"  class="btn btn-outline-secondary"  value="내 상담내역" <c:if test="${empty sessionScope.loginInfo }"> onclick="location.href='/customer/goMyCustomerX';" </c:if>  onclick="location.href='/customer/goMyCustomer?writer=${sessionScope.loginInfo.nickName }';">
 						</div>
 					</div>
 					<div class="col-3 customerBox_s" >
@@ -215,8 +215,8 @@ a:hover{
 				<table class="customerBoardList" >
 					<colgroup>
 						<col width="10%">
-						<col width="20%">
 						<col width="*">
+						<col width="20%">
 						<col width="20%">
 					</colgroup>
 					<thead>

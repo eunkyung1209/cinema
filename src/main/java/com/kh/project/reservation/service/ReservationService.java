@@ -49,4 +49,14 @@ public interface ReservationService {
 	//결제한 예매내역 조회
 	ReservationVO selectDetailReservation(ReservationVO reservationVO);
 	
+	//나의 예매내역 조회
+	List<ReservationVO> selectMyReservation(String id);
+	
+	//좌석 상태 Y로 변경
+	void updateSeatStatus(ReservationVO reservationVO);
+	
+	//잔여좌석 업데이트
+	void updateSeatCnt(ReservationVO reservationVO);
+	
+	
 }

@@ -40,7 +40,7 @@
 </script>
 
 <!-- 자바 스크립트 -->
-<script type="text/javascript" src="/resources/reservation/js/reserve_form.js?ver=99"></script>
+<script type="text/javascript" src="/resources/reservation/js/reserve_form.js?ver=102"></script>
 <style type="text/css">
 
 /* picker */

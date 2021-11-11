@@ -94,6 +94,24 @@ public class ReservationServiceImpl implements ReservationService {
 	public ReservationVO selectDetailReservation(ReservationVO reservationVO) {
 		return sqlSession.selectOne("reservationMapper.selectDetailReservation", reservationVO);
 	}
+
+	//나의 예매내역 조회
+	@Override
+	public List<ReservationVO> selectMyReservation(String id) {
+		return sqlSession.selectList("reservationMapper.selectMyReservation", id);
+	}
+
+	//좌석 상태 y로 변경
+	@Override
+	public void updateSeatStatus(ReservationVO reservationVO) {
+		sqlSession.update("reservationMapper.updateSeatStatus", reservationVO);
+	}
+
+	//잔여좌석 업데이트
+	@Override
+	public void updateSeatCnt(ReservationVO reservationVO) {
+		sqlSession.update("reservationMapper.updateSeatCnt", reservationVO);
+	}
 	
 	
 }

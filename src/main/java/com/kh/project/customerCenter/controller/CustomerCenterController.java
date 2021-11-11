@@ -143,12 +143,15 @@ public class CustomerCenterController {
 
 	// 고객센터 글 상세보기
 	@GetMapping("/selectCustomerBoardDetail")
-	private String selectCustomerBoardDetail(Model model, String customerCode) {
+	private String selectCustomerBoardDetail(Model model, String customerCode, CustomerCenterVO customerCenterVO) {
 		
+	
 		//상세보기 정보
 		model.addAttribute("customerBoard", customerCenterService.selectCustomerBoardDetail(customerCode));
 		//댓글 목록 불러오기
 		model.addAttribute("customerReplyList", customerCenterService.selectCustomerReply(customerCode));
+		//관리자가 클릭 시 조회 여부 업데이트
+		customerCenterService.updateIsRead(customerCode);
 		
 		return "customer/customer_board_detail";
 	}
@@ -184,6 +187,13 @@ public class CustomerCenterController {
 		//나의 상담내역 목록 보내기
 		model.addAttribute("customerBoardList", customerCenterService.selectMyCustomer(customerCenterVO));
 		return "customer/my_customer_list";
+	}
+	
+	//로그인 안했을 때 상담내역 페이지로 이동
+	@GetMapping("/goMyCustomerX")
+	private String goMyCustomerX() {
+		
+		return "customer/my_customer_list_loginX";
 	}
 	
 	//고객센터 글 수정

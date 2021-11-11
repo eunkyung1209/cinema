@@ -221,7 +221,9 @@
 		    , WRITER 
 		    , TITLE 
 		    , CONTENT  
+		   <if test="secretNumber != null and !secretNumber.equals('')">
 		    , SECRET_NUMBER
+		    </if>
 		    , IS_NOTICE
 		    , GROUP_CODE)
 		VALUES (
@@ -229,7 +231,9 @@
 		     , #{writer}
 		     , #{title}
 		     , #{content}
+		     <if test="secretNumber != null and !secretNumber.equals('')">
 		     , #{secretNumber}
+		     </if>
 		     , #{isNotice}
 		     , #{groupCode}
 		)
@@ -286,9 +290,11 @@
 		UPDATE OISONE_CUSTOMER
 		SET TITLE = #{title}
 		    , CONTENT  = #{content}
-		    , SECRET_NUMBER = #{secretNumber}
 		    , IS_NOTICE = #{isNotice}
 		    , GROUP_CODE = #{groupCode}
+		     <if test="secretNumber != null and !secretNumber.equals('')">
+		    , SECRET_NUMBER = #{secretNumber}
+		    </if>
 		WHERE CUSTOMER_CODE = #{customerCode}
 	</update>
 	
@@ -388,7 +394,11 @@
 		</update>
 		
 		<!-- 조회여부 -->
-		
+		<update id="updateIsRead">
+			UPDATE OISONE_CUSTOMER
+			SET IS_READ = 'Y'
+			WHERE CUSTOMER_CODE = #{customerCode}
+		</update>
 		
 </mapper>
 

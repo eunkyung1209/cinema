@@ -38,11 +38,17 @@ $(document).ready(function(){
 			var areaNameAll = $(element).attr('data-areaName');
 			
 			if(areaName == areaNameAll){
+				//영화관을 다시 누르면 상영시간버튼 초기화
+				$('#movieTimeBtn').empty();
+				$('.dateCheck').text('');
+				$('.reserveTitleMovieTime').text('');
+				
 				$('.areaCheck').text('');
 				$(this).children().children().next().text('V');
 				$(this).children().children().next().css('color', 'red')
 				
 				$('.reserveTitleArea').text(areaName);
+				
 			}
 		});
 		
@@ -129,6 +135,12 @@ $(document).ready(function(){
 			var mvCodeAll = $(element).attr('data-mvCode');
 			
 			if(mvCode == mvCodeAll){
+				
+				//영화를 다시 누르면 상영버튼 초기화
+				$('#movieTimeBtn').empty();
+				$('.dateCheck').text('');
+				$('.reserveTitleMovieTime').text('');
+				
 				$('.movieCheck').text('');
 				$(this).children().children().next().text('V');
 				$(this).children().children().next().css('color', 'red')

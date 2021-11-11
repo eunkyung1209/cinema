@@ -1,5 +1,7 @@
 package com.kh.project.reservation.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -142,14 +144,7 @@ public class ReservationController {
 		//결제페이지로 이동
 		@GetMapping("/payMent")
 		public String goPayMent(Model model, MovieTimeVO movieTimeVO, ReservationVO reservationVO, HttpSession session, MemberVO memberVO) {
-			//좌석이름 'A1, A2, A3' 이런식으로 잘 넘어오나 확인!
-			//-> 선택한 좌석을 ReservationVO의 seatNames[]로 받고, seatName에도 잘 담김!
-			System.out.println("!!!!!!!!!!!!!!!!" + reservationVO.getSeatName());
 			
-//			String[] seatNames = new String[5];			
-//			
-//			seatNames[0] = reservationVO.getSeatName().substring(reservationVO.getSeatName().length()-2, reservationVO.getSeatName().length());
-//			System.out.println("문자열 자르기!!!" + seatNames[0]);
 			
 			//선택한 상영시간표 정보
 			model.addAttribute("mvtInfo", reservationService.selectReservationInfoBeforePay(movieTimeVO));
@@ -162,6 +157,7 @@ public class ReservationController {
 			
 			//예매할 회원 정보
 			model.addAttribute("memberInfo", memberservice.selectMemberDetail(memberVO));
+			
 			
 			return "reservation/payment_page";
 		}
@@ -182,13 +178,41 @@ public class ReservationController {
 		
 		//결제완료 페이지로 이동
 		@GetMapping("/payComplete")
-		public String goPayComplete(Model model, ReservationVO reservationVO) {
+		public String goPayComplete(Model model, ReservationVO reservationVO, String seatName, int seatCnt, String theaterCode) {
+			
 			//예매내역 정보
 			model.addAttribute("resInfo", reservationService.selectDetailReservation(reservationVO));
+			reservationVO.setSeatName(seatName);
+			reservationVO.setSeatCnt(seatCnt);
+			reservationVO.setTheaterCode(theaterCode);
+			
+			//좌석이름 'A1, A2, A3' 이런식으로 잘 넘어오나 확인!
+			//-> 선택한 좌석을 ReservationVO의 seatNames[]로 받고, seatName에도 잘 담김!
+//			List<String> seatCodeList = new ArrayList<String>();
+//			for(String e : reservationVO.getSeatNames()) {
+//				seatCodeList.add(reservationVO.getTheaterCode() +"_"  + e);
+//			}
+//			
+//			ReservationVO vo = new ReservationVO();
+//			vo.setSeatCodeList(seatCodeList);
+			
+			//상영관 좌석 y로 변경
+			//reservationService.updateSeatStatus(vo);
+			//상영관 잔여좌석 업데이트
+			reservationService.updateSeatCnt(reservationVO);
 			
 			return "reservation/payment_complete";
 		}
 		
+		//나의 예매내역 페이지로 이동
+		@GetMapping("/goMyReservation")
+		public String goMyReservation(String id, Model model) {
+			
+			//예매내역 리스트
+			model.addAttribute("myReserveList", reservationService.selectMyReservation(id));
+			
+			return "reservation/my_reservation";
+		}
 		
 		
 		//카피

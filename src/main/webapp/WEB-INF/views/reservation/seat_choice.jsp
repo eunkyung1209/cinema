@@ -133,6 +133,7 @@ ul{
 												<div>
 													${mvInfo.areaName }
 													${mvInfo.theaterName }
+													<input type="hidden" id="theaterCode" name="theaterCode" value="${mvInfo.theaterCode }">
 												</div>
 											
 											
@@ -145,7 +146,7 @@ ul{
 											<div class="col-6">
 												<div>
 													인원 수 
-													<input type="number" value="0" min="0" max="20" id="seatCnt" required>
+													<input type="number" value="0" min="0" max="20" id="seatCnt" readonly>
 												</div>
 												
 												<div class="selectSeat1 m-3" >
@@ -261,8 +262,9 @@ ul{
     
     function seatClick(mvTimeCode) {
     	var seatCnt = $('#seatCnt').val();
+    	var theaterCode = $('#theaterCode').val();
     	
-        location.href = '/reservation/payMent?mvTimeCode=' + mvTimeCode + '&seatCnt=' + seatCnt + '&seatNames=' + selectedSeats;
+        location.href = '/reservation/payMent?mvTimeCode=' + mvTimeCode + '&seatCnt=' + seatCnt + '&seatNames=' + selectedSeats + '&theaterCode=' + theaterCode;
 	}
     
     goLoginAlert = function(){

@@ -1,5 +1,7 @@
 package com.kh.project.reservation.vo;
 
+import java.util.List;
+
 public class ReservationVO {
 	//DB에 컬럼들
 	private String resCode;
@@ -20,12 +22,19 @@ public class ReservationVO {
 	private String screenDay;
     private String screenTime;
     private String screenEndTime;
+    private String theaterCode;
 	
     //선택한 좌석 리스트
 	private String[] seatNames;
+	private List<String> seatCodeList;
 	
 	
-	
+	public String getTheaterCode() {
+		return theaterCode;
+	}
+	public void setTheaterCode(String theaterCode) {
+		this.theaterCode = theaterCode;
+	}
 	public String getResCode() {
 		return resCode;
 	}
@@ -147,6 +156,12 @@ public class ReservationVO {
 	}
 	public void setScreenEndTime(String screenEndTime) {
 		this.screenEndTime = screenEndTime;
+	}
+	public List<String> getSeatCodeList() {
+		return seatCodeList;
+	}
+	public void setSeatCodeList(List<String> seatCodeList) {
+		this.seatCodeList = seatCodeList;
 	}
 	
 }

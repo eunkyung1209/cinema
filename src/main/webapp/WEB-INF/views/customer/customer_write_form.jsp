@@ -75,6 +75,8 @@ select {
 			</div>
 		</div>
 	
+	<div style="height: 50px;"></div>
+	
 	<div class="row justify-content-center align-middle">
 		<div class="col-10" >
 			<div class="col-9 cusBox " >
@@ -101,7 +103,7 @@ select {
 								<thead>
 									<tr>
 										<td colspan="2" style="background-color: white; padding-bottom: 5px;" >
-											<span style="font-size: 20px;">문의내용</span> 
+											<span style="font-size: 20px;"></span> 
 											<span class="needInput" style=""><span class="redStar">*</span>필수입력</span>
 											<c:if test="${sessionScope.loginInfo.isAdmin eq 'N' }">
 												<input type="hidden" name="isNotice" value="N">
@@ -151,8 +153,20 @@ select {
 	                   					<td><input name="file2" id="formFileMultiple" type="file"  multiple></td>
 									</tr>
 									<tr>
-										<td>비밀번호 <span class="redStar">*</span></td>
-	                   					<td><input type="password" name="secretNumber" required> </td>
+										<td>비밀번호 
+											<c:choose>
+												<c:when test="${sessionScope.loginInfo.isAdmin eq 'N' }">
+													<span class="redStar">*</span>
+												</c:when>
+												<c:otherwise>
+												</c:otherwise>
+											</c:choose>
+										
+										</td>
+	                   					<td><input type="password" name="secretNumber" <c:if test="${sessionScope.loginInfo.isAdmin eq 'N' }">required</c:if>></td>
+	                   						
+	                   					
+	                   					 
 									</tr>
 								</tbody>
 							</table>

@@ -32,6 +32,12 @@ public class CustomerCenterServiceImpl implements CustomerCenterService {
 	public CustomerCenterVO selectCustomerBoardDetail(String customerCode) {
 		return sqlSession.selectOne("customerCenterMapper.selectCustomerBoardDetail", customerCode);
 	}
+	
+	//관리자 조회 여부 업데이트
+	@Override
+	public void updateIsRead(String customerCode) {
+		sqlSession.update("customerCenterMapper.updateIsRead", customerCode);
+	}
 
 	//다음 customerCode 조회
 	@Override
@@ -111,6 +117,8 @@ public class CustomerCenterServiceImpl implements CustomerCenterService {
 	public void updateCustomerReply(CustomerCenterReplyVO customerCenterReplyVO) {
 		sqlSession.update("customerCenterMapper.updateCustomerReply", customerCenterReplyVO);
 	}
+
+	
 	
 	
 	
