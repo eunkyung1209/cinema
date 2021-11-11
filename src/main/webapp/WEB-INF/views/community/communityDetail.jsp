@@ -128,9 +128,6 @@ background-color: #f2f2f2
 		<div class="row justify-content-center">
 			<div class="col-8 text-center"  >
 				 <input class="common_btn" type="button" value="목록으로"  onclick="location.href='/board/boardList';">
-				
-				
-			
 			</div>
 		</div>
 	

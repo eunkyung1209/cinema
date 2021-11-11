@@ -4,6 +4,7 @@ package com.kh.project.community.controller;
 
 import javax.annotation.Resource;
 
+import org.apache.tiles.request.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,7 +56,10 @@ public class CommunityController {
 	@PostMapping("/commuWrite")
 	private String CommuWrite(CommunityVO communityVO) {
 		
+		
+		
 		communityService.insertCommu(communityVO);
+		
 		
 		return "redirect:/community/commuList";
 	}
@@ -71,9 +75,11 @@ public class CommunityController {
 	@GetMapping("/selectCommuDetail")
 	private String selectCommuDetail(Model model, CommunityVO communityVO, String commuCode) {
 		
+		CommunityVO result = communityService.selectCommuDetail(communityVO);
+		result.setContent(result.getContent().replaceAll("\r\n", "<br>"));
 		
 		//상세보기 정보
-		model.addAttribute("commuList", communityService.selectCommuDetail(communityVO));
+		model.addAttribute("commuList", result);
 		
 		//댓글 목록 불러오기
 		model.addAttribute("commuReplyList", communityService.selectCommuReply(commuCode));
