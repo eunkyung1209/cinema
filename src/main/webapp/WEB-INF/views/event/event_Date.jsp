@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/event/css/event_Date.css?ver=2">
+<link rel="stylesheet" href="/resources/event/css/event_Date.css?ver=7">
 <script type="text/javascript" src="/resources/event/js/event_Date.js?ver=2"></script>
 </head>
 <body>
@@ -19,8 +19,10 @@
 				</div>
 			</div>
 			
-			<div class="row">
-				<div class="container">
+			<div style="height: 50px;"></div>
+			
+			<div class="row justify-content-center">
+				<div class="col-10">
 					<div class="my-calendar clearfix">
 						<div class="clicked-date">
 							<div class="cal-day"></div>
@@ -53,24 +55,27 @@
 				</div>
 			</div>
 			
+			<div style="height: 50px;"></div>
+			
 			<!-- 행사일정 구현 -->
 			<form action="/event/eventAjax" method="post">
 				<div class="row justify-content-center">
-					<div class="col">
-						<div class="col-12 subjectDiv">
-							<div id="aaaa">
-								<h6>이달의 행사</h6>
-								<ul>
-									<c:forEach items="${eventList }" var="eventInfo">
-										<li>${eventInfo.evenDate }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${eventInfo.evenName }</li>
-									</c:forEach>
-								</ul>
-							</div>
+					<div style="width: 725px;">
+						<hr style="border: 1.5px solid gray;">
+						<div id="aaaa">
+							<h6>이달의 행사</h6>
+							<ul>
+								<c:forEach items="${eventList }" var="eventInfo">
+									<li>${eventInfo.evenDate }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${eventInfo.evenName }</li>
+								</c:forEach>
+							</ul>
 						</div>
+						<hr style="border: 1.5px solid gray;">
 					</div>
 				</div>
-				<div class="row justify-content-center"></div>
 			</form>
+			
+			<div style="height: 50px;"></div>
 			
 		</div>
 	</div>

@@ -17,12 +17,12 @@ html, body {
 /* ======== Calendar ======== */
 .my-calendar {
   width: 700px;
-  margin: 30px;
   padding: 20px 20px 10px;
   text-align: center;
   font-weight: 800;
   border: 1px solid #ddd;
   cursor: default;
+  margin: 0 auto;
 }
 .my-calendar .clicked-date {
   border-radius: 25px;
