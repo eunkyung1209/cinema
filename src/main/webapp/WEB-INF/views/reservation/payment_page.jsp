@@ -159,9 +159,10 @@ input[type="number"]{
 			<input type="hidden" id="resCode" name="resCode">
 			<input type="hidden" name="id" value="${sessionScope.loginInfo.id }">
 			<input type="hidden" id="mvTimeCode" name="mvTimeCode" value="${mvtInfo.mvTimeCode }">
-			<input type="hidden" name="seatName" value="${seatInfo.seatName }">
-			<input type="hidden" name="seatCnt" value="${seatInfo.seatCnt }">
+			<input type="hidden" id="seatName" name="seatName" value="${seatInfo.seatName }">
+			<input type="hidden" id="seatCnt" name="seatCnt" value="${seatInfo.seatCnt }">
 			<input type="hidden" id="screenDay" name="screenDay" value="${mvtInfo.screenDay }">
+			<input type="hidden" id="theaterCode" name="theaterCode" value="${seatInfo.theaterCode }">
 			
 			<!-- 예매하기 영역 -->
 			<div class="row justify-content-center">
