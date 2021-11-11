@@ -40,7 +40,7 @@
 </script>
 
 <!-- 자바 스크립트 -->
-<script type="text/javascript" src="/resources/reservation/js/reserve_form.js?ver=102"></script>
+<script type="text/javascript" src="/resources/reservation/js/reserve_form.js?ver=108"></script>
 <style type="text/css">
 
 /* picker */
@@ -133,6 +133,10 @@ ul{
 	background-color: #aaa69d;
 }
 
+/* 호버 */
+#tooltip {visibility:hidden;}
+
+
 .screenTimeDiv{
 	font-size: 18px;
 
@@ -196,7 +200,6 @@ padding-top: 10px;
 </head>
 <body>
 
-<a href="/reservation/write">예시</a>
 <div class="codeValue"></div>
 
 <div class="row bodyDiv justify-content-center">
@@ -254,7 +257,7 @@ padding-top: 10px;
 									<c:forEach items="${areaList }" var="areaInfo">
 										<li class="m-3 areaName" onclick="areaNameClick('${areaInfo.areaName }');" data-areaName="${areaInfo.areaName }">
 											<div class="row justify-content-center">
-												<div class="col-10">${areaInfo.areaName }</div>
+												<div class="col-10" >${areaInfo.areaName }</div>
 												<div class="col-2 areaCheck" > &nbsp;</div>
 											</div>
 										</li>
@@ -322,22 +325,6 @@ padding-top: 10px;
 									<!-- 달력이 들어갈 공간 -->
 									<div class="col-2 movieCalDiv justify-content-center" >
 									
-										<div class="row">
-											<div class="col-10 calDiv"  data-date="2021-11-08" onclick="calClick('2021-11-08');"> <span class="week">월</span> <span class="day">&nbsp; 8</span></div>
-											<div class="col-2 dateCheck" >&nbsp; </div> 
-										</div>
-										<div class="row">
-											<div class="col-10 calDiv"  data-date="2021-11-09" onclick="calClick('2021-11-09');"> <span class="week">화</span> <span class="day">&nbsp; 9</span></div>
-											<div class="col-2 dateCheck" >&nbsp; </div> 
-										</div>
-										<div class="row">
-											<div class="col-10 calDiv"   data-date="2021-11-10" onclick="calClick('2021-11-10');"> <span class="week">수</span> <span class="day"> 10</span></div>
-											<div class="col-2 dateCheck" >&nbsp; </div> 
-										</div>
-										<div class="row">
-											<div class="col-10 calDiv"  data-date="2021-11-11" onclick="calClick('2021-11-11');"> <span class="week">목</span> <span class="day"> 11</span></div>
-											<div class="col-2 dateCheck" >&nbsp; </div> 
-										</div>
 										<div class="row">
 											<div class="col-10 calDiv"  data-date="2021-11-12" onclick="calClick('2021-11-12');"> <span class="week">금</span> <span class="day"> 12</span></div>
 											<div class="col-2 dateCheck" >&nbsp; </div> 

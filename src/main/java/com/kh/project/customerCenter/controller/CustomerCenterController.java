@@ -145,13 +145,12 @@ public class CustomerCenterController {
 	@GetMapping("/selectCustomerBoardDetail")
 	private String selectCustomerBoardDetail(Model model, String customerCode, CustomerCenterVO customerCenterVO) {
 		
-	
+		//관리자가 클릭 시 조회 여부 업데이트
+		customerCenterService.updateIsRead(customerCode);
 		//상세보기 정보
 		model.addAttribute("customerBoard", customerCenterService.selectCustomerBoardDetail(customerCode));
 		//댓글 목록 불러오기
 		model.addAttribute("customerReplyList", customerCenterService.selectCustomerReply(customerCode));
-		//관리자가 클릭 시 조회 여부 업데이트
-		customerCenterService.updateIsRead(customerCode);
 		
 		return "customer/customer_board_detail";
 	}

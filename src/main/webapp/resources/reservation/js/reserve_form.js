@@ -224,7 +224,7 @@ $(document).ready(function(){
 	            	var str = '';	
 	            		
 					str += '<div class="col-3 m-1" >' + '<span class="movieTitleR">'+ element.title + '</span>'+'<div class="reserveInfoBtn" onclick="movieTimeClick(\'' + element.mvTimeCode +'\');" data-mvTimeCode="' + element.mvTimeCode + '">';
-					str += '<div class="screenTimeDiv m-1">'+  element.screenTime + '</div>';
+					str += '<a title="'+ element.screenEndTime +'"><div class="screenTimeDiv m-1" >'+  element.screenTime + '</div></a>';
 					str += '<div class="seatDiv m-1">' + element.seatLeft + '/';
 					str +=  element.seatAll +' [' + element.theaterName + '] </div> </div> </div>';
 	            		

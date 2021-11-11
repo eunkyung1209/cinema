@@ -175,7 +175,7 @@
 	    AND MV_CODE = #{mvCode}
 	    </if>
 	     AND SCREEN_DAY = #{screenDay} 
-	    ORDER BY MV_TIME_CODE
+	    ORDER BY SCREEN_TIME
 	</select>
 	
 	<!-- 상영등록) 영화정보 조회 -->

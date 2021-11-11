@@ -100,6 +100,7 @@ select {
 										<td >영화 <span class="redStar">*</span></td>
 										<td >
 											<select name="mvCode" id="movieSeletor" required>
+												<option> 선택</option>
 												<c:forEach items="${statingMovieList }" var="statingMovie">
 													<option value="${statingMovie.mvCode }">${statingMovie.title } </option>
 												</c:forEach>
@@ -115,6 +116,7 @@ select {
 										<td >
 											
 											<select name="areaName" id="areaSelector">
+												<option>선택</option>
 													<c:forEach items="${areaList }" var="area">
 														<option value="${area.areaName }">${area.areaName }</option>
 													</c:forEach>
