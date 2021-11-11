@@ -93,7 +93,8 @@ background-color: #f2f2f2
 				       <td>작성일 | ${communityVO.createDate } </td>
 					</tr>
 					<tr>
-						<td colspan="3">${communityVO.content }</td>
+						<td colspan="3"><pre><c:out value="${communityVO.content }"/></pre></td>
+						
 					</tr>
 				</table>
 			</div>
