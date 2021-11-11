@@ -121,3 +121,11 @@ html, body {
 
 
 
+h6{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+li{
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
