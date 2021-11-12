@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/admin/js/rental_manage.js?ver=9"></script>
+<script type="text/javascript" src="/resources/admin/js/rental_manage.js?ver=10"></script>
 <style type="text/css">
 /* 예약 안내 */
 .rental-notice{

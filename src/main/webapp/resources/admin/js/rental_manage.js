@@ -42,6 +42,8 @@ $(document).ready(function(){
 //				console.log('rtEndTime = ' + rtEndTime);
 //				console.log('isComplete = ' + isComplete);
 				
+				alert('예약 정보가 수정되었습니다.\n예약 코드 : ' + rtCode);
+				
 				location.href = '/admin/updateRental?rtCode=' + rtCode
 												+ '&theaterName=' + theaterName
 												+ '&rtStartTime=' + rtStartTime
