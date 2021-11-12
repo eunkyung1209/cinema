@@ -196,17 +196,17 @@ input{
 								<form action="/community/updateCummuReply" method="post">
 									<input type="hidden" name="commuReplyCode" value="${commuReply.commuReplyCode }">
 									<input type="hidden" name="commuCode" value="${commuReply.commuCode }">
-									<div class="replyWriter">
+									<div class="replyWriter m-1">
 										${commuReply.writer }
 									</div>
-									<div class="createDate">${commuReply.createDate }</div>
+									<div class="createDate m-1">${commuReply.createDate }</div>
 									<div class="replyContent" data-replyCode="${commuReply.commuReplyCode }" ><div class="upReply">${commuReply.content }</div></div>
 								</form>
 							</td>
 							
 							<!-- 본인 또는 관리자 -->
 							<td class="correct" >
-								<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' or sessionScope.loginInfo.nickName eq commuList.writer}">
+								<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' or sessionScope.loginInfo.nickName eq commuReply.writer}">
 									<li class="nav-item dropdown">
 							           	<span class="nav-link dropdown-toggle" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							            </span>
