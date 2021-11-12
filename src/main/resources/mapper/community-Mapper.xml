@@ -61,7 +61,7 @@
 			<if test="searchValue != null and !searchValue.equals('')">
 			  	WHERE ${searchKeyword} LIKE '%'||#{searchValue}||'%'
 			</if>
-			ORDER BY CREATE_DATE DESC
+			ORDER BY CREATE_DATE DESC, COMMU_CODE DESC
 		)
 	)
 WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
