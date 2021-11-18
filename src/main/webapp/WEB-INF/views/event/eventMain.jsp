@@ -15,6 +15,9 @@ margin-right: 20px;
 .topEvent{
 height: 25px;
 }
+h6{
+margin-left: 80px;
+}
 </style>
 
 </head>
@@ -28,7 +31,7 @@ height: 25px;
 </div>
 
 
-<div style="height: 30px;"></div>
+<div style="height: 50px;"></div>
 
 <div class="row justify-content-center">
 	<div class="col-8">
@@ -38,7 +41,7 @@ height: 25px;
 <div class="row justify-content-center">
 	<div class="col-8">
 		<div style="text-align: center">
-		<a href="eventDetail"><img src="https://caching.lottecinema.co.kr//Media/Event/908b3e46f7174112b4e35cd140b44c99.jpg" alt="영화 이벤트이미지를 불러오지 못했습니다." class="img" ></a>
+		<a href="eventDetail"><img src="https://caching.lottecinema.co.kr//Media/Event/afbe41a68dbe4c8bb30c2f35c0aad5a0.jpg" alt="영화 이벤트이미지를 불러오지 못했습니다." class="img" ></a>
 		<a href="eventDetail_1"><img src=https://caching.lottecinema.co.kr//Media/Event/4128a9f8c1434b72954053d071e01603.jpg alt="영화 이벤트이미지를 불러오지 못했습니다." class="img"></a>
 		<a href="eventDetail_2"><img src="https://caching.lottecinema.co.kr//Media/Event/67d91923455946d5a6c7b148a48d2330.jpg" alt="영화 이벤트이미지를 불러오지 못했습니다." class="img"></a>
 		</div>
@@ -81,12 +84,13 @@ height: 25px;
 <div style="height: 70px;"></div>
 
 <div class="row justify-content-center">	
-	<div class="col-8">
+	<div style="text-align: center; margin-right: 18px;">
 		<img src="https://caching2.lottecinema.co.kr/lotte_image/2021/Ron/1027/Ron_980180.jpg" alt="영화 이벤트이미지를 불러오지 못했습니다." width="800px;">
 	</div>
 </div>	
 
 <div style="height: 50px;"></div>
+
 <div class="row justify-content-center">	
 	<img src="https://caching2.lottecinema.co.kr/lotte_image/2020/Hyundaicard/Hyundaicard_980240.jpg" width="1000px;" height="260px;"  alt="영화 이벤트이미지를 불러오지 못했습니다.">
 </div>
