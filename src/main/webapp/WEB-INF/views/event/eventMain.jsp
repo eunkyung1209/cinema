@@ -38,7 +38,7 @@ height: 25px;
 <div class="row justify-content-center">
 	<div class="col-8">
 		<div style="text-align: center">
-		<a href="eventDetail"><img src="https://caching.lottecinema.co.kr//Media/Event/ca03fb84e357437daa0c30f127be068e.jpg" alt="영화 이벤트이미지를 불러오지 못했습니다." class="img" ></a>
+		<a href="eventDetail"><img src="https://caching.lottecinema.co.kr//Media/Event/908b3e46f7174112b4e35cd140b44c99.jpg" alt="영화 이벤트이미지를 불러오지 못했습니다." class="img" ></a>
 		<a href="eventDetail_1"><img src=https://caching.lottecinema.co.kr//Media/Event/4128a9f8c1434b72954053d071e01603.jpg alt="영화 이벤트이미지를 불러오지 못했습니다." class="img"></a>
 		<a href="eventDetail_2"><img src="https://caching.lottecinema.co.kr//Media/Event/67d91923455946d5a6c7b148a48d2330.jpg" alt="영화 이벤트이미지를 불러오지 못했습니다." class="img"></a>
 		</div>
