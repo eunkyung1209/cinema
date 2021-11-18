@@ -38,9 +38,9 @@ a{
 
 .logoDiv{
 	margin-top: 20px;
-	text-align: right;
+	text-align: center;
 	height: 70px;
-	padding-right: 150px;
+	/* padding-right: 150px; */
 }
 
 .loginDiv{
@@ -147,10 +147,8 @@ a:hover {
 			
 			
 			<div class="col-1 lineMenuDiv">
-			
 				<div class="row">
 					<div class="col-6">
-					
 						<a  href="#" class="text-decoration-none" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ed7d31" class="bi bi-card-list icon" viewBox="0 0 16 16">
 								<path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
@@ -161,9 +159,6 @@ a:hover {
 						<img alt="" height="30px;" src="/resources/images/menu/lineMenu.png">
 				    </button> -->
 					</div>
-					
-					
-					
 					<div class="col-6">
 						 <!-- 채팅 아이콘 -->
 						<div class="col-6 chatIcon" > 
@@ -174,17 +169,10 @@ a:hover {
 						</a>
 						</div>
 					</div>
-				
-				
-				
-			
 				</div>	
-			
-			
-			
-			
 			</div>
-			<div class="col-7 logoDiv">
+			<div class="col-3"></div>
+			<div class="col-4 logoDiv">
 				<c:choose>
 					<c:when test="${not empty logo }">
 						<!-- <a href="/movie/mainPage"><img alt="" height="50px" src="/resources/images/menu/logo_black.png"></a> -->
@@ -233,8 +221,7 @@ a:hover {
 							<span data-bs-toggle="modal" data-bs-target="#loginModal" class="loginDiv">
 								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ed7d31" class="bi bi-person-fill" viewBox="0 0 16 16">
 									<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-								</svg>
-								마이페이지
+								</svg> 마이페이지
 							</span>
 						</c:if>
 						
